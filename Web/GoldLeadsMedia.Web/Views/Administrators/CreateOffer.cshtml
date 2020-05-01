@@ -5,7 +5,7 @@
 </div>
 <hr />
 <div class="container">
-    <form asp-controller="Administration" asp-action="CreateOffer" method="post">
+    <form asp-controller="Administrators" asp-action="CreateOffer" method="post">
         <div asp-validation-summary="All" class="text-danger"></div>
         <div class="form-group row mx-auto">
             <div class="col-2">
@@ -53,7 +53,7 @@
         </div>
         <div class="form-group">
             <div class="col-4">
-                <input asp-for="@Model.EarningPerClick" placeholder="Earning per click:" class="form-control"/>
+                <input asp-for="@Model.PayPerClick" placeholder="Earning per click:" class="form-control"/>
             </div>
         </div>
         <div class="form-group">

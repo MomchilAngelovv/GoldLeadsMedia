@@ -43,6 +43,43 @@ namespace GoldLeadsMedia.Database.Migrations
                     b.ToTable("Accesses");
                 });
 
+            modelBuilder.Entity("GoldLeadsMedia.Database.Models.Click", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("AffiliateId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<DateTime>("CreatedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DeletedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("IpAddress")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("LandingPageId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("OfferId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<DateTime?>("UpdatedOn")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AffiliateId");
+
+                    b.HasIndex("LandingPageId");
+
+                    b.HasIndex("OfferId");
+
+                    b.ToTable("Clicks");
+                });
+
             modelBuilder.Entity("GoldLeadsMedia.Database.Models.Country", b =>
                 {
                     b.Property<int>("Id")
@@ -73,6 +110,42 @@ namespace GoldLeadsMedia.Database.Migrations
                     b.ToTable("Countries");
                 });
 
+            modelBuilder.Entity("GoldLeadsMedia.Database.Models.DeveloperError", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<int>("Code")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CreatedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DeletedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Message")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Method")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Path")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("UpdatedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("DeveloperErrors");
+                });
+
             modelBuilder.Entity("GoldLeadsMedia.Database.Models.GoldLeadsMediaRole", b =>
                 {
                     b.Property<string>("Id")
@@ -87,6 +160,9 @@ namespace GoldLeadsMedia.Database.Migrations
 
                     b.Property<DateTime?>("DeletedOn")
                         .HasColumnType("datetime2");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(256)")
@@ -144,7 +220,7 @@ namespace GoldLeadsMedia.Database.Migrations
                         .HasColumnType("datetimeoffset");
 
                     b.Property<string>("ManagerId")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("NormalizedEmail")
                         .HasColumnType("nvarchar(256)")
@@ -181,6 +257,8 @@ namespace GoldLeadsMedia.Database.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("ManagerId");
+
                     b.HasIndex("NormalizedEmail")
                         .HasName("EmailIndex");
 
@@ -206,11 +284,11 @@ namespace GoldLeadsMedia.Database.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("RedirectUrl")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<DateTime?>("UpdatedOn")
                         .HasColumnType("datetime2");
+
+                    b.Property<string>("Url")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
@@ -249,6 +327,9 @@ namespace GoldLeadsMedia.Database.Migrations
                     b.Property<string>("CallStatus")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("ClickId")
+                        .HasColumnType("nvarchar(450)");
+
                     b.Property<string>("ConfirmedByManagerId")
                         .HasColumnType("nvarchar(max)");
 
@@ -273,9 +354,6 @@ namespace GoldLeadsMedia.Database.Migrations
                     b.Property<string>("LastName")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("OfferClickId")
-                        .HasColumnType("nvarchar(450)");
-
                     b.Property<string>("PartnerId")
                         .HasColumnType("nvarchar(450)");
 
@@ -290,13 +368,48 @@ namespace GoldLeadsMedia.Database.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CountryId");
+                    b.HasIndex("ClickId");
 
-                    b.HasIndex("OfferClickId");
+                    b.HasIndex("CountryId");
 
                     b.HasIndex("PartnerId");
 
                     b.ToTable("Leads");
+                });
+
+            modelBuilder.Entity("GoldLeadsMedia.Database.Models.LeadError", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<DateTime>("CreatedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DeletedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("ExtraInformation")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("LeadId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Message")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PartnerId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<DateTime?>("UpdatedOn")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("LeadId");
+
+                    b.HasIndex("PartnerId");
+
+                    b.ToTable("LeadErrors");
                 });
 
             modelBuilder.Entity("GoldLeadsMedia.Database.Models.Offer", b =>
@@ -313,7 +426,7 @@ namespace GoldLeadsMedia.Database.Migrations
                     b.Property<int>("CountryId")
                         .HasColumnType("int");
 
-                    b.Property<string>("CreatedBy")
+                    b.Property<string>("CreatedByManagerId")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("CreatedOn")
@@ -324,9 +437,6 @@ namespace GoldLeadsMedia.Database.Migrations
 
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<decimal>("EarningPerClick")
-                        .HasColumnType("decimal(18,4)");
 
                     b.Property<int>("LanguageId")
                         .HasColumnType("int");
@@ -340,7 +450,10 @@ namespace GoldLeadsMedia.Database.Migrations
                     b.Property<decimal>("PayOut")
                         .HasColumnType("decimal(18,4)");
 
-                    b.Property<int>("PaymentTypeId")
+                    b.Property<decimal>("PayPerClick")
+                        .HasColumnType("decimal(18,4)");
+
+                    b.Property<int>("PayTypeId")
                         .HasColumnType("int");
 
                     b.Property<int>("TargetDeviceId")
@@ -360,50 +473,13 @@ namespace GoldLeadsMedia.Database.Migrations
 
                     b.HasIndex("LanguageId");
 
-                    b.HasIndex("PaymentTypeId");
+                    b.HasIndex("PayTypeId");
 
                     b.HasIndex("TargetDeviceId");
 
                     b.HasIndex("VerticalId");
 
                     b.ToTable("Offers");
-                });
-
-            modelBuilder.Entity("GoldLeadsMedia.Database.Models.OfferClick", b =>
-                {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<DateTime>("CreatedOn")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("DeletedOn")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("IpAddress")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("LandingPageId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("OfferId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<DateTime?>("UpdatedOn")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("UserId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("LandingPageId");
-
-                    b.HasIndex("OfferId");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("OfferClicks");
                 });
 
             modelBuilder.Entity("GoldLeadsMedia.Database.Models.OfferGroup", b =>
@@ -467,7 +543,7 @@ namespace GoldLeadsMedia.Database.Migrations
                     b.ToTable("Partners");
                 });
 
-            modelBuilder.Entity("GoldLeadsMedia.Database.Models.PaymentType", b =>
+            modelBuilder.Entity("GoldLeadsMedia.Database.Models.PayType", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -643,17 +719,57 @@ namespace GoldLeadsMedia.Database.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
+            modelBuilder.Entity("GoldLeadsMedia.Database.Models.Click", b =>
+                {
+                    b.HasOne("GoldLeadsMedia.Database.Models.GoldLeadsMediaUser", "Affiliate")
+                        .WithMany()
+                        .HasForeignKey("AffiliateId");
+
+                    b.HasOne("GoldLeadsMedia.Database.Models.LandingPage", "LandingPage")
+                        .WithMany()
+                        .HasForeignKey("LandingPageId");
+
+                    b.HasOne("GoldLeadsMedia.Database.Models.Offer", "Offer")
+                        .WithMany()
+                        .HasForeignKey("OfferId");
+                });
+
+            modelBuilder.Entity("GoldLeadsMedia.Database.Models.DeveloperError", b =>
+                {
+                    b.HasOne("GoldLeadsMedia.Database.Models.GoldLeadsMediaUser", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId");
+                });
+
+            modelBuilder.Entity("GoldLeadsMedia.Database.Models.GoldLeadsMediaUser", b =>
+                {
+                    b.HasOne("GoldLeadsMedia.Database.Models.GoldLeadsMediaUser", "Manager")
+                        .WithMany()
+                        .HasForeignKey("ManagerId");
+                });
+
             modelBuilder.Entity("GoldLeadsMedia.Database.Models.Lead", b =>
                 {
+                    b.HasOne("GoldLeadsMedia.Database.Models.Click", "Click")
+                        .WithMany()
+                        .HasForeignKey("ClickId");
+
                     b.HasOne("GoldLeadsMedia.Database.Models.Country", "Country")
                         .WithMany()
                         .HasForeignKey("CountryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("GoldLeadsMedia.Database.Models.OfferClick", "OfferClick")
+                    b.HasOne("GoldLeadsMedia.Database.Models.Partner", "Partner")
                         .WithMany()
-                        .HasForeignKey("OfferClickId");
+                        .HasForeignKey("PartnerId");
+                });
+
+            modelBuilder.Entity("GoldLeadsMedia.Database.Models.LeadError", b =>
+                {
+                    b.HasOne("GoldLeadsMedia.Database.Models.Lead", "Lead")
+                        .WithMany()
+                        .HasForeignKey("LeadId");
 
                     b.HasOne("GoldLeadsMedia.Database.Models.Partner", "Partner")
                         .WithMany()
@@ -680,9 +796,9 @@ namespace GoldLeadsMedia.Database.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("GoldLeadsMedia.Database.Models.PaymentType", "PaymentType")
+                    b.HasOne("GoldLeadsMedia.Database.Models.PayType", "PayType")
                         .WithMany()
-                        .HasForeignKey("PaymentTypeId")
+                        .HasForeignKey("PayTypeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -697,21 +813,6 @@ namespace GoldLeadsMedia.Database.Migrations
                         .HasForeignKey("VerticalId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("GoldLeadsMedia.Database.Models.OfferClick", b =>
-                {
-                    b.HasOne("GoldLeadsMedia.Database.Models.LandingPage", "LandingPage")
-                        .WithMany()
-                        .HasForeignKey("LandingPageId");
-
-                    b.HasOne("GoldLeadsMedia.Database.Models.Offer", "Offer")
-                        .WithMany()
-                        .HasForeignKey("OfferId");
-
-                    b.HasOne("GoldLeadsMedia.Database.Models.GoldLeadsMediaUser", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId");
                 });
 
             modelBuilder.Entity("GoldLeadsMedia.Database.Models.OfferLandingPage", b =>

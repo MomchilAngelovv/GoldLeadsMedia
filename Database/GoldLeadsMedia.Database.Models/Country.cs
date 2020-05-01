@@ -15,7 +15,7 @@
         public string Name { get; set; }
         public string IsoCode { get; set; }
         public string PhonePrefix { get; set; }
-        public string Test { get; set; }
+
         public DateTime CreatedOn { get; set ; }
         public DateTime? UpdatedOn { get; set; }
         public DateTime? DeletedOn { get; set; }

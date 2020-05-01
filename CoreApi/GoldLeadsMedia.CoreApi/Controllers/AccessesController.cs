@@ -1,13 +1,11 @@
-﻿namespace GoldLeadsMedia.CoreApi.Controllers
+﻿using System.Linq;
+using System.Collections.Generic;
+
+using Microsoft.AspNetCore.Mvc;
+using GoldLeadsMedia.CoreApi.Services.Application.Common;
+
+namespace GoldLeadsMedia.CoreApi.Controllers
 {
-    using System.Linq;
-    using System.Collections.Generic;
-
-    using Microsoft.AspNetCore.Mvc;
-
-    using GoldLeadsMedia.CoreApi.Services.Accesses;
-    using GoldLeadsMedia.CoreApi.Models.ResponseModels.Accesses;
-
     public class AccessesController : ApiController
     {
         private readonly IAccessesService accessesService;
@@ -18,18 +16,19 @@
             this.accessesService = accessesService;
         }
 
-        public ActionResult<IEnumerable<AccessResponseModel>> All()
+        public ActionResult<IEnumerable<object>> All()
         {
-            var accesses = this.accessesService
-                .GetAll()
-                .Select(access => new AccessResponseModel
+            var accesses = this.accessesService.GetAll();
+            
+            var response = accesses
+                .Select(access => new
                 {
-                    Id = access.Id,
-                    Name = access.Name,
+                    access.Id,
+                    access.Name,
                 })
                 .ToList();
 
-            return accesses;
+            return response;
         }
     }
 }

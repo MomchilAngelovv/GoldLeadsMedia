@@ -4,9 +4,7 @@
     using System.Collections.Generic;
 
     using Microsoft.AspNetCore.Mvc;
-
-    using GoldLeadsMedia.CoreApi.Services.Verticals;
-    using GoldLeadsMedia.CoreApi.Models.ResponseModels.Verticals;
+    using GoldLeadsMedia.CoreApi.Services.Application.Common;
 
     public class VerticalsController : ApiController
     {
@@ -18,14 +16,14 @@
             this.verticalsService = verticalsService;
         }
 
-        public ActionResult<IEnumerable<VerticalResponseModel>> GetAll()
+        public ActionResult<IEnumerable<object>> GetAll()
         {
             var verticals = this.verticalsService
                 .GetAll()
-                .Select(vertial => new VerticalResponseModel 
+                .Select(vertial => new  
                 { 
-                    Id = vertial.Id,
-                    Name = vertial.Name
+                    vertial.Id,
+                    vertial.Name
                 })
                 .ToList();
 

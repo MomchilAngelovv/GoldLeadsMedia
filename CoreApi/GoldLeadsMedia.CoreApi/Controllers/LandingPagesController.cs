@@ -1,5 +1,4 @@
-﻿using GoldLeadsMedia.CoreApi.Models.ResponseModels.LandingPages;
-using GoldLeadsMedia.CoreApi.Services.LandingPages;
+﻿using GoldLeadsMedia.CoreApi.Services.Application.Common;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -18,14 +17,14 @@ namespace GoldLeadsMedia.CoreApi.Controllers
             this.landingPagesService = landingPagesService;
         }
 
-        public ActionResult<IEnumerable<LandingPageResponseModel>> All()
+        public ActionResult<IEnumerable<object>> All()
         {
             var landingPages = this.landingPagesService
                 .GetAll()
-                .Select(landingPage => new LandingPageResponseModel 
+                .Select(landingPage => new 
                 { 
-                    Id = landingPage.Id,
-                    Name = landingPage.Name
+                    landingPage.Id,
+                    landingPage.Name
                 })
                 .ToList();
 

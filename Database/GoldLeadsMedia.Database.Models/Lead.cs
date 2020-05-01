@@ -24,11 +24,11 @@
 
         public int CountryId { get; set; }
         public string PartnerId { get; set; }
-        public string OfferClickId { get; set; }
+        public string ClickId { get; set; }
 
         public virtual Country Country { get; set; }
         public virtual Partner Partner { get; set; }
-        public virtual OfferClick OfferClick { get; set; }
+        public virtual Click Click { get; set; }
 
         public DateTime CreatedOn { get ;set; }
         public DateTime? UpdatedOn { get; set; }

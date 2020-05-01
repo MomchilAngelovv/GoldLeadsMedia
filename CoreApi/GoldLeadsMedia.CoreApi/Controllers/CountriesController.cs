@@ -4,9 +4,7 @@
     using System.Collections.Generic;
 
     using Microsoft.AspNetCore.Mvc;
-
-    using GoldLeadsMedia.CoreApi.Services.Countries;
-    using GoldLeadsMedia.CoreApi.Models.ResponseModels.Countries;
+    using GoldLeadsMedia.CoreApi.Services.Application.Common;
 
     public class CountriesController : ApiController
     {
@@ -18,16 +16,16 @@
             this.countriesService = countriesService;
         }
 
-        public ActionResult<IEnumerable<CountryResponseModel>> All()
+        public ActionResult<IEnumerable<object>> All()
         {
             var countries = this.countriesService
                 .GetAll()
-                .Select(country => new CountryResponseModel
+                .Select(country => new 
                 {
-                    Id = country.Id,
-                    Name = country.Name,
-                    IsoCode = country.IsoCode,
-                    PhonePrefix = country.PhonePrefix
+                    country.Id,
+                    country.Name,
+                    country.IsoCode,
+                    country.PhonePrefix
                 })
                 .ToList();
 

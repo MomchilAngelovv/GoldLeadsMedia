@@ -53,12 +53,6 @@
                 ManagerId = user1.Id
             };
 
-
-            var offerGroup = new OfferGroup
-            {
-                Name = "Best Offers",
-            };
-
             var language = new Language
             {
                 Name = "English",
@@ -76,13 +70,15 @@
             var paymentTypeNames = new List<string> { "Per lead", "Per ftd" };
             var targetDeviceNames = new List<string> { "Computer", "Mobile", "Computer and mobile" };
             var landingPageUrls = new List<string> { "http://glm-cryptonews.com/bitcoinrevolution?of=", "http://glm-cryptonews.com/tesler?of=", "http://glm-cryptonews.com/bitcoinprofitnow?of=", "http://glm-cryptonews.com/bitcoinbillionaire?of=" };
-            var roleNames = new List<string> { "Affiliate", "Manager", "Administrator",  };
+            var roleNames = new List<string> { "Affiliate", "Manager", "Administrator" };
+            var offerGroupNames = new List<string> { "Best offers", "New offers", "Vip offers" };
 
             var varticals = new List<Vertical>();
             var accesses = new List<Access>();
-            var paymentTypes = new List<PaymentType>();
+            var paymentTypes = new List<PayType>();
             var targetDevices = new List<TargetDevice>();
             var landingPages = new List<LandingPage>();
+            var offerGroups = new List<OfferGroup>();
 
             foreach (var name in verticalNames)
             {
@@ -104,7 +100,7 @@
 
             foreach (var name in paymentTypeNames)
             {
-                var paymentType = new PaymentType
+                var paymentType = new PayType
                 {
                     Name = name
                 };
@@ -121,12 +117,13 @@
             }
 
             var cryptoNewsCounter = 1;
+
             foreach (var url in landingPageUrls)
             {
                 var langingPage = new LandingPage
                 {
                     Name = $"Crypto News {cryptoNewsCounter++}",
-                    RedirectUrl = url,
+                    Url = url,
                 };
                 landingPages.Add(langingPage);
             }
@@ -139,6 +136,16 @@
                 };
 
                 await this.roleManager.CreateAsync(role);
+            }
+
+            foreach (var name in offerGroupNames)
+            {
+                var offerGroup = new OfferGroup
+                {
+                    Name = name,
+                };
+
+                offerGroups.Add(offerGroup);
             }
 
             await this.userManager.CreateAsync(user1, "123456");
@@ -157,7 +164,7 @@
             await this.db.Accesses.AddRangeAsync(accesses);
             await this.db.Languages.AddAsync(language);
             await this.db.Countries.AddAsync(country);
-            await this.db.OfferGroups.AddAsync(offerGroup);
+            await this.db.OfferGroups.AddRangeAsync(offerGroups);
             await this.db.PaymentTypes.AddRangeAsync(paymentTypes);
             await this.db.TargetDevices.AddRangeAsync(targetDevices);
             await this.db.LandingPages.AddRangeAsync(landingPages);

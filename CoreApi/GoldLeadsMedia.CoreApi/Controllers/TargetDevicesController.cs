@@ -4,9 +4,7 @@
     using System.Collections.Generic;
 
     using Microsoft.AspNetCore.Mvc;
-
-    using GoldLeadsMedia.CoreApi.Services.TargetDevices;
-    using GoldLeadsMedia.CoreApi.Models.ResponseModels.TargetDevices;
+    using GoldLeadsMedia.CoreApi.Services.Application.Common;
 
     public class TargetDevicesController : ApiController
     {
@@ -18,14 +16,14 @@
             this.targetDevicesService = targetDevicesService;
         }
 
-        public ActionResult<IEnumerable<TargetDeviceResponseModel>> GetAll()
+        public ActionResult<IEnumerable<object>> GetAll()
         {
             var targetDevices = this.targetDevicesService
                 .GetAll()
-                .Select(targetDevice => new TargetDeviceResponseModel
+                .Select(targetDevice => new 
                 {
-                    Id = targetDevice.Id,
-                    Name = targetDevice.Name
+                    targetDevice.Id,
+                    targetDevice.Name
                 })
                 .ToList();
 

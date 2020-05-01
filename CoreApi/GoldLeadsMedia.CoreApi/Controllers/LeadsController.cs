@@ -4,9 +4,7 @@
     using System.Collections.Generic;
 
     using Microsoft.AspNetCore.Mvc;
-
-    using GoldLeadsMedia.CoreApi.Services.Leads;
-    using GoldLeadsMedia.CoreApi.Models.ResponseModels.Leads;
+    using GoldLeadsMedia.CoreApi.Services.Application.Common;
 
     public class LeadsController : ApiController
     {
@@ -19,19 +17,19 @@
         }
 
         [HttpGet("{id}")]
-        public ActionResult<IEnumerable<LeadResponseModel>> AllByUserId(string userId)
+        public ActionResult<IEnumerable<object>> AllByUserId(string userId)
         {
             var leads = this.leadsService
                 .GetAllBy(userId)
-                .Select(lead => new LeadResponseModel 
+                .Select(lead => new  
                 { 
-                    Id = lead.Id,
-                    FirstName = lead.FirstName,
-                    LastName = lead.LastName,
-                    Email = lead.Email,
+                    lead.Id,
+                    lead.FirstName,
+                    lead.LastName,
+                    lead.Email,
                     Country = lead.Country.Name,
-                    Offer = lead.OfferClick.Offer.Name,
-                    PhoneNumber = lead.PhoneNumber,
+                    Offer = lead.Click.Offer.Name,
+                    lead.PhoneNumber,
                 })
                 .ToList();
 

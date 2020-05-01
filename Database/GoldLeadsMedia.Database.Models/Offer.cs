@@ -18,17 +18,18 @@
         public string Description { get; set; }
         public string Number { get; set; }
         public string ActionFlow { get; set; }
-        public decimal EarningPerClick { get; set; }
+        public decimal PayPerClick { get; set; }
         public decimal PayOut { get; set; }
 
-        public int PaymentTypeId { get; set; }
+        public int PayTypeId { get; set; }
         public int CountryId { get; set; }
         public int AccessId { get; set; }
         public int VerticalId { get; set; } 
         public int LanguageId { get; set; }
         public int TargetDeviceId { get; set; }
+        public string CreatedByManagerId { get; set; }
 
-        public virtual PaymentType PaymentType { get; set; }
+        public virtual PayType PayType { get; set; }
         public virtual Country Country { get; set; }
         public virtual Access Access { get; set; }
         public virtual Vertical Vertical { get; set; }
@@ -37,7 +38,6 @@
 
         public virtual ICollection<OfferLandingPage> OffersLandingPages { get; set; }
 
-        public string CreatedBy { get; set; }
         public DateTime CreatedOn { get; set; }
         public DateTime? UpdatedOn { get; set; }
         public DateTime? DeletedOn { get; set; }

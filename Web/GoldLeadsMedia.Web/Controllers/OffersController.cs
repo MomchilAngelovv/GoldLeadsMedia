@@ -52,25 +52,25 @@
 
             return this.View(viewModel);
         }
-        public async Task<IActionResult> GetFiltersJSON(string model)
-        {
-            //var combinedModel = new CombinedFilterModel() { };
-            //string url = string.Format("{0}api/Offer/GetOffersFilters?", this.configuration.GetConnectionString("CoreApiUrl"));
+        //public async Task<IActionResult> GetFiltersJSON(string model)
+        //{
+        //    //var combinedModel = new CombinedFilterModel() { };
+        //    //string url = string.Format("{0}api/Offer/GetOffersFilters?", this.configuration.GetConnectionString("CoreApiUrl"));
 
-            //var response = await this.httpClient.PostAsync<BaseResultModel>(url, model);
-            //if (response.Code == 1)
-            //{
-            //    var offerRes = JsonSerializer.Deserialize<GetFilterResultModel>(response.Message);
-            //    if (offerRes.Code == 1)
-            //    {
-            //        combinedModel.Filter = offerRes;
-            //        combinedModel.BindingFilter = model;
-            //    }
-            //}
+        //    //var response = await this.httpClient.PostAsync<BaseResultModel>(url, model);
+        //    //if (response.Code == 1)
+        //    //{
+        //    //    var offerRes = JsonSerializer.Deserialize<GetFilterResultModel>(response.Message);
+        //    //    if (offerRes.Code == 1)
+        //    //    {
+        //    //        combinedModel.Filter = offerRes;
+        //    //        combinedModel.BindingFilter = model;
+        //    //    }
+        //    //}
 
 
-            return this.Json(2);
-        }
+        //    return this.Json(2);
+        //}
         //public ActionResult GetAdditivesFilters(GetAdditivesFiltersModel model)
         //{
         //    TempData["promo"] = "";
@@ -193,10 +193,10 @@
         //    }
         //    return Redirect(redUrl);
         //}
-        //public async Task<IActionResult> DashBoard()
-        //{
-        //    return View();
-        //}
+        public async Task<IActionResult> DashBoard()
+        {
+            return View();
+        }
         //public async Task<IActionResult> OfferGroups()
         //{
         //    string url = string.Format("{0}api/Offer/GetOfferGroups", this.configuration.GetConnectionString("CoreApiUrl"));

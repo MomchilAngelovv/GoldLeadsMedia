@@ -15,7 +15,7 @@
 
         public string Id { get; set; }
         public string Name { get; set; }
-        public string RedirectUrl { get; set; }
+        public string Url { get; set; }
 
         public virtual ICollection<OfferLandingPage> OffersLandingPages { get; set; }
 

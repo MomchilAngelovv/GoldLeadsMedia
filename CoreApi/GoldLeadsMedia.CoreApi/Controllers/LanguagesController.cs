@@ -4,9 +4,7 @@
     using System.Collections.Generic;
 
     using Microsoft.AspNetCore.Mvc;
-
-    using GoldLeadsMedia.CoreApi.Services.Languages;
-    using GoldLeadsMedia.CoreApi.Models.ResponseModels.Languages;
+    using GoldLeadsMedia.CoreApi.Services.Application.Common;
 
     public class LanguagesController : ApiController
     {
@@ -18,14 +16,14 @@
             this.languagesService = languagesService;
         }
 
-        public ActionResult<IEnumerable<LanguageResponseModel>> GetAll()
+        public ActionResult<IEnumerable<object>> GetAll()
         {
             var languages = this.languagesService
                 .GetAll()
-                .Select(language => new LanguageResponseModel
+                .Select(language => new 
                 {
-                    Id = language.Id,
-                    Name = language.Name
+                    language.Id,
+                    language.Name
                 })
                 .ToList();
 

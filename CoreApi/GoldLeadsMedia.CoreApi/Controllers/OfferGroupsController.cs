@@ -4,9 +4,7 @@
     using System.Collections.Generic;
 
     using Microsoft.AspNetCore.Mvc;
-
-    using GoldLeadsMedia.CoreApi.Services.OfferGroups;
-    using GoldLeadsMedia.CoreApi.Models.ResponseModels.OfferGroups;
+    using GoldLeadsMedia.CoreApi.Services.Application.Common;
 
     public class OfferGroupsController : ApiController
     {
@@ -18,14 +16,14 @@
             this.offerGroupService = offerGroupService;
         }
 
-        public ActionResult<IEnumerable<OfferGroupResponseModel>> GetAll()
+        public ActionResult<IEnumerable<object>> GetAll()
         {
             var offerGroups = this.offerGroupService
                 .GetAll()
-                .Select(offerGroup => new OfferGroupResponseModel
+                .Select(offerGroup => new 
                 {
-                    Id = offerGroup.Id,
-                    Name = offerGroup.Name
+                    offerGroup.Id,
+                    offerGroup.Name
                 })
                 .ToList();
 

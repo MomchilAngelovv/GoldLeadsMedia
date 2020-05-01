@@ -8,17 +8,8 @@ namespace GoldLeadsMedia.CoreApi
     using Microsoft.Extensions.Hosting;
 
     using GoldLeadsMedia.Database;
-    using GoldLeadsMedia.CoreApi.Services.Accesses;
-    using GoldLeadsMedia.CoreApi.Services.Countries;
-    using GoldLeadsMedia.CoreApi.Services.Languages;
-    using GoldLeadsMedia.CoreApi.Services.Leads;
-    using GoldLeadsMedia.CoreApi.Services.OfferClicks;
-    using GoldLeadsMedia.CoreApi.Services.OfferGroups;
-    using GoldLeadsMedia.CoreApi.Services.Offers;
-    using GoldLeadsMedia.CoreApi.Services.PaymentTypes;
-    using GoldLeadsMedia.CoreApi.Services.TargetDevices;
-    using GoldLeadsMedia.CoreApi.Services.Verticals;
-    using GoldLeadsMedia.CoreApi.Services.LandingPages;
+    using GoldLeadsMedia.CoreApi.Services.Application;
+    using GoldLeadsMedia.CoreApi.Services.Application.Common;
 
     public class Startup
     {
@@ -52,7 +43,7 @@ namespace GoldLeadsMedia.CoreApi
             services.AddTransient<ICountriesService, CountriesService>();
             services.AddTransient<IOffersService, OffersService>();
             services.AddTransient<ILeadsService, LeadsService>();
-            services.AddTransient<IOfferClicksService, OfferClicksService>();
+            services.AddTransient<IClicksService, ClicksService>();
             services.AddTransient<ILandingPagesService, LandingPagesService>();
         }
 

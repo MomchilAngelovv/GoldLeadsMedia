@@ -30,6 +30,23 @@
         {
             return this.View();
         }
+        public IActionResult RegisterPartner()
+        {
+            return this.View();
+        }
+        [HttpPost]
+        public async Task<IActionResult> RegisterPartner(AdministratorsRegisterPartnerInputModel inputModel)
+        {
+            var requestBody = new
+            {
+                inputModel.Name
+            };
+
+            await this.httpClient.PostAsync<string>("Api/Partners", requestBody);
+            return this.Redirect("/Offers/Dashboard");
+        }
+
+
         [HttpPost]
         public async Task<IActionResult> CreateOffer(AdministratorsCreateOfferInputModel inputModel)
         {
@@ -54,20 +71,18 @@
                 inputModel.PayOut,
                 inputModel.DailyCap,
                 inputModel.LanguageId,
-                inputModel.EarningPerClick,
+                inputModel.PayPerClick,
 
                 CreatedBy = loggedUser.Id
             };
 
-            var response = await this.httpClient.PostAsync<Offer>("api/offers", requestBody);
+            var response = await this.httpClient.PostAsync<Offer>("Api/Offers", requestBody);
             return this.Redirect($"~/Offers/Details/{response.Id}");
         }
-
         public IActionResult AssignLandingPagesToOffer()
         {
             return this.View();
         }
-
         [HttpPost]
         public async Task<IActionResult> AssignLandingPagesToOffer(AdministratorsAssignLandingPagesToOffersInputModel inputModel)
         {
