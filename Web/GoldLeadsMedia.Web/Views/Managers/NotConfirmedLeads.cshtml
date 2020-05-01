@@ -1,0 +1,52 @@
+﻿@model GoldLeadsMedia.Web.Models.ViewModels.ManagersNotConfirmedLeadsViewModel
+
+<div class="col-12">
+    <div class="row">
+        <table class="table table-striped table-sm">
+            <tr class="row-header">
+                <th>Username</th>
+                <th>Names</th>
+                <th>Email</th>
+                <th>PhoneNumber</th>
+                <th>Country</th>
+                <th>Offer Name</th>
+                <th></th>
+            </tr>
+            <tbody class="table-tbody">
+                @foreach (var data in Model.Leads)
+                {
+                    <tr class="table-row aff-details">
+                        <td>
+                            @data.UserName
+                        </td>
+                        <td>
+                            @data.FirstName + @data.LastName
+                        </td>
+                        <td>
+                            @data.Email
+                        </td>
+                        <td>
+                            @data.PhoneNumber
+                        </td>
+                        <td>
+                            @data.Country
+                        </td>
+                        <td>
+                            @data.Offer
+                        </td>
+                        <td><input type="checkbox" name="lead_id" value="@data.Id"></td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+<div style="right:30px">
+    <button class="btn btn-primary" >Confirm leads</button>
+</div>
+
+@section Scripts
+{
+    <script src="~/Content/js/leads/list_user_leads.js"></script>
+}
+

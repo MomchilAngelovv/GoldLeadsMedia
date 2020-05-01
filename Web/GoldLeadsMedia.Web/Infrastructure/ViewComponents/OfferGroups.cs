@@ -6,7 +6,7 @@
     using Microsoft.AspNetCore.Mvc;
 
     using GoldLeadsMedia.Web.Infrastructure.HttpHelper;
-    using GoldLeadsMedia.Web.Models.ViewModels.Offers;
+    using GoldLeadsMedia.Web.Models.ViewModels;
 
     public class OfferGroups : ViewComponent
     {
@@ -20,7 +20,7 @@
 
         public async Task<IViewComponentResult> InvokeAsync()
         {
-            var viewModel = new OfferGroupsViewModel
+            var viewModel = new OffersOfferGroupsViewModel
             {
                 OfferGroups = await this.httpClient.GetAsync<List<OfferGroupsOffer>>("api/offergroups")
             };

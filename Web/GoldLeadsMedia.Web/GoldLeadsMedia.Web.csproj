@@ -24,6 +24,7 @@
 
 
   <ItemGroup>
+    <Folder Include="Views\Affiliates\" />
     <Folder Include="wwwroot\js\shared\" />
   </ItemGroup>
 

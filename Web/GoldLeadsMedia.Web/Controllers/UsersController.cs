@@ -6,7 +6,7 @@
     using Microsoft.AspNetCore.Identity;
 
     using GoldLeadsMedia.Database.Models;
-    using GoldLeadsMedia.Web.Models.InputModels.Users;
+    using GoldLeadsMedia.Web.Models.InputModels;
 
     public class UsersController : Controller
     {
@@ -27,7 +27,7 @@
         }
 
         [HttpPost]
-        public async Task<IActionResult> Login(LoginInputModel input)
+        public async Task<IActionResult> Login(UsersLoginInputModel input)
         {
             if (ModelState.IsValid == false)
             {
@@ -52,7 +52,7 @@
         public async Task<IActionResult> Settings()
         {
             var loggedUser = await this.userManager.GetUserAsync(this.User);
-            var viewModel = new SettingsInputModel
+            var viewModel = new UsersSettingsInputModel
             {
                 Email = loggedUser.Email,
                 Skype = loggedUser.Skype,
@@ -62,7 +62,7 @@
         }
 
         [HttpPost]
-        public async Task<IActionResult> Settings(SettingsInputModel input)
+        public async Task<IActionResult> Settings(UsersSettingsInputModel input)
         {
             if (this.ModelState.IsValid == false)
             {

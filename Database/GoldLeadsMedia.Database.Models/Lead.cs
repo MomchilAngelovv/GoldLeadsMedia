@@ -17,11 +17,10 @@
         public string LastName { get; set; }
         public string Email { get; set; }
         public string PhoneNumber { get; set; }
-        public string ApprovedBy { get; set; }
         public string Password { get; set; }
         public string CallStatus { get; set; }
-        public bool IsSend { get; set; }
-        public DateTime? BecameFtd { get; set; }
+        public string ConfirmedByManagerId { get; set; }
+        public DateTime? FtdBecameOn { get; set; }
 
         public int CountryId { get; set; }
         public string PartnerId { get; set; }
@@ -34,6 +33,5 @@
         public DateTime CreatedOn { get ;set; }
         public DateTime? UpdatedOn { get; set; }
         public DateTime? DeletedOn { get; set; }
-        public bool IsDeleted { get; set; }
     }
 }

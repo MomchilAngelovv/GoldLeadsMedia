@@ -13,7 +13,7 @@
         }
 
         public string Id { get; set; }
-        public string VisitorIpAddress { get; set; }
+        public string IpAddress { get; set; }
 
         public string OfferId { get; set; }
         public string LandingPageId { get; set; }
@@ -26,6 +26,5 @@
         public DateTime CreatedOn { get ; set; }
         public DateTime? UpdatedOn { get; set; }
         public DateTime? DeletedOn { get; set; }
-        public bool IsDeleted { get; set; }
     }
 }

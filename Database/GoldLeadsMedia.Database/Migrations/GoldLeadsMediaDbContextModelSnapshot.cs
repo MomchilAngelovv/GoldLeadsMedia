@@ -32,9 +32,6 @@ namespace GoldLeadsMedia.Database.Migrations
                     b.Property<DateTime?>("DeletedOn")
                         .HasColumnType("datetime2");
 
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
-
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
@@ -58,9 +55,6 @@ namespace GoldLeadsMedia.Database.Migrations
 
                     b.Property<DateTime?>("DeletedOn")
                         .HasColumnType("datetime2");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
 
                     b.Property<string>("IsoCode")
                         .HasColumnType("nvarchar(max)");
@@ -93,9 +87,6 @@ namespace GoldLeadsMedia.Database.Migrations
 
                     b.Property<DateTime?>("DeletedOn")
                         .HasColumnType("datetime2");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
 
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(256)")
@@ -146,9 +137,6 @@ namespace GoldLeadsMedia.Database.Migrations
                     b.Property<string>("Experience")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
-
                     b.Property<bool>("LockoutEnabled")
                         .HasColumnType("bit");
 
@@ -156,7 +144,7 @@ namespace GoldLeadsMedia.Database.Migrations
                         .HasColumnType("datetimeoffset");
 
                     b.Property<string>("ManagerId")
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("NormalizedEmail")
                         .HasColumnType("nvarchar(256)")
@@ -184,9 +172,6 @@ namespace GoldLeadsMedia.Database.Migrations
                     b.Property<bool>("TwoFactorEnabled")
                         .HasColumnType("bit");
 
-                    b.Property<int>("Type")
-                        .HasColumnType("int");
-
                     b.Property<DateTime?>("UpdatedOn")
                         .HasColumnType("datetime2");
 
@@ -195,8 +180,6 @@ namespace GoldLeadsMedia.Database.Migrations
                         .HasMaxLength(256);
 
                     b.HasKey("Id");
-
-                    b.HasIndex("ManagerId");
 
                     b.HasIndex("NormalizedEmail")
                         .HasName("EmailIndex");
@@ -219,9 +202,6 @@ namespace GoldLeadsMedia.Database.Migrations
 
                     b.Property<DateTime?>("DeletedOn")
                         .HasColumnType("datetime2");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
 
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
@@ -250,9 +230,6 @@ namespace GoldLeadsMedia.Database.Migrations
                     b.Property<DateTime?>("DeletedOn")
                         .HasColumnType("datetime2");
 
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
-
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
@@ -269,13 +246,10 @@ namespace GoldLeadsMedia.Database.Migrations
                     b.Property<string>("Id")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<string>("ApprovedBy")
+                    b.Property<string>("CallStatus")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime?>("BecameFtd")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("CallStatus")
+                    b.Property<string>("ConfirmedByManagerId")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("CountryId")
@@ -293,11 +267,8 @@ namespace GoldLeadsMedia.Database.Migrations
                     b.Property<string>("FirstName")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("IsSend")
-                        .HasColumnType("bit");
+                    b.Property<DateTime?>("FtdBecameOn")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("LastName")
                         .HasColumnType("nvarchar(max)");
@@ -357,9 +328,6 @@ namespace GoldLeadsMedia.Database.Migrations
                     b.Property<decimal>("EarningPerClick")
                         .HasColumnType("decimal(18,4)");
 
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
-
                     b.Property<int>("LanguageId")
                         .HasColumnType("int");
 
@@ -412,8 +380,8 @@ namespace GoldLeadsMedia.Database.Migrations
                     b.Property<DateTime?>("DeletedOn")
                         .HasColumnType("datetime2");
 
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
+                    b.Property<string>("IpAddress")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("LandingPageId")
                         .HasColumnType("nvarchar(450)");
@@ -426,9 +394,6 @@ namespace GoldLeadsMedia.Database.Migrations
 
                     b.Property<string>("UserId")
                         .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("VisitorIpAddress")
-                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
@@ -453,9 +418,6 @@ namespace GoldLeadsMedia.Database.Migrations
 
                     b.Property<DateTime?>("DeletedOn")
                         .HasColumnType("datetime2");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
 
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
@@ -494,9 +456,6 @@ namespace GoldLeadsMedia.Database.Migrations
                     b.Property<DateTime?>("DeletedOn")
                         .HasColumnType("datetime2");
 
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
-
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
@@ -520,9 +479,6 @@ namespace GoldLeadsMedia.Database.Migrations
 
                     b.Property<DateTime?>("DeletedOn")
                         .HasColumnType("datetime2");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
 
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
@@ -548,9 +504,6 @@ namespace GoldLeadsMedia.Database.Migrations
                     b.Property<DateTime?>("DeletedOn")
                         .HasColumnType("datetime2");
 
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
-
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
@@ -574,9 +527,6 @@ namespace GoldLeadsMedia.Database.Migrations
 
                     b.Property<DateTime?>("DeletedOn")
                         .HasColumnType("datetime2");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
 
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
@@ -691,13 +641,6 @@ namespace GoldLeadsMedia.Database.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens");
-                });
-
-            modelBuilder.Entity("GoldLeadsMedia.Database.Models.GoldLeadsMediaUser", b =>
-                {
-                    b.HasOne("GoldLeadsMedia.Database.Models.GoldLeadsMediaUser", "Manager")
-                        .WithMany()
-                        .HasForeignKey("ManagerId");
                 });
 
             modelBuilder.Entity("GoldLeadsMedia.Database.Models.Lead", b =>

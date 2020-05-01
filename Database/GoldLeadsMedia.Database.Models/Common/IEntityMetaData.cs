@@ -7,6 +7,5 @@
         DateTime CreatedOn { get; set; }
         DateTime? UpdatedOn { get; set; }
         DateTime? DeletedOn { get; set; }
-        bool IsDeleted { get; set; }
     }
 }

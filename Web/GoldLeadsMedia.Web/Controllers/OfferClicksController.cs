@@ -1,8 +1,8 @@
-﻿using GoldLeadsMedia.Web.Models.InputModels.OfferClicks;
-namespace GoldLeadsMedia.Web.Controllers
+﻿namespace GoldLeadsMedia.Web.Controllers
 {
     using GoldLeadsMedia.Database.Models;
     using GoldLeadsMedia.Web.Infrastructure.HttpHelper;
+    using GoldLeadsMedia.Web.Models.InputModels;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
     using System.Threading.Tasks;
@@ -20,7 +20,7 @@ namespace GoldLeadsMedia.Web.Controllers
             this.userManager = userManager;
         }
 
-        public async Task<IActionResult> RegisterOfferClick(RegisterOfferClickInputModel inputModel)
+        public async Task<IActionResult> RegisterOfferClick(OfferClicksRegisterOfferClickInputModel inputModel)
         {
             var loggedUser = await this.userManager.GetUserAsync(this.User);
 

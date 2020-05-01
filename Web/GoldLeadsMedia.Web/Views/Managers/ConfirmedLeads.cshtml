@@ -1,0 +1,72 @@
+﻿@model GoldLeadsMedia.Web.Models.ViewModels.ManagersConfirmedLeadsViewModel
+
+<div class="col-12">
+    <div class="row">
+        <table class="table table-striped table-sm">
+            <tr class="row-header">
+                <th>Username</th>
+                <th>Names</th>
+                <th>Email</th>
+                <th>PhoneNumber</th>
+                <th>Country</th>
+                <th>Offer Name</th>
+                <th>Datetime</th>
+                <th></th>
+            </tr>
+            <tbody class="table-tbody">
+
+                @foreach (var data in Model.Leads)
+                {
+                    <tr class="table-row clickble-table-row">
+                        <td>
+                            @data.UserName
+                        </td>
+                        <td>
+                            @data.
+                        </td>
+                        <td>
+                            @data.Email
+                        </td>
+                        <td>
+                            @data.PhoneNumber
+                        </td>
+                        <td>
+                            @data.Country
+                        </td>
+                        <td>
+                            @data.Offer
+                        </td>
+                        <td>
+                            @data.CreatedOn.ToString("MM.dd.yyyy HH:mm")
+                        </td>
+                        <td class="d-flex justify-content-center">
+                            <input type="checkbox" name="id" value="@data.Id">
+                        </td>
+                    </tr>
+                }
+
+
+            </tbody>
+        </table>
+    </div>
+</div>
+<div class="partnerContainer">
+    <div>
+        Choose a partner
+    </div>
+
+    @foreach (var part in Model.Partners)
+    {
+        <label><input type="radio" name="partner" value="@part.Id"> @part.Name</label>
+    }
+
+</div>
+<div style="right:30px">
+    <button class="btn btn-primary" id="submitLeadsToPartner">Send</button>
+</div>
+
+@section Scripts
+{
+    <script src="~/Content/js/leads/confirmed_leads.js"></script>
+}
+
