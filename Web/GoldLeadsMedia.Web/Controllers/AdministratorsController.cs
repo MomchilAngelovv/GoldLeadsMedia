@@ -8,6 +8,7 @@
     using GoldLeadsMedia.Database.Models;
     using GoldLeadsMedia.Web.Infrastructure.HttpHelper;
     using GoldLeadsMedia.Web.Models.InputModels;
+    using GoldLeadsMedia.Web.Models.CoreApiResponses.ConventionTest;
 
     public class AdministratorsController : Controller
     {
@@ -34,16 +35,9 @@
         {
             return this.View();
         }
-        [HttpPost]
-        public async Task<IActionResult> RegisterPartner(AdministratorsRegisterPartnerInputModel inputModel)
+        public IActionResult AssignLandingPagesToOffer()
         {
-            var requestBody = new
-            {
-                inputModel.Name
-            };
-
-            await this.httpClient.PostAsync<string>("Api/Partners", requestBody);
-            return this.Redirect("/Offers/Dashboard");
+            return this.View();
         }
 
 
@@ -78,9 +72,16 @@
             var response = await this.httpClient.PostAsync<Offer>("Api/Offers", requestBody);
             return this.Redirect($"~/Offers/Details/{response.Id}");
         }
-        public IActionResult AssignLandingPagesToOffer()
+        [HttpPost]
+        public async Task<IActionResult> RegisterPartner(AdministratorsRegisterPartnerInputModel inputModel)
         {
-            return this.View();
+            var requestBody = new
+            {
+                inputModel.Name
+            };
+
+            await this.httpClient.PostAsync<PostApiPartnersResponse>("Api/Partners", requestBody);
+            return this.Redirect("/Offers/Dashboard");
         }
         [HttpPost]
         public async Task<IActionResult> AssignLandingPagesToOffer(AdministratorsAssignLandingPagesToOffersInputModel inputModel)

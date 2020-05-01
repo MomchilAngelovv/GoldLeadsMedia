@@ -25,6 +25,23 @@
         {
             return this.View();
         }
+        public async Task<IActionResult> LogOut()
+        {
+            await signInManager.SignOutAsync();
+            return this.Redirect("/Users/Login");
+        }
+        public async Task<IActionResult> Settings()
+        {
+            var loggedUser = await this.userManager.GetUserAsync(this.User);
+            var viewModel = new UsersSettingsInputModel
+            {
+                Email = loggedUser.Email,
+                Skype = loggedUser.Skype,
+                Experience = loggedUser.Experience
+            };
+            return this.View(viewModel);
+        }
+
 
         [HttpPost]
         public async Task<IActionResult> Login(UsersLoginInputModel input)
@@ -44,23 +61,6 @@
 
             return this.Redirect("/");
         }
-        public async Task<IActionResult> LogOut()
-        {
-            await signInManager.SignOutAsync();
-            return this.Redirect("/Users/Login");
-        }
-        public async Task<IActionResult> Settings()
-        {
-            var loggedUser = await this.userManager.GetUserAsync(this.User);
-            var viewModel = new UsersSettingsInputModel
-            {
-                Email = loggedUser.Email,
-                Skype = loggedUser.Skype,
-                Experience = loggedUser.Experience
-            };
-            return this.View(viewModel);
-        }
-
         [HttpPost]
         public async Task<IActionResult> Settings(UsersSettingsInputModel input)
         {
@@ -78,148 +78,6 @@
             await this.userManager.UpdateAsync(loggedUser);
             return this.Redirect("/Users/Settings");
         }
-
-        //public ActionResult InsertLead(InsertLeadBindingModel req)
-        //{
-        //    var response = new BaseResultModel();
-        //    if (!ModelState.IsValid)
-        //    {
-        //        var errors = new List<string>();
-        //        foreach (var state in ModelState)
-        //        {
-        //            foreach (var error in state.Value.Errors)
-        //            {
-        //                errors.Add(error.ErrorMessage);
-        //            }
-        //        }
-        //        var response1 = new { errors = errors };
-        //        response.Message = String.Join(",", response1.errors);
-        //        response.Code = -4;
-        //        return Json(response, JsonRequestBehavior.AllowGet);
-        //    }
-        //    BaseResultModel res = new BaseResultModel
-        //    {
-        //        Code = -1
-        //    };
-
-        //    string url = string.Format("{0}api/Offer/InsertLead?", Constants.WebAPIUrl);
-
-        //    response = WebRequestManager.HttpPost(url, req);
-        //    if (response.Code == 1)
-        //    {
-        //        var reqRes = JsonConvert.DeserializeObject<BaseResultModel>(response.Message);
-        //        res = reqRes;
-        //    }
-        //    else
-        //    {
-        //        res = response;
-        //    }
-        //    return Json(res, JsonRequestBehavior.AllowGet);
-        //}
-        //[Authorize]
-        //public ActionResult Settings()
-        //{
-        //    var user = GetCurrentUser();
-        //    return View(user);
-        //}
-        //[Authorize]
-        //public ActionResult EditUser()
-        //{
-        //    var user = GetCurrentUser();
-        //    return View(user);
-        //}
-        //[Authorize]
-        //[HttpPost]
-        //public ActionResult EditUser(EditUserBindingModel req)
-        //{
-        //    var user = GetCurrentUser();
-        //    var response = new BaseResultModel();
-        //    if (!ModelState.IsValid)
-        //    {
-        //        return View(user);
-        //    }
-
-        //    BaseResultModel res = new BaseResultModel
-        //    {
-        //        Code = -1
-        //    };
-
-        //    string url = string.Format("{0}api/User/EditUser?", Constants.WebAPIUrl);
-
-        //    response = WebRequestManager.HttpPost(url, req);
-        //    if (response.Code == 1)
-        //    {
-        //        var reqRes = JsonConvert.DeserializeObject<BaseResultModel>(response.Message);
-        //        res = reqRes;
-        //    }
-        //    else
-        //    {
-        //        res = response;
-        //    }
-        //    if (res.Code == 1)
-        //    {
-        //        TempData["Message"] = "Successfully edited user data.";
-        //        user = GetCurrentUser();
-        //    }
-        //    else
-        //    {
-        //        TempData["Message"] = "Error in editing user data";
-        //    }
-        //    return View(user);
-        //}
-        //[Authorize]
-        //[HttpGet]
-        //public ActionResult ChangePassword()
-        //{
-        //    var userId = GetCurrentUser().User_Id;
-        //    var emptyChangeUserPasswordBindingModel = new ChangeUserPasswordBindingModel
-        //    {
-        //        User_Id = userId
-        //    };
-        //    return View(emptyChangeUserPasswordBindingModel);
-        //}
-        //[Authorize]
-        //[HttpPost]
-        //public ActionResult ChangePassword(ChangeUserPasswordBindingModel req)
-        //{
-        //    if (req.OldPassword != req.RepeatOldPassword)
-        //    {
-        //        TempData["Message"] = "Error in editing user password";
-        //    }
-        //    var response = new BaseResultModel();
-        //    if (!ModelState.IsValid)
-        //    {
-        //        return View(req);
-        //    }
-        //    var user = GetCurrentUser();
-
-        //    BaseResultModel res = new BaseResultModel
-        //    {
-        //        Code = -1
-        //    };
-
-        //    string url = string.Format("{0}api/User/ChangePassword?", Constants.WebAPIUrl);
-
-        //    response = WebRequestManager.HttpPost(url, req);
-        //    if (response.Code == 1)
-        //    {
-        //        var reqRes = JsonConvert.DeserializeObject<BaseResultModel>(response.Message);
-        //        res = reqRes;
-        //    }
-        //    else
-        //    {
-        //        res = response;
-        //    }
-        //    if (res.Code == 1)
-        //    {
-        //        TempData["Message"] = "Successfully edited user password.";
-        //    }
-        //    else
-        //    {
-        //        TempData["Message"] = "Error in editing user password";
-        //    }
-        //    return View();
-        //}
 
         //[HttpPost]
         //public ActionResult AssignManagerToAffiliates(string managerId, string userIds)

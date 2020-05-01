@@ -19,6 +19,7 @@ namespace GoldLeadsMedia.CoreApi.Controllers
             this.partnersService = partnersService;
         }
 
+        [HttpPost]
         public async Task<ActionResult<object>> Register(PartnersRegisterInputModel inputModel)
         {
             var serviceModel = new PartnersRegisterServiceModel
@@ -27,7 +28,13 @@ namespace GoldLeadsMedia.CoreApi.Controllers
             };
 
             var partner = await this.partnersService.RegisterAsync(serviceModel);
-            return partner.Name;
+
+            var response = new
+            {
+                partner.Name
+            };
+
+            return response;
         }
     }
 }

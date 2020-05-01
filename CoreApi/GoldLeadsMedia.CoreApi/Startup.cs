@@ -45,6 +45,7 @@ namespace GoldLeadsMedia.CoreApi
             services.AddTransient<ILeadsService, LeadsService>();
             services.AddTransient<IClicksService, ClicksService>();
             services.AddTransient<ILandingPagesService, LandingPagesService>();
+            services.AddTransient<IPartnersService, PartnersService>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

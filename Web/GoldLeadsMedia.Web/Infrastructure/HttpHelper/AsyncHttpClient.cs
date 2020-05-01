@@ -26,31 +26,33 @@
             var requestBody = new StringContent(bodyAsString, Encoding.UTF8, mimeType);
 
             var completeUrl = $"{this.configuration["CoreApiUrl"]}/{url}";
-            var response = await this.httpClient.PostAsync(completeUrl, requestBody);
-            var responseBody = await response.Content.ReadAsStringAsync();
 
-            var mappedResponse = this.MapResponse<T>(responseBody);
+            var response = await this.httpClient.PostAsync(completeUrl, requestBody);
+            var responseAsString = await response.Content.ReadAsStringAsync();
+
+            var mappedResponse = this.MapResponse<T>(responseAsString);
             return mappedResponse;
         }
 
         public async Task<T> GetAsync<T>(string url)
         {
             var completeUrl = $"{this.configuration["CoreApiUrl"]}/{url}";
+
             var response = await this.httpClient.GetAsync(completeUrl);
-            var responseBody = await response.Content.ReadAsStringAsync();
+            var responseAsString = await response.Content.ReadAsStringAsync();
            
-            var mappedResponse = this.MapResponse<T>(responseBody);
+            var mappedResponse = this.MapResponse<T>(responseAsString);
             return mappedResponse;
         }
 
-        private T MapResponse<T>(string responseBody)
+        private T MapResponse<T>(string responseAsString)
         {
             var options = new JsonSerializerOptions
             {
                 PropertyNameCaseInsensitive = true,
             };
 
-            var mappedResponse = JsonSerializer.Deserialize<T>(responseBody, options);
+            var mappedResponse = JsonSerializer.Deserialize<T>(responseAsString, options);
             return mappedResponse;
         }
     }

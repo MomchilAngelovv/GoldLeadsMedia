@@ -2,6 +2,7 @@
 {
     using GoldLeadsMedia.Database.Models;
     using GoldLeadsMedia.Web.Infrastructure.HttpHelper;
+    using GoldLeadsMedia.Web.Models.CoreApiResponses.ConventionTest;
     using GoldLeadsMedia.Web.Models.InputModels;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
@@ -31,8 +32,8 @@
                 AffiliateId = loggedUser.Id
             };
 
-            var clickId = await this.httpClient.PostAsync<string>("Api/Clicks", requestBody);
-            return this.Redirect($"/Offers/Dashboard?clickId={clickId}");
+            var response = await this.httpClient.PostAsync<PostApiClicksReponse>("Api/Clicks", requestBody);
+            return this.Redirect($"/Offers/Dashboard?clickId={response.Id}");
         }
     }
 }

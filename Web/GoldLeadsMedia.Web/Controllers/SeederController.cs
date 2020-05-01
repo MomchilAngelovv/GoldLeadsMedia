@@ -26,6 +26,7 @@
             this.userManager = userManager;
             this.roleManager = roleManager;
         }
+
         public async Task<IActionResult> SeedData()
         {
             if (this.db.Users.Count() != 0)

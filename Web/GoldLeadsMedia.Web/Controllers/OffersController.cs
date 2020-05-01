@@ -30,7 +30,6 @@
             this.userManager = userManager;
         }
 
-        [Authorize]
         public async Task<IActionResult> All()
         {
             var offers = await this.httpClient.GetAsync<IEnumerable<OffersAllOffer>>("api/offers");
@@ -42,7 +41,6 @@
 
             return this.View(viewModel);
         }
-
         public async Task<IActionResult> Details(string id)
         {
             var viewModel = await this.httpClient.GetAsync<OffersDetailsViewModel>($"Api/Offers/{id}");
@@ -51,7 +49,11 @@
 
             return this.View(viewModel);
         }
-        
+        public IActionResult DashBoard()
+        {
+            return View();
+        }
+
         //public async Task<IActionResult> OffersByFilter(OffersFilterInputModel input)
         //{
         //    string url = string.Format("{0}api/Offer/GetOffersByFilters?", this.configuration.GetConnectionString("CoreApiUrl"));
@@ -67,7 +69,7 @@
 
         //    return PartialView("_OffersByFilterPartial", new GetOffersByFiltersResultModel());
         //}
-        
+
         //public async Task<IActionResult> SaveUserOfferTrackingSettings(string offer_Id, string postbackUrl)
         //{
         //    var loggedUser = await this.userManager.GetUserAsync(this.User);
@@ -98,11 +100,8 @@
         //    return Json(returnRes);
 
         //}
-     
-        public IActionResult DashBoard()
-        {
-            return View();
-        }
+
+
         //public async Task<IActionResult> OfferGroups()
         //{
         //    string url = string.Format("{0}api/Offer/GetOfferGroups", this.configuration.GetConnectionString("CoreApiUrl"));
