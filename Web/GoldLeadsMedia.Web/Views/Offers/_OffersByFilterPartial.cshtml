@@ -1,0 +1,64 @@
+﻿@model GoldLeadsMedia.Web.Models.ViewModels.Offers.OffersByFilterViewModel
+
+<table class="offer-table">
+    <colgroup _ngcontent-ivo-c5="" class="ng-star-inserted">
+        <col style="width:50px">
+        <col style="width:400px">
+        <col style="width:100px">
+        <col style="width:100px">
+        <col style="width:200px">
+        <col style="width:200px">
+        <col style="width:150px">
+        <col style="width:100px">
+        <col style="width:100px">
+    </colgroup>
+    @*<tr>
+            <th>
+                Id
+            </th>
+            <th>
+                Name
+            </th>
+            <th>Payout</th>
+            <th>EPC</th>
+            <th>Country</th>
+            <th>Vertical</th>
+            <th>Flow</th>
+            <th>Device</th>
+            <th>Access</th>
+        </tr>*@
+    <tbody class="table-tbody">
+        @foreach (var offer in Model.Offers)
+        {
+            <tr class="table-row">
+                <td>
+                    @offer.Id
+                </td>
+                <td>
+                    @offer.Name
+                </td>
+                <td>
+                    $ @Math.Round(offer.PayOut)
+                </td>
+                <td>
+                    @Math.Round(offer.EarningPerClick, 2)
+                </td>
+                <td>
+                    @offer.Country
+                </td>
+                <td>
+                    @offer.Vertical
+                </td>
+                <td>
+                    @offer.PaymentType
+                </td>
+                <td>
+                    @offer.Device
+                </td>
+                <td>
+                    @offer.Access
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

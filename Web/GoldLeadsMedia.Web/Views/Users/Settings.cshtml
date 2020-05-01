@@ -1,0 +1,30 @@
+﻿@model             GoldLeadsMedia.Web.Models.InputModels.Users.SettingsInputModel
+
+<div class="d-flex justify-content-center">
+    <h2 class="display-3">Update your settings</h2>
+</div>
+<hr />
+<div class="container">
+    <form asp-controller="Users" asp-action="Settings" method="post">
+        <div asp-validation-summary="All" class="text-danger"></div>
+        <div class="form-group row mx-auto">
+            <div class="col-5">
+                <label asp-for="@Model.Email"></label>
+                <input asp-for="@Model.Email" class="form-control" />
+            </div>
+            <div class="col-5">
+                <label asp-for="@Model.Skype"></label>
+                <input asp-for="@Model.Skype" class="form-control" />
+            </div>
+            <div class="col-2">
+                <label asp-for="@Model.Experience"></label>
+                <input asp-for="@Model.Experience" class="form-control" />
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-4">
+                <input class="btn btn-primary text-center" type="submit" value="Update" />
+            </div>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,12 @@
+@font-face {
+    font-family: "Muli Medium";
+    src: url("Muli-Medium.eot"); /* IE9 */
+    src: url("Muli-Medium.eot?#iefix") format("embedded-opentype"), /* IE6-IE8 */
+    url("Muli-Medium.woff") format("woff"), /* chrome, firefox */
+    url("Muli-Medium.ttf") format("truetype"), /* chrome, firefox, opera, Safari, Android, iOS 4.2+ */
+    url("Muli-Medium.svg#Muli Medium") format("svg"); /* iOS 4.1- */
+    font-style: normal;
+    font-weight: normal;
+}
+
+

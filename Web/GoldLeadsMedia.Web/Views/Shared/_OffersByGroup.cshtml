@@ -1,0 +1,25 @@
+﻿@model GoldLeadsMedia.Web.Models.ViewModels.Offers.OffersByGroupViewModel
+
+@foreach (var offer in Model.Offers)
+{
+    <div class="col-12 col-sm-3">
+        <div class="product">
+            <a href="/Offer/Details?id=@offer.Id"><img class="img-fluid" src="@offer.ImageUrl" alt=""></a>
+            <div class="product-caption">
+                <h3>@offer.Name</h3>
+                <div class="row product-action">
+                    <div class="col-4">
+                        <div class="money-circle">
+                            @offer.PayOut
+                            <p>$</p>
+                        </div>
+                    </div>
+                    <div class="col-8">
+                        <div class="product-id">@offer.Id</div>
+                        <div class="action">@offer.PaymentType</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}

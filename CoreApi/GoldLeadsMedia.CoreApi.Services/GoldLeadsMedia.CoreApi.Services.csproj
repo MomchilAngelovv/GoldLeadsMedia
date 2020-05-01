@@ -1,0 +1,13 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Database\GoldLeadsMedia.Database.Models\GoldLeadsMedia.Database.Models.csproj" />
+    <ProjectReference Include="..\..\Database\GoldLeadsMedia.Database\GoldLeadsMedia.Database.csproj" />
+    <ProjectReference Include="..\GoldLeadsMedia.CoreApi.Models\GoldLeadsMedia.CoreApi.Models.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,8 @@
+﻿@model IEnumerable<GoldLeadsMedia.Web.Models.CoreApiResponses.LandingPageApiResponse>
+
+@foreach (var landingPage in Model)
+{
+    <div>
+        <label><input name="LandingPageIds" type="checkbox" value="@landingPage.Id">@landingPage.Name</label>
+    </div>
+}

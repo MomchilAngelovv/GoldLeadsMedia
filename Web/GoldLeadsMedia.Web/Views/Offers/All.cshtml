@@ -1,0 +1,118 @@
+﻿@model GoldLeadsMedia.Web.Models.ViewModels.Offers.AllViewModel
+
+@{
+    ViewData["PageTitle"] = "Offers";
+}
+
+<div class="col-12">
+    <div class="row">
+        <div class="col-12 col-sm-6">
+            <h3 class="block-title">
+                Filter By
+            </h3>
+        </div>
+        <div class="col-12 col-sm-6">
+            <form action="/Offer/Index" method="get" class="reports">
+                <div class="form-group">
+                    <input id="searchOffer" placeholder="Id or Name" class="form-control" name="idOrName">
+                </div>
+                <div class="form-group">
+                    <input type="text" name="country" id="country_name" placeholder="Country" class="form-control">
+                </div>
+                <div class="form-group">
+                    <select id="cars" name="vertical" class="form-control">
+                        <option disabled selected>-- Choose vertical --</option>
+                        <option value="4">Crypto</option>
+                        <option value="5">Forex</option>
+                        <option value="6">Casino</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <select id="cpa-types" name="paymentTypes" class="form-control">
+                        <option disabled selected>-- Choose payment --</option>
+                        <option value="1">CPA</option>
+                        <option value="2">CPL</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <select id="device" name="device" class="form-control">
+                        <option disabled selected>-- Choose device --</option>
+                        <option value="1">Computer</option>
+                        <option value="2">Mobile</option>
+                        <option value="3">Computer and mobile</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <select id="access" name="access" class="form-control">
+                        <option disabled selected>-- Choose access --</option>
+                        <option value="1">Regular</option>
+                        <option value="2">Vip</option>
+                        <option value="3">Private</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-secondary">Clear filters</button>
+                    <button type="submit" class="btn btn-primary">Apply filters</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="row">
+        <table class="table table-sm table-hover mx-auto">
+            <tr class="row-header">
+                <th>Number</th>
+                <th>Name</th>
+                <th>Payout</th>
+                <th>EPC</th>
+                <th>Country</th>
+                <th>Language</th>
+                <th>Vertical</th>
+                <th>Flow</th>
+                <th>Device</th>
+                <th>Access</th>
+            </tr>
+            <tbody class="table-tbody">
+                @foreach (var offer in Model.Offers)
+                {
+                    <tr class="table-row row-details clickble-table-row" data-id="@offer.Id">
+                        <td>
+                            @offer.Number
+                        </td>
+                        <td>
+                            @offer.Name
+                        </td>
+                        <td>
+                            $ @Math.Round(offer.PayOut)
+                        </td>
+                        <td>
+                            @Math.Round(offer.EarningPerClick, 2)
+                        </td>
+                        <td>
+                            @offer.Country
+                        </td>
+                        <td>
+                            @offer.Language
+                        </td>
+                        <td>
+                            @offer.Vertical
+                        </td>
+                        <td>
+                            @offer.PaymentType
+                        </td>
+                        <td>
+                            @offer.Device
+                        </td>
+                        <td>
+                            @offer.Access
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+@section Scripts
+{
+    <script src="~/js/offers/all.js"></script>
+}

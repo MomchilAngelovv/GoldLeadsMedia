@@ -1,0 +1,488 @@
+﻿@model GoldLeadsMedia.Web.Models.Managers.AffiliateDetailsViewModel
+
+@{
+    ViewData["PigeTitle"] = "Affiliate Details";
+}
+
+
+
+@*<div class=".col-md-4" id="personFrame">
+        <span>
+            <img class="personImage" src="~/Content/images/productImage.jpg" />
+        </span>
+    </div>
+    <div class=".col-md-4" id="additionalInformation">
+        <div class="main-info">
+            <div class="info">Id    </div><div class="value"> @Model.Data.User_Id     </div>
+            <div class="info">Username:	    </div><div class="value">@Model.Data.Username   </div>
+            <div class="info">Email:	    </div><div class="value">@Model.Data.Email   </div>
+            <div class="info">Blocked:  </div><div class="value"> @Model.Data.Blocked    </div>
+            <div class="info">Skype: </div><div class="value"> @Model.Data.Skype    </div>
+            <div class="info">IsVIP:   </div><div class="value"> @Model.Data.IsVIP    </div>
+            <div class="info">Experience:	</div><div class="value"> @Model.Data.Experience</div>
+            <div class="info">Available:	</div><div class="value">@Math.Round(Model.Data.Liability, 2) $</div>
+            <div class="info">Paid:	</div><div class="value">@Math.Round(Model.Data.Paid, 2) $</div>
+
+        </div>
+    </div>
+
+    <div>
+        <div class="reportTitle">
+            Leads and clicks report
+        </div>
+        <div class="sfilter">
+            <div class="flabel">
+                Period
+            </div>
+            <div class="fInput">
+                <input class="date-range date-range-report" name="Date" value="@Model.UserReportData.Date" />
+            </div>
+        </div>
+        <div class="sfilter">
+            <div class="flabel fButtons">
+            </div>
+            <div class="flexButtons">
+                <button class="mainBtn userReport" type="submit" data-user="@Model.Data.User_Id">Apply</button>
+            </div>
+        </div>
+
+        <div class="offer-content content-wrapper offer-content-report">
+            <table class="offer-table">
+                <colgroup _ngcontent-ivo-c5="" class="ng-star-inserted">
+                    <col style="width:150px">
+                    <col style="width:80px">
+                    <col style="width:80px">
+                    <col style="width:80px">
+                    <col style="width:80px">
+                    <col style="width:80px">
+                    <col style="width:80px">
+                    <col style="width:80px">
+                </colgroup>
+                <tr class="row-header">
+                    <th>Offer</th>
+                    <th>EPC</th>
+                    <th>CTR</th>
+                    <th>CR</th>
+                    <th>Leads</th>
+                    <th>FTD</th>
+                    <th>Clicks</th>
+                    <th>Commissions</th>
+                </tr>
+                <tbody class="table-tbody">
+                    @foreach (var data in Model.UserReportData.UserData)
+                    {
+                        <tr class="table-row">
+                            <td>
+                                @data.Offer_Name
+                            </td>
+                            <td>
+                                @Math.Round(data.EPC, 2)
+                            </td>
+                            <td>
+                                @Math.Round(data.CTR, 2)
+                            </td>
+                            <td>
+                                @Math.Round(data.CR, 2)
+                            </td>
+                            <td>
+                                @Math.Round(data.LeadCount, 0)
+                            </td>
+                            <td>
+                                @Math.Round(data.FTDCount, 0)
+                            </td>
+                            <td>
+                                @Math.Round(data.Clicks, 0)
+                            </td>
+                            <td>
+                                @Math.Round(data.Commission, 2)
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div>
+        <div class="reportTitle">
+            Payments
+        </div>
+        <div class="sfilter">
+            <div class="flabel">
+                Period
+            </div>
+            <div class="fInput">
+                <input class="date-range date-range-payments" name="Date" value="@Model.UserPaymentsData.Date" />
+            </div>
+        </div>
+        <div class="sfilter">
+            <div class="flabel fButtons">
+            </div>
+            <div class="flexButtons">
+                <button class="mainBtn userPaymentsReport" type="submit" data-user="@Model.Data.User_Id">Apply</button>
+            </div>
+        </div>
+
+        <div class="offer-content content-wrapper offer-content-payments">
+            <table class="offer-table">
+                <colgroup _ngcontent-ivo-c5="" class="ng-star-inserted">
+                    <col style="width:80px">
+                    <col style="width:150px">
+                    <col style="width:80px">
+                    <col style="width:80px">
+                    <col style="width:80px">
+                    <col style="width:80px">
+                    <col style="width:80px">
+                    <col style="width:80px">
+                </colgroup>
+                <tr class="row-header">
+                    <th>Offer_Id</th>
+                    <th>Offer_Name</th>
+                    <th>PaymentType</th>
+                    <th>Price</th>
+                    <th>PayedOn</th>
+                    <th>PayedBy</th>
+                </tr>
+                <tbody class="table-tbody">
+                    @foreach (var data in Model.UserPaymentsData.UserPayments.OrderByDescending(e => e.PayedOn))
+                    {
+                        <tr class="table-row">
+                            <td>
+                                @data.Offer_Id
+                            </td>
+                            <td>
+                                @data.Offer_Name
+                            </td>
+                            <td>
+                                @data.PaymentType.Description
+                            </td>
+                            <td>
+                                @Math.Round(data.Price, 2) $
+                            </td>
+                            <td>
+                                @data.PayedOn.ToString("dd.MM.yyyy")
+                            </td>
+                            <td>
+                                @data.PayedByUser.Username
+                            </td>
+                        </tr>
+                    }
+                    <tr class="table-row">
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td>
+                            @Math.Round(@Model.UserPaymentsData.UserPayments.Sum(e => e.Price), 2) $
+                        </td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div>
+        <div class="reportTitle">
+            Make payment
+        </div>
+        <div>
+
+            <div class=".col-md-4 addInfo">
+                <div class="main-info">
+                    <div class="info height35">Amount    </div><div class="value height35"> <input id="paymentAmount" />    </div>
+                    <div class="info height35"> </div><div class="value height35"><button class="mainBtn" id="makePayment" data-user="@Model.Data.User_Id">Make payment</button></div>
+                </div>
+            </div>
+        </div>
+    </div>*@
+
+
+
+
+
+
+<!--NEW CONTENT FRO MHERE-->
+
+<div class="row">
+
+    <div class="col-12 col-sm-4">
+        <img class="img-fluid" src="~/Content/photos/notFound.png" alt="{{ALT_TEXT}}" />
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 col-md-12 col-sm-8">
+        <div class="lead-wrap">
+            <!-- Foreach this box for filling the details of a lead -->
+            <div class="lead">
+                <div class="lead-label">
+                    Id
+                </div>
+                <div class="lead-details">
+                    @Model.Affiliate.Id
+                </div>
+            </div>
+            <div class="lead ml-2">
+                <div class="lead-label">
+                    Username
+                </div>
+                <div class="lead-details">
+                    @Model.Affiliate.UserName
+                </div>
+            </div>
+            <div class="lead">
+                <div class="lead-label">
+                    Email
+                </div>
+                <div class="lead-details">
+                    @Model.Affiliate.Email
+                </div>
+            </div>
+            <div class="lead">
+                <div class="lead-label">
+                    Blocked
+                </div>
+                <div class="lead-details">
+                    @Model.Affiliate.IsBlocked
+                </div>
+            </div>
+            <div class="lead">
+                <div class="lead-label">
+                    Skype
+                </div>
+                <div class="lead-details">
+                    @Model.Affiliate.Skype
+                </div>
+            </div>
+            <div class="lead">
+                <div class="lead-label">
+                    Vip
+                </div>
+                <div class="lead-details">
+                    @Model.Affiliate.IsVip
+                </div>
+            </div>
+            <div class="lead">
+                <div class="lead-label">
+                    Experience
+                </div>
+                <div class="lead-details">
+                    @Model.Affiliate.Experience
+                </div>
+            </div>
+            <div class="lead">
+                <div class="lead-label">
+                    Available
+                </div>
+                <div class="lead-details">
+                    @Math.Round(Model.Affiliate.Available, 2) $
+                </div>
+            </div>
+            <div class="lead">
+                <div class="lead-label">
+                    Paid
+                </div>
+                <div class="lead-details">
+                    @Math.Round(Model.Affiliate.Paid, 2) $
+                </div>
+            </div>
+            <!-- End foreach -->
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12">
+        <h3 class="yellow-tittle">
+            Leads And Click Report
+        </h3>
+    </div>
+</div>
+
+<!-- Foreach this box for creating more tables -->
+<div class="row">
+    <div class="col-12 col-sm-3">
+        <h3 class="block-title">
+            Select Period
+        </h3>
+    </div>
+    <div class="col-12 col-sm-9">
+        <form class="reports" method="get">
+            <div class="form-group">
+                <div id='datetimepicker_box_right'>
+                    <input type="text" name="Date" placeholder="Search" class="form-control date-range date-range-report">
+                    <span class="input-group-addon">
+                        <span class="far fa-calendar-alt"></span>
+                    </span>
+                </div>
+            </div>
+            <input hidden name="a_Id" value="@Model.Affiliate.Id" />
+            <button type="submit" class="btn btn-secondary date-range-report">Clear Filters</button>
+            <button type="submit" class="btn btn-primary userReport">Apply Filters</button>
+        </form>
+    </div>
+</div>
+<div class="row offer-content-report">
+    <table class="table table-striped">
+        @*<colgroup _ngcontent-ivo-c5="" class="ng-star-inserted">
+                <col style="width:80px">
+                <col style="width:150px">
+                <col style="width:80px">
+                <col style="width:80px">
+                <col style="width:80px">
+                <col style="width:80px">
+                <col style="width:80px">
+                <col style="width:80px">
+            </colgroup>*@
+        <tr class="row-header">
+            <th>Offer</th>
+            <th>EPC</th>
+            <th>CTR</th>
+            <th>CR</th>
+            <th>Leads</th>
+            <th>FTD</th>
+            <th>Clicks</th>
+            <th>Commissions</th>
+        </tr>
+        <tbody>
+            @foreach (var offer in Model.LeadsAndClickReport.Offers)
+            {
+                <tr class="table-row">
+                    <td>
+                        @offer.Name
+                    </td>
+                    <td>
+                        @Math.Round(offer.Epc, 2)
+                    </td>
+                    <td>
+                        @Math.Round(offer.Ctr, 2)
+                    </td>
+                    <td>
+                        @Math.Round(offer.Cr, 2)
+                    </td>
+                    <td>
+                        @offer.LeadsCount
+                    </td>
+                    <td>
+                        @offer.FtdsCount
+                    </td>
+                    <td>
+                        @offer.Clicks
+                    </td>
+                    <td>
+                        @Math.Round(offer.Commission, 2)
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+<!-- End foreach -->
+
+<hr />
+
+<div class="row">
+    <div class="col-12">
+        <h3 class="yellow-tittle">
+            Payments
+        </h3>
+    </div>
+</div>
+
+<!-- Foreach this box for creating more tables -->
+<div class="row">
+    <div class="col-12 col-sm-3">
+        <h3 class="block-title">
+            Select Period
+        </h3>
+    </div>
+    <div class="col-12 col-sm-9">
+        <form action="/manager/affiliatedetails?a_Id=@Model.Affiliate.Id" class="reports" method="get">
+            <div class="form-group">
+                <div id='datetimepicker_box_right'>
+                    <input type="text" name="Date" placeholder="Search" class="form-control date-range date-range-payments">
+                    <span class="input-group-addon">
+                        <span class="far fa-calendar-alt"></span>
+                    </span>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-secondary">Clear Filters</button>
+            <button type="submit" class="btn btn-primary userPaymentsReport">Apply Filters</button>
+        </form>
+    </div>
+</div>
+<div class="row offer-content-payments">
+    <table class="table table-striped">
+        @*<colgroup _ngcontent-ivo-c5="" class="ng-star-inserted">
+                <col style="width:80px">
+                <col style="width:150px">
+                <col style="width:80px">
+                <col style="width:80px">
+                <col style="width:80px">
+                <col style="width:80px">
+                <col style="width:80px">
+                <col style="width:80px">
+            </colgroup>*@
+        <tr class="row-header">
+            <th>Offer_Id</th>
+            <th>Offer_Name</th>
+            <th>PaymentType</th>
+            <th>Price</th>
+            <th>PayedOn</th>
+            <th>PayedBy</th>
+        </tr>
+        <tbody>
+            @foreach (var payment in Model.PaymentsReport.Payments.OrderByDescending(e => e.PayedOn))
+            {
+                <tr class="table-row">
+                    <td>
+                        @payment.Id
+                    </td>
+                    <td>
+                        @payment.OfferName
+                    </td>
+                    <td>
+                        @payment.Type
+                    </td>
+                    <td>
+                        @Math.Round(payment.Amount, 2) $
+                    </td>
+                    <td>
+                        @payment.PayedOn.ToString("dd.MM.yyyy")
+                    </td>
+                    <td>
+                        @payment.PayedByUserName
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+<!-- End foreach -->
+
+<hr />
+<div class="row">
+    <div class="col-6">
+        <h3 class="yellow-tittle">
+            Make Payment
+        </h3>
+    </div>
+    <div class="col-6">
+        <form class="reports">
+            <div class="row">
+                <div class="col-8">
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="inputAmount" placeholder="Amount">
+                    </div>
+                </div>
+                <div class="col-4">
+                    <button id="makePayment" type="submit" class="btn btn-primary" data-user="@Model.Affiliate.Id">Make payment</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts
+{
+    <script src="~/Content/js/managers/affiliate_details.js"></script>
+}

@@ -1,0 +1,90 @@
+﻿<!DOCTYPE HTML>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Gold leads media</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="manifest" href="~/Content/site.webmanifest">
+    <link rel="apple-touch-icon" href="#">
+    <link rel="stylesheet" href="~/css/bootstrap.css">
+    <link rel="stylesheet" href="~/css/style.css">
+    <link rel="stylesheet" href="~/css/mobile_xs.css">
+    <link rel="stylesheet" href="~/css/mobile_sm.css">
+    <link rel="stylesheet" href="~/css/mobile_md.css">
+    <link rel="stylesheet" href="~/css/mobile_lg.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+    <link rel="stylesheet" href="~/css/main.css">
+    <meta name="theme-color" content="#fafafa">
+</head>
+<body>
+    <div @{if (this.User.Identity.IsAuthenticated) { <text> class="page-wrapper toggled" </text>  } }>
+        @if (this.User.Identity.IsAuthenticated)
+        {
+            <!-- Navigation -->
+            <vc:navigation-bar></vc:navigation-bar>
+            <!-- End navigation -->
+        }
+
+        <!-- Page content -->
+        <main class="page-content">
+            <div class="container-fluid">
+                <vc:page-header></vc:page-header>
+                @if (this.Context.Request.Path == "/Offers/Dashboard")
+                {
+                    <!-- If Front page show this -->
+                    @RenderBody()
+                    <!-- End front page content -->
+                }
+                else
+                {
+                    <!-- If other pages -->
+                    <section class="main-title">@{Html.RenderPartial("_PageTitlePartial");}</section>
+                    <section class="main-content">
+                        <div class="container">
+                            @RenderBody()
+                        </div>
+                    </section>
+                    <!-- End other pages -->
+                }
+                @*<section class="main-footer">@{Html.RenderPartial("_FooterPartial");}</section>*@
+                <partial name="_FooterPartial" />
+            </div>
+        </main>
+        <!-- End page content -->
+    </div>
+    <script>
+        
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    @*<script>window.jQuery || document.write('<script src="js/jquery-3.4.1.min.js"><\/script>')</script>*@
+    <script src="~/lib/bootstrap/bootstrap.js"></script>
+    <script src="~/lib/bootstrap/bootstrap.bundle.js"></script>
+    <script src="~/js/plugins.js"></script>
+    <script src="~/js/main.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+
+    @RenderSection("Scripts", false)
+    <!-- Google Analytics: change UA-XXXXX-Y to be your site's ID. -->
+    @*<script>
+            window.ga = function () {
+                ga.q.push(arguments)
+            };
+            ga.q = [];
+            ga.l = +new Date;
+            ga('create', 'UA-XXXXX-Y', 'auto');
+            ga('set', 'transport', 'beacon');
+            ga('send', 'pageview')
+        </script>
+        <script src="https://www.google-analytics.com/analytics.js" async></script>
+        <script>
+
+
+        </script>*@
+    <!-- Start of  Zendesk Widget script -->
+    @*<script id="ze-snippet" src="https://static.zdassets.com/ekr/snippet.js?key=625af283-81b9-4a61-8663-73117a24cbe3"></script>*@
+    <!-- End of  Zendesk Widget script -->
+</body>
+</html>

@@ -1,0 +1,57 @@
+/*******
+  COLORS
+ *******/
+/*******
+  SIZES
+ *******/
+/*******
+  ICONS
+ *******/
+/**
+  Project related mixins
+ */
+/*******
+  COLORS
+ *******/
+/*******
+  SIZES
+ *******/
+/*******
+  ICONS
+ *******/
+@font-face {
+  font-family: "Muli";
+  src: url("../fonts/Muli/Muli-Regular.woff") format("woff"), url("../fonts/Muli/Muli-Regular.woff2") format("woff2"), url("../fonts/Muli/Muli-Regular.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal; }
+
+@font-face {
+  font-family: "Roboto Bold";
+  src: url("../fonts/Muli/Muli-Bold.woff") format("woff"), url("../fonts/Muli/Muli-Bold.woff2") format("woff2"), url("../fonts/Muli/Muli-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal; }
+
+/******************************************************************************
+ MOBILE XS
+******************************************************************************/
+@media (max-width: 767px) {
+  .alpha {
+    padding-left: 0.9375em !important; }
+  .omega {
+    padding-right: 0.9375em !important; }
+  .main-header .container-fluid:before {
+    border-width: 7em 18em 0 8em; }
+  .main-content form {
+    width: 100%;
+    padding: 0 0.9375em; }
+    .main-content form .form-wrap {
+      display: block; }
+  .profile-data-wrap {
+    margin-top: 2.5em; }
+    .profile-data-wrap .profile {
+      display: block;
+      margin-bottom: 0.625em; } }
+
+@media screen and (min-width: 768px) {
+  .page-wrapper.toggled .page-content {
+    padding-left: 8.75em; } }

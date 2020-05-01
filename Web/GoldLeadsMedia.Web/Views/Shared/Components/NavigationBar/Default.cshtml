@@ -1,0 +1,76 @@
+﻿@model GoldLeadsMedia.Web.Models.Shared.NavigationBarViewModel
+
+<a id="show-sidebar" class="btn btn-sm btn-light" href="#">
+    <i class="mdi mdi-arrow-left"></i>
+</a>
+<nav id="sidebar" class="sidebar-wrapper">
+    <div class="sidebar-content">
+        <div class="sidebar-brand">
+            <div id="close-sidebar">
+                <i class="mdi mdi-arrow-right"></i>
+            </div>
+        </div>
+        <div class="money-box-wrapper pl-3 pr-3">
+            <div class="money-box available">
+                <span>Available:</span>
+                @Model.Earned
+            </div>
+            <div class="money-box paid">
+                <span>Paid</span>
+                @Model.Paid
+            </div>
+        </div>
+        <div class="sidebar-menu">
+            <ul>
+                <li>
+                    <a asp-controller="Offers" asp-action="Dashboard" data-toggle="tooltip" title="Home">
+                        <i class="mdi mdi-home-account"></i><p>Dashboard</p>
+                    </a>
+                </li>
+                <li>
+                    <a asp-controller="Offers" asp-action="All" data-toggle="tooltip" title="Offers">
+                        <i class="mdi mdi-escalator-up"></i><p>Offers</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="/Report/Index" data-toggle="tooltip" title="Report">
+                        <i class="mdi mdi-brightness-percent"></i><p>Report</p>
+                    </a>
+                </li>
+                @if (Model.IsLoggedUserManagerOrAdministrator)
+                {
+                    <li>
+                        <a href="~/Manager/Index" data-toggle="tooltip" title="Affiliates">
+                            <i class="mdi mdi-clipboard-check-multiple"></i><p>Affiliates</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a asp-controller="Leads" asp-action="All" data-toggle="tooltip" title="Leads">
+                            <i class="mdi mdi-account-group"></i><p>Leads</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/Lead/GetConfirmedLeads" data-toggle="tooltip" title="Confirmed Leads">
+                            <i class="mdi mdi-account-plus"></i><p>Confirmed Leads</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a asp-controller="Administration" asp-action="Information" data-toggle="tooltip" title="Log out">
+                            <i class="mdi mdi-clipboard-text"></i><p class="text-danger">Administration</p>
+                        </a>
+                    </li>
+                }
+                <li>
+                    <a asp-controller="Users" asp-action="Settings" data-toggle="tooltip" title="Settings">
+                        <i class="mdi mdi-account-minus"></i><p>Settings</p>
+                    </a>
+                </li>
+                <li>
+                    <a asp-controller="Users" asp-action="Logout" data-toggle="tooltip" title="Log out">
+                        <i class="mdi mdi-logout"></i><p>Logout</p>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>

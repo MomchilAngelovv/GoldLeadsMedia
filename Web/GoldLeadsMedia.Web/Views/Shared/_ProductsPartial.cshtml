@@ -1,0 +1,65 @@
+﻿<div class="product-tabs-wrapper">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <nav class="nav nav-pills nav-justified">
+                    <vc:offer-groups></vc:offer-groups>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="product-wrapper">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="tab-content">
+                    <!-- First tab content markup -->
+                    <div id="{{ANCHOR_LINK}}" class="tab-pane fade active show">
+                        <div id="offers-group-list" class="row">
+                            @*@{Html.RenderAction("GetOffersByGroup", "Offer", new { group_Id = 1 });}*@
+                            @*<div class="col-12 col-sm-3">
+                                    <div class="product">
+                                        <img class="img-fluid" src="https://mztresizer-b7c5.kxcdn.com/userfiles/hotels/original/6135377/6135377_z2iolkyx.s15.jpg?preset=b" alt="{{ALT_TEXT}}">
+                                        <div class="product-caption">
+                                            <h3>Island relax</h3>
+                                            <div class="row product-action">
+                                                <div class="col-4">
+                                                    <div class="money-circle">
+                                                        1000 $
+                                                    </div>
+                                                </div>
+                                                <div class="col-8">
+                                                    <div class="product-id">ID 1234577</div>
+                                                    <div class="action">Per Action</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-sm-3">
+                                    <div class="product">
+                                        <img class="img-fluid" src="https://mztresizer-b7c5.kxcdn.com/userfiles/hotels/original/6135377/6135377_z2iolkyx.s15.jpg?preset=b" alt="{{ALT_TEXT}}">
+                                        <div class="product-caption">
+                                            <h3>Island relax</h3>
+                                            <div class="row product-action">
+                                                <div class="col-4">
+                                                    <div class="money-circle">
+                                                        1500 $
+                                                    </div>
+                                                </div>
+                                                <div class="col-8">
+                                                    <div class="product-id">ID 984321</div>
+                                                    <div class="action">Per Lead</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>*@
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

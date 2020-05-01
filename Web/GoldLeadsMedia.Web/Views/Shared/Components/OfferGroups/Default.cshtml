@@ -1,0 +1,13 @@
+﻿@model GoldLeadsMedia.Web.Models.ViewModels.Offers.OfferGroupsViewModel
+
+@{
+    var isFirst = true;
+}
+
+@foreach (var group in Model.OfferGroups)
+{
+    <a data-toggle="tab" class="nav-item @(isFirst == true ? "active" : null) nav-link group-filter" data-group-id="@group.Id" href="#">@group.Name</a>
+    {
+        isFirst = false;
+    }
+}

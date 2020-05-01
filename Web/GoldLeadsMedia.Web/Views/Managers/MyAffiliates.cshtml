@@ -1,0 +1,50 @@
+﻿@model GoldLeadsMedia.Web.Models.Managers.MyAffiliatesViewModel
+
+@{
+    ViewData["PigeTitle"] = "Affiliates";
+}
+
+<div class="col-12">
+    <div class="row">
+        <table class="table table-striped table-sm">
+            <tr class="row-header">
+                <th>Id</th>
+                <th>Username</th>
+                <th>Blocked</th>
+                <th>Skype</th>
+                <th>IsVIP</th>
+                <th>Experience</th>
+            </tr>
+            <tbody class="table-tbody">
+                @foreach (var affiliate in Model.Affiliates)
+                {
+                    <tr class="table-row aff-details clickble-table-row" data-user="@affiliate.Id">
+                        <td>
+                            @affiliate.Id
+                        </td>
+                        <td>
+                            @affiliate.UserName
+                        </td>
+                        <td>
+                            @affiliate.IsBlocked
+                        </td>
+                        <td>
+                            @affiliate.Skype
+                        </td>
+                        <td>
+                            @affiliate.IsVip
+                        </td>
+                        <td>
+                            @affiliate.Experience
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+@section Scripts
+{
+    <script src="~/Content/js/managers/index.js"></script>
+}

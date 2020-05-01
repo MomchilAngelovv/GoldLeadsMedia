@@ -1,0 +1,28 @@
+﻿@model GoldLeadsMedia.Web.Models.ViewModels.Shared.HeaderViewModel
+
+<header class="main-header">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="offset-2 col-8 col-sm-6 col-lg-7">
+                <a itemprop="url" class="logo" href="/Offer/Dashboard" title="Gold Leads Media" rel="home">
+                    <img class="img-fluid" itemprop="logo" src="~/images/imgpsh_fullsize_anim.png" alt="Gold Leads Media" />
+                </a>
+            </div>
+            @if (this.User.Identity.IsAuthenticated)
+            {
+                <div class="d-none d-sm-block col-sm-3 col-lg-2 alpha omega">
+                    <div class="profile-block">
+                        <div class="row justify-content-between">
+                            <div class="col-md-4 col-lg-5">
+                                <img class="img-fluid" src="~/photos/@(ViewData["Manager_Id"]).jpg" alt="Manager name" style="width:120px;height:90px" />
+                            </div>
+                            <div class="col-md-8 col-lg-7">
+                                <div class="manager">Your manager: @ViewData["Manager_UserName"]</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</header>
