@@ -12,6 +12,6 @@
         IEnumerable<Offer> GetAll();
         Task<Offer> CreateAsync(OffersCreateServiceModel inputModel);
         Offer GetBy(string id);
-        Task<int> AssignLandingPagesAsync(OffersAssignLandingPagesInputModel inputModel);
+        Task<int> AssignLandingPagesAsync(OffersAssignLandingPagesServiceModel serviceModel);
     }
 }

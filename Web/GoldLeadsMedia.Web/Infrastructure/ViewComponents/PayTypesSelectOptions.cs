@@ -9,11 +9,11 @@ using System.Threading.Tasks;
 
 namespace GoldLeadsMedia.Web.Infrastructure.ViewComponents
 {
-    public class PaymentTypesSelectOptions : ViewComponent
+    public class PayTypesSelectOptions : ViewComponent
     {
         private readonly IAsyncHttpClient httpClient;
 
-        public PaymentTypesSelectOptions(
+        public PayTypesSelectOptions(
             IAsyncHttpClient httpClient)
         {
             this.httpClient = httpClient;
@@ -21,7 +21,8 @@ namespace GoldLeadsMedia.Web.Infrastructure.ViewComponents
 
         public async Task<IViewComponentResult> InvokeAsync()
         {
-            var paymentTypes = await this.httpClient.GetAsync<List<PaymentTypeApiResponse>>("api/paymenttypes");
+            var paymentTypes = await this.httpClient.GetAsync<List<PaymentTypeApiResponse>>("Api/PayTypes");
+
             var paymentTypesSelectOptions = paymentTypes
                 .Select(paymentType => new SelectListItem
                 {

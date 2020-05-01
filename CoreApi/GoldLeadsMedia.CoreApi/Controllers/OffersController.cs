@@ -104,7 +104,13 @@
         [HttpPost("AssignLandingPages")]
         public async Task<ActionResult<int>> AssignLandingPages(OffersAssignLandingPagesInputModel inputModel)
         {
-            var assignedLandingPagesCount = await this.offersService.AssignLandingPagesAsync(inputModel);
+            var serviceModel = new OffersAssignLandingPagesServiceModel
+            {
+                OfferId = inputModel.OfferId,
+                LandingPageIds = inputModel.LandingPageIds
+            };
+
+            var assignedLandingPagesCount = await this.offersService.AssignLandingPagesAsync(serviceModel);
             return assignedLandingPagesCount;
         }
     }

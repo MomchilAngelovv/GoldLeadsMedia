@@ -20,7 +20,7 @@
         }
 
         [HttpPost]
-        public async Task<ActionResult<object>> Register(ClicksRegisterInputModel inputModel)
+        public async Task<ActionResult<string>> Register(ClicksRegisterInputModel inputModel)
         {
             var ipAddress = this.HttpContext.Connection.RemoteIpAddress.ToString();
 
@@ -34,7 +34,7 @@
 
             var click = await this.clicksService.RegisterAsync(serviceModel);
 
-            return click;
+            return click.Id;
         }
     }
 }

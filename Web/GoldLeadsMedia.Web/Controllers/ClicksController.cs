@@ -7,12 +7,12 @@
     using Microsoft.AspNetCore.Mvc;
     using System.Threading.Tasks;
 
-    public class OfferClicksController : Controller
+    public class ClicksController : Controller
     {
         private readonly IAsyncHttpClient httpClient;
         private readonly UserManager<GoldLeadsMediaUser> userManager;
 
-        public OfferClicksController(
+        public ClicksController(
             IAsyncHttpClient httpClient,
             UserManager<GoldLeadsMediaUser> userManager)
         {
@@ -20,19 +20,19 @@
             this.userManager = userManager;
         }
 
-        public async Task<IActionResult> RegisterOfferClick(OfferClicksRegisterOfferClickInputModel inputModel)
+        public async Task<IActionResult> Register(ClicksRegisterInputModel inputModel)
         {
             var loggedUser = await this.userManager.GetUserAsync(this.User);
 
-            var reqeustBody = new
+            var requestBody = new
             {
                 inputModel.OfferId,
                 inputModel.LandingPageId,
-                UserId = loggedUser.Id
+                AffiliateId = loggedUser.Id
             };
 
-            var response = await this.httpClient.PostAsync<int>("api/offerclicks", reqeustBody);
-            return this.Json(response);
+            var clickId = await this.httpClient.PostAsync<string>("Api/Clicks", requestBody);
+            return this.Redirect($"/Offers/Dashboard?clickId={clickId}");
         }
     }
 }

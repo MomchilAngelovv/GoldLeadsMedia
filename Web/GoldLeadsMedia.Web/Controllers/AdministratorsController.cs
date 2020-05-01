@@ -64,7 +64,7 @@
                 inputModel.Description,
                 inputModel.CountryId,
                 inputModel.VerticalId,
-                inputModel.PaymentTypeId,
+                inputModel.PayTypeId,
                 inputModel.TargetDeviceId,
                 inputModel.AccessId,
                 inputModel.ActionFlow,
@@ -72,8 +72,7 @@
                 inputModel.DailyCap,
                 inputModel.LanguageId,
                 inputModel.PayPerClick,
-
-                CreatedBy = loggedUser.Id
+                CreatedByManagerId = loggedUser.Id
             };
 
             var response = await this.httpClient.PostAsync<Offer>("Api/Offers", requestBody);
@@ -86,13 +85,13 @@
         [HttpPost]
         public async Task<IActionResult> AssignLandingPagesToOffer(AdministratorsAssignLandingPagesToOffersInputModel inputModel)
         {
-            var reqeustBody = new
+            var requestBody = new
             {
                 inputModel.OfferId,
                 inputModel.LandingPageIds
             };
 
-            await this.httpClient.PostAsync<int>("api/Offers/AssignLandingPages", reqeustBody);
+            await this.httpClient.PostAsync<int>("Api/Offers/AssignLandingPages", requestBody);
 
             return this.Redirect($"/Offers/Details/{inputModel.OfferId}");
         }

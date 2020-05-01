@@ -20,15 +20,18 @@
             this.db = db;
         }
 
-        public async Task<int> AssignLandingPagesAsync(OffersAssignLandingPagesInputModel inputModel)
+        public async Task<int> AssignLandingPagesAsync(OffersAssignLandingPagesServiceModel serviceModel)
         {
             var offersLandingPages = new List<OfferLandingPage>();
 
-            foreach (var landingPageId in inputModel.LandingPageIds)
+            var landingPagesToRemove = this.db.OffersLandingPages.Where(ofp => ofp.OfferId == serviceModel.OfferId);
+            this.db.OffersLandingPages.RemoveRange(landingPagesToRemove);
+
+            foreach (var landingPageId in serviceModel.LandingPageIds)
             {
                 var offerLandingPage = new OfferLandingPage
                 {
-                    OfferId = inputModel.OfferId,
+                    OfferId = serviceModel.OfferId,
                     LandingPageId = landingPageId
                 };
 

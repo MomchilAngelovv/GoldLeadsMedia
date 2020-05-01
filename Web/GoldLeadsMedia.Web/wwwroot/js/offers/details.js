@@ -1,20 +1,15 @@
-﻿$('.url').on('click', function () {
+﻿var baseUrl = $('#tracking-url').text();
+
+$('.landing-page-info').on('click', function () {
     let landingPageId = $(this).data('landing-page-id');
-    let trackingUrl = $('#tracking-url').text();
+    let newUrl = baseUrl + `&landingPageId=${landingPageId}`;
 
-    if (trackingUrl.indexOf('&l=') == -1) {
-        let newUrl = trackingUrl + `&l=${landingPageId}`;
-        $('#tracking-url').text(newUrl);
-    }
+    $('.landing-page-info').removeClass("clicked-table-row");
+    $(this).addClass("clicked-table-row");
+
+    $('#tracking-url').text(newUrl);
 });
 
-$('.clickble-table-row').on('click', function () {
-    if ($(this).hasClass("clicked-table-row")) {
-        $(this).removeClass("clicked-table-row")
-    } else {
-        $(this).addClass("clicked-table-row")
-    }
-});
 
 $(".copyLink").tooltip({
     show: null,
