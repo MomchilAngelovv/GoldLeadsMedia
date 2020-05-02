@@ -263,9 +263,9 @@ textarea {
   }
 }
 
-.clickble-table-row:hover {
+.clickable-table-row:hover {
     cursor: pointer;
-    border: 3px solid red;
+    border: 2px solid red;
 }
 
 .clicked-table-row {

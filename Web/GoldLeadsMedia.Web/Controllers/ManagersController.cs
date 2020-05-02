@@ -4,6 +4,9 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using GoldLeadsMedia.Database.Models;
 using GoldLeadsMedia.Web.Infrastructure.HttpHelper;
+using System.Threading.Tasks;
+using GoldLeadsMedia.Web.Models.ViewModels;
+using System.Collections.Generic;
 
 namespace GoldLeadsMedia.Web.Controllers
 {
@@ -23,35 +26,18 @@ namespace GoldLeadsMedia.Web.Controllers
             this.userManager = userManager;
         }
 
-        //[Authorize]
-        //public async Task<IActionResult> Affiliates()
-        //{
-        //    var loggedUser = await this.userManager.GetUserAsync(this.User);
-        //    if (loggedUser.Type == 1)
-        //    {
-        //        var viewModel = new GetUsersViewModel();
-        //        string url = string.Format("{0}api/User/GetManagerUsers?", this.configuration.GetConnectionString("CoreApiUrl"));
-        //        var req = new
-        //        {
-        //            Manager_Id = loggedUser.Id
-        //        };
-        //        var response = await this.httpClient.PostAsync<BaseResultModel>(url, req);
-        //        if (response.Code == 1)
-        //        {
-        //            var reqRes = JsonSerializer.Deserialize<GetManagerUsersResultModel>(response.Message);
-        //            if (reqRes.Code == 1)
-        //            {
-        //                viewModel.Users = reqRes.Users;
-        //            }
-        //        }
+        public async Task<IActionResult> Affiliates()
+        {
+            var loggedUser = await this.userManager.GetUserAsync(this.User);
+            var affiliates = await this.httpClient.GetAsync<List<ManagersAffiliatesAffiliate>>($"Api/Managers/{loggedUser.Id}/Affiliates");
 
-        //        return View(viewModel);
-        //    }
-        //    else
-        //    {
-        //        return RedirectToAction("Index", "Offer");
-        //    }
-        //}
+            var viewModel = new ManagersAffiliatesViewModel
+            {
+                Affiliates = affiliates
+            };
+
+            return this.View(viewModel);
+        }
         //public async Task<IActionResult> AffiliateDetails(string a_Id)
         //{
         //    var loggedUser = await this.userManager.GetUserAsync(this.User);

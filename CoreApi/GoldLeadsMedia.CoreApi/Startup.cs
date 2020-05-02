@@ -10,6 +10,8 @@ namespace GoldLeadsMedia.CoreApi
     using GoldLeadsMedia.Database;
     using GoldLeadsMedia.CoreApi.Services.Application;
     using GoldLeadsMedia.CoreApi.Services.Application.Common;
+    using GoldLeadsMedia.Database.Models;
+    using Microsoft.AspNetCore.Identity;
 
     public class Startup
     {
@@ -32,6 +34,22 @@ namespace GoldLeadsMedia.CoreApi
                 options.UseLazyLoadingProxies().UseSqlServer(configuration.GetConnectionString("DefaultConnection"));
             });
 
+            services.AddIdentity<GoldLeadsMediaUser, GoldLeadsMediaRole>(options =>
+            {
+                options.Password.RequireDigit = false;
+                options.Password.RequiredLength = 3;
+                options.Password.RequiredUniqueChars = 0;
+                options.Password.RequireLowercase = false;
+                options.Password.RequireNonAlphanumeric = false;
+                options.Password.RequireUppercase = false;
+
+                options.SignIn.RequireConfirmedEmail = false;
+                options.SignIn.RequireConfirmedAccount = false;
+                options.SignIn.RequireConfirmedPhoneNumber = false;
+            })
+           .AddEntityFrameworkStores<GoldLeadsMediaDbContext>()
+           .AddDefaultTokenProviders();
+
             services.AddCors();
 
             services.AddTransient<IOfferGroupsService, OfferGroupsService>();
@@ -46,6 +64,7 @@ namespace GoldLeadsMedia.CoreApi
             services.AddTransient<IClicksService, ClicksService>();
             services.AddTransient<ILandingPagesService, LandingPagesService>();
             services.AddTransient<IPartnersService, PartnersService>();
+            services.AddTransient<IManagersService, ManagersService>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

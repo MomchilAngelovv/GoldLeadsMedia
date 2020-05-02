@@ -40,7 +40,7 @@
                 @if (Model.IsLoggedUserManagerOrAdministrator)
                 {
                     <li>
-                        <a href="~/Manager/Index" data-toggle="tooltip" title="Affiliates">
+                        <a asp-controller="Managers" asp-action="Affiliates" data-toggle="tooltip" title="Affiliates">
                             <i class="mdi mdi-clipboard-check-multiple"></i><p>Affiliates</p>
                         </a>
                     </li>

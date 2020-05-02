@@ -40,7 +40,7 @@
 
             var response = await this.httpClient.GetAsync(completeUrl);
             var responseAsString = await response.Content.ReadAsStringAsync();
-           
+
             var mappedResponse = this.MapResponse<T>(responseAsString);
             return mappedResponse;
         }

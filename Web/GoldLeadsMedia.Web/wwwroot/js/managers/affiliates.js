@@ -1,4 +1,4 @@
-﻿$('.aff-details').on('click', function () {
+﻿$('.affiliate-details-row').on('click', function () {
     var id = $(this).attr('data-user');
     var url = `/manager/affiliateDetails?a_id=${id}`;
     window.location.href = url;
