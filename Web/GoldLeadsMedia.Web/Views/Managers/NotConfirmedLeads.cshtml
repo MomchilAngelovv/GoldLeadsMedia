@@ -1,48 +1,50 @@
 ﻿@model GoldLeadsMedia.Web.Models.ViewModels.ManagersNotConfirmedLeadsViewModel
 
+<h3 class="display-3 text-center">Pending for confirm leads</h3>
+<hr />
 <div class="col-12">
     <div class="row">
-        <table class="table table-striped table-sm">
+        <table class="table table-sm">
             <tr class="row-header">
-                <th>Username</th>
-                <th>Names</th>
+                <th>First name</th>
+                <th>Last name</th>
                 <th>Email</th>
                 <th>PhoneNumber</th>
                 <th>Country</th>
-                <th>Offer Name</th>
+                <th>Offer</th>
                 <th></th>
             </tr>
             <tbody class="table-tbody">
-                @foreach (var data in Model.Leads)
+                @foreach (var lead in Model.NotConfirmedLeads)
                 {
                     <tr class="table-row aff-details">
                         <td>
-                            @data.UserName
+                            @lead.FirstName
                         </td>
                         <td>
-                            @data.FirstName + @data.LastName
+                            @lead.LastName
                         </td>
                         <td>
-                            @data.Email
+                            @lead.Email
                         </td>
                         <td>
-                            @data.PhoneNumber
+                            @lead.PhoneNumber
                         </td>
                         <td>
-                            @data.Country
+                            @lead.CountryName
                         </td>
                         <td>
-                            @data.Offer
+                            @lead.OfferName
                         </td>
-                        <td><input type="checkbox" name="lead_id" value="@data.Id"></td>
+                        <td><input type="checkbox" name="lead_id" value="@lead.Id"></td>
                     </tr>
                 }
             </tbody>
         </table>
     </div>
 </div>
-<div style="right:30px">
-    <button class="btn btn-primary" >Confirm leads</button>
+<div>
+    <button class="btn btn-primary">Confirm leads</button>
 </div>
 
 @section Scripts

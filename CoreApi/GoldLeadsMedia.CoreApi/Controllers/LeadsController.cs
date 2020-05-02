@@ -5,35 +5,42 @@
 
     using Microsoft.AspNetCore.Mvc;
     using GoldLeadsMedia.CoreApi.Services.Application.Common;
+    using GoldLeadsMedia.CoreApi.Models.InputModels;
+    using GoldLeadsMedia.CoreApi.Models.ServiceModels;
+    using System.Threading.Tasks;
 
     public class LeadsController : ApiController
     {
         private readonly ILeadsService leadsService;
+        private readonly ICountriesService countriesService;
 
         public LeadsController(
-            ILeadsService leadsService)
+            ILeadsService leadsService,
+            ICountriesService countriesService)
         {
             this.leadsService = leadsService;
+            this.countriesService = countriesService;
         }
 
-        [HttpGet("{id}")]
-        public ActionResult<IEnumerable<object>> AllByUserId(string userId)
+        [HttpPost]
+        public async Task<ActionResult<object>> Register(LeadsRegisterInputModel inputModel)
         {
-            var leads = this.leadsService
-                .GetAllBy(userId)
-                .Select(lead => new  
-                { 
-                    lead.Id,
-                    lead.FirstName,
-                    lead.LastName,
-                    lead.Email,
-                    Country = lead.Country.Name,
-                    Offer = lead.Click.Offer.Name,
-                    lead.PhoneNumber,
-                })
-                .ToList();
+            var country = this.countriesService.GetBy(inputModel.CountryName);
 
-            return leads;
+            var serviceModel = new LeadsRegisterServiceModel
+            {
+                FirstName = inputModel.FirstName,
+                LastName = inputModel.LastName,
+                Password = inputModel.Password,
+                Email = inputModel.Email,
+                PhoneNumber = inputModel.PhoneNumber,
+                CountryId = country.Id,
+                ClickId = inputModel.ClickId
+            };
+
+            var lead = await this.leadsService.RegisterAsync(serviceModel);
+
+            return this.Created($"/Api/Leads/{lead.Id}", lead);
         }
     }
 }

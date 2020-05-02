@@ -6,6 +6,6 @@ namespace GoldLeadsMedia.Web.Models.ViewModels
 {
     public class ManagersNotConfirmedLeadsViewModel
     {
-        public IEnumerable<ManagersNotConfirmedLeadsLead> Leads { get; set; }
+        public IEnumerable<ManagersNotConfirmedLeadsLead> NotConfirmedLeads { get; set; }
     }
 }

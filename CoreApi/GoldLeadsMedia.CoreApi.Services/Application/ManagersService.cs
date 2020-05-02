@@ -31,5 +31,11 @@ namespace GoldLeadsMedia.CoreApi.Services.Application
 
             return affiliates;
         }
+
+        public IEnumerable<Lead> GetNotConfirmedLeads()
+        {
+            var notConfirmedLeads = this.db.Leads.Where(lead => lead.ConfirmedByManagerId == null).ToList();
+            return notConfirmedLeads;
+        }
     }
 }

@@ -10,7 +10,7 @@ namespace GoldLeadsMedia.CoreApi.Services.Application
 {
     public class CountriesService : ICountriesService
     {
-        private readonly GoldLeadsMediaDbContext db;
+        private readonly GoldLeadsMediaDbContext db; 
 
         public CountriesService(
             GoldLeadsMediaDbContext db)
@@ -22,6 +22,12 @@ namespace GoldLeadsMedia.CoreApi.Services.Application
         {
             var countries = db.Countries.ToList();
             return countries;
+        }
+
+        public Country GetBy(string name)
+        {
+            var country = this.db.Countries.FirstOrDefault(country => country.Name == name);
+            return country;
         }
     }
 }

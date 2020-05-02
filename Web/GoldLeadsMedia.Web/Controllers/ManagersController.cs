@@ -38,6 +38,20 @@ namespace GoldLeadsMedia.Web.Controllers
 
             return this.View(viewModel);
         }
+        public async Task<IActionResult> NotConfirmedLeads()
+        {
+            var notConfirmedLeads = await this.httpClient.GetAsync<List<ManagersNotConfirmedLeadsLead>>("Api/Managers/NotConfirmedLeads");
+
+            var viewModel = new ManagersNotConfirmedLeadsViewModel
+            {
+                NotConfirmedLeads = notConfirmedLeads
+            };
+
+            return this.View(viewModel);
+        }
+
+
+
         //public async Task<IActionResult> AffiliateDetails(string a_Id)
         //{
         //    var loggedUser = await this.userManager.GetUserAsync(this.User);

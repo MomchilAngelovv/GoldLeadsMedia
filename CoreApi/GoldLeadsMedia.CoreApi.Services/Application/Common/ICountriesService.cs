@@ -9,5 +9,6 @@ namespace GoldLeadsMedia.CoreApi.Services.Application.Common
     public interface ICountriesService
     {
         IEnumerable<Country> GetAll();
+        Country GetBy(string name);
     }
 }

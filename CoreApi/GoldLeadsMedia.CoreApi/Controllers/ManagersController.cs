@@ -19,7 +19,7 @@ namespace GoldLeadsMedia.CoreApi.Controllers
         }
 
         [HttpGet("{managerId}/Affiliates")]
-        public async Task<ActionResult<IEnumerable<object>>> GetManagerLeads(string managerId)
+        public async Task<ActionResult<IEnumerable<object>>> Affiliates(string managerId)
         {
             var managersAffiliates = await this.managersService.GetAffiliatesByAsync(managerId);
 
@@ -33,6 +33,27 @@ namespace GoldLeadsMedia.CoreApi.Controllers
                     affiliate.Skype,
                     IsVip = false, //TODO implement logic
                     affiliate.Experience
+                })
+                .ToList();
+
+            return response;
+        }
+
+        [HttpGet("NotConfirmedLeads")]
+        public ActionResult<IEnumerable<object>> NotConfirmedLeads()
+        {
+            var notConfirmedLeads = this.managersService.GetNotConfirmedLeads();
+
+            var response = notConfirmedLeads
+                .Select(lead => new 
+                { 
+                    lead.Id,
+                    lead.FirstName,
+                    lead.LastName,
+                    lead.Email,
+                    lead.PhoneNumber,
+                    CountryName = lead.Country.Name,
+                    OfferName = lead.Click.Offer.Name
                 })
                 .ToList();
 

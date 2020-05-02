@@ -34,30 +34,6 @@
             this.userManager = userManager;
         }
 
-        //[Authorize]
-        //public async Task<IActionResult> MyLeads()
-        //{
-        //    var loggedUser = await this.userManager.GetUserAsync(this.User);
-
-        //    if (loggedUser.Type != 1)
-        //    {
-        //        return Redirect("/Offers/Index");
-        //    }
-
-        //    var viewModel = new MyLeadsViewModel();
-        //    string url = string.Format("{0}api/User/GetManagerUserLeads", this.configuration.GetConnectionString("CoreApiUrl"));
-        //    var req = new
-        //    {
-        //        Manager_Id = loggedUser.Id
-        //    };
-        //    var response = await this.httpClient.PostAsync<BaseResultModel>(url, req);
-        //    if (response.Code == 1)
-        //    {
-        //        viewModel = JsonSerializer.Deserialize<MyLeadsViewModel>(response.Message);
-        //    }
-
-        //    return this.View("ListUserLeads", viewModel);
-        //}
 
         //[HttpPost]
         //[Authorize]

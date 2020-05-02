@@ -6,6 +6,8 @@
     using GoldLeadsMedia.Database;
     using GoldLeadsMedia.Database.Models;
     using GoldLeadsMedia.CoreApi.Services.Application.Common;
+    using System.Threading.Tasks;
+    using GoldLeadsMedia.CoreApi.Models.ServiceModels;
 
     public class LeadsService : ILeadsService
     {
@@ -23,6 +25,25 @@
                 .Where(lead => lead.Click.AffiliateId == affiliateId);
 
             return leads;
+        }
+
+        public async Task<Lead> RegisterAsync(LeadsRegisterServiceModel serviceModel)
+        {
+            var lead = new Lead
+            {
+                FirstName = serviceModel.FirstName,
+                LastName = serviceModel.LastName,
+                Email = serviceModel.Email,
+                Password = serviceModel.Password,
+                CountryId = serviceModel.CountryId,
+                PhoneNumber = serviceModel.PhoneNumber,
+                ClickId = serviceModel.ClickId
+            };
+
+            await this.db.Leads.AddAsync(lead);
+            await this.db.SaveChangesAsync();
+
+            return lead;
         }
     }
 }
