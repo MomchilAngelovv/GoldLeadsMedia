@@ -7,6 +7,7 @@ using GoldLeadsMedia.Web.Infrastructure.HttpHelper;
 using System.Threading.Tasks;
 using GoldLeadsMedia.Web.Models.ViewModels;
 using System.Collections.Generic;
+using GoldLeadsMedia.Web.Models.InputModels;
 
 namespace GoldLeadsMedia.Web.Controllers
 {
@@ -49,8 +50,34 @@ namespace GoldLeadsMedia.Web.Controllers
 
             return this.View(viewModel);
         }
+        public async Task<IActionResult> ConfirmedLeads()
+        {
+            var confirmedLeads = await this.httpClient.GetAsync<List<ManagersConfirmedLeadsLead>>("Api/Managers/ConfirmedLeads");
+            var partners = await this.httpClient.GetAsync<List<ManagersConfirmedLeadsPartner>>("Api/Partners");
 
+            var viewModel = new ManagersConfirmedLeadsViewModel
+            {
+                ConfirmedLeads = confirmedLeads,
+                Partners = partners
+            };
 
+            return this.View(viewModel);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> ConfirmLeads([FromBody]ManagersConfirmLeadsInputModel inputModel)
+        {
+            var loggedUser = await this.userManager.GetUserAsync(this.User);
+            var requestBody = new
+            {
+                ManagerId = loggedUser.Id,
+                inputModel.LeadIds
+            };
+
+            var response = await this.httpClient.PostAsync<int>("Api/Managers/ConfirmLeads", requestBody);
+
+            return this.Ok(response);
+        }
 
         //public async Task<IActionResult> AffiliateDetails(string a_Id)
         //{

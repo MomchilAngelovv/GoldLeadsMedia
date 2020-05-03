@@ -7,6 +7,7 @@
 
     public interface ILeadsService
     {
+        Lead GetBy(string id);
         IEnumerable<Lead> GetAllBy(string userId);
         Task<Lead> RegisterAsync(LeadsRegisterServiceModel serviceModel);
     }

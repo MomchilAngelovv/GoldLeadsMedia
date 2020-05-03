@@ -49,6 +49,7 @@
                     var propertyValue = property.GetValue(filter);
                     if (propertyValue != null)
                     {
+                        //TODO IF property is string somehow it still remains in url as empty string
                         var popertyName = property.Name;
                         urlBuilder.Append($"{popertyName}={propertyValue}&");
                     }

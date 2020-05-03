@@ -27,6 +27,12 @@
             return leads;
         }
 
+        public Lead GetBy(string id)
+        {
+            var lead = this.db.Leads.FirstOrDefault(lead => lead.Id == id);
+            return lead;
+        }
+
         public async Task<Lead> RegisterAsync(LeadsRegisterServiceModel serviceModel)
         {
             var lead = new Lead

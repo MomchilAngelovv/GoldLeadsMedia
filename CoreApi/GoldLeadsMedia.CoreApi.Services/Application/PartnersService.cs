@@ -4,6 +4,7 @@ using GoldLeadsMedia.Database;
 using GoldLeadsMedia.Database.Models;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -17,6 +18,12 @@ namespace GoldLeadsMedia.CoreApi.Services.Application
             GoldLeadsMediaDbContext db)
         {
             this.db = db;
+        }
+
+        public IEnumerable<Partner> GetAll()
+        {
+            var partners = this.db.Partners.ToList();
+            return partners;
         }
 
         public async Task<Partner> RegisterAsync(PartnersRegisterServiceModel serviceModel)

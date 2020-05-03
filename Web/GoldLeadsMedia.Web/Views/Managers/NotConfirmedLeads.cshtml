@@ -36,7 +36,7 @@
                         <td>
                             @lead.OfferName
                         </td>
-                        <td><input type="checkbox" name="lead_id" value="@lead.Id"></td>
+                        <td><input type="checkbox" name="leadId" value="@lead.Id"></td>
                     </tr>
                 }
             </tbody>
@@ -44,11 +44,11 @@
     </div>
 </div>
 <div>
-    <button class="btn btn-primary">Confirm leads</button>
+    <button class="btn btn-primary" id="confirm-leads-btn">Confirm leads</button>
 </div>
 
 @section Scripts
 {
-    <script src="~/Content/js/leads/list_user_leads.js"></script>
+    <script src="~/js/managers/not_confirmed_leads.js"></script>
 }
 

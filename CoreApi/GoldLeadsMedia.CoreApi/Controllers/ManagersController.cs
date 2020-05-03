@@ -1,4 +1,6 @@
-﻿using GoldLeadsMedia.CoreApi.Services.Application.Common;
+﻿using GoldLeadsMedia.CoreApi.Models.InputModels;
+using GoldLeadsMedia.CoreApi.Models.ServiceModels;
+using GoldLeadsMedia.CoreApi.Services.Application.Common;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -38,7 +40,6 @@ namespace GoldLeadsMedia.CoreApi.Controllers
 
             return response;
         }
-
         [HttpGet("NotConfirmedLeads")]
         public ActionResult<IEnumerable<object>> NotConfirmedLeads()
         {
@@ -58,6 +59,38 @@ namespace GoldLeadsMedia.CoreApi.Controllers
                 .ToList();
 
             return response;
+        }
+        [HttpGet("ConfirmedLeads")]
+        public ActionResult<IEnumerable<object>> ConfirmedLeads()
+        {
+            var confirmedLeads = this.managersService.GetConfirmedLeads();
+
+            var response = confirmedLeads
+                .Select(lead => new
+                {
+                    lead.Id,
+                    lead.FirstName,
+                    lead.LastName,
+                    lead.Email,
+                    lead.PhoneNumber,
+                    CountryName = lead.Country.Name,
+                    OfferName = lead.Click.Offer.Name
+                })
+                .ToList();
+
+            return response;
+        }
+        [HttpPost("ConfirmLeads")]
+        public async Task<ActionResult<int>> ConfirmLeads(ManagersConfirmLeadsInputModel inputModel)
+        {
+            var serviceModel = new ManagersConfirmLeadsServiceModel
+            {
+                ManagerId = inputModel.ManagerId,
+                LeadIds = inputModel.LeadIds
+            };
+
+            var confirmedLeads = await this.managersService.ConfirmLeadsAsync(serviceModel);
+            return confirmedLeads.Count();
         }
     }
 }

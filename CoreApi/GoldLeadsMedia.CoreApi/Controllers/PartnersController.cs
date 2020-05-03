@@ -19,6 +19,22 @@ namespace GoldLeadsMedia.CoreApi.Controllers
             this.partnersService = partnersService;
         }
 
+        public ActionResult<IEnumerable<object>> GetAll()
+        {
+            var partners = this.partnersService
+                .GetAll();
+
+            var response = partners
+                .Select(partner => new
+                {
+                    partner.Id,
+                    partner.Name
+                })
+                .ToList();
+
+            return response;
+        }
+
         [HttpPost]
         public async Task<ActionResult<object>> Register(PartnersRegisterInputModel inputModel)
         {
