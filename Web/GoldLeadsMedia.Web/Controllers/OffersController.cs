@@ -34,7 +34,7 @@
         {
             var offers = await this.httpClient.GetAsync<IEnumerable<OffersAllOffer>>("api/offers");
 
-            var viewModel = new OffersAllViewModel
+            var viewModel = new OffersAllFilterViewModel
             {
                 Offers = offers
             };
