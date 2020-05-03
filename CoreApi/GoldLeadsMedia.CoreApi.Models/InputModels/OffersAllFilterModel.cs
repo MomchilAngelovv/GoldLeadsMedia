@@ -1,16 +1,12 @@
-﻿namespace GoldLeadsMedia.Web.Models.ViewModels
+﻿namespace GoldLeadsMedia.CoreApi.Models.InputModels
 {
-    using System.Collections.Generic;
-
-    public class OffersAllFilterViewModel
+    public class OffersAllFilterModel
     {
         public string NumberOrName { get; set; }
         public int? CountryId { get; set; }
         public int? VerticalId { get; set; }
         public int? PayTypeId { get; set; }
-        public int? DeviceId { get; set; }
+        public int? TargetDeviceId { get; set; }
         public int? AccessId { get; set; }
-
-        public IEnumerable<OffersAllOffer> Offers { get; set; }
     }
 }

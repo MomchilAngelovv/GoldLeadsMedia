@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GoldLeadsMedia.Database.Migrations
 {
     [DbContext(typeof(GoldLeadsMediaDbContext))]
-    [Migration("20200501193319_Initial_Database_Create")]
+    [Migration("20200503085425_Initial_Database_Create")]
     partial class Initial_Database_Create
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -133,6 +133,9 @@ namespace GoldLeadsMedia.Database.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Path")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("StackTrace")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime?>("UpdatedOn")

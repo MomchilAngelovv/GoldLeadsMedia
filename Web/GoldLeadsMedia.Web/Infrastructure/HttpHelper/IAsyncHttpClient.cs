@@ -5,6 +5,6 @@
     public interface IAsyncHttpClient
     {
         Task<T> PostAsync<T>(string url, object body, string mimeType = "application/json");
-        Task<T> GetAsync<T>(string url);
+        Task<T> GetAsync<T>(string url, object filter = null);
     }
 }

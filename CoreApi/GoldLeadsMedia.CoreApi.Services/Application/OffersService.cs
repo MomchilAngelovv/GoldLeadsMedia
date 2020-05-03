@@ -67,9 +67,40 @@
 
             return offer;
         }
-        public IEnumerable<Offer> GetAll()
+        public IEnumerable<Offer> GetAll(OffersGetAllFilterServiceModel filterServiceModel)
         {
-            var offers = db.Offers.ToList();
+            var offers = db.Offers.AsQueryable();
+
+            if (filterServiceModel.NumberOrName != null)
+            {
+                offers = offers.Where(offer => offer.Number.Contains(filterServiceModel.NumberOrName) | offer.Name.Contains(filterServiceModel.NumberOrName));
+            }
+
+            if (filterServiceModel.CountryId != null)
+            {
+                offers = offers.Where(offer => offer.CountryId == filterServiceModel.CountryId);
+            }
+
+            if (filterServiceModel.VerticalId != null)
+            {
+                offers = offers.Where(offer => offer.VerticalId == filterServiceModel.VerticalId);
+            }
+
+            if (filterServiceModel.PayTypeId != null)
+            {
+                offers = offers.Where(offer => offer.PayTypeId == filterServiceModel.PayTypeId);
+            }
+
+            if (filterServiceModel.TargetDeviceId != null)
+            {
+                offers = offers.Where(offer => offer.TargetDeviceId == filterServiceModel.TargetDeviceId);
+            }
+
+            if (filterServiceModel.AccessId != null)
+            {
+                offers = offers.Where(offer => offer.AccessId == filterServiceModel.AccessId);
+            }
+
             return offers;
         }
         public Offer GetBy(string id)

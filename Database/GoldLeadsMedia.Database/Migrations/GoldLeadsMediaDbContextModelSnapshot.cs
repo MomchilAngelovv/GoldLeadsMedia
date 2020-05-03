@@ -133,6 +133,9 @@ namespace GoldLeadsMedia.Database.Migrations
                     b.Property<string>("Path")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("StackTrace")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<DateTime?>("UpdatedOn")
                         .HasColumnType("datetime2");
 

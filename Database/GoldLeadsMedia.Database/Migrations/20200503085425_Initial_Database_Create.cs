@@ -321,6 +321,7 @@ namespace GoldLeadsMedia.Database.Migrations
                     Method = table.Column<string>(nullable: true),
                     Path = table.Column<string>(nullable: true),
                     Message = table.Column<string>(nullable: true),
+                    StackTrace = table.Column<string>(nullable: true),
                     Code = table.Column<int>(nullable: false),
                     UserId = table.Column<string>(nullable: true),
                     CreatedOn = table.Column<DateTime>(nullable: false),

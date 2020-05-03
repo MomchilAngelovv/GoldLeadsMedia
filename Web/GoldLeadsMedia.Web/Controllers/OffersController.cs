@@ -30,12 +30,29 @@
             this.userManager = userManager;
         }
 
-        public async Task<IActionResult> All()
+        public async Task<IActionResult> All(OffersAllFilterViewModel filterViewModel)
         {
-            var offers = await this.httpClient.GetAsync<IEnumerable<OffersAllOffer>>("api/offers");
+            var filter = new
+            {
+                filterViewModel.NumberOrName,
+                filterViewModel.CountryId,
+                filterViewModel.VerticalId,
+                filterViewModel.PayTypeId,
+                filterViewModel.DeviceId,
+                filterViewModel.AccessId
+            };
+
+            var offers = await this.httpClient.GetAsync<IEnumerable<OffersAllOffer>>("api/offers", filter);
 
             var viewModel = new OffersAllFilterViewModel
             {
+                NumberOrName = filterViewModel.NumberOrName,
+                CountryId = filterViewModel.CountryId,
+                VerticalId = filterViewModel.VerticalId,
+                PayTypeId = filterViewModel.PayTypeId,
+                DeviceId = filterViewModel.DeviceId,
+                AccessId = filterViewModel.AccessId,
+
                 Offers = offers
             };
 

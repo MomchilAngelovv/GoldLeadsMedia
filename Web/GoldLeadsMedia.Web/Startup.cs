@@ -11,6 +11,7 @@ namespace GoldLeadsMedia.Web
     using GoldLeadsMedia.Database;
     using GoldLeadsMedia.Database.Models;
     using GoldLeadsMedia.Web.Infrastructure.HttpHelper;
+    using GoldLeadsMedia.Web.Infrastructure.Filters;
 
     public class Startup
     {
@@ -44,7 +45,11 @@ namespace GoldLeadsMedia.Web
             .AddEntityFrameworkStores<GoldLeadsMediaDbContext>()
             .AddDefaultTokenProviders();
 
-            services.AddControllersWithViews();
+            services.AddControllersWithViews(options => 
+            {
+                options.Filters.Add<RegisterDeveleporErrorExceptionFilter>();
+            });
+
             services.AddRazorPages();
             services.AddHttpClient();
             services.AddTransient<IAsyncHttpClient, AsyncHttpClient>();

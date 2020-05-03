@@ -21,10 +21,20 @@
             this.offersService = offersService;
         }
 
-        public ActionResult<IEnumerable<object>> All()
+        public ActionResult<IEnumerable<object>> All([FromQuery]OffersAllFilterModel filterModel)
         {
+            var filter = new OffersGetAllFilterServiceModel
+            {
+                NumberOrName = filterModel.NumberOrName,
+                CountryId = filterModel.CountryId,
+                VerticalId = filterModel.VerticalId,
+                PayTypeId = filterModel.PayTypeId,
+                TargetDeviceId = filterModel.TargetDeviceId,
+                AccessId = filterModel.AccessId
+            };
+
             var offers = this.offersService
-                .GetAll()
+                .GetAll(filter)
                 .Select(offer => new 
                 {
                     offer.Id,

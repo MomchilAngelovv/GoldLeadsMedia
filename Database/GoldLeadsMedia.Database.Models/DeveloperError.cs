@@ -17,6 +17,8 @@ namespace GoldLeadsMedia.Database.Models
         public string Method { get; set; }
         public string Path { get; set; }
         public string Message { get; set; }
+        public string StackTrace { get; set; }
+
         public int Code { get; set; }
 
         public string UserId { get; set; }

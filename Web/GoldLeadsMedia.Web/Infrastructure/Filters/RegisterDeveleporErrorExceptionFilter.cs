@@ -31,13 +31,14 @@ namespace GoldLeadsMedia.Web.Infrastructure.Filters
                 Method = context.HttpContext.Request.Method,
                 Path = context.HttpContext.Request.Path,
                 Message = context.Exception.Message,
-                UserId = loggedUser?.Id,
+                StackTrace = context.Exception.StackTrace,
+                UserId = loggedUser?.Id
             };
 
             await this.db.DeveloperErrors.AddAsync(developerError);
             await this.db.SaveChangesAsync();
 
-            context.Result = new RedirectResult("Home/Error");
+            context.Result = new RedirectResult("/Home/Error");
         }
     }
 }

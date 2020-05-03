@@ -34,9 +34,28 @@
             return mappedResponse;
         }
 
-        public async Task<T> GetAsync<T>(string url)
+        public async Task<T> GetAsync<T>(string url, object filter = null)
         {
-            var completeUrl = $"{this.configuration["CoreApiUrl"]}/{url}";
+            var urlBuilder = new StringBuilder();
+            urlBuilder.Append($"{this.configuration["CoreApiUrl"]}/{url}");
+
+            if (filter != null)
+            {
+                urlBuilder.Append($"?");
+                var filterProperties = filter.GetType().GetProperties();
+
+                foreach (var property in filterProperties)
+                {
+                    var propertyValue = property.GetValue(filter);
+                    if (propertyValue != null)
+                    {
+                        var popertyName = property.Name;
+                        urlBuilder.Append($"{popertyName}={propertyValue}&");
+                    }
+                }
+            }
+
+            var completeUrl = urlBuilder.ToString().TrimEnd('&','?');
 
             var response = await this.httpClient.GetAsync(completeUrl);
             var responseAsString = await response.Content.ReadAsStringAsync();
