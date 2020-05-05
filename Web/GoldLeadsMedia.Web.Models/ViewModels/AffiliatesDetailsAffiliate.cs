@@ -1,6 +1,6 @@
 ﻿namespace GoldLeadsMedia.Web.Models.ViewModels
 {
-    public class ManagersAffiliateDetailsAffiliate
+    public class AffiliatesDetailsAffiliate
     {
         public string Id { get; set; }
         public string UserName { get; set; }

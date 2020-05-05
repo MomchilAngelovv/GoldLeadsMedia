@@ -35,19 +35,16 @@ namespace GoldLeadsMedia.CoreApi.Services.Application
 
             return affiliates;
         }
-
         public IEnumerable<Lead> GetNotConfirmedLeads()
         {
             var notConfirmedLeads = this.db.Leads.Where(lead => lead.ConfirmedByManagerId == null).ToList();
             return notConfirmedLeads;
         }
-
         public IEnumerable<Lead> GetConfirmedLeads()
         {
             var confirmedLeads = this.db.Leads.Where(lead => lead.ConfirmedByManagerId != null).ToList();
             return confirmedLeads;
         }
-
         public async Task<IEnumerable<Lead>> ConfirmLeadsAsync(ManagersConfirmLeadsServiceModel serviceModel)
         {
             var confirmedLeads = new List<Lead>();
@@ -66,6 +63,11 @@ namespace GoldLeadsMedia.CoreApi.Services.Application
             await this.db.SaveChangesAsync();
 
             return confirmedLeads;
+        }
+        public GoldLeadsMediaUser GetAffiliateDetailsBy(string id)
+        {
+            var affiliate = this.userManager.Users.FirstOrDefault(user => user.Id == id);
+            return affiliate;
         }
     }
 }

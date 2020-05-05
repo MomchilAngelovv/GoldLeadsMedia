@@ -205,6 +205,11 @@
                     PhonePrefix = $"+{contrySeedModel.CallingCodes[0] ??= null}"
                 };
 
+                if (country.PhonePrefix == "+")
+                {
+                    country.PhonePrefix = null;
+                }
+
                 countries.Add(country);
             }
 

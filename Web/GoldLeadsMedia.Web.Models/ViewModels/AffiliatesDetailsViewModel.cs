@@ -1,8 +1,8 @@
 ﻿namespace GoldLeadsMedia.Web.Models.ViewModels
 {
-    public class ManagersAffiliateDetailsViewModel
+    public class AffiliatesDetailsViewModel
     {
-        public ManagersAffiliateDetailsAffiliate Affiliate { get; set; }
+        public AffiliatesDetailsAffiliate Affiliate { get; set; }
         public ManagersAffiliateDetailsLeadsAndClickReport LeadsAndClickReport { get; set; }
         public ManagersAffiliateDetailsPaymentsReport PaymentsReport { get; set; }
     }

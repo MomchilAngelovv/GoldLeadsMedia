@@ -1,5 +1,6 @@
-﻿$('.affiliate-details-row').on('click', function () {
-    var id = $(this).attr('data-user');
-    var url = `/manager/affiliateDetails?a_id=${id}`;
-    window.location.href = url;
+﻿$('.affiliate-details').click(function () {
+    let id = $(this).data('affiliate-id');
+
+    debugger;
+    window.location = `/Affiliates/Details/${id}`;
 });

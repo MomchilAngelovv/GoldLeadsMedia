@@ -11,5 +11,6 @@ namespace GoldLeadsMedia.CoreApi.Services.Application.Common
         IEnumerable<Lead> GetNotConfirmedLeads();
         IEnumerable<Lead> GetConfirmedLeads();
         Task<IEnumerable<Lead>> ConfirmLeadsAsync(ManagersConfirmLeadsServiceModel serviceModel);
+        GoldLeadsMediaUser GetAffiliateDetailsBy(string id);
     }
 }

@@ -16,7 +16,7 @@
             <tbody class="table-tbody">
                 @foreach (var affiliate in Model.Affiliates)
                 {
-                    <tr class="table-row aff-details clickable-table-row" data-user="@affiliate.Id">
+                    <tr class="table-row affiliate-details clickable-table-row" data-affiliate-id="@affiliate.Id">
                         <td>
                             @affiliate.UserName
                         </td>
