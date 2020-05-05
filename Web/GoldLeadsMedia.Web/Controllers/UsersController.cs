@@ -63,7 +63,7 @@
                 return this.View();
             }
 
-            return this.Redirect("/");
+            return this.Redirect("/Offers/Dashboard");
         }
         [HttpPost]
         public async Task<IActionResult> Settings(UsersSettingsInputModel input)

@@ -105,7 +105,8 @@
         </form>
     </div>
 </div>
-<div class="row offer-content-report">
+<div>TO BE IMPLEMENTED</div>
+@*<div class="row offer-content-report">
     <table class="table">
         <tr class="row-header">
             <th>Offer</th>
@@ -149,7 +150,7 @@
             }
         </tbody>
     </table>
-</div>
+</div>*@
 <!-- End foreach -->
 
 <hr />
@@ -164,12 +165,12 @@
 
 <!-- Foreach this box for creating more tables -->
 <div class="row">
-    <div class="col-12 col-sm-3">
+    <div class="col-6">
         <h3 class="block-title">
             Select Period
         </h3>
     </div>
-    <div class="col-12 col-sm-9">
+    <div class="col-6">
         <form action="/manager/affiliatedetails?a_Id=@Model.Affiliate.Id" class="reports" method="get">
             <div class="form-group">
                 <div id='datetimepicker_box_right'>
@@ -179,12 +180,14 @@
                     </span>
                 </div>
             </div>
-            <button type="submit" class="btn btn-secondary">Clear Filters</button>
-            <button type="submit" class="btn btn-primary userPaymentsReport">Apply Filters</button>
-        </form>
+            @*<button type="submit" class="btn btn-secondary">Clear Filters</button>*@
+            <button type="submit" class="btn btn-primary userPaymentsReport">Get report</button>
+        </form> 
     </div>
 </div>
-<div class="row offer-content-payments">
+
+<div>TO BE IMPLEMENTED</div>
+@*<div class="row offer-content-payments">
     <table class="table">
         <tr class="row-header">
             <th>Offer_Id</th>
@@ -220,7 +223,7 @@
             }
         </tbody>
     </table>
-</div>
+</div>*@
 <!-- End foreach -->
 
 <hr />
