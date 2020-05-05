@@ -391,7 +391,7 @@ namespace GoldLeadsMedia.Database.Migrations
                     b.Property<DateTime?>("DeletedOn")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("ExtraInformation")
+                    b.Property<string>("Information")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("LeadId")
@@ -522,6 +522,24 @@ namespace GoldLeadsMedia.Database.Migrations
                     b.HasIndex("LandingPageId");
 
                     b.ToTable("OffersLandingPages");
+                });
+
+            modelBuilder.Entity("GoldLeadsMedia.Database.Models.OfferOfferGroup", b =>
+                {
+                    b.Property<string>("OfferId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("OfferGroupId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<int?>("OfferGroupId1")
+                        .HasColumnType("int");
+
+                    b.HasKey("OfferId", "OfferGroupId");
+
+                    b.HasIndex("OfferGroupId1");
+
+                    b.ToTable("OffersOfferGroups");
                 });
 
             modelBuilder.Entity("GoldLeadsMedia.Database.Models.Partner", b =>
@@ -828,6 +846,19 @@ namespace GoldLeadsMedia.Database.Migrations
 
                     b.HasOne("GoldLeadsMedia.Database.Models.Offer", "Offer")
                         .WithMany("OffersLandingPages")
+                        .HasForeignKey("OfferId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("GoldLeadsMedia.Database.Models.OfferOfferGroup", b =>
+                {
+                    b.HasOne("GoldLeadsMedia.Database.Models.OfferGroup", "OfferGroup")
+                        .WithMany()
+                        .HasForeignKey("OfferGroupId1");
+
+                    b.HasOne("GoldLeadsMedia.Database.Models.Offer", "Offer")
+                        .WithMany()
                         .HasForeignKey("OfferId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();

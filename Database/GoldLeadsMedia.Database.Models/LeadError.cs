@@ -1,11 +1,9 @@
-﻿using GoldLeadsMedia.Database.Models.Common;
-using System;
-using System.Collections.Generic;
-using System.Security.Principal;
-using System.Text;
-
-namespace GoldLeadsMedia.Database.Models
+﻿namespace GoldLeadsMedia.Database.Models
 {
+    using System;
+
+    using GoldLeadsMedia.Database.Models.Common;
+
     public class LeadError : IEntityMetaData
     {
         public LeadError()
@@ -16,7 +14,7 @@ namespace GoldLeadsMedia.Database.Models
 
         public string Id { get; set; }
         public string Message { get; set; }
-        public string ExtraInformation { get; set; }
+        public string Information { get; set; }
 
         public string LeadId { get; set; }
         public string PartnerId { get; set; }

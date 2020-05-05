@@ -463,6 +463,31 @@ namespace GoldLeadsMedia.Database.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "OffersOfferGroups",
+                columns: table => new
+                {
+                    OfferId = table.Column<string>(nullable: false),
+                    OfferGroupId = table.Column<string>(nullable: false),
+                    OfferGroupId1 = table.Column<int>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_OffersOfferGroups", x => new { x.OfferId, x.OfferGroupId });
+                    table.ForeignKey(
+                        name: "FK_OffersOfferGroups_OfferGroups_OfferGroupId1",
+                        column: x => x.OfferGroupId1,
+                        principalTable: "OfferGroups",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_OffersOfferGroups_Offers_OfferId",
+                        column: x => x.OfferId,
+                        principalTable: "Offers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Leads",
                 columns: table => new
                 {
@@ -511,7 +536,7 @@ namespace GoldLeadsMedia.Database.Migrations
                 {
                     Id = table.Column<string>(nullable: false),
                     Message = table.Column<string>(nullable: true),
-                    ExtraInformation = table.Column<string>(nullable: true),
+                    Information = table.Column<string>(nullable: true),
                     LeadId = table.Column<string>(nullable: true),
                     PartnerId = table.Column<string>(nullable: true),
                     CreatedOn = table.Column<DateTime>(nullable: false),
@@ -658,6 +683,11 @@ namespace GoldLeadsMedia.Database.Migrations
                 name: "IX_OffersLandingPages_LandingPageId",
                 table: "OffersLandingPages",
                 column: "LandingPageId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_OffersOfferGroups_OfferGroupId1",
+                table: "OffersOfferGroups",
+                column: "OfferGroupId1");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -684,16 +714,19 @@ namespace GoldLeadsMedia.Database.Migrations
                 name: "LeadErrors");
 
             migrationBuilder.DropTable(
-                name: "OfferGroups");
+                name: "OffersLandingPages");
 
             migrationBuilder.DropTable(
-                name: "OffersLandingPages");
+                name: "OffersOfferGroups");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
                 name: "Leads");
+
+            migrationBuilder.DropTable(
+                name: "OfferGroups");
 
             migrationBuilder.DropTable(
                 name: "Clicks");

@@ -10,21 +10,26 @@
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Identity;
     using GoldLeadsMedia.Database.Models;
+    using GoldLeadsMedia.Web.Infrastructure.HttpHelper;
+    using GoldLeadsMedia.Web.Models.Seeder;
 
     public class SeederController : Controller
     {
         private readonly GoldLeadsMediaDbContext db;
         private readonly UserManager<GoldLeadsMediaUser> userManager;
         private readonly RoleManager<GoldLeadsMediaRole> roleManager;
+        private readonly IAsyncHttpClient httpClient;
 
         public SeederController(
             GoldLeadsMediaDbContext db,
             UserManager<GoldLeadsMediaUser> userManager,
-            RoleManager<GoldLeadsMediaRole> roleManager)
+            RoleManager<GoldLeadsMediaRole> roleManager,
+            IAsyncHttpClient httpClient)
         {
             this.db = db;
             this.userManager = userManager;
             this.roleManager = roleManager;
+            this.httpClient = httpClient;
         }
 
         public async Task<IActionResult> SeedData()
@@ -59,12 +64,7 @@
                 Name = "English",
             };
 
-            var country = new Country
-            {
-                Name = "Bulgaria",
-                IsoCode = "BG",
-                PhonePrefix = "+359"
-            };
+           
 
             var verticalNames = new List<string> { "Crypto", "Forex", "Casino" };
             var accessNames = new List<string> { "Regular", "Private", "Vip" };
@@ -149,6 +149,8 @@
                 offerGroups.Add(offerGroup);
             }
 
+            await this.SeedCountries();
+
             await this.userManager.CreateAsync(user1, "123456");
             await this.userManager.CreateAsync(user2, "123456");
             await this.userManager.CreateAsync(user3, "123456");
@@ -164,7 +166,6 @@
             await this.db.Verticals.AddRangeAsync(varticals);
             await this.db.Accesses.AddRangeAsync(accesses);
             await this.db.Languages.AddAsync(language);
-            await this.db.Countries.AddAsync(country);
             await this.db.OfferGroups.AddRangeAsync(offerGroups);
             await this.db.PaymentTypes.AddRangeAsync(paymentTypes);
             await this.db.TargetDevices.AddRangeAsync(targetDevices);
@@ -187,6 +188,28 @@
             stringBuilder.AppendLine($"[Landing pages:{db.LandingPages.Count()}]");
 
             return this.Content(stringBuilder.ToString());
+        }
+
+        private async Task SeedCountries()
+        {
+            var countrySeedModels = await this.httpClient.GetAsync<List<CountrySeedModel>>("https://restcountries.eu/rest/v2/all");
+
+            var countries = new List<Country>();
+
+            foreach (var contrySeedModel in countrySeedModels)
+            {
+                var country = new Country
+                {
+                    Name = contrySeedModel.Name,
+                    IsoCode = contrySeedModel.Alpha2Code,
+                    PhonePrefix = $"+{contrySeedModel.CallingCodes[0] ??= null}"
+                };
+
+                countries.Add(country);
+            }
+
+            await this.db.Countries.AddRangeAsync(countries);
+            await this.db.SaveChangesAsync();
         }
     }
 }

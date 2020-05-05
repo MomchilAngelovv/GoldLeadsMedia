@@ -63,7 +63,6 @@ namespace GoldLeadsMedia.Web.Controllers
 
             return this.View(viewModel);
         }
-
         [HttpPost]
         public async Task<IActionResult> ConfirmLeads([FromBody]ManagersConfirmLeadsInputModel inputModel)
         {

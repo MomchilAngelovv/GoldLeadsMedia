@@ -22,6 +22,7 @@
         public DbSet<Lead> Leads { get; set; }
         public DbSet<LeadError> LeadErrors { get; set; }
         public DbSet<Offer> Offers { get; set; }
+        public DbSet<OfferOfferGroup> OffersOfferGroups { get; set; }
         public DbSet<OfferGroup> OfferGroups { get; set; }
         public DbSet<OfferLandingPage> OffersLandingPages { get; set; }
         public DbSet<Partner> Partners { get; set; }
@@ -32,6 +33,8 @@
         protected override void OnModelCreating(ModelBuilder builder)
         {
             builder.Entity<OfferLandingPage>().HasKey(e => new { e.OfferId, e.LandingPageId });
+
+            builder.Entity<OfferOfferGroup>().HasKey(e => new { e.OfferId, e.OfferGroupId });
 
             builder.Entity<Offer>().Property(p => p.PayPerClick).HasColumnType("decimal(18,4)");
             builder.Entity<Offer>().Property(p => p.PayOut).HasColumnType("decimal(18,4)");

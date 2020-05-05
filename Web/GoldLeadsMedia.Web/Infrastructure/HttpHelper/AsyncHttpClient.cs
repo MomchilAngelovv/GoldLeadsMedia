@@ -6,6 +6,7 @@
     using System.Threading.Tasks;
 
     using Microsoft.Extensions.Configuration;
+    using System;
 
     public class AsyncHttpClient : IAsyncHttpClient
     {
@@ -37,7 +38,15 @@
         public async Task<T> GetAsync<T>(string url, object filter = null)
         {
             var urlBuilder = new StringBuilder();
-            urlBuilder.Append($"{this.configuration["CoreApiUrl"]}/{url}");
+
+            if (url.Contains("http") == false)
+            {
+                urlBuilder.Append($"{this.configuration["CoreApiUrl"]}/{url}");
+            }
+            else
+            {
+                urlBuilder.Append(url);
+            }
 
             if (filter != null)
             {
