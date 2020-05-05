@@ -1,8 +1,8 @@
 ﻿@model GoldLeadsMedia.Web.Models.ViewModels.ManagersConfirmedLeadsViewModel
 
-<h3 class="display-3 text-center">
-    Confirmed leads
-</h3>
+<h4 class="text-center">
+    Select leads:
+</h4>
 <hr />
 
 <table class="table table-sm">
@@ -14,7 +14,7 @@
         <th>Country</th>
         <th>Offer</th>
         <th>Approved on</th>
-        <th></th>
+        <th>Selected</th>
     </tr>
     <tbody class="table-tbody">
 
@@ -42,30 +42,36 @@
                 <td>
                     @data.ApprovedOn
                 </td>
-                <td class="d-flex justify-content-center">
-                    <input type="checkbox" name="id" value="@data.Id">
+                <td>
+                    <input type="checkbox" name="lead-id" value="@data.Id">
                 </td>
             </tr>
         }
     </tbody>
 </table>
-<div class="partnerContainer">
-    <div>
-        Choose a partner
+<hr />
+<div>
+    <h4 class="text-center">
+        Select partner:
+    </h4>
+    <div class="row">
+        @foreach (var partner in Model.Partners)
+        {
+            <div class="col-2">
+                <label>
+                    <input type="radio" name="partner-id" value="@partner.Id"> @partner.Name
+                </label>
+            </div>
+        }
     </div>
-
-    @foreach (var part in Model.Partners)
-    {
-        <label><input type="radio" name="partner" value="@part.Id"> @part.Name</label>
-    }
-
+    <div>
+        <button class="btn btn-primary" id="send-leads-btn">Send</button>
+    </div>
 </div>
-<div style="right:30px">
-    <button class="btn btn-primary" id="submitLeadsToPartner">Send</button>
-</div>
+
 
 @section Scripts
 {
-    <script src="~/Content/js/leads/confirmed_leads.js"></script>
+    <script src="~/js/managers/confirmed_leads.js"></script>
 }
 

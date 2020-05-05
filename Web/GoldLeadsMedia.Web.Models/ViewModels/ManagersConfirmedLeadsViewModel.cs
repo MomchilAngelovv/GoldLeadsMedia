@@ -1,7 +1,7 @@
-﻿using System.Collections.Generic;
-
-namespace GoldLeadsMedia.Web.Models.ViewModels
+﻿namespace GoldLeadsMedia.Web.Models.ViewModels
 {
+    using System.Collections.Generic;
+
     public class ManagersConfirmedLeadsViewModel
     {
         public IEnumerable<ManagersConfirmedLeadsPartner> Partners { get; set; }

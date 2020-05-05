@@ -26,6 +26,12 @@ namespace GoldLeadsMedia.CoreApi.Services.Application
             return partners;
         }
 
+        public Partner GetBy(string id)
+        {
+            var partner = this.db.Partners.FirstOrDefault(partner => partner.Id == id);
+            return partner;
+        }
+
         public async Task<Partner> RegisterAsync(PartnersRegisterInputServiceModel serviceModel)
         {
             var partner = new Partner

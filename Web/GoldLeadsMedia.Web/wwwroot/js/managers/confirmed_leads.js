@@ -16,33 +16,20 @@
     }
 })
 
-$('#submitLeadsToPartner').on('click', function () {
-    let ids = $('input[name="id"]:checked').toArray().map(el => el.value);
+$('#send-leads-btn').click(function () {
+    let leadIds = $('input[name="lead-id"]:checked').toArray().map(el => el.value);
+    let partnerId = $('input[name="partner-id"]:checked')[0].value;
 
-    let partner_Id = undefined;
-    let partnerCheckedInputElement = $('input[name="partner"]:checked');
-    if (partnerCheckedInputElement.length === 1) {
-        partner_Id = $('input[name="partner"]:checked')[0].value;
-    }
-
-
-    if (partner_Id === undefined) {
-        alert("Please, select a partner.");
-    } else if (ids.length === 0) {
-        alert("Please, select at laest 1 lead.");
-    } else {
-        $.ajax({
-            type: 'POST',
-            url: '/lead/sendleadstopartners',
-            dataType: 'json',
-            data: { ids: ids, partner_Id: partner_Id },
-            success: function (data) {
-                var url = '/lead/getconfirmedleads';
-                window.location.href = url;
-            },
-            error: function (err) {
-
-            }
-        });
-    }
+    $.post({
+        url: `https://localhost:44322/api/partners/${partnerId}/SendLeads`,
+        contentType: "application/json; charset=utf-8",
+        dataType: 'json',
+        data: JSON.stringify({ partnerId, leadIds }),
+        success: function (data) {
+            console.log("done ok");
+        },
+        error: function (err) {
+            console.log("error");
+        }
+    });
 });

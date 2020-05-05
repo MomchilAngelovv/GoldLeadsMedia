@@ -5,7 +5,6 @@
        leadIds
     };
 
-    debugger;
     $.post({
         url: '/Managers/ConfirmLeads',
         contentType: "application/json; charset=utf-8",

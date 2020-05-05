@@ -12,6 +12,9 @@ namespace GoldLeadsMedia.CoreApi
     using GoldLeadsMedia.CoreApi.Services.Application.Common;
     using GoldLeadsMedia.Database.Models;
     using Microsoft.AspNetCore.Identity;
+    using GoldLeadsMedia.CoreApi.Services.Partners;
+    using GoldLeadsMedia.CoreApi.Services.Partners.Common;
+    using System.Linq;
 
     public class Startup
     {
@@ -52,6 +55,7 @@ namespace GoldLeadsMedia.CoreApi
 
             services.AddCors();
 
+            //Services
             services.AddTransient<IOfferGroupsService, OfferGroupsService>();
             services.AddTransient<ILanguagesService, LanguagesService>();
             services.AddTransient<ITargetDevicesService, TargetDevicesService>();
@@ -66,6 +70,9 @@ namespace GoldLeadsMedia.CoreApi
             services.AddTransient<IPartnersService, PartnersService>();
             services.AddTransient<IManagersService, ManagersService>();
             services.AddTransient<IAffiliatesService, AffiliatesService>();
+
+            //Partners
+            services.AddTransient<ProfitPixelsPartner>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
