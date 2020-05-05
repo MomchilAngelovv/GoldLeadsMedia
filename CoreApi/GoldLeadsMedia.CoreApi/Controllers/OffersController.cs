@@ -23,7 +23,7 @@
 
         public ActionResult<IEnumerable<object>> All([FromQuery]OffersAllFilterModel filterModel)
         {
-            var filter = new OffersGetAllFilterServiceModel
+            var filter = new OffersGetAllFilterInputServiceModel
             {
                 NumberOrName = filterModel.NumberOrName,
                 CountryId = filterModel.CountryId,
@@ -56,7 +56,7 @@
         [HttpPost]
         public async Task<ActionResult<Offer>> Create(OffersCreateInputModel inputModel)
         {
-            var serviceModel = new OffersCreateServiceModel
+            var serviceModel = new OffersCreateInputServiceModel
             {
                 Number = inputModel.Number,
                 Name = inputModel.Name,
@@ -114,7 +114,7 @@
         [HttpPost("AssignLandingPages")]
         public async Task<ActionResult<int>> AssignLandingPages(OffersAssignLandingPagesInputModel inputModel)
         {
-            var serviceModel = new OffersAssignLandingPagesServiceModel
+            var serviceModel = new OffersAssignLandingPagesInputServiceModel
             {
                 OfferId = inputModel.OfferId,
                 LandingPageIds = inputModel.LandingPageIds

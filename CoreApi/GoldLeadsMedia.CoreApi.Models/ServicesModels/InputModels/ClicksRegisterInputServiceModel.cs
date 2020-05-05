@@ -1,6 +1,6 @@
 ﻿namespace GoldLeadsMedia.CoreApi.Models.ServiceModels
 {
-    public class ClicksRegisterServiceModel
+    public class ClicksRegisterInputServiceModel
     {
         public string IpAddress { get; set; }
         public string OfferId { get; set; }

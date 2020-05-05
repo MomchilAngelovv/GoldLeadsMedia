@@ -1,6 +1,6 @@
 ﻿namespace GoldLeadsMedia.CoreApi.Models.ServiceModels
 {
-    public class LeadsRegisterServiceModel
+    public class LeadsRegisterInputServiceModel
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }

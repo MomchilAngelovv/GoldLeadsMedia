@@ -83,7 +83,7 @@ namespace GoldLeadsMedia.CoreApi.Controllers
         [HttpPost("ConfirmLeads")]
         public async Task<ActionResult<int>> ConfirmLeads(ManagersConfirmLeadsInputModel inputModel)
         {
-            var serviceModel = new ManagersConfirmLeadsServiceModel
+            var serviceModel = new ManagersConfirmLeadsInputServiceModel
             {
                 ManagerId = inputModel.ManagerId,
                 LeadIds = inputModel.LeadIds

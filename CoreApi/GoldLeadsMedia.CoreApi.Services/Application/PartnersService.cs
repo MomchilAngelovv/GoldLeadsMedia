@@ -26,7 +26,7 @@ namespace GoldLeadsMedia.CoreApi.Services.Application
             return partners;
         }
 
-        public async Task<Partner> RegisterAsync(PartnersRegisterServiceModel serviceModel)
+        public async Task<Partner> RegisterAsync(PartnersRegisterInputServiceModel serviceModel)
         {
             var partner = new Partner
             {

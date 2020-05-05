@@ -19,7 +19,7 @@
             this.db = db;
         }
 
-        public async Task<Click> RegisterAsync(ClicksRegisterServiceModel serviceModel)
+        public async Task<Click> RegisterAsync(ClicksRegisterInputServiceModel serviceModel)
         {
             var click = new Click
             {

@@ -27,7 +27,7 @@
         {
             var country = this.countriesService.GetBy(inputModel.CountryName);
 
-            var serviceModel = new LeadsRegisterServiceModel
+            var serviceModel = new LeadsRegisterInputServiceModel
             {
                 FirstName = inputModel.FirstName,
                 LastName = inputModel.LastName,

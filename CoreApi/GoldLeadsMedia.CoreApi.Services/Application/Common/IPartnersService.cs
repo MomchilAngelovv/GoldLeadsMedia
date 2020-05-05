@@ -8,6 +8,6 @@ namespace GoldLeadsMedia.CoreApi.Services.Application.Common
     public interface IPartnersService
     {
         IEnumerable<Partner> GetAll();
-        Task<Partner> RegisterAsync(PartnersRegisterServiceModel serviceModel);
+        Task<Partner> RegisterAsync(PartnersRegisterInputServiceModel serviceModel);
     }
 }

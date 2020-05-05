@@ -8,6 +8,6 @@
 
     public interface IClicksService
     {
-        Task<Click> RegisterAsync(ClicksRegisterServiceModel serviceModel);
+        Task<Click> RegisterAsync(ClicksRegisterInputServiceModel serviceModel);
     }
 }

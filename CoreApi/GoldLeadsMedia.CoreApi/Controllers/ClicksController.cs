@@ -24,7 +24,7 @@
         {
             var ipAddress = this.HttpContext.Connection.RemoteIpAddress.ToString();
 
-            var serviceModel = new ClicksRegisterServiceModel
+            var serviceModel = new ClicksRegisterInputServiceModel
             {
                 OfferId = inputModel.OfferId,
                 LandingPageId = inputModel.LandingPageId,

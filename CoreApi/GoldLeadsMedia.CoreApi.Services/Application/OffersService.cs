@@ -20,7 +20,7 @@
             this.db = db;
         }
 
-        public async Task<int> AssignLandingPagesAsync(OffersAssignLandingPagesServiceModel serviceModel)
+        public async Task<int> AssignLandingPagesAsync(OffersAssignLandingPagesInputServiceModel serviceModel)
         {
             var offersLandingPages = new List<OfferLandingPage>();
 
@@ -43,7 +43,7 @@
 
             return offersLandingPages.Count;
         }
-        public async Task<Offer> CreateAsync(OffersCreateServiceModel inputModel)
+        public async Task<Offer> CreateAsync(OffersCreateInputServiceModel inputModel)
         {
             var offer = new Offer
             {
@@ -67,7 +67,7 @@
 
             return offer;
         }
-        public IEnumerable<Offer> GetAll(OffersGetAllFilterServiceModel filterServiceModel)
+        public IEnumerable<Offer> GetAll(OffersGetAllFilterInputServiceModel filterServiceModel)
         {
             var offers = db.Offers.AsQueryable();
 

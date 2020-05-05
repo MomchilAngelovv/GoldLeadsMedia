@@ -4,7 +4,7 @@ using System.Text;
 
 namespace GoldLeadsMedia.CoreApi.Models.ServiceModels
 {
-    public class PartnersRegisterServiceModel
+    public class PartnersRegisterInputServiceModel
     {
         public string Name { get; set; }
     }

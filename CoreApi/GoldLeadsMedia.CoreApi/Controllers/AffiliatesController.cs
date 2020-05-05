@@ -7,11 +7,14 @@ namespace GoldLeadsMedia.CoreApi.Controllers
     public class AffiliatesController : ApiController
     {
         private readonly IManagersService managersService;
+        private readonly IAffiliatesService affiliatesService;
 
         public AffiliatesController(
-            IManagersService managersService)
+            IManagersService managersService,
+            IAffiliatesService affiliatesService)
         {
             this.managersService = managersService;
+            this.affiliatesService = affiliatesService;
         }
 
         [HttpGet("{id}")]
@@ -32,6 +35,20 @@ namespace GoldLeadsMedia.CoreApi.Controllers
             };
 
             return response;
+        }
+
+        [HttpGet("{id}/Payments")]
+        public ActionResult<object> Payments(string id)
+        {
+            var payments = this.affiliatesService.GetPaymentsBy(id);
+
+            var result = new
+            {
+                payments.Available,
+                payments.Paid
+            };
+
+            return result;
         }
     }
 }

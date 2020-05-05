@@ -38,7 +38,7 @@ namespace GoldLeadsMedia.CoreApi.Controllers
         [HttpPost]
         public async Task<ActionResult<object>> Register(PartnersRegisterInputModel inputModel)
         {
-            var serviceModel = new PartnersRegisterServiceModel
+            var serviceModel = new PartnersRegisterInputServiceModel
             {
                 Name = inputModel.Name
             };

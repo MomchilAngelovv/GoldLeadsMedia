@@ -21,15 +21,19 @@
             this.userManager = userManager;
         }
 
+
+        [HttpGet]
         public IActionResult Login()
         {
             return this.View();
         }
+        [HttpGet]
         public async Task<IActionResult> LogOut()
         {
             await signInManager.SignOutAsync();
             return this.Redirect("/Users/Login");
         }
+        [HttpGet]
         public async Task<IActionResult> Settings()
         {
             var loggedUser = await this.userManager.GetUserAsync(this.User);

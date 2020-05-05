@@ -1,6 +1,6 @@
 ﻿namespace GoldLeadsMedia.CoreApi.Models.ServiceModels
 {
-    public class OffersGetAllFilterServiceModel
+    public class OffersGetAllFilterInputServiceModel
     {
         public string NumberOrName { get; set; }
         public int? CountryId { get; set; }

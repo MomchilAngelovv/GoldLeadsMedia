@@ -1,4 +1,5 @@
-﻿using GoldLeadsMedia.CoreApi.Services.Application.Common;
+﻿using GoldLeadsMedia.CoreApi.Models.ServicesModels.OutputModels;
+using GoldLeadsMedia.CoreApi.Services.Application.Common;
 using GoldLeadsMedia.Database;
 using GoldLeadsMedia.Database.Models;
 using System;
@@ -21,6 +22,21 @@ namespace GoldLeadsMedia.CoreApi.Services.Application
         {
             var leads = db.Leads.Where(lead => lead.Click.AffiliateId == affiliateId);
             return leads;
+        }
+
+        public AffiliatesGetPaymentsByOutputServiceModel GetPaymentsBy(string affiliateId)
+        {
+            var availableMoney = this.db.Leads
+                .Where(lead => lead.FtdBecameOn != null && lead.Click.Affiliate.Id == affiliateId)
+                .Sum(lead => lead.Click.Offer.PayOut);
+
+            var result = new AffiliatesGetPaymentsByOutputServiceModel
+            {
+                Available = availableMoney,
+                Paid = 50 //Hardcoded need to iplement logic
+            };
+
+            return result;
         }
     }
 }

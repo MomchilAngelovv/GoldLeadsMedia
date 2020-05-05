@@ -9,9 +9,9 @@
 
     public interface IOffersService
     {
-        IEnumerable<Offer> GetAll(OffersGetAllFilterServiceModel filterServiceModel);
-        Task<Offer> CreateAsync(OffersCreateServiceModel serviceModel);
+        IEnumerable<Offer> GetAll(OffersGetAllFilterInputServiceModel filterServiceModel);
+        Task<Offer> CreateAsync(OffersCreateInputServiceModel serviceModel);
         Offer GetBy(string id);
-        Task<int> AssignLandingPagesAsync(OffersAssignLandingPagesServiceModel serviceModel);
+        Task<int> AssignLandingPagesAsync(OffersAssignLandingPagesInputServiceModel serviceModel);
     }
 }

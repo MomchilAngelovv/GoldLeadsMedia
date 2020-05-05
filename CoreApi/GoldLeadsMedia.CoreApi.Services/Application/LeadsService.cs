@@ -33,7 +33,7 @@
             return lead;
         }
 
-        public async Task<Lead> RegisterAsync(LeadsRegisterServiceModel serviceModel)
+        public async Task<Lead> RegisterAsync(LeadsRegisterInputServiceModel serviceModel)
         {
             var lead = new Lead
             {

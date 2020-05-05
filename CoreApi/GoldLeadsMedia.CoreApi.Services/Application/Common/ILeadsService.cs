@@ -9,6 +9,6 @@
     {
         Lead GetBy(string id);
         IEnumerable<Lead> GetAllBy(string userId);
-        Task<Lead> RegisterAsync(LeadsRegisterServiceModel serviceModel);
+        Task<Lead> RegisterAsync(LeadsRegisterInputServiceModel serviceModel);
     }
 }

@@ -45,7 +45,7 @@ namespace GoldLeadsMedia.CoreApi.Services.Application
             var confirmedLeads = this.db.Leads.Where(lead => lead.ConfirmedByManagerId != null).ToList();
             return confirmedLeads;
         }
-        public async Task<IEnumerable<Lead>> ConfirmLeadsAsync(ManagersConfirmLeadsServiceModel serviceModel)
+        public async Task<IEnumerable<Lead>> ConfirmLeadsAsync(ManagersConfirmLeadsInputServiceModel serviceModel)
         {
             var confirmedLeads = new List<Lead>();
 
