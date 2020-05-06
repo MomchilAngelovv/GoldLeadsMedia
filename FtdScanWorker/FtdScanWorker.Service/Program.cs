@@ -1,12 +1,8 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
-
 namespace FtdScanWorker.Service
 {
+    using Microsoft.Extensions.Hosting;
+    using Microsoft.Extensions.DependencyInjection;
+
     public class Program
     {
         public static void Main(string[] args)
@@ -18,7 +14,7 @@ namespace FtdScanWorker.Service
             Host.CreateDefaultBuilder(args)
                 .ConfigureServices((hostContext, services) =>
                 {
-                    services.AddHostedService<FtdScan>();
+                    services.AddHostedService<FtdScanService>();
                 });
     }
 }

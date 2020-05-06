@@ -45,19 +45,5 @@
 
             return response;
         }
-
-        [HttpPost("test")]
-        public async Task<ActionResult<string>> Test()
-        {
-            var testError = new DeveloperError
-            {
-                Message = "From worker"
-            };
-
-            await this.db.DeveloperErrors.AddAsync(testError);
-            await this.db.SaveChangesAsync();
-
-            return testError.Id;
-        }
     }
 }

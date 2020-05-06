@@ -77,5 +77,22 @@ namespace GoldLeadsMedia.CoreApi.Controllers
 
             return null;
         }
+
+        [HttpPost("/Scan")]
+        public ActionResult<object> FtdScan()
+        {
+            var partnerTypes = typeof(IPartner)
+                .Assembly
+                .GetTypes()
+                .Where(type => type.IsClass && type.IsPublic && type.Name.EndsWith("Partner"));
+
+            foreach (var partnerType in partnerTypes)
+            {
+                var partnerInstance = this.serviceProvider.GetService(partnerType) as IPartner;
+                partnerInstance.CheckForFtds();
+            }
+
+            return "123";
+        }
     }
 }

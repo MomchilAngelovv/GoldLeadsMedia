@@ -1,7 +1,7 @@
-﻿using GoldLeadsMedia.CoreApi.Services.Partners.Common;
-
-namespace GoldLeadsMedia.CoreApi.Services.Partners
+﻿namespace GoldLeadsMedia.CoreApi.Services.Partners
 {
+    using GoldLeadsMedia.CoreApi.Services.Partners.Common;
+
     public class ProfitPixelsPartner : IPartner
     {
         public void CheckForFtds()
