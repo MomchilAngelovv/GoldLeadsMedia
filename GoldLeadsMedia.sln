@@ -9,7 +9,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CoreApi", "CoreApi", "{1613
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "PartnersApi", "PartnersApi", "{D5064E7E-6F17-4BA6-8D4C-9C64D9EDFC0A}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "FtdScheduler", "FtdScheduler", "{679FC448-9347-4AF3-9718-9E7E2FF1AA22}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "FtdScanWorker", "FtdScanWorker", "{679FC448-9347-4AF3-9718-9E7E2FF1AA22}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GoldLeadsMedia.Web", "Web\GoldLeadsMedia.Web\GoldLeadsMedia.Web.csproj", "{AEB572A4-30D2-4DA9-A3A6-76DA97F8B8AE}"
 EndProject
@@ -27,7 +27,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GoldLeadsMedia.PartnersApi"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GoldLeadsMedia.CoreApi.Services", "CoreApi\GoldLeadsMedia.CoreApi.Services\GoldLeadsMedia.CoreApi.Services.csproj", "{CC907EBD-B5F8-4F7E-93C5-C245BEE072FE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GoldLeadsMedia.CoreApi.Models", "CoreApi\GoldLeadsMedia.CoreApi.Models\GoldLeadsMedia.CoreApi.Models.csproj", "{E591DEBA-C6C9-4FDF-9B4B-9EE6E3D8CE9F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GoldLeadsMedia.CoreApi.Models", "CoreApi\GoldLeadsMedia.CoreApi.Models\GoldLeadsMedia.CoreApi.Models.csproj", "{E591DEBA-C6C9-4FDF-9B4B-9EE6E3D8CE9F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FtdScanWorker.Service", "FtdScanWorker\FtdScanWorker.Service\FtdScanWorker.Service.csproj", "{2912292F-014B-4514-8AD0-CB6F978F5725}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -67,6 +69,10 @@ Global
 		{E591DEBA-C6C9-4FDF-9B4B-9EE6E3D8CE9F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E591DEBA-C6C9-4FDF-9B4B-9EE6E3D8CE9F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E591DEBA-C6C9-4FDF-9B4B-9EE6E3D8CE9F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2912292F-014B-4514-8AD0-CB6F978F5725}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2912292F-014B-4514-8AD0-CB6F978F5725}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2912292F-014B-4514-8AD0-CB6F978F5725}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2912292F-014B-4514-8AD0-CB6F978F5725}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -80,6 +86,7 @@ Global
 		{8C3F73AF-1C03-4671-A75B-074755C8653A} = {D5064E7E-6F17-4BA6-8D4C-9C64D9EDFC0A}
 		{CC907EBD-B5F8-4F7E-93C5-C245BEE072FE} = {16131B05-88AA-4D74-AEE2-97140E410C10}
 		{E591DEBA-C6C9-4FDF-9B4B-9EE6E3D8CE9F} = {16131B05-88AA-4D74-AEE2-97140E410C10}
+		{2912292F-014B-4514-8AD0-CB6F978F5725} = {679FC448-9347-4AF3-9718-9E7E2FF1AA22}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {7DE233F0-456F-4C24-9231-B7F6C05EAB6F}
