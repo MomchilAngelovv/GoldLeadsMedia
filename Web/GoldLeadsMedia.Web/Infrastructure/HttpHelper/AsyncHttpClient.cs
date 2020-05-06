@@ -35,7 +35,7 @@
             return mappedResponse;
         }
 
-        public async Task<T> GetAsync<T>(string url, object filter = null)
+        public async Task<T> GetAsync<T>(string url, object queryParameters = null)
         {
             var urlBuilder = new StringBuilder();
 
@@ -48,14 +48,14 @@
                 urlBuilder.Append(url);
             }
 
-            if (filter != null)
+            if (queryParameters != null)
             {
                 urlBuilder.Append($"?");
-                var filterProperties = filter.GetType().GetProperties();
+                var filterProperties = queryParameters.GetType().GetProperties();
 
                 foreach (var property in filterProperties)
                 {
-                    var propertyValue = property.GetValue(filter);
+                    var propertyValue = property.GetValue(queryParameters);
                     if (propertyValue != null)
                     {
                         //TODO IF property is string somehow it still remains in url as empty string

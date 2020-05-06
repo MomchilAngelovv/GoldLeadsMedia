@@ -1,7 +1,10 @@
-﻿namespace GoldLeadsMedia.Web.Infrastructure.HttpHelper
-{
-    using System.Threading.Tasks;
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+using System.Threading.Tasks;
 
+namespace GoldLeadsMedia.CoreApi.Services.AsyncHttpClient
+{
     public interface IAsyncHttpClient
     {
         Task<T> PostAsync<T>(string url, object body, string mimeType = "application/json");

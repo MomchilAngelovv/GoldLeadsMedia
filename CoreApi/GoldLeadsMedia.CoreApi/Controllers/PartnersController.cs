@@ -59,40 +59,45 @@ namespace GoldLeadsMedia.CoreApi.Controllers
         }
 
         [HttpPost("{partnerId}/SendLeads")]
-        public ActionResult<object> SendLeads(string partnerId, PartnersSendLeadsInputModel inputModel)
+        public ActionResult<int> SendLeads(string partnerId, PartnersSendLeadsInputModel inputModel)
         {
             var partner = this.partnersService.GetBy(partnerId);
+
+            if (partner == null)
+            {
+                //TODO LOGIC IF no partner is find
+            }
 
             var partnerType = typeof(IPartner)
                 .Assembly
                 .GetTypes()
                 .SingleOrDefault(type => type.IsClass && type.IsPublic && type.Name.ToLower().StartsWith(partner.Name.ToLower()) && type.Name.EndsWith("Partner"));
 
-            if (partnerType == null)
-            {
-                //TODO LOGIC IF no partner is find
-            }
+            var partnerInstance = this.serviceProvider.GetService(partnerType) as IPartner;
 
-            var partnerInstance = this.serviceProvider.GetService(partnerType);
-
-            return null;
+            var errorCountr = partnerInstance.SendLeads(inputModel.LeadIds);
+            return errorCountr;
         }
 
         [HttpPost("/Scan")]
-        public ActionResult<object> FtdScan()
+        public ActionResult<int> FtdScan()
         {
             var partnerTypes = typeof(IPartner)
                 .Assembly
                 .GetTypes()
                 .Where(type => type.IsClass && type.IsPublic && type.Name.EndsWith("Partner"));
 
+            var ftdCount = 0;
+
             foreach (var partnerType in partnerTypes)
             {
                 var partnerInstance = this.serviceProvider.GetService(partnerType) as IPartner;
-                partnerInstance.CheckForFtds();
+
+                var partnerFtds = partnerInstance.FtdScan();
+                ftdCount += partnerFtds;
             }
 
-            return "123";
+            return ftdCount;
         }
     }
 }

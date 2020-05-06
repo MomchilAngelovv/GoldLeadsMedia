@@ -1,8 +1,10 @@
 ﻿namespace GoldLeadsMedia.CoreApi.Services.Partners.Common
 {
+    using System.Collections.Generic;
+
     public interface IPartner
     {
-        void RegisterLeadInPartner();
-        void CheckForFtds();
+        int SendLeads(IEnumerable<string> leadIds);
+        int FtdScan();
     } 
 }
