@@ -13,6 +13,7 @@
     using GoldLeadsMedia.Database.Models;
     using GoldLeadsMedia.Web.Infrastructure.HttpHelper;
     using GoldLeadsMedia.Web.Models.ViewModels;
+    using System.Linq;
 
     public class OffersController : Controller
     {
@@ -66,9 +67,17 @@
 
             return this.View(viewModel);
         }
-        public IActionResult DashBoard()
+        public async Task<IActionResult> DashBoard()
         {
-            return View();
+            var offerGroups = await this.httpClient.GetAsync<List<OffersDashboardOffer>>("Api/OfferGroups");
+            offerGroups.First().IsFirst = true;
+
+            var viewModel = new OffersDashboardViewModel
+            {
+                OfferGroups = offerGroups
+            };
+
+            return this.View(viewModel);
         }
 
         //public async Task<IActionResult> OffersByFilter(OffersFilterInputModel input)
