@@ -1,16 +1,17 @@
-﻿
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.Extensions.Configuration;
-using GoldLeadsMedia.Database.Models;
-using GoldLeadsMedia.Web.Infrastructure.HttpHelper;
-using System.Threading.Tasks;
-using GoldLeadsMedia.Web.Models.ViewModels;
-using System.Collections.Generic;
-using GoldLeadsMedia.Web.Models.InputModels;
-
-namespace GoldLeadsMedia.Web.Controllers
+﻿namespace GoldLeadsMedia.Web.Controllers
 {
+    using System.Threading.Tasks;
+    using System.Collections.Generic;
+
+    using Microsoft.AspNetCore.Mvc;
+    using Microsoft.AspNetCore.Identity;
+    using Microsoft.Extensions.Configuration;
+
+    using GoldLeadsMedia.Database.Models;
+    using GoldLeadsMedia.Web.Models.ViewModels;
+    using GoldLeadsMedia.Web.Models.InputModels;
+    using GoldLeadsMedia.Web.Infrastructure.HttpHelper;
+
     public class ManagersController : Controller
     {
         private readonly IConfiguration configuration;
@@ -27,6 +28,8 @@ namespace GoldLeadsMedia.Web.Controllers
             this.userManager = userManager;
         }
 
+
+        [HttpGet]
         public async Task<IActionResult> Affiliates()
         {
             var loggedUser = await this.userManager.GetUserAsync(this.User);
@@ -39,6 +42,7 @@ namespace GoldLeadsMedia.Web.Controllers
 
             return this.View(viewModel);
         }
+        [HttpGet]
         public async Task<IActionResult> NotConfirmedLeads()
         {
             var notConfirmedLeads = await this.httpClient.GetAsync<List<ManagersNotConfirmedLeadsLead>>("Api/Managers/NotConfirmedLeads");
@@ -50,6 +54,7 @@ namespace GoldLeadsMedia.Web.Controllers
 
             return this.View(viewModel);
         }
+        [HttpGet]
         public async Task<IActionResult> ConfirmedLeads()
         {
             var confirmedLeads = await this.httpClient.GetAsync<List<ManagersConfirmedLeadsLead>>("Api/Managers/ConfirmedLeads");
@@ -63,6 +68,8 @@ namespace GoldLeadsMedia.Web.Controllers
 
             return this.View(viewModel);
         }
+
+
         [HttpPost]
         public async Task<IActionResult> ConfirmLeads([FromBody]ManagersConfirmLeadsInputModel inputModel)
         {
@@ -78,34 +85,6 @@ namespace GoldLeadsMedia.Web.Controllers
             return this.Ok(response);
         }
 
-        //public async Task<IActionResult> AffiliateDetails(string a_Id)
-        //{
-        //    var loggedUser = await this.userManager.GetUserAsync(this.User);
-        //    var viewModel = new AffiliateDetailsViewModel();
-        //    string url = string.Format("{0}api/User/GetManagerUsers?", this.configuration.GetConnectionString("CoreApiUrl"));
-        //    var req = new
-        //    {
-        //        Manager_Id = loggedUser.Id,
-        //        User_Id = a_Id
-        //    };
-        //    var response = await this.httpClient.PostAsync<BaseResultModel>(url, req);
-        //    if (response.Code == 1)
-        //    {
-        //        var reqRes = JsonSerializer.Deserialize<AffiliateDetailsAffiliate>(response.Message);
-
-        //        viewModel.Affiliate = reqRes;
-        //        if (viewModel.Affiliate == null)
-        //        {
-        //            return RedirectToAction("Index", "Manager");
-        //        }
-
-        //        string date = DateTime.Now.AddDays(-30).ToString("MM/dd/yyyy") + " - " + DateTime.Now.ToString("MM/dd/yyyy");
-        //        viewModel.LeadsAndClickReport = await GetUserReportData(a_Id, date);
-        //        viewModel.PaymentsReport = await GetUserPaymentsData(a_Id, date);
-        //    }
-
-        //    return View(viewModel);
-        //}
         //[HttpPost]
         //public async Task<ActionResult> MakePayment(MakePaymentInputModel input)
         //{

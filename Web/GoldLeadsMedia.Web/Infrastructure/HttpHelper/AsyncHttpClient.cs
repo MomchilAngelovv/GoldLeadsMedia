@@ -7,6 +7,7 @@
 
     using Microsoft.Extensions.Configuration;
     using System;
+    using System.Collections.Generic;
 
     public class AsyncHttpClient : IAsyncHttpClient
     {
@@ -21,11 +22,18 @@
             this.httpClient = clientFactory.CreateClient();
         }
             
-        public async Task<T> PostAsync<T>(string url, object body, string mimeType = "application/json")
+        public async Task<T> PostAsync<T>(string url, object body, Dictionary<string,string> headers, string mimeType = "application/json")
         {
             var bodyAsString = JsonSerializer.Serialize(body);
             var requestBody = new StringContent(bodyAsString, Encoding.UTF8, mimeType);
 
+            if (headers != null)
+            {
+                foreach (var header in headers)
+                {
+                    this.httpClient.DefaultRequestHeaders.Add(header.Key, header.Value);
+                }
+            }
             var completeUrl = $"{this.configuration["CoreApiUrl"]}/{url}";
 
             var response = await this.httpClient.PostAsync(completeUrl, requestBody);

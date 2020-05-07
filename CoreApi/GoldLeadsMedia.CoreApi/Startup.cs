@@ -15,6 +15,7 @@ namespace GoldLeadsMedia.CoreApi
     using GoldLeadsMedia.CoreApi.Services.Partners;
     using GoldLeadsMedia.CoreApi.Services.Partners.Common;
     using System.Linq;
+    using GoldLeadsMedia.CoreApi.Services.AsyncHttpClient;
 
     public class Startup
     {
@@ -53,6 +54,11 @@ namespace GoldLeadsMedia.CoreApi
            .AddEntityFrameworkStores<GoldLeadsMediaDbContext>()
            .AddDefaultTokenProviders();
 
+            //Http client
+            services.AddHttpClient();
+            services.AddTransient<IAsyncHttpClient, AsyncHttpClient>();
+
+            //Cors
             services.AddCors();
 
             //Services

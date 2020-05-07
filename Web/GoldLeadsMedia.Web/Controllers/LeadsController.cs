@@ -34,68 +34,6 @@
             this.userManager = userManager;
         }
 
-
-        //[HttpPost]
-        //[Authorize]
-        //public async Task<IActionResult> SubmitIds(IEnumerable<string> ids)
-        //{
-        //    var loggedUser = await this.userManager.GetUserAsync(this.User);
-        //    string url = string.Format("{0}api/Offer/ConfirmLeads", this.configuration.GetConnectionString("CoreApiUrl"));
-        //    var req = new
-        //    {
-        //        User_Id = loggedUser.Id,
-        //        Leads_Ids = string.Join(";", ids)
-        //    };
-        //    var response = await this.httpClient.PostAsync<BaseResultModel>(url, req);
-        //    if (response.Code == 1)
-        //    {
-        //        TempData["ConfirmLeads"] = "You successfully confirmed the leads.";
-        //        TempData["ConfirmLeadsType"] = "1";
-        //        return Json(1);
-        //    }
-        //    else
-        //    {
-        //        TempData["ConfirmLeads"] = "Error in confirming the leads.";
-        //        TempData["ConfirmLeadsType"] = "0";
-        //        return Json(0);
-        //    }
-        //}
-
-        //[Authorize]
-        //public async Task<IActionResult> ConfirmedLeads()
-        //{
-        //    var loggedUser = await this.userManager.GetUserAsync(this.User);
-        //    if (loggedUser.Type != 1)
-        //    {
-        //        return Redirect("Offers/Index");
-               
-        //    }
-        //    var viewModel = new ConfirmedLeadsViewModel();
-        //    var userLeadsModel = new ConfirmedLeadsViewModel();
-        //    string url = string.Format("{0}api/User/GetApprovedLeadsForPartners", this.configuration.GetConnectionString("CoreApiUrl"));
-        //    var req = new
-        //    {
-        //        Manager_Id = loggedUser.Id
-        //    };
-        //    var response = await this.httpClient.PostAsync<BaseResultModel>(url, req);
-        //    if (response.Code == 1)
-        //    {
-        //        userLeadsModel = JsonSerializer.Deserialize<ConfirmedLeadsViewModel>(response.Message);
-        //        viewModel.Leads = userLeadsModel.Leads;
-        //    }
-
-        //    url = string.Format("{0}api/Offer/GetPartners", this.configuration.GetConnectionString("CoreApiUrl"));
-
-        //    response = await this.httpClient.PostAsync<BaseResultModel>(url, null);
-        //    if (response.Code == 1)
-        //    {
-        //        var partners = JsonSerializer.Deserialize<ConfirmedLeadsViewModel>(response.Message);
-        //        viewModel.Partners = partners.Partners;
-        //    }
-
-        //    return View("ConfirmedLeads", viewModel);
-        //}
-
         //[HttpPost]
         //[Authorize]
         //public async Task<IActionResult> SendLeadsToPartners(IEnumerable<string> ids, string partner_Id)

@@ -23,15 +23,67 @@ namespace GoldLeadsMedia.CoreApi.Services.AsyncHttpClient
 
         public async Task<T> GetAsync<T>(string url, object queryParameters = null)
         {
-           
-        }
+            var urlBuilder = new StringBuilder();
 
-        public async Task<T> PostAsync<T>(string url, object body, string mimeType = "application/json")
+            if (url.Contains("http") == false)
+            {
+                urlBuilder.Append($"{this.configuration["CoreApiUrl"]}/{url}");
+            }
+            else
+            {
+                urlBuilder.Append(url);
+            }
+
+            if (queryParameters != null)
+            {
+                urlBuilder.Append($"?");
+                var filterProperties = queryParameters.GetType().GetProperties();
+
+                foreach (var property in filterProperties)
+                {
+                    var propertyValue = property.GetValue(queryParameters);
+                    if (propertyValue != null)
+                    {
+                        //TODO IF property is string somehow it still remains in url as empty string
+                        var popertyName = property.Name;
+                        urlBuilder.Append($"{popertyName}={propertyValue}&");
+                    }
+                }
+            }
+
+            var completeUrl = urlBuilder.ToString().TrimEnd('&', '?');
+
+            var response = await this.httpClient.GetAsync(completeUrl);
+            var responseAsString = await response.Content.ReadAsStringAsync();
+
+            var mappedResponse = this.MapResponse<T>(responseAsString);
+            return mappedResponse;
+        }
+        public async Task<T> PostAsync<T>(string url, object body, Dictionary<string, string> headers = null, string mimeType = "application/json")
         {
+            var urlBuilder = new StringBuilder();
+
+            if (url.Contains("http") == false)
+            {
+                urlBuilder.Append($"{this.configuration["CoreApiUrl"]}/{url}");
+            }
+            else
+            {
+                urlBuilder.Append(url);
+            }
+
             var bodyAsString = JsonSerializer.Serialize(body);
             var requestBody = new StringContent(bodyAsString, Encoding.UTF8, mimeType);
 
-            var completeUrl = $"{this.configuration["CoreApiUrl"]}/{url}";
+            if (headers != null)
+            {
+                foreach (var header in headers)
+                {
+                    this.httpClient.DefaultRequestHeaders.Add(header.Key, header.Value);
+                }
+            }
+
+            var completeUrl = urlBuilder.ToString();
 
             var response = await this.httpClient.PostAsync(completeUrl, requestBody);
             var responseAsString = await response.Content.ReadAsStringAsync();
@@ -39,7 +91,6 @@ namespace GoldLeadsMedia.CoreApi.Services.AsyncHttpClient
             var mappedResponse = this.MapResponse<T>(responseAsString);
             return mappedResponse;
         }
-
         private T MapResponse<T>(string responseAsString)
         {
             var options = new JsonSerializerOptions

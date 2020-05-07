@@ -1,22 +1,24 @@
-﻿using GoldLeadsMedia.Web.Infrastructure.HttpHelper;
-using GoldLeadsMedia.Web.Models.ViewModels;
-using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace GoldLeadsMedia.Web.Controllers
+﻿namespace GoldLeadsMedia.Web.Controllers
 {
+    using System.Threading.Tasks;
+    using System.Collections.Generic;
+
+    using Microsoft.AspNetCore.Mvc;
+
+    using GoldLeadsMedia.Web.Models.ViewModels;
+    using GoldLeadsMedia.Web.Infrastructure.HttpHelper;
+
     public class AffiliatesController : Controller
     {
         private readonly IAsyncHttpClient httpClient;
 
-        public AffiliatesController(IAsyncHttpClient httpClient)
+        public AffiliatesController(
+            IAsyncHttpClient httpClient)
         {
             this.httpClient = httpClient;
         }
 
+        [HttpGet]
         public async Task<IActionResult> Details(string id)
         {
             var affiliate = await this.httpClient.GetAsync<AffiliatesDetailsAffiliate>($"Api/Affiliates/{id}");
