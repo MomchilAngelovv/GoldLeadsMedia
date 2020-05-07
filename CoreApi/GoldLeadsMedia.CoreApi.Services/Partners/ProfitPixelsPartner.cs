@@ -4,6 +4,8 @@
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
     using System.Net.Http.Headers;
+    using System.Threading.Tasks;
+    using GoldLeadsMedia.CoreApi.Models.ServicesModels.InputModels;
     using GoldLeadsMedia.CoreApi.Services.Application.Common;
     using GoldLeadsMedia.CoreApi.Services.AsyncHttpClient;
     using GoldLeadsMedia.CoreApi.Services.Partners.Common;
@@ -14,7 +16,7 @@
         private readonly IAsyncHttpClient httpClient;
 
         public ProfitPixelsPartner(
-            ILeadsService leadsService, 
+            ILeadsService leadsService,
             IAsyncHttpClient httpClient)
         {
             this.leadsService = leadsService;
@@ -25,8 +27,9 @@
         {
             throw new System.NotImplementedException();
         }
-        public int SendLeads(IEnumerable<string> leadIds)
+        public async Task<int> SendLeadsAsync(IEnumerable<string> leadIds, string partnerId)
         {
+            var failedLeadsCount = 0;
             var url = "https://api.profitpixels.com/client/v5/leads";
 
             foreach (var leadId in leadIds)
@@ -50,38 +53,29 @@
                     ["X-Auth-Key"] = "ac7e4690eebc45989d690ffce24cfd5e4923f2dd4ba540e98f637fc06743d5b3"
                 };
 
-                var response = this.httpClient.PostAsync<ProfitPixelsResponse>(url, requestBody, headers);
+                var response = await this.httpClient.PostAsync<ProfitPixelsResponse>(url, requestBody, headers);
 
+                if (response.Success)
+                {
+                    await this.leadsService.SendSuccessUpdateLeadAsync(lead, partnerId, response.ResponseData.LeadId);
+                }
+                else
+                {
+                    var serviceModel = new LeadsRegisterErrorInputServiceModel
+                    {
+                        LeadId = lead.Id,
+                        PartnerId = partnerId,
+                        ErrorMessage = response.Message,
+                    };
+
+                    await this.leadsService.RegisterErrorAsync(serviceModel);
+                    failedLeadsCount++;
+                }
             }
 
-            return 1;
-
-
-            //var leadReq = new Dictionary<string, string>
-            //{
-            //    ["FirstName"] = lead.Names,
-            //    ["CountryCode"] = lead.CountryCode,
-            //    ["Email"] = lead.Email,
-            //    ["Language"] = "en",
-            //    ["LastName"] = lead.Names,
-            //    ["OfferId"] = lead.Offer_Id,
-            //    ["PhoneNumber"] = lead.PhoneNumber,
-            //    ["Password"] = "e54vwTCH9S", //TODO need to remove hard-coded password
-            //};
-
-            //var apiRes = new BaseResultModel();
-            //var url = "https://api.profitpixels.com/client/v5/leads";
-            //var headersReq = new Dictionary<string, string>();
-            //headersReq.Add("X-Auth-ClientId", "cc94150f-ca09-4950-a23d-bcea325b91f5");
-            //headersReq.Add("X-Auth-Key", "ac7e4690eebc45989d690ffce24cfd5e4923f2dd4ba540e98f637fc06743d5b3");
-            //var response = WebRequestManager.HttpPostFormEncoded(url, leadReq, headersReq);
-            //var profitPixelsResponse = JsonConvert.DeserializeObject<ProfitPixelsResultModel>(response.Message);
-
-
+            return failedLeadsCount;
         }
 
-
-        //Response models
         private class ProfitPixelsResponse
         {
             public bool Success { get; set; }

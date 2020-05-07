@@ -4,14 +4,16 @@ using GoldLeadsMedia.Database;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace GoldLeadsMedia.Database.Migrations
 {
     [DbContext(typeof(GoldLeadsMediaDbContext))]
-    partial class GoldLeadsMediaDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200507090406_Add_Column_IdInPartner_Leads")]
+    partial class Add_Column_IdInPartner_Leads
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

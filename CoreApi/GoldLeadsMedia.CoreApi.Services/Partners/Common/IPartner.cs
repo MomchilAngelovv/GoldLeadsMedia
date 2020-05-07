@@ -1,10 +1,11 @@
 ﻿namespace GoldLeadsMedia.CoreApi.Services.Partners.Common
 {
     using System.Collections.Generic;
+    using System.Threading.Tasks;
 
     public interface IPartner
     {
-        int SendLeads(IEnumerable<string> leadIds);
+        Task<int> SendLeadsAsync(IEnumerable<string> leadIds, string partnerId);
         int FtdScan();
     } 
 }

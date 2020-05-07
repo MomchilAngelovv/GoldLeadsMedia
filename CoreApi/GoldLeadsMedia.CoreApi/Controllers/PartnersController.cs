@@ -59,7 +59,7 @@ namespace GoldLeadsMedia.CoreApi.Controllers
         }
 
         [HttpPost("{partnerId}/SendLeads")]
-        public ActionResult<int> SendLeads(string partnerId, PartnersSendLeadsInputModel inputModel)
+        public async Task<ActionResult<int>> SendLeads(string partnerId, PartnersSendLeadsInputModel inputModel)
         {
             var partner = this.partnersService.GetBy(partnerId);
 
@@ -75,8 +75,8 @@ namespace GoldLeadsMedia.CoreApi.Controllers
 
             var partnerInstance = this.serviceProvider.GetService(partnerType) as IPartner;
 
-            var errorCountr = partnerInstance.SendLeads(inputModel.LeadIds);
-            return errorCountr;
+            var errorCount = await partnerInstance.SendLeadsAsync(inputModel.LeadIds, partner.Id);
+            return errorCount;
         }
 
         [HttpPost("/Scan")]

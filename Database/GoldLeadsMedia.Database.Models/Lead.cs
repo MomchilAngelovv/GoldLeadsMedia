@@ -21,6 +21,7 @@
         public string CallStatus { get; set; }
         public string ConfirmedByManagerId { get; set; }
         public DateTime? FtdBecameOn { get; set; }
+        public string IdInPartner { get; set; }
 
         public int CountryId { get; set; }
         public string PartnerId { get; set; }
