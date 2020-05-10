@@ -12,7 +12,7 @@ namespace FtdScanWorker.Service
 
         public Task StartAsync(CancellationToken cancellationToken)
         {
-            this.timer = new Timer(Scan, null, TimeSpan.FromMinutes(1), TimeSpan.FromSeconds(15));
+            this.timer = new Timer(Scan, null, TimeSpan.FromSeconds(30), TimeSpan.FromSeconds(30));
             return Task.CompletedTask;
         }
 
@@ -29,8 +29,9 @@ namespace FtdScanWorker.Service
 
         private void Scan(object state)
         {
-            var httpCleint = new HttpClient();
+            //var httpCleint = new HttpClient();
 
+            Console.WriteLine("this comes for test!");
             //var response = httpCleint.PostAsync("https://localhost:44322/api/clicks/test", null).GetAwaiter().GetResult();
             //var responseAsString = response.Content.ReadAsStringAsync().GetAwaiter().GetResult();
             //Console.WriteLine(responseAsString);

@@ -33,7 +33,7 @@
 
         public async Task<IActionResult> All(OffersAllFilterViewModel filterViewModel)
         {
-            var filter = new
+            var queryParameters = new
             {
                 filterViewModel.NumberOrName,
                 filterViewModel.CountryId,
@@ -43,7 +43,7 @@
                 filterViewModel.AccessId
             };
 
-            var offers = await this.httpClient.GetAsync<IEnumerable<OffersAllOffer>>("api/offers", filter);
+            var offers = await this.httpClient.GetAsync<IEnumerable<OffersAllOffer>>("Api/Offers", queryParameters);
 
             var viewModel = new OffersAllFilterViewModel
             {
