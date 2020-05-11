@@ -64,11 +64,11 @@ namespace GoldLeadsMedia.Web
             }
             else
             {
-                app.UseDeveloperExceptionPage();
-                app.UseDatabaseErrorPage();
-                // app.UseExceptionHandler("/Home/Error");
+                //TODO Check why some errors are added to db and some are not
+                app.UseExceptionHandler("/Home/Error");
                 app.UseHsts();
             }
+
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
@@ -81,7 +81,7 @@ namespace GoldLeadsMedia.Web
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=Users}/{action=Login}/{id?}");
                 endpoints.MapRazorPages();
             });
         }

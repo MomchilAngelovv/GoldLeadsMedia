@@ -63,7 +63,8 @@
         {
             var viewModel = await this.httpClient.GetAsync<OffersDetailsViewModel>($"Api/Offers/{id}");
 
-            viewModel.RedirectUrl = $"https://localhost:44349/Clicks/Register?offerId={viewModel.Id}";
+            var webUrl = this.configuration["WebUrl"];
+            viewModel.RedirectUrl = $"{webUrl}/Clicks/Register?offerId={viewModel.Id}";
 
             return this.View(viewModel);
         }

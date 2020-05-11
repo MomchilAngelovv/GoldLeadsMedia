@@ -23,33 +23,11 @@ namespace GoldLeadsMedia.Web.Controllers
             this.userManager = userManager;
         }
 
-        //public async Task<IActionResult> Index(object req)
-        //{
-        //    var loggedUser = await this.userManager.GetUserAsync(this.User);
-        //    //var viewModel = new UserReportViewModel();
-        //    //viewModel.Date = req.Date;
-        //    string url = string.Format("{0}api/Report/GetUserReportByDate?", this.configuration.GetConnectionString("CoreApiUrl"));
-        //    if (!string.IsNullOrWhiteSpace(req.Date))
-        //    {
-        //        string fromDate = req.Date.Split('-')[0];
-        //        string toDate = req.Date.Split('-')[1];
-        //        fromDate = DateTime.Parse(fromDate).ToString("yyyyMMdd");
-        //        toDate = DateTime.Parse(toDate).ToString("yyyyMMdd");
+        public IActionResult Index()
+        {
+            return this.View();
+        }
 
-        //        req.User_Id = loggedUser.Id;
-        //        var response = await this.httpClient.PostAsync<BaseResultModel>(url, new { User_Id = req.User_Id, FromDate = fromDate, ToDate = toDate });
-        //        if (response.Code == 1)
-        //        {
-        //            //var offerRes = JsonSerializer.Deserialize<GetUserReportByDateResultModel>(response.Message);
-        //            //if (offerRes.Code == 1)
-        //            //{
-        //            //    viewModel.UserData = offerRes.ReportData;
-        //            //}
-        //        }
-        //    }
-
-        //    return View(viewModel);
-        //}
         //public async Task<IActionResult> GetUserReport(string userId, string date)
         //{
         //    if (this.ModelState.IsValid == false)

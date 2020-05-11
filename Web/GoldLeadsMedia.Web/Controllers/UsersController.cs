@@ -7,16 +7,19 @@
 
     using GoldLeadsMedia.Database.Models;
     using GoldLeadsMedia.Web.Models.InputModels;
+    using Microsoft.Extensions.Configuration;
 
     public class UsersController : Controller
     {
+        private readonly IConfiguration configuration;
         private readonly SignInManager<GoldLeadsMediaUser> signInManager;
         private readonly UserManager<GoldLeadsMediaUser> userManager;
 
-        public UsersController(
+        public UsersController(IConfiguration configuration,
             SignInManager<GoldLeadsMediaUser> signInManager,
             UserManager<GoldLeadsMediaUser> userManager)
         {
+            this.configuration = configuration;
             this.signInManager = signInManager;
             this.userManager = userManager;
         }
@@ -25,6 +28,8 @@
         [HttpGet]
         public IActionResult Login()
         {
+            this.ViewData["ConnString"] = this.configuration.GetConnectionString("DefaultConnection");
+            this.ViewData["CoreApiUrl"] = this.configuration["CoreApiUrl"];
             return this.View();
         }
         [HttpGet]

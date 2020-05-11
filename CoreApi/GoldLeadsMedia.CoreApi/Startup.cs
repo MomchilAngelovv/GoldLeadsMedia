@@ -27,15 +27,13 @@ namespace GoldLeadsMedia.CoreApi
             this.configuration = configuration;
         }
 
-        public IConfiguration Configuration { get; }
-
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
 
             services.AddDbContext<GoldLeadsMediaDbContext>(options =>
             {
-                options.UseLazyLoadingProxies().UseSqlServer(configuration.GetConnectionString("DefaultConnection"));
+                options.UseLazyLoadingProxies().UseSqlServer(this.configuration.GetConnectionString("DefaultConnection"));
             });
 
             services.AddIdentity<GoldLeadsMediaUser, GoldLeadsMediaRole>(options =>
