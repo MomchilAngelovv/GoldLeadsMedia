@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using GoldLeadsMedia.PartnersApi.HttpHelper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -26,6 +27,10 @@ namespace GoldLeadsMedia.PartnersApi
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            services.AddCors();
+
+            services.AddHttpClient();
+            services.AddTransient<IAsyncHttpClient, AsyncHttpClient>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -38,6 +43,13 @@ namespace GoldLeadsMedia.PartnersApi
             app.UseHttpsRedirection();
             app.UseRouting();
             app.UseAuthorization();
+
+            app.UseCors(options =>
+            {
+                options.AllowAnyOrigin();
+                options.AllowAnyHeader();
+                options.AllowAnyMethod();
+            });
 
             app.UseEndpoints(endpoints =>
             {

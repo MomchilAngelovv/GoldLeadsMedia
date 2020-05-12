@@ -4,5 +4,9 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\GoldLeadsMedia.PartnersApi.Models\GoldLeadsMedia.PartnersApi.Models.csproj" />
+  </ItemGroup>
+
 
 </Project>
