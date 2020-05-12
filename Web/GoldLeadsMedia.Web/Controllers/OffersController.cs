@@ -71,6 +71,7 @@
         public async Task<IActionResult> DashBoard()
         {
             var offerGroups = await this.httpClient.GetAsync<List<OffersDashboardOfferGroup>>("Api/OfferGroups");
+            offerGroups.First().IsFirst = true;
 
             var queryParameters = new
             {
@@ -79,7 +80,10 @@
 
             var offers = await this.httpClient.GetAsync<List<OffersDashboardOffer>>("Api/Offers", queryParameters);
 
-            offerGroups.First().IsFirst = true;
+            foreach (var offer in offers)
+            {
+                offer.ImageUrl = $"/images/offers/{offer.Id}.jpg";
+            }
 
             var viewModel = new OffersDashboardViewModel
             {

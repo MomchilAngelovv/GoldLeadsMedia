@@ -1,5 +1,7 @@
 ﻿namespace GoldLeadsMedia.Web.Models.InputModels
 {
+    using Microsoft.AspNetCore.Http;
+
     public class AdministratorsCreateOfferInputModel
     {
         public string Number { get; set; }
@@ -15,5 +17,6 @@
         public decimal DailyCap { get; set; }
         public decimal PayPerClick { get; set; }
         public int LanguageId { get; set; }
+        public IFormFile Image { get; set; }
     }
 }

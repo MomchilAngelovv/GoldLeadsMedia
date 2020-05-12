@@ -5,7 +5,7 @@
 </div>
 <hr />
 <div class="container">
-    <form asp-controller="Administrators" asp-action="CreateOffer" method="post">
+    <form asp-controller="Administrators" asp-action="CreateOffer" enctype="multipart/form-data" method="post">
         <div asp-validation-summary="All" class="text-danger"></div>
         <div class="form-group row mx-auto">
             <div class="col-2">
@@ -28,15 +28,15 @@
         </div>
         <div class="form-group row mx-auto">
             <div class="col-3">
-               <vc:pay-types-select-options></vc:pay-types-select-options>
-            </div>
-            <div class="col-2">
-                <vc:target-devices-select-options></vc:target-devices-select-options>
-            </div>
-            <div class="col-3">
-                <vc:accesses-select-options></vc:accesses-select-options>
+                <vc:pay-types-select-options></vc:pay-types-select-options>
             </div>
             <div class="col-4">
+                <vc:target-devices-select-options></vc:target-devices-select-options>
+            </div>
+            <div class="col-2">
+                <vc:accesses-select-options></vc:accesses-select-options>
+            </div>
+            <div class="col-3">
                 <input asp-for="@Model.ActionFlow" placeholder="Action flow:" class="form-control" />
             </div>
         </div>
@@ -51,9 +51,17 @@
                 <vc:languages-select-options></vc:languages-select-options>
             </div>
         </div>
-        <div class="form-group">
+        <div class="form-group row mx-auto">
             <div class="col-4">
-                <input asp-for="@Model.PayPerClick" placeholder="Earning per click:" class="form-control"/>
+                <input asp-for="@Model.PayPerClick" placeholder="Earning per click:" class="form-control" />
+            </div>
+            
+        </div>
+        <hr />
+        <div class="form-group row mx-auto">
+            <div class="col-6">
+                <label asp-for="@Model.Image">Choose offer picture:</label>
+                <input asp-for="@Model.Image" />
             </div>
         </div>
         <div class="form-group">

@@ -9,18 +9,22 @@
     using GoldLeadsMedia.Web.Infrastructure.HttpHelper;
     using GoldLeadsMedia.Web.Models.InputModels;
     using GoldLeadsMedia.Web.Models.CoreApiResponses.ConventionTest;
+    using Microsoft.AspNetCore.Hosting;
 
     public class AdministratorsController : Controller
     {
         private readonly IAsyncHttpClient httpClient;
         private readonly UserManager<GoldLeadsMediaUser> userManager;
+        private readonly IWebHostEnvironment hostEnvironment;
 
         public AdministratorsController(
             IAsyncHttpClient httpClient,
-            UserManager<GoldLeadsMediaUser> userManager)
+            UserManager<GoldLeadsMediaUser> userManager, 
+            IWebHostEnvironment hostEnvironment)
         {
             this.httpClient = httpClient;
             this.userManager = userManager;
+            this.hostEnvironment = hostEnvironment;
         }
 
         public IActionResult Information()
@@ -51,6 +55,7 @@
 
             var loggedUser = await this.userManager.GetUserAsync(this.User);
 
+           
             var requestBody = new
             {
                 inputModel.Number,
@@ -70,6 +75,10 @@
             };
 
             var response = await this.httpClient.PostAsync<Offer>("Api/Offers", requestBody);
+
+            using var streamDestination = System.IO.File.Create($"{this.hostEnvironment.WebRootPath}/images/offers/{response.Id}.jpg");
+            await inputModel.Image.CopyToAsync(streamDestination);
+
             return this.Redirect($"~/Offers/Details/{response.Id}");
         }
         [HttpPost]
