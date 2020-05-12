@@ -4,6 +4,7 @@
 
     public class OffersDashboardViewModel
     {
-        public IEnumerable<OffersDashboardOffer> OfferGroups { get; set; }
+        public IEnumerable<OffersDashboardOfferGroup> OfferGroups { get; set; }
+        public IEnumerable<OffersDashboardOffer> Offers { get; set; }
     }
 }

@@ -37,6 +37,7 @@
         public virtual TargetDevice TargetDevice { get; set; }
 
         public virtual ICollection<OfferLandingPage> OffersLandingPages { get; set; }
+        public virtual ICollection<OfferOfferGroup> OffersGroups { get; set; }
 
         public DateTime CreatedOn { get; set; }
         public DateTime? UpdatedOn { get; set; }

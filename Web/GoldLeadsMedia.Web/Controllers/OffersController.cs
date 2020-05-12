@@ -70,32 +70,25 @@
         }
         public async Task<IActionResult> DashBoard()
         {
-            var offerGroups = await this.httpClient.GetAsync<List<OffersDashboardOffer>>("Api/OfferGroups");
+            var offerGroups = await this.httpClient.GetAsync<List<OffersDashboardOfferGroup>>("Api/OfferGroups");
+
+            var queryParameters = new
+            {
+                GroupId = 1
+            };
+
+            var offers = await this.httpClient.GetAsync<List<OffersDashboardOffer>>("Api/Offers", queryParameters);
+
             offerGroups.First().IsFirst = true;
 
             var viewModel = new OffersDashboardViewModel
             {
-                OfferGroups = offerGroups
+                OfferGroups = offerGroups,
+                Offers = offers
             };
 
             return this.View(viewModel);
         }
-
-        //public async Task<IActionResult> OffersByFilter(OffersFilterInputModel input)
-        //{
-        //    string url = string.Format("{0}api/Offer/GetOffersByFilters?", this.configuration.GetConnectionString("CoreApiUrl"));
-
-        //    var response = await this.httpClient.PostAsync<BaseResultModel>(url, input);
-        //    if (response.Code == 1)
-        //    {
-        //        var offerRes = JsonSerializer.Deserialize<GetOffersByFiltersResultModel>(response.Message);
-
-        //        return PartialView("_GetOffersByFilters", offerRes);
-
-        //    }
-
-        //    return PartialView("_OffersByFilterPartial", new GetOffersByFiltersResultModel());
-        //}
 
         //public async Task<IActionResult> SaveUserOfferTrackingSettings(string offer_Id, string postbackUrl)
         //{
@@ -126,58 +119,6 @@
         //    }
         //    return Json(returnRes);
 
-        //}
-
-
-        //public async Task<IActionResult> OfferGroups()
-        //{
-        //    string url = string.Format("{0}api/Offer/GetOfferGroups", this.configuration.GetConnectionString("CoreApiUrl"));
-        //    var response = await this.httpClient.PostAsync<BaseResultModel>(url, null);
-        //    if (response.Code == 1)
-        //    {
-        //        //var offerRes = JsonSerializer.Deserialize<OfferGroupsViewModel>(response.Message);
-        //       // return this.PartialView("_OfferGroups", offerRes);
-        //    }
-
-        //    return this.PartialView("_OfferGroups");
-        //}
-        //public async Task<IActionResult> OffersByGroup(int group_Id)
-        //{
-        //    var viewModel = new OffersByGroupViewModel();
-        //    string url = string.Format("{0}api/Offer/GetOffersByGroup?", this.configuration.GetConnectionString("CoreApiUrl"));
-        //    var req = new 
-        //    {
-        //        Group_Id = group_Id
-        //    };
-        //    var response = await this.httpClient.PostAsync<BaseResultModel>(url, req);
-        //    if (response.Code == 1)
-        //    {
-        //        //var offerRes = JsonSerializer.Deserialize<GetOffersByFiltersResultModel>(response.Message);
-        //        //if (offerRes.Code == 1)
-        //        //{
-        //        //    foreach (var offer in offerRes.Offers)
-        //        //    {
-        //        //        var sOffer = new OfferViewModel
-        //        //        {
-        //        //            Access = offer.Access,
-        //        //            ActionFlow = offer.ActionFlow,
-        //        //            Country = offer.Country,
-        //        //            DailyCap = offer.DailyCap,
-        //        //            Description = offer.Description,
-        //        //            Device = offer.Device,
-        //        //            EarningPerClick = offer.EarningPerClick,
-        //        //            Id = offer.Id,
-        //        //            Name = offer.Name,
-        //        //            PaymentType = offer.PaymentType,
-        //        //            Payout = offer.Payout,
-        //        //            Vertical = offer.Vertical,
-        //        //            Image = "HardCoded need fix asap!"
-        //        //        };
-        //        //        viewModel.Offers.Add(sOffer);
-        //        //    }
-        //        //}
-        //    }
-        //    return PartialView("_OffersByGroup", viewModel);
         //}
     }
 }

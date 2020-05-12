@@ -30,7 +30,8 @@
                 VerticalId = filterModel.VerticalId,
                 PayTypeId = filterModel.PayTypeId,
                 TargetDeviceId = filterModel.TargetDeviceId,
-                AccessId = filterModel.AccessId
+                AccessId = filterModel.AccessId,
+                GroupId = filterModel.GroupId
             };
 
             var offers = this.offersService

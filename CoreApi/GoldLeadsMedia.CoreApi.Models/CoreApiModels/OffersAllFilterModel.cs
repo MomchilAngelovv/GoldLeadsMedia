@@ -8,5 +8,6 @@
         public int? PayTypeId { get; set; }
         public int? TargetDeviceId { get; set; }
         public int? AccessId { get; set; }
+        public int? GroupId { get; set; }
     }
 }

@@ -16,7 +16,8 @@ namespace GoldLeadsMedia.PartnersApi.Controllers
         }
         public ActionResult<string> Get()
         {
-            return "Test";
+            var greetingMessage = "Welcome to partners Api!";
+            return greetingMessage;
         }
 
         [HttpPost]

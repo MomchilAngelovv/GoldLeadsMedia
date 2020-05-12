@@ -41,7 +41,7 @@
                     <nav class="nav nav-pills nav-justified">
                         @foreach (var offerGroup in Model.OfferGroups)
                         {
-                            <partial name="_OfferGroupPartial" model="offerGroup"/>
+                            <a data-toggle="tab" class="nav-item @(offerGroup.IsFirst == true ? "active" : null) nav-link group-filter" data-group-id="@offerGroup.Id" href="#">@offerGroup.Name</a>
                         }
                     </nav>
                 </div>
@@ -57,6 +57,32 @@
                         <div id="{{ANCHOR_LINK}}" class="tab-pane fade active show">
                             <div id="offers-group-list" class="row">
                                 @*@{Html.RenderAction("GetOffersByGroup", "Offer", new { group_Id = 1 });}*@
+
+                                @foreach (var offer in Model.Offers)
+                                {
+                                    <div class="col-12 col-sm-3">
+                                        <div class="product">
+                                            <a href="/Offer/Details?id=@offer.Id"><img class="img-fluid" src="@offer.ImageUrl" alt=""></a>
+                                            <div class="product-caption">
+                                                <h3>@offer.Name</h3>
+                                                <div class="row product-action">
+                                                    <div class="col-4">
+                                                        <div class="money-circle">
+                                                            @offer.PayOut
+                                                            <p>$</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-8">
+                                                        <div class="product-id">@offer.Id</div>
+                                                        <div class="action">@offer.PayType</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+
+
                                 @*<div class="col-12 col-sm-3">
                                         <div class="product">
                                             <img class="img-fluid" src="https://mztresizer-b7c5.kxcdn.com/userfiles/hotels/original/6135377/6135377_z2iolkyx.s15.jpg?preset=b" alt="{{ALT_TEXT}}">
