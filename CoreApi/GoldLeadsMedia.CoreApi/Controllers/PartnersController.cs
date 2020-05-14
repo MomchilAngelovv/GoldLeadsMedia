@@ -75,7 +75,7 @@ namespace GoldLeadsMedia.CoreApi.Controllers
 
             var partnerInstance = this.serviceProvider.GetService(partnerType) as IPartner;
 
-            var errorCount = await partnerInstance.SendLeadsAsync(inputModel.LeadIds, partner.Id);
+            var errorCount = await partnerInstance.SendLeadsAsync(inputModel.LeadIds, partner.Id, inputModel.PartnerOfferId);
             return errorCount;
         }
 

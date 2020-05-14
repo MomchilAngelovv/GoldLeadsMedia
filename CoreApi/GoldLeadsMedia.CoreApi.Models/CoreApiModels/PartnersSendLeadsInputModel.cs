@@ -5,5 +5,6 @@
     public class PartnersSendLeadsInputModel
     {
         public IEnumerable<string> LeadIds { get; set; }
+        public string PartnerOfferId { get; set; }
     }
 }

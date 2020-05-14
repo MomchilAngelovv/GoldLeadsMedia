@@ -5,7 +5,7 @@
 
     public interface IPartner
     {
-        Task<int> SendLeadsAsync(IEnumerable<string> leadIds, string partnerId);
+        Task<int> SendLeadsAsync(IEnumerable<string> leadIds, string partnerId, string partnerOfferId);
         int FtdScan();
     } 
 }

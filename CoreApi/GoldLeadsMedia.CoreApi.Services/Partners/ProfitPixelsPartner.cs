@@ -27,7 +27,7 @@
         {
             throw new System.NotImplementedException();
         }
-        public async Task<int> SendLeadsAsync(IEnumerable<string> leadIds, string partnerId)
+        public async Task<int> SendLeadsAsync(IEnumerable<string> leadIds, string partnerId, string partnerOfferId)
         {
             var failedLeadsCount = 0;
             var url = "https://api.profitpixels.com/client/v5/leads";
@@ -41,16 +41,16 @@
                     lead.FirstName,
                     lead.LastName,
                     lead.Email,
-                    Language = "test", //TODO see logic for this,
-                    OfferId = "test", //TODO Get this from somewhere
+                    Language = lead.Country.IsoCode, //TODO This may need some changes due to different partner requierments For now I put country code as language BUT need to think something,
+                    OfferId = partnerOfferId,
                     lead.PhoneNumber,
                     lead.Password
                 };
 
                 var headers = new Dictionary<string, string>
                 {
-                    ["X-Auth-ClientId"] = "cc94150f-ca09-4950-a23d-bcea325b91f5",
-                    ["X-Auth-Key"] = "ac7e4690eebc45989d690ffce24cfd5e4923f2dd4ba540e98f637fc06743d5b3"
+                    ["X-Auth-ClientId"] = "cc94150f-ca09-4950-a23d-bcea325b91f5", //TODO AppSettings.Production
+                    ["X-Auth-Key"] = "ac7e4690eebc45989d690ffce24cfd5e4923f2dd4ba540e98f637fc06743d5b3" //TODO AppSettings.Production
                 };
 
                 var response = await this.httpClient.PostAsync<ProfitPixelsResponse>(url, requestBody, headers);
