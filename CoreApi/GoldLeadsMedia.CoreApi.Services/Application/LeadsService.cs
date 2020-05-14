@@ -66,21 +66,6 @@
 
             return lead;
         }
-        public async Task<LeadError> RegisterErrorAsync(LeadsRegisterErrorInputServiceModel serviceModel)
-        {
-            var leadError = new LeadError
-            {
-                LeadId = serviceModel.LeadId,
-                PartnerId = serviceModel.PartnerId,
-                Information = serviceModel.Information,
-                Message = serviceModel.ErrorMessage
-            };
-
-            await this.db.LeadErrors.AddAsync(leadError);
-            await this.db.SaveChangesAsync();
-
-            return leadError;
-        }
         public async Task<Lead> SendSuccessUpdateLeadAsync(Lead lead, string partnerId, string idInPartner)
         {
             lead.UpdatedOn = DateTime.UtcNow;

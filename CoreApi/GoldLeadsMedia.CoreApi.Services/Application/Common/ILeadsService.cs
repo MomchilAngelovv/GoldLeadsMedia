@@ -11,7 +11,6 @@
     {
         Task<Lead> SendSuccessUpdateLeadAsync(Lead lead, string partnerId, string idInPartner);
         Task<Lead> FtdBecomeUpdateLeadAsync(Lead lead, DateTime ftdBecomeOn, string callStatus);
-        Task<LeadError> RegisterErrorAsync(LeadsRegisterErrorInputServiceModel serviceModel);
         Lead GetBy(string id, bool idInPartner = false);
         IEnumerable<Lead> GetAllBy(string userId);
         Task<Lead> RegisterAsync(LeadsRegisterInputServiceModel serviceModel);

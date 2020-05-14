@@ -103,7 +103,7 @@
 
             if (filterServiceModel.GroupId != null)
             {
-                offers = this.db.OffersOfferGroups.Where(oog => oog.OfferGroupId == filterServiceModel.GroupId.ToString()).Select(oog => oog.Offer);
+                offers = this.db.OffersOfferGroups.Where(oog => oog.OfferGroupId == filterServiceModel.GroupId).Select(oog => oog.Offer);
             }
 
             return offers;

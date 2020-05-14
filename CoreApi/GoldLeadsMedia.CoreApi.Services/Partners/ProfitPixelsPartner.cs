@@ -13,13 +13,16 @@
     public class ProfitPixelsPartner : IPartner
     {
         private readonly ILeadsService leadsService;
+        private readonly IErrorsService errorsService;
         private readonly IAsyncHttpClient httpClient;
 
         public ProfitPixelsPartner(
             ILeadsService leadsService,
+            IErrorsService errorsService,
             IAsyncHttpClient httpClient)
         {
             this.leadsService = leadsService;
+            this.errorsService = errorsService;
             this.httpClient = httpClient;
         }
 
@@ -57,7 +60,14 @@
             }
             else
             {
-                 
+                var serviceModel = new ErrorsRegisterFtdScanErrorInputServiceModel
+                {
+                    Message = response.Message,
+                    Information = $"Request Id: {response.RequestId}",
+                    PartnerName = "ProfitPixels"
+                };
+
+                var ftdScanError = await this.errorsService.RegisterScanErrorAsync(serviceModel);
             }
 
             return ftdCounter;
@@ -96,14 +106,14 @@
                 }
                 else
                 {
-                    var serviceModel = new LeadsRegisterErrorInputServiceModel
+                    var serviceModel = new ErrorsRegisterLeadErrorInputServiceModel
                     {
                         LeadId = lead.Id,
                         PartnerId = partnerId,
                         ErrorMessage = response.Message,
                     };
 
-                    await this.leadsService.RegisterErrorAsync(serviceModel);
+                    await this.errorsService.RegisterLeadErrorAsync(serviceModel);
                     failedLeadsCount++;
                 }
             }

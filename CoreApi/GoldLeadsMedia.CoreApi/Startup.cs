@@ -74,6 +74,7 @@ namespace GoldLeadsMedia.CoreApi
             services.AddTransient<IPartnersService, PartnersService>();
             services.AddTransient<IManagersService, ManagersService>();
             services.AddTransient<IAffiliatesService, AffiliatesService>();
+            services.AddTransient<IErrorsService, ErrorsService>();
 
             //Partners
             services.AddTransient<ProfitPixelsPartner>();

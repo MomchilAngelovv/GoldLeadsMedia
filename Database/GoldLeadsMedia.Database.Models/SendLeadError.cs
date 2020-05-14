@@ -4,9 +4,9 @@
 
     using GoldLeadsMedia.Database.Models.Common;
 
-    public class LeadError : IEntityMetaData
+    public class SendLeadError : IEntityMetaData
     {
-        public LeadError()
+        public SendLeadError()
         {
             this.Id = Guid.NewGuid().ToString();
             this.CreatedOn = DateTime.UtcNow;

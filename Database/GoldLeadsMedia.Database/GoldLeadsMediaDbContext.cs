@@ -17,10 +17,11 @@
         public DbSet<Click> Clicks { get; set; }
         public DbSet<Country> Countries { get; set; }
         public DbSet<DeveloperError> DeveloperErrors { get; set; }
+        public DbSet<FtdScanError> FtdScanErrors { get; set; }
         public DbSet<LandingPage> LandingPages { get; set; }
         public DbSet<Language> Languages { get; set; }
         public DbSet<Lead> Leads { get; set; }
-        public DbSet<LeadError> LeadErrors { get; set; }
+        public DbSet<SendLeadError> LeadErrors { get; set; }
         public DbSet<Offer> Offers { get; set; }
         public DbSet<OfferOfferGroup> OffersOfferGroups { get; set; }
         public DbSet<OfferGroup> OfferGroups { get; set; }

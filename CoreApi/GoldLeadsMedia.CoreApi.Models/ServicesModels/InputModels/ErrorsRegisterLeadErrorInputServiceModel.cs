@@ -1,6 +1,6 @@
 ﻿namespace GoldLeadsMedia.CoreApi.Models.ServicesModels.InputModels
 {
-    public class LeadsRegisterErrorInputServiceModel
+    public class ErrorsRegisterLeadErrorInputServiceModel
     {
         public string LeadId { get; set; }
         public string PartnerId { get; set; }

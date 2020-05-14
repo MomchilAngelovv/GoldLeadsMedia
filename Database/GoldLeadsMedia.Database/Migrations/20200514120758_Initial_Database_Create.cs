@@ -97,6 +97,23 @@ namespace GoldLeadsMedia.Database.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "FtdScanErrors",
+                columns: table => new
+                {
+                    Id = table.Column<string>(nullable: false),
+                    Message = table.Column<string>(nullable: true),
+                    Information = table.Column<string>(nullable: true),
+                    PartnerName = table.Column<string>(nullable: true),
+                    CreatedOn = table.Column<DateTime>(nullable: false),
+                    UpdatedOn = table.Column<DateTime>(nullable: true),
+                    DeletedOn = table.Column<DateTime>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_FtdScanErrors", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "LandingPages",
                 columns: table => new
                 {
@@ -467,18 +484,17 @@ namespace GoldLeadsMedia.Database.Migrations
                 columns: table => new
                 {
                     OfferId = table.Column<string>(nullable: false),
-                    OfferGroupId = table.Column<string>(nullable: false),
-                    OfferGroupId1 = table.Column<int>(nullable: true)
+                    OfferGroupId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_OffersOfferGroups", x => new { x.OfferId, x.OfferGroupId });
                     table.ForeignKey(
-                        name: "FK_OffersOfferGroups_OfferGroups_OfferGroupId1",
-                        column: x => x.OfferGroupId1,
+                        name: "FK_OffersOfferGroups_OfferGroups_OfferGroupId",
+                        column: x => x.OfferGroupId,
                         principalTable: "OfferGroups",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_OffersOfferGroups_Offers_OfferId",
                         column: x => x.OfferId,
@@ -500,6 +516,7 @@ namespace GoldLeadsMedia.Database.Migrations
                     CallStatus = table.Column<string>(nullable: true),
                     ConfirmedByManagerId = table.Column<string>(nullable: true),
                     FtdBecameOn = table.Column<DateTime>(nullable: true),
+                    IdInPartner = table.Column<string>(nullable: true),
                     CountryId = table.Column<int>(nullable: false),
                     PartnerId = table.Column<string>(nullable: true),
                     ClickId = table.Column<string>(nullable: true),
@@ -685,9 +702,9 @@ namespace GoldLeadsMedia.Database.Migrations
                 column: "LandingPageId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_OffersOfferGroups_OfferGroupId1",
+                name: "IX_OffersOfferGroups_OfferGroupId",
                 table: "OffersOfferGroups",
-                column: "OfferGroupId1");
+                column: "OfferGroupId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -709,6 +726,9 @@ namespace GoldLeadsMedia.Database.Migrations
 
             migrationBuilder.DropTable(
                 name: "DeveloperErrors");
+
+            migrationBuilder.DropTable(
+                name: "FtdScanErrors");
 
             migrationBuilder.DropTable(
                 name: "LeadErrors");
