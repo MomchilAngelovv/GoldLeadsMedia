@@ -8,6 +8,6 @@ namespace GoldLeadsMedia.CoreApi.Services.AsyncHttpClient
     public interface IAsyncHttpClient
     {
         Task<T> PostAsync<T>(string url, object body, Dictionary<string, string> headers = null, string mimeType = "application/json");
-        Task<T> GetAsync<T>(string url, object queryParameters = null);
+        Task<T> GetAsync<T>(string url, object queryParameters = null, Dictionary<string, string> headers = null);
     }
 }

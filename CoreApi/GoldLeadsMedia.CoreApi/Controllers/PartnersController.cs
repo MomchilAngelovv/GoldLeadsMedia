@@ -79,25 +79,33 @@ namespace GoldLeadsMedia.CoreApi.Controllers
             return errorCount;
         }
 
-        [HttpPost("/Scan")]
-        public ActionResult<int> FtdScan()
+        [HttpPost("Scan")]
+        public async Task<ActionResult<object>> FtdScan()
         {
             var partnerTypes = typeof(IPartner)
                 .Assembly
                 .GetTypes()
                 .Where(type => type.IsClass && type.IsPublic && type.Name.EndsWith("Partner"));
 
-            var ftdCount = 0;
+            var from = DateTime.UtcNow.AddDays(-60);
+            var to = DateTime.UtcNow.AddDays(1);
 
+            var newFtdsCounter = 0;
             foreach (var partnerType in partnerTypes)
             {
                 var partnerInstance = this.serviceProvider.GetService(partnerType) as IPartner;
+                var newFtds = await partnerInstance.FtdScanAsync(from, to);
 
-                var partnerFtds = partnerInstance.FtdScan();
-                ftdCount += partnerFtds;
+                newFtdsCounter += newFtds;
             }
 
-            return ftdCount;
+            var response = new
+            {
+                AllPartners = partnerTypes.Count(),
+                NewFtds = newFtdsCounter
+            };
+
+            return response;
         }
     }
 }

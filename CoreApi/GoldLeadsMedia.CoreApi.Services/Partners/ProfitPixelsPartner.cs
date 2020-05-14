@@ -23,9 +23,44 @@
             this.httpClient = httpClient;
         }
 
-        public int FtdScan()
+        public async Task<int> FtdScanAsync(DateTime from, DateTime to)
         {
-            throw new System.NotImplementedException();
+            var startDate = from.ToString("yyyy-MM-ddThh:mm:ss");
+            var endDate = to.ToString("yyyy-MM-ddThh:mm:ss");
+
+            var queryParameters = new
+            {
+                StartDate = startDate,
+                EndDate = endDate,
+                DepositsOnly = true
+            };
+
+            var headers = new Dictionary<string, string>
+            {
+                ["X-Auth-ClientId"] = "cc94150f-ca09-4950-a23d-bcea325b91f5",
+                ["X-Auth-Key"] = "ac7e4690eebc45989d690ffce24cfd5e4923f2dd4ba540e98f637fc06743d5b3"
+            };
+
+            //this.httpClient.GetAsync<int>($"https://api.profitpixels.com/client/v5/leads?StartDate={startDate}&EndDate={endDate}&DepositsOnly=true",null, headers)
+            var response = await this.httpClient.GetAsync<ProfitPixelsFtdScanResponse>($"https://api.profitpixels.com/client/v5/leads", queryParameters, headers);
+
+            var ftdCounter = 0;
+            if (response.Success)
+            {
+                foreach (var ftdData in response.ResponseData)
+                {
+                    var lead = this.leadsService.GetBy(ftdData.LeadId, true);
+
+                    var ftd = await this.leadsService.FtdBecomeUpdateLeadAsync(lead, ftdData.FtdDateTime, ftdData.CallStatus);
+                    ftdCounter++;
+                }
+            }
+            else
+            {
+                 
+            }
+
+            return ftdCounter;
         }
         public async Task<int> SendLeadsAsync(IEnumerable<string> leadIds, string partnerId, string partnerOfferId)
         {
@@ -53,7 +88,7 @@
                     ["X-Auth-Key"] = "ac7e4690eebc45989d690ffce24cfd5e4923f2dd4ba540e98f637fc06743d5b3" //TODO AppSettings.Production
                 };
 
-                var response = await this.httpClient.PostAsync<ProfitPixelsResponse>(url, requestBody, headers);
+                var response = await this.httpClient.PostAsync<ProfitPixelsSendLeadResponse>(url, requestBody, headers);
 
                 if (response.Success)
                 {
@@ -76,12 +111,20 @@
             return failedLeadsCount;
         }
 
-        private class ProfitPixelsResponse
+        private class ProfitPixelsSendLeadResponse
         {
             public bool Success { get; set; }
             public string Message { get; set; }
             public string RequestId { get; set; }
             public ResponseData ResponseData { get; set; }
+        }
+
+        private class ProfitPixelsFtdScanResponse
+        {
+            public bool Success { get; set; }
+            public string Message { get; set; }
+            public string RequestId { get; set; }
+            public List<ResponseData> ResponseData { get; set; }
         }
 
         private class ResponseData
@@ -91,7 +134,7 @@
             public string RedirectUrl { get; set; }
             public string CallStatus { get; set; }
             public bool IsFtd { get; set; }
-            public object FtdDateTime { get; set; }
+            public DateTime FtdDateTime { get; set; }
             public bool IsTest { get; set; }
             public string OfferId { get; set; }
             public string FirstName { get; set; }

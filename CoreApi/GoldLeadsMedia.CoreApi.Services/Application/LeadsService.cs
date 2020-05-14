@@ -1,5 +1,6 @@
 ﻿namespace GoldLeadsMedia.CoreApi.Services.Application
 {
+    using System;
     using System.Linq;
     using System.Collections.Generic;
 
@@ -9,7 +10,6 @@
     using System.Threading.Tasks;
     using GoldLeadsMedia.CoreApi.Models.ServiceModels;
     using GoldLeadsMedia.CoreApi.Models.ServicesModels.InputModels;
-    using System;
 
     public class LeadsService : ILeadsService
     {
@@ -21,6 +21,16 @@
             this.db = db;
         }
 
+        public async Task<Lead> FtdBecomeUpdateLeadAsync(Lead lead, DateTime ftdBecomeOn, string callStatus)
+        {
+            lead.FtdBecameOn = ftdBecomeOn;
+            lead.CallStatus = callStatus;
+
+            this.db.Leads.Update(lead);
+            await this.db.SaveChangesAsync();
+
+            return lead;
+        }
 
         public IEnumerable<Lead> GetAllBy(string affiliateId)
         {
@@ -29,10 +39,14 @@
 
             return leads;
         }
-        public Lead GetBy(string id)
+        public Lead GetBy(string id, bool idInPartner)
         {
-            var lead = this.db.Leads.FirstOrDefault(lead => lead.Id == id);
-            return lead;
+            if (idInPartner)
+            {
+                return this.db.Leads.FirstOrDefault(lead => lead.IdInPartner == id);
+            }
+
+            return this.db.Leads.FirstOrDefault(lead => lead.Id == id);
         }
         public async Task<Lead> RegisterAsync(LeadsRegisterInputServiceModel serviceModel)
         {
