@@ -244,6 +244,9 @@ namespace GoldLeadsMedia.Database.Migrations
                     b.Property<string>("Experience")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<bool>("IsVip")
+                        .HasColumnType("bit");
+
                     b.Property<bool>("LockoutEnabled")
                         .HasColumnType("bit");
 

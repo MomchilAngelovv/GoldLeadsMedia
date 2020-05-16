@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Hosting;
+﻿using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Hosting;
 using System;
 using System.Net.Http;
 using System.Threading;
@@ -10,9 +11,16 @@ namespace FtdScanWorker.Service
     {
         private Timer timer;
 
+        private readonly IConfiguration configuration;
+
+        public FtdScanService(IConfiguration configuration)
+        {
+            this.configuration = configuration;
+        }
+
         public Task StartAsync(CancellationToken cancellationToken)
         {
-            this.timer = new Timer(Scan, null, TimeSpan.FromSeconds(30), TimeSpan.FromSeconds(30));
+            this.timer = new Timer(Scan, null, TimeSpan.FromSeconds(10), TimeSpan.FromSeconds(60));
             return Task.CompletedTask;
         }
 
@@ -29,12 +37,13 @@ namespace FtdScanWorker.Service
 
         private void Scan(object state)
         {
-            //var httpCleint = new HttpClient();
+            var httpCleint = new HttpClient();
 
-            Console.WriteLine("this comes for test!");
-            //var response = httpCleint.PostAsync("https://localhost:44322/api/clicks/test", null).GetAwaiter().GetResult();
-            //var responseAsString = response.Content.ReadAsStringAsync().GetAwaiter().GetResult();
-            //Console.WriteLine(responseAsString);
+            var coreApiUrl = this.configuration["CoreApiUrl"];
+            var response = httpCleint.PostAsync($"{coreApiUrl}/Api/Partners/FtdScan", null).GetAwaiter().GetResult();
+            var responseAsString = response.Content.ReadAsStringAsync().GetAwaiter().GetResult();
+
+            Console.WriteLine($"[Ftd Scan: {DateTime.UtcNow}] --- [Scan result: {responseAsString}]");
         }
     }
 }

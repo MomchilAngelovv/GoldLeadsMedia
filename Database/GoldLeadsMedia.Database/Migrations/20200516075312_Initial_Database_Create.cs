@@ -62,6 +62,7 @@ namespace GoldLeadsMedia.Database.Migrations
                     AccessFailedCount = table.Column<int>(nullable: false),
                     Skype = table.Column<string>(nullable: true),
                     Experience = table.Column<string>(nullable: true),
+                    IsVip = table.Column<bool>(nullable: false),
                     ManagerId = table.Column<string>(nullable: true),
                     CreatedOn = table.Column<DateTime>(nullable: false),
                     UpdatedOn = table.Column<DateTime>(nullable: true),

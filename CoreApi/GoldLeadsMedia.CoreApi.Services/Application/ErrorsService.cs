@@ -23,7 +23,6 @@ namespace GoldLeadsMedia.CoreApi.Services.Application
         {
             throw new NotImplementedException();
         }
-
         public async Task<SendLeadError> RegisterLeadErrorAsync(ErrorsRegisterLeadErrorInputServiceModel serviceModel)
         {
             var leadError = new SendLeadError
@@ -39,10 +38,19 @@ namespace GoldLeadsMedia.CoreApi.Services.Application
 
             return leadError;
         }
-
-        public Task<FtdScanError> RegisterScanErrorAsync(ErrorsRegisterFtdScanErrorInputServiceModel serviceModel)
+        public async Task<FtdScanError> RegisterFtdScanErrorAsync(ErrorsRegisterFtdScanErrorInputServiceModel serviceModel)
         {
-            throw new NotImplementedException();
+            var ftdScanError = new FtdScanError
+            {
+                Message = serviceModel.Message,
+                PartnerName = serviceModel.PartnerName,
+                Information = serviceModel.Information,
+            };
+
+            await this.db.FtdScanErrors.AddAsync(ftdScanError);
+            await this.db.SaveChangesAsync();
+
+            return ftdScanError;
         }
     }
 }

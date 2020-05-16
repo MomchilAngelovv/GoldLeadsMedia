@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GoldLeadsMedia.Database.Migrations
 {
     [DbContext(typeof(GoldLeadsMediaDbContext))]
-    [Migration("20200514120758_Initial_Database_Create")]
+    [Migration("20200516075312_Initial_Database_Create")]
     partial class Initial_Database_Create
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -245,6 +245,9 @@ namespace GoldLeadsMedia.Database.Migrations
 
                     b.Property<string>("Experience")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsVip")
+                        .HasColumnType("bit");
 
                     b.Property<bool>("LockoutEnabled")
                         .HasColumnType("bit");

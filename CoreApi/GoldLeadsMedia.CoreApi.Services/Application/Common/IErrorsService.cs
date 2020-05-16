@@ -8,7 +8,7 @@ namespace GoldLeadsMedia.CoreApi.Services.Application.Common
     public interface IErrorsService
     {
         Task<SendLeadError> RegisterLeadErrorAsync(ErrorsRegisterLeadErrorInputServiceModel serviceModel);
-        Task<FtdScanError> RegisterScanErrorAsync(ErrorsRegisterFtdScanErrorInputServiceModel serviceModel);
+        Task<FtdScanError> RegisterFtdScanErrorAsync(ErrorsRegisterFtdScanErrorInputServiceModel serviceModel);
         Task<DeveloperError> RegisterDeveloperErrorAsync(ErrorsRegisterDeveloperErrorInputServiceModel serviceModel);
     }
 }

@@ -16,6 +16,7 @@
 
         public string Skype { get; set; }
         public string Experience { get; set; }
+        public bool IsVip { get; set; }
 
         public string ManagerId { get; set; }
 

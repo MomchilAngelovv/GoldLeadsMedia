@@ -79,7 +79,7 @@ namespace GoldLeadsMedia.CoreApi.Controllers
             return errorCount;
         }
 
-        [HttpPost("Scan")]
+        [HttpPost("FtdScan")]
         public async Task<ActionResult<object>> FtdScan()
         {
             var partnerTypes = typeof(IPartner)

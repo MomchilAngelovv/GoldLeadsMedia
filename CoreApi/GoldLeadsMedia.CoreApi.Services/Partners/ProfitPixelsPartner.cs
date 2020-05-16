@@ -44,7 +44,6 @@
                 ["X-Auth-Key"] = "ac7e4690eebc45989d690ffce24cfd5e4923f2dd4ba540e98f637fc06743d5b3"
             };
 
-            //this.httpClient.GetAsync<int>($"https://api.profitpixels.com/client/v5/leads?StartDate={startDate}&EndDate={endDate}&DepositsOnly=true",null, headers)
             var response = await this.httpClient.GetAsync<ProfitPixelsFtdScanResponse>($"https://api.profitpixels.com/client/v5/leads", queryParameters, headers);
 
             var ftdCounter = 0;
@@ -67,7 +66,7 @@
                     PartnerName = "ProfitPixels"
                 };
 
-                var ftdScanError = await this.errorsService.RegisterScanErrorAsync(serviceModel);
+                var ftdScanError = await this.errorsService.RegisterFtdScanErrorAsync(serviceModel);
             }
 
             return ftdCounter;

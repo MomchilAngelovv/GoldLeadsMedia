@@ -43,6 +43,7 @@
             {
                 UserName = "Monkata",
                 Email = "Monkata@abv.bg",
+                IsVip = true
             };
 
             var user2 = new GoldLeadsMediaUser
@@ -56,7 +57,6 @@
             {
                 UserName = "Gosho",
                 Email = "Gosho@abv.bg",
-                ManagerId = user1.Id
             };
 
             var language = new Language
