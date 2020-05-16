@@ -8,6 +8,7 @@
     using GoldLeadsMedia.Database.Models;
     using GoldLeadsMedia.Web.Models.InputModels;
     using Microsoft.Extensions.Configuration;
+    using System;
 
     public class UsersController : Controller
     {
@@ -28,6 +29,14 @@
         [HttpGet]
         public IActionResult Login()
         {
+            var currentEnv = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
+
+            if (currentEnv == null)
+            {
+                currentEnv = "Somehing is wrong here";
+            }
+
+            this.ViewData["Env"] = currentEnv;
             this.ViewData["ConnString"] = this.configuration.GetConnectionString("DefaultConnection");
             this.ViewData["CoreApiUrl"] = this.configuration["CoreApiUrl"];
             return this.View();
