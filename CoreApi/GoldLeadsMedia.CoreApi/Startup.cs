@@ -16,6 +16,7 @@ namespace GoldLeadsMedia.CoreApi
     using GoldLeadsMedia.CoreApi.Services.Partners.Common;
     using System.Linq;
     using GoldLeadsMedia.CoreApi.Services.AsyncHttpClient;
+    using GoldLeadsMedia.CoreApi.Infrastructure.Filters;
 
     public class Startup
     {
@@ -29,7 +30,10 @@ namespace GoldLeadsMedia.CoreApi
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers();
+            services.AddControllers(options => 
+            {
+                options.Filters.Add<RegisterDeveleporErrorExceptionFilter>();
+            });
 
             services.AddDbContext<GoldLeadsMediaDbContext>(options =>
             {

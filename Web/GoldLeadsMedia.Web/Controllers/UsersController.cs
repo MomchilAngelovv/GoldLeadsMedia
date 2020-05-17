@@ -29,7 +29,7 @@
         [HttpGet]
         public IActionResult Login()
         {
-            var currentEnv = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
+            var currentEnv = this.configuration["ASPNETCORE_ENVIRONMENT"];
 
             if (currentEnv == null)
             {

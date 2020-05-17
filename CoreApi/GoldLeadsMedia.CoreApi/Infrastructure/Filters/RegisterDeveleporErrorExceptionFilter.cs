@@ -8,7 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace GoldLeadsMedia.Web.Infrastructure.Filters
+namespace GoldLeadsMedia.CoreApi.Infrastructure.Filters
 {
     public class RegisterDeveleporErrorExceptionFilter : IAsyncExceptionFilter
     {
@@ -22,7 +22,7 @@ namespace GoldLeadsMedia.Web.Infrastructure.Filters
             this.db = db;
             this.userManager = userManager;
         }
-        
+
         public async Task OnExceptionAsync(ExceptionContext context)
         {
             var loggedUser = await this.userManager.GetUserAsync(context.HttpContext.User);
@@ -38,7 +38,7 @@ namespace GoldLeadsMedia.Web.Infrastructure.Filters
             await this.db.DeveloperErrors.AddAsync(developerError);
             await this.db.SaveChangesAsync();
 
-            context.Result = new RedirectResult("/Home/Error");
+            context.Result = new JsonResult(developerError);
         }
     }
 }
