@@ -25,7 +25,7 @@ namespace GoldLeadsMedia.CoreApi.Services.Application
         }
         public async Task<SendLeadError> RegisterLeadErrorAsync(ErrorsRegisterLeadErrorInputServiceModel serviceModel)
         {
-            var leadError = new SendLeadError
+            var sendLeadError = new SendLeadError
             {
                 LeadId = serviceModel.LeadId,
                 PartnerId = serviceModel.PartnerId,
@@ -33,10 +33,10 @@ namespace GoldLeadsMedia.CoreApi.Services.Application
                 Message = serviceModel.ErrorMessage
             };
 
-            await this.db.LeadErrors.AddAsync(leadError);
+            await this.db.SendLeadErrors.AddAsync(sendLeadError);
             await this.db.SaveChangesAsync();
 
-            return leadError;
+            return sendLeadError;
         }
         public async Task<FtdScanError> RegisterFtdScanErrorAsync(ErrorsRegisterFtdScanErrorInputServiceModel serviceModel)
         {

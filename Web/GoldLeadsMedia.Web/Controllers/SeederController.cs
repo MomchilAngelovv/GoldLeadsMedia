@@ -70,7 +70,7 @@
             var accessNames = new List<string> { "Regular", "Private", "Vip" };
             var paymentTypeNames = new List<string> { "Per lead", "Per ftd" };
             var targetDeviceNames = new List<string> { "Computer", "Mobile", "Computer and mobile" };
-            var landingPageUrls = new List<string> { "http://glm-cryptonews.com/bitcoinrevolution?of=", "http://glm-cryptonews.com/tesler?of=", "http://glm-cryptonews.com/bitcoinprofitnow?of=", "http://glm-cryptonews.com/bitcoinbillionaire?of=" };
+            var landingPageUrls = new List<string> { "http://glm-cryptonews.com/bitcoinrevolution", "http://glm-cryptonews.com/tesler", "http://glm-cryptonews.com/bitcoinprofitnow", "http://glm-cryptonews.com/bitcoinbillionaire" };
             var roleNames = new List<string> { "Affiliate", "Manager", "Administrator" };
             var offerGroupNames = new List<string> { "Best offers", "New offers", "Vip offers" };
 

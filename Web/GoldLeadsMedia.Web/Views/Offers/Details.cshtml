@@ -22,14 +22,6 @@
         <div class="lead-wrap">
             <div class="lead">
                 <div class="lead-label">
-                    Name
-                </div>
-                <div class="lead-details">
-                    @Model.Name
-                </div>
-            </div>
-            <div class="lead">
-                <div class="lead-label">
                     Number
                 </div>
                 <div class="lead-details">
@@ -46,18 +38,18 @@
             </div>
             <div class="lead">
                 <div class="lead-label">
-                    Epc
+                    Pay per click
                 </div>
                 <div class="lead-details">
-                    @Model.EarningPerClick
+                    @Model.PayPerClick
                 </div>
             </div>
             <div class="lead">
                 <div class="lead-label">
-                    CP
+                    Pay type
                 </div>
                 <div class="lead-details">
-                    @Model.PaymentType
+                    @Model.PayType
                 </div>
             </div>
             <div class="lead">
@@ -104,7 +96,7 @@
     </div>
 </div>
 
-@if (Model.IsVip)
+@if (Model.IsVip == false)
 {
     <div class="mt-2">
         <h2 class="text-center text-danger">This offer is only for VIP. Please, contact your affiliate manager.</h2>

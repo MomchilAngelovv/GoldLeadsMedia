@@ -48,12 +48,11 @@
             <th>Number</th>
             <th>Name</th>
             <th>Payout</th>
-            <th>EPC</th>
+            <th>Pay per click</th>
             <th>Country</th>
             <th>Language</th>
             <th>Vertical</th>
             <th>Flow</th>
-            <th>Device</th>
             <th>Access</th>
         </tr>
         <tbody class="table-tbody">
@@ -67,10 +66,10 @@
                         @offer.Name
                     </td>
                     <td>
-                        $ @Math.Round(offer.PayOut)
+                        $ @offer.PayOut
                     </td>
                     <td>
-                        @Math.Round(offer.EarningPerClick, 2)
+                        $ @offer.PayPerClick
                     </td>
                     <td>
                         @offer.Country
@@ -82,10 +81,7 @@
                         @offer.Vertical
                     </td>
                     <td>
-                        @offer.PaymentType
-                    </td>
-                    <td>
-                        @offer.Device
+                        @offer.ActionFlow
                     </td>
                     <td>
                         @offer.Access

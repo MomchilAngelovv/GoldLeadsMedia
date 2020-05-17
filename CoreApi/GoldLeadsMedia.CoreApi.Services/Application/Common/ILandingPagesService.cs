@@ -8,5 +8,6 @@ namespace GoldLeadsMedia.CoreApi.Services.Application.Common
     public interface ILandingPagesService
     {
         IEnumerable<LandingPage> GetAll();
+        LandingPage GetBy(string id);
     }
 }

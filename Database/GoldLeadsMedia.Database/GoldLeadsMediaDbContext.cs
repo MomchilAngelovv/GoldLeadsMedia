@@ -21,7 +21,7 @@
         public DbSet<LandingPage> LandingPages { get; set; }
         public DbSet<Language> Languages { get; set; }
         public DbSet<Lead> Leads { get; set; }
-        public DbSet<SendLeadError> LeadErrors { get; set; }
+        public DbSet<SendLeadError> SendLeadErrors { get; set; }
         public DbSet<Offer> Offers { get; set; }
         public DbSet<OfferOfferGroup> OffersOfferGroups { get; set; }
         public DbSet<OfferGroup> OfferGroups { get; set; }

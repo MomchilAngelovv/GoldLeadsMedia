@@ -3,6 +3,7 @@ using GoldLeadsMedia.Database;
 using GoldLeadsMedia.Database.Models;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Text;
 
@@ -20,8 +21,14 @@ namespace GoldLeadsMedia.CoreApi.Services.Application
 
         public IEnumerable<LandingPage> GetAll()
         {
-            var landingPages = db.LandingPages.ToList();
+            var landingPages = this.db.LandingPages.ToList();
             return landingPages;
+        }
+
+        public LandingPage GetBy(string id)
+        {
+            var landingPage = this.db.LandingPages.FirstOrDefault(landingPage => landingPage.Id == id);
+            return landingPage;
         }
     }
 }

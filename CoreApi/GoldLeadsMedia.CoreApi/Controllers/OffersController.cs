@@ -47,6 +47,7 @@
                     Language = offer.Language.Name,
                     PayType = offer.PayType.Name,
                     offer.PayOut,
+                    offer.ActionFlow,
                     Vertical = offer.Vertical.Name,
                     Access = offer.Access.Name
                 })

@@ -33,7 +33,8 @@
             };
 
             var response = await this.httpClient.PostAsync<PostApiClicksReponse>("Api/Clicks", requestBody);
-            return this.Redirect($"/Offers/Dashboard?clickId={response.Id}");
+            return this.Redirect($"{response.LandingPageUrl}?clickId={response.Id}");
+           // return this.Redirect($"/Offers/Dashboard?clickId={response.Id}");
         }
     }
 }

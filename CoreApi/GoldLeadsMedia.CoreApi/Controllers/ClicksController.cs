@@ -15,12 +15,16 @@
     {
         private readonly IClicksService clicksService;
         private readonly GoldLeadsMediaDbContext db;
+        private readonly ILandingPagesService landingPagesService;
 
         public ClicksController(
-            IClicksService clicksService, GoldLeadsMediaDbContext db)
+            IClicksService clicksService, 
+            GoldLeadsMediaDbContext db,
+            ILandingPagesService landingPagesService)
         {
             this.clicksService = clicksService;
             this.db = db;
+            this.landingPagesService = landingPagesService;
         }
 
         [HttpPost]
@@ -37,10 +41,12 @@
             };
 
             var click = await this.clicksService.RegisterAsync(serviceModel);
+            var landingPage = this.landingPagesService.GetBy(click.LandingPageId);
 
             var response = new
             {
-                click.Id
+                click.Id,
+                LandingPageUrl = landingPage.Url
             };
 
             return response;

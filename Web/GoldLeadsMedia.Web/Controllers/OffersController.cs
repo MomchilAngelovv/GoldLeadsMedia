@@ -61,11 +61,14 @@
         }
         public async Task<IActionResult> Details(string id)
         {
+            var loggedUser = await this.userManager.GetUserAsync(this.User);
             var viewModel = await this.httpClient.GetAsync<OffersDetailsViewModel>($"Api/Offers/{id}");
 
             var webUrl = this.configuration["WebUrl"];
             viewModel.RedirectUrl = $"{webUrl}/Clicks/Register?offerId={viewModel.Id}";
 
+            viewModel.IsVip = loggedUser.IsVip;
+            
             return this.View(viewModel);
         }
         public async Task<IActionResult> DashBoard()
