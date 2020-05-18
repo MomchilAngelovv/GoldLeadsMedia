@@ -54,7 +54,7 @@ namespace GoldLeadsMedia.CoreApi.Controllers
                     lead.Email,
                     lead.PhoneNumber,
                     CountryName = lead.Country.Name,
-                    OfferName = lead.Click.Offer.Name
+                    OfferName = lead.Click?.Offer?.Name
                 })
                 .ToList();
 

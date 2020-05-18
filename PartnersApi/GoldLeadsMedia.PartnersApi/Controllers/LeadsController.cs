@@ -1,11 +1,13 @@
-﻿using GoldLeadsMedia.PartnersApi.HttpHelper;
-using GoldLeadsMedia.PartnersApi.Models.CoreApiResponses;
-using GoldLeadsMedia.PartnersApi.Models.InputModels;
-using Microsoft.AspNetCore.Mvc;
-using System.Threading.Tasks;
-
-namespace GoldLeadsMedia.PartnersApi.Controllers
+﻿namespace GoldLeadsMedia.PartnersApi.Controllers
 {
+    using System.Threading.Tasks;
+
+    using Microsoft.AspNetCore.Mvc;
+
+    using GoldLeadsMedia.PartnersApi.HttpHelper;
+    using GoldLeadsMedia.PartnersApi.Models.InputModels;
+    using GoldLeadsMedia.PartnersApi.Models.CoreApiResponses;
+
     public class LeadsController : ApiController
     {
         private readonly IAsyncHttpClient httpClient;
@@ -28,6 +30,7 @@ namespace GoldLeadsMedia.PartnersApi.Controllers
             {
                 inputModel.SenderId,
                 inputModel.OfferId,
+
                 inputModel.FirstName,
                 inputModel.LastName,
                 inputModel.Email,
