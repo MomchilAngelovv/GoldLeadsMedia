@@ -44,7 +44,7 @@ namespace GoldLeadsMedia.CoreApi.Controllers
         public ActionResult<IEnumerable<object>> NotConfirmedLeads()
         {
             var notConfirmedLeads = this.managersService.GetNotConfirmedLeads();
-
+                        
             var response = notConfirmedLeads
                 .Select(lead => new 
                 { 
@@ -74,7 +74,7 @@ namespace GoldLeadsMedia.CoreApi.Controllers
                     lead.Email,
                     lead.PhoneNumber,
                     CountryName = lead.Country.Name,
-                    OfferName = lead.Click.Offer.Name
+                    OfferName = lead.Click?.Offer?.Name
                 })
                 .ToList();
 
