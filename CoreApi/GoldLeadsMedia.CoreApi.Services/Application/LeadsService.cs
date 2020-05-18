@@ -58,7 +58,9 @@
                 Password = serviceModel.Password,
                 CountryId = serviceModel.CountryId,
                 PhoneNumber = serviceModel.PhoneNumber,
-                ClickId = serviceModel.ClickId
+                ClickId = serviceModel.ClickId,
+                OfferId = serviceModel.OfferId,
+                AffiliateId = serviceModel.SenderId
             };
 
             await this.db.Leads.AddAsync(lead);

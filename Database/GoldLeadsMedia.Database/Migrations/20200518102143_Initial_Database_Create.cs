@@ -521,6 +521,8 @@ namespace GoldLeadsMedia.Database.Migrations
                     CountryId = table.Column<int>(nullable: false),
                     PartnerId = table.Column<string>(nullable: true),
                     ClickId = table.Column<string>(nullable: true),
+                    AffiliateId = table.Column<string>(nullable: true),
+                    OfferId = table.Column<string>(nullable: true),
                     CreatedOn = table.Column<DateTime>(nullable: false),
                     UpdatedOn = table.Column<DateTime>(nullable: true),
                     DeletedOn = table.Column<DateTime>(nullable: true)
@@ -528,6 +530,12 @@ namespace GoldLeadsMedia.Database.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Leads", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Leads_AspNetUsers_AffiliateId",
+                        column: x => x.AffiliateId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_Leads_Clicks_ClickId",
                         column: x => x.ClickId,
@@ -540,6 +548,12 @@ namespace GoldLeadsMedia.Database.Migrations
                         principalTable: "Countries",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Leads_Offers_OfferId",
+                        column: x => x.OfferId,
+                        principalTable: "Offers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_Leads_Partners_PartnerId",
                         column: x => x.PartnerId,
@@ -643,6 +657,11 @@ namespace GoldLeadsMedia.Database.Migrations
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Leads_AffiliateId",
+                table: "Leads",
+                column: "AffiliateId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Leads_ClickId",
                 table: "Leads",
                 column: "ClickId");
@@ -651,6 +670,11 @@ namespace GoldLeadsMedia.Database.Migrations
                 name: "IX_Leads_CountryId",
                 table: "Leads",
                 column: "CountryId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Leads_OfferId",
+                table: "Leads",
+                column: "OfferId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Leads_PartnerId",

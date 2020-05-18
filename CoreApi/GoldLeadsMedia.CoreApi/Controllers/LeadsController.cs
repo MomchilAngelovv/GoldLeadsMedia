@@ -29,18 +29,22 @@
 
             var serviceModel = new LeadsRegisterInputServiceModel
             {
+                SenderId = inputModel.SenderId,
+                OfferId = inputModel.OfferId,
+
                 FirstName = inputModel.FirstName,
                 LastName = inputModel.LastName,
                 Password = inputModel.Password,
                 Email = inputModel.Email,
                 PhoneNumber = inputModel.PhoneNumber,
                 CountryId = country.Id,
-                ClickId = inputModel.ClickId
+
+                ClickId = inputModel.ClickId,
             };
 
             var lead = await this.leadsService.RegisterAsync(serviceModel);
 
-            return this.Created($"/Api/Leads/{lead.Id}", lead);
+            return lead;
         }
     }
 }

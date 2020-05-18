@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GoldLeadsMedia.Database.Migrations
 {
     [DbContext(typeof(GoldLeadsMediaDbContext))]
-    [Migration("20200517090512_Initial_Database_Create")]
+    [Migration("20200518102143_Initial_Database_Create")]
     partial class Initial_Database_Create
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -360,6 +360,9 @@ namespace GoldLeadsMedia.Database.Migrations
                     b.Property<string>("Id")
                         .HasColumnType("nvarchar(450)");
 
+                    b.Property<string>("AffiliateId")
+                        .HasColumnType("nvarchar(450)");
+
                     b.Property<string>("CallStatus")
                         .HasColumnType("nvarchar(max)");
 
@@ -393,6 +396,9 @@ namespace GoldLeadsMedia.Database.Migrations
                     b.Property<string>("LastName")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("OfferId")
+                        .HasColumnType("nvarchar(450)");
+
                     b.Property<string>("PartnerId")
                         .HasColumnType("nvarchar(450)");
 
@@ -407,9 +413,13 @@ namespace GoldLeadsMedia.Database.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("AffiliateId");
+
                     b.HasIndex("ClickId");
 
                     b.HasIndex("CountryId");
+
+                    b.HasIndex("OfferId");
 
                     b.HasIndex("PartnerId");
 
@@ -804,6 +814,10 @@ namespace GoldLeadsMedia.Database.Migrations
 
             modelBuilder.Entity("GoldLeadsMedia.Database.Models.Lead", b =>
                 {
+                    b.HasOne("GoldLeadsMedia.Database.Models.GoldLeadsMediaUser", "Affiliate")
+                        .WithMany()
+                        .HasForeignKey("AffiliateId");
+
                     b.HasOne("GoldLeadsMedia.Database.Models.Click", "Click")
                         .WithMany()
                         .HasForeignKey("ClickId");
@@ -813,6 +827,10 @@ namespace GoldLeadsMedia.Database.Migrations
                         .HasForeignKey("CountryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.HasOne("GoldLeadsMedia.Database.Models.Offer", "Offer")
+                        .WithMany()
+                        .HasForeignKey("OfferId");
 
                     b.HasOne("GoldLeadsMedia.Database.Models.Partner", "Partner")
                         .WithMany()
