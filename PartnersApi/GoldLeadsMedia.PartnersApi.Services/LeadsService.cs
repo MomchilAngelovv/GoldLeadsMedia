@@ -1,13 +1,13 @@
-﻿using GoldLeadsMedia.Database;
-using GoldLeadsMedia.Database.Models;
-using GoldLeadsMedia.PartnersApi.Models.ServiceModels;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace GoldLeadsMedia.PartnersApi.Services
+﻿namespace GoldLeadsMedia.PartnersApi.Services
 {
+    using System.Linq;
+    using System.Threading.Tasks;
+    using System.Collections.Generic;
+
+    using GoldLeadsMedia.Database;
+    using GoldLeadsMedia.Database.Models;
+    using GoldLeadsMedia.PartnersApi.Models.ServiceModels;
+
     public class LeadsService : ILeadsService
     {
         private readonly GoldLeadsMediaDbContext db;
@@ -16,6 +16,15 @@ namespace GoldLeadsMedia.PartnersApi.Services
             GoldLeadsMediaDbContext db)
         {
             this.db = db;
+        }
+
+        public IEnumerable<Lead> GetAllBy(string affiliateId)
+        {
+            var leads = this.db.Leads
+                .Where(lead => lead.ApiRegistration.AffiliateId == affiliateId)
+                .ToList();
+
+            return leads;
         }
 
         public async Task<Lead> RegisterAsync(LeadsRegisterInputServiceModel serviceModel)

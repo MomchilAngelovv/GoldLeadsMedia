@@ -5,7 +5,7 @@
     public class LeadsRegisterInputModel
     {
         [Required]
-        public string SenderId { get; set; }
+        public string UserId { get; set; }
         [Required]
         public string OfferId { get; set; }
         [Required]

@@ -7,6 +7,9 @@
     using GoldLeadsMedia.PartnersApi.Services;
     using GoldLeadsMedia.PartnersApi.Models.InputModels;
     using GoldLeadsMedia.PartnersApi.Models.ServiceModels;
+    using System.Collections;
+    using System.Collections.Generic;
+    using System.Linq;
 
     public class LeadsController : ApiController
     {
@@ -21,6 +24,7 @@
             this.countriesService = countriesService;
         }
 
+        [HttpGet("Welcome")]
         public ActionResult<string> Get()
         {
             var greetingMessage = "Welcome to partners Api!";
@@ -34,7 +38,7 @@
 
             var serviceModel = new LeadsRegisterInputServiceModel
             {
-                AffiliateId = inputModel.SenderId,
+                AffiliateId = inputModel.UserId,
                 OfferId = inputModel.OfferId,
                 FirstName = inputModel.FirstName,
                 LastName = inputModel.LastName,
@@ -49,6 +53,19 @@
             var response = new
             {
                 lead.Id,
+            };
+
+            return response;
+        }
+
+        [HttpGet("{userId}")]
+        public ActionResult<object> LeadsByAffiliateId(string userId)
+        {
+            var leads = this.leadsService.GetAllBy(userId);
+
+            var response = new
+            {
+                Leads = leads
             };
 
             return response;

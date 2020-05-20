@@ -10,5 +10,6 @@ namespace GoldLeadsMedia.PartnersApi.Services
     public interface ILeadsService
     {
         Task<Lead> RegisterAsync(LeadsRegisterInputServiceModel serviceModel);
+        IEnumerable<Lead> GetAllBy(string affiliateId);
     }
 }
