@@ -2,11 +2,14 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using GoldLeadsMedia.Database;
 using GoldLeadsMedia.PartnersApi.HttpHelper;
+using GoldLeadsMedia.PartnersApi.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -29,8 +32,16 @@ namespace GoldLeadsMedia.PartnersApi
             services.AddControllers();
             services.AddCors();
 
+            services.AddDbContext<GoldLeadsMediaDbContext>(options =>
+            {
+                options.UseLazyLoadingProxies().UseSqlServer(this.configuration.GetConnectionString("DefaultConnection"));
+            });
+
             services.AddHttpClient();
             services.AddTransient<IAsyncHttpClient, AsyncHttpClient>();
+
+            services.AddTransient<ILeadsService, LeadsService>();
+            services.AddTransient<ICountriesService, CountriesService>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

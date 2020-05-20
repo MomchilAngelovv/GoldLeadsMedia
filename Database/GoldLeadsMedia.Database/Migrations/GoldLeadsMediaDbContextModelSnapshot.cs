@@ -43,6 +43,35 @@ namespace GoldLeadsMedia.Database.Migrations
                     b.ToTable("Accesses");
                 });
 
+            modelBuilder.Entity("GoldLeadsMedia.Database.Models.ApiRegistration", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("AffiliateId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<DateTime>("CreatedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DeletedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("OfferId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<DateTime?>("UpdatedOn")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AffiliateId");
+
+                    b.HasIndex("OfferId");
+
+                    b.ToTable("ApiRegistrations");
+                });
+
             modelBuilder.Entity("GoldLeadsMedia.Database.Models.Click", b =>
                 {
                     b.Property<string>("Id")
@@ -358,7 +387,7 @@ namespace GoldLeadsMedia.Database.Migrations
                     b.Property<string>("Id")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<string>("AffiliateId")
+                    b.Property<string>("ApiRegistrationId")
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("CallStatus")
@@ -394,9 +423,6 @@ namespace GoldLeadsMedia.Database.Migrations
                     b.Property<string>("LastName")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("OfferId")
-                        .HasColumnType("nvarchar(450)");
-
                     b.Property<string>("PartnerId")
                         .HasColumnType("nvarchar(450)");
 
@@ -411,13 +437,11 @@ namespace GoldLeadsMedia.Database.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AffiliateId");
+                    b.HasIndex("ApiRegistrationId");
 
                     b.HasIndex("ClickId");
 
                     b.HasIndex("CountryId");
-
-                    b.HasIndex("OfferId");
 
                     b.HasIndex("PartnerId");
 
@@ -781,6 +805,17 @@ namespace GoldLeadsMedia.Database.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
+            modelBuilder.Entity("GoldLeadsMedia.Database.Models.ApiRegistration", b =>
+                {
+                    b.HasOne("GoldLeadsMedia.Database.Models.GoldLeadsMediaUser", "Affiliate")
+                        .WithMany()
+                        .HasForeignKey("AffiliateId");
+
+                    b.HasOne("GoldLeadsMedia.Database.Models.Offer", "Offer")
+                        .WithMany()
+                        .HasForeignKey("OfferId");
+                });
+
             modelBuilder.Entity("GoldLeadsMedia.Database.Models.Click", b =>
                 {
                     b.HasOne("GoldLeadsMedia.Database.Models.GoldLeadsMediaUser", "Affiliate")
@@ -812,9 +847,9 @@ namespace GoldLeadsMedia.Database.Migrations
 
             modelBuilder.Entity("GoldLeadsMedia.Database.Models.Lead", b =>
                 {
-                    b.HasOne("GoldLeadsMedia.Database.Models.GoldLeadsMediaUser", "Affiliate")
+                    b.HasOne("GoldLeadsMedia.Database.Models.ApiRegistration", "ApiRegistration")
                         .WithMany()
-                        .HasForeignKey("AffiliateId");
+                        .HasForeignKey("ApiRegistrationId");
 
                     b.HasOne("GoldLeadsMedia.Database.Models.Click", "Click")
                         .WithMany()
@@ -825,10 +860,6 @@ namespace GoldLeadsMedia.Database.Migrations
                         .HasForeignKey("CountryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.HasOne("GoldLeadsMedia.Database.Models.Offer", "Offer")
-                        .WithMany()
-                        .HasForeignKey("OfferId");
 
                     b.HasOne("GoldLeadsMedia.Database.Models.Partner", "Partner")
                         .WithMany()

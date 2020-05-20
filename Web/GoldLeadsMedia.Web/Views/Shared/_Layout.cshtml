@@ -39,7 +39,8 @@
                 else
                 {
                     <!-- If other pages -->
-                    <section class="main-title">@{Html.RenderPartial("_PageTitlePartial");}</section>
+                    @*<section class="main-title">@{Html.RenderPartial("_PageTitlePartial");}</section>*@
+                    <section class="main-title"><partial name="_PageTitlePartial"></section>
                     <section class="main-content">
                         <div class="container">
                             @RenderBody()

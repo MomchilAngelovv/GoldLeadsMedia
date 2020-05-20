@@ -28,16 +28,15 @@
 
         public int CountryId { get; set; }
         public string PartnerId { get; set; }
+
+        //Either click or api registration will be filled up since we have 2 ways of saving leads
         public string ClickId { get; set; }
-        //AffiliateId and offerId are populated only when lead comes from API and there is no landing page. When lead comes from landing page only clickId is enough since click saves information for user and offer
-        public string AffiliateId { get; set; }
-        public string OfferId { get; set; }
+        public string ApiRegistrationId { get; set; }
 
         public virtual Country Country { get; set; }
         public virtual Partner Partner { get; set; }
         public virtual Click Click { get; set; }
-        public virtual GoldLeadsMediaUser Affiliate { get; set; }
-        public virtual Offer Offer { get; set; }
+        public virtual ApiRegistration ApiRegistration { get; set; }
 
         public DateTime CreatedOn { get ;set; }
         public DateTime? UpdatedOn { get; set; }

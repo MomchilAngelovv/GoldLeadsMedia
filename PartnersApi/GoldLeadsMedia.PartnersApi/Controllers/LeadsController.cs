@@ -4,19 +4,23 @@
 
     using Microsoft.AspNetCore.Mvc;
 
-    using GoldLeadsMedia.PartnersApi.HttpHelper;
+    using GoldLeadsMedia.PartnersApi.Services;
     using GoldLeadsMedia.PartnersApi.Models.InputModels;
-    using GoldLeadsMedia.PartnersApi.Models.CoreApiResponses;
+    using GoldLeadsMedia.PartnersApi.Models.ServiceModels;
 
     public class LeadsController : ApiController
     {
-        private readonly IAsyncHttpClient httpClient;
+        private readonly ILeadsService leadsService;
+        private readonly ICountriesService countriesService;
 
         public LeadsController(
-            IAsyncHttpClient httpClient)
+            ILeadsService leadsService,
+            ICountriesService countriesService)
         {
-            this.httpClient = httpClient;
+            this.leadsService = leadsService;
+            this.countriesService = countriesService;
         }
+
         public ActionResult<string> Get()
         {
             var greetingMessage = "Welcome to partners Api!";
@@ -26,21 +30,28 @@
         [HttpPost]
         public async Task<ActionResult<object>> Register(LeadsRegisterInputModel inputModel)
         {
-            var body = new
-            {
-                inputModel.SenderId,
-                inputModel.OfferId,
+            var country = this.countriesService.GetBy(inputModel.CountryName);
 
-                inputModel.FirstName,
-                inputModel.LastName,
-                inputModel.Email,
-                inputModel.PhoneNumber,
-                inputModel.CountryName,
+            var serviceModel = new LeadsRegisterInputServiceModel
+            {
+                AffiliateId = inputModel.SenderId,
+                OfferId = inputModel.OfferId,
+                FirstName = inputModel.FirstName,
+                LastName = inputModel.LastName,
+                Email = inputModel.Email,
+                PhoneNumber = inputModel.PhoneNumber,
+                CountryId = country.Id
             };
 
-            var coreApiResponse = await this.httpClient.PostAsync<PostApiLeadsResponse>("Api/Leads", body);
 
-            return coreApiResponse;
+            var lead = await this.leadsService.RegisterAsync(serviceModel);
+
+            var response = new
+            {
+                lead.Id,
+            };
+
+            return response;
         }
     }
 }

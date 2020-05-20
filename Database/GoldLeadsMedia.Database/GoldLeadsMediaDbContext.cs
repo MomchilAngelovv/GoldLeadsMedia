@@ -14,6 +14,7 @@
         }
 
         public DbSet<Access> Accesses { get; set; }
+        public DbSet<ApiRegistration> ApiRegistrations { get; set; }
         public DbSet<Click> Clicks { get; set; }
         public DbSet<Country> Countries { get; set; }
         public DbSet<DeveloperError> DeveloperErrors { get; set; }
