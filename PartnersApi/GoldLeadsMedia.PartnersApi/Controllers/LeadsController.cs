@@ -47,7 +47,6 @@
                 CountryId = country.Id
             };
 
-
             var lead = await this.leadsService.RegisterAsync(serviceModel);
 
             var response = new
