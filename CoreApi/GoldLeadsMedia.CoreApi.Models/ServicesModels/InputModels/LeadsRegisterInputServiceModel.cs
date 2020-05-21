@@ -2,9 +2,6 @@
 {
     public class LeadsRegisterInputServiceModel
     {
-        public string SenderId { get; set; }
-        public string OfferId { get; set; }
-
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Password { get; set; }
