@@ -29,16 +29,6 @@
         [HttpGet]
         public IActionResult Login()
         {
-            var currentEnv = this.configuration["ASPNETCORE_ENVIRONMENT"];
-
-            if (currentEnv == null)
-            {
-                currentEnv = "Somehing is wrong here";
-            }
-
-            this.ViewData["Env"] = currentEnv;
-            this.ViewData["ConnString"] = this.configuration.GetConnectionString("DefaultConnection");
-            this.ViewData["CoreApiUrl"] = this.configuration["CoreApiUrl"];
             return this.View();
         }
         [HttpGet]

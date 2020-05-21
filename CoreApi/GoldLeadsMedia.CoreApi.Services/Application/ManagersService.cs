@@ -33,7 +33,7 @@ namespace GoldLeadsMedia.CoreApi.Services.Application
             var affiliates = await this.userManager.GetUsersInRoleAsync("Affiliate");
             var managerAffiliates = affiliates.Where(user => user.ManagerId == managerId);
 
-            return affiliates;
+            return managerAffiliates;
         }
         public IEnumerable<Lead> GetNotConfirmedLeads()
         {
