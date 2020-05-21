@@ -10,6 +10,7 @@
     using GoldLeadsMedia.Web.Models.InputModels;
     using GoldLeadsMedia.Web.Models.CoreApiResponses.ConventionTest;
     using Microsoft.AspNetCore.Hosting;
+    using GoldLeadsMedia.Database;
 
     public class AdministratorsController : Controller
     {
@@ -43,7 +44,10 @@
         {
             return this.View();
         }
-
+        public IActionResult RegisterAffiliate()
+        {
+            return this.View();
+        }
 
         [HttpPost]
         public async Task<IActionResult> CreateOffer(AdministratorsCreateOfferInputModel inputModel)
@@ -104,6 +108,23 @@
             await this.httpClient.PostAsync<int>("Api/Offers/AssignLandingPages", requestBody);
 
             return this.Redirect($"/Offers/Details/{inputModel.OfferId}");
+        }
+        [HttpPost]
+        public async Task<IActionResult> RegisterAffiliate(AdministratorsRegisterAffiliateInputModel inputModel)
+        {
+            var loggedUser = await this.userManager.GetUserAsync(this.User);
+
+            var affiliate = new GoldLeadsMediaUser
+            {
+                UserName = inputModel.UserName,
+                Email = inputModel.Email,
+                ManagerId = loggedUser.Id
+            };
+
+           
+            await this.userManager.CreateAsync(affiliate, inputModel.Password);
+            await this.userManager.AddToRoleAsync(affiliate, "Affiliate");
+            return this.Redirect("/Managers/Affiliates");
         }
     }
 }

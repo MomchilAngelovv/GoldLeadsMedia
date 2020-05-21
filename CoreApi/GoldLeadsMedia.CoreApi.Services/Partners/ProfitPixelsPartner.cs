@@ -1,14 +1,13 @@
 ﻿namespace GoldLeadsMedia.CoreApi.Services.Partners
 {
     using System;
-    using System.Collections.Generic;
-    using System.Diagnostics.CodeAnalysis;
-    using System.Net.Http.Headers;
     using System.Threading.Tasks;
-    using GoldLeadsMedia.CoreApi.Models.ServicesModels.InputModels;
-    using GoldLeadsMedia.CoreApi.Services.Application.Common;
-    using GoldLeadsMedia.CoreApi.Services.AsyncHttpClient;
+    using System.Collections.Generic;
+
     using GoldLeadsMedia.CoreApi.Services.Partners.Common;
+    using GoldLeadsMedia.CoreApi.Services.AsyncHttpClient;
+    using GoldLeadsMedia.CoreApi.Services.Application.Common;
+    using GoldLeadsMedia.CoreApi.Models.ServicesModels.InputModels;
 
     public class ProfitPixelsPartner : IPartner
     {

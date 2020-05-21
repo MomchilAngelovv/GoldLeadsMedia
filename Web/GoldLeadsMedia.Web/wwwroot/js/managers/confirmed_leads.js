@@ -1,5 +1,5 @@
 ﻿$('.clickable-table-row').on('click', function () {
-    let inputCheckBox = $(this).children().find('input')    ;
+    let inputCheckBox = $(this).children().find('input');
 
     if (inputCheckBox.prop("checked") === true) {
         inputCheckBox.prop("checked", false);

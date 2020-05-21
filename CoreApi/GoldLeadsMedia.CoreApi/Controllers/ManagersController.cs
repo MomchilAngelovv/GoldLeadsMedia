@@ -26,7 +26,6 @@ namespace GoldLeadsMedia.CoreApi.Controllers
             var managersAffiliates = await this.managersService.GetAffiliatesByAsync(managerId);
 
             var response = managersAffiliates
-                .Where(affiliate => affiliate.ManagerId == managerId)
                 .Select(affiliate => new
                 {
                     affiliate.Id,
