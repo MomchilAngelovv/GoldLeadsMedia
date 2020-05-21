@@ -46,6 +46,12 @@ namespace GoldLeadsMedia.Web
             .AddEntityFrameworkStores<GoldLeadsMediaDbContext>()
             .AddDefaultTokenProviders();
 
+            services.ConfigureApplicationCookie(options =>
+            {
+                //options.AccessDeniedPath = "TODO"; //TODO when security fixing
+                options.LoginPath = "/Users/Login";
+            });
+
             services.AddControllersWithViews(options => 
             {
                 options.Filters.Add<RegisterDeveleporErrorExceptionFilter>();

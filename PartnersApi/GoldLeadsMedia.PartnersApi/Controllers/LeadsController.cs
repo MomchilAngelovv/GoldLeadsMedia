@@ -36,10 +36,16 @@
         {
             var country = this.countriesService.GetBy(inputModel.CountryName);
 
+            if (country == null)
+            {
+                return this.BadRequest("Invalid country name! Make sure to provide correct country name!");
+            }
+
             var serviceModel = new LeadsRegisterInputServiceModel
             {
                 AffiliateId = inputModel.UserId,
                 OfferId = inputModel.OfferId,
+
                 FirstName = inputModel.FirstName,
                 LastName = inputModel.LastName,
                 Email = inputModel.Email,

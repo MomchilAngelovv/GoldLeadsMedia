@@ -12,6 +12,7 @@
     using GoldLeadsMedia.Database.Models;
     using GoldLeadsMedia.Web.Infrastructure.HttpHelper;
     using GoldLeadsMedia.Web.Models.Seeder;
+    using Microsoft.AspNetCore.Authorization;
 
     public class SeederController : Controller
     {
@@ -30,6 +31,12 @@
             this.userManager = userManager;
             this.roleManager = roleManager;
             this.httpClient = httpClient;
+        }
+
+        [Authorize]
+        public IActionResult CheckLoginUrl()
+        {
+            return this.Ok("Hello!");
         }
 
         public async Task<IActionResult> SeedData()
