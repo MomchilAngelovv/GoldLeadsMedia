@@ -86,20 +86,5 @@
             await this.userManager.UpdateAsync(loggedUser);
             return this.Redirect("/Users/Settings");
         }
-
-        //[HttpPost]
-        //public ActionResult AssignManagerToAffiliates(string managerId, string userIds)
-        //{
-        //    this.GetCurrentUser();
-        //    string url = string.Format("{0}api/User/AssignManagerToAffiliates", Constants.WebAPIUrl);
-        //    var response = WebRequestManager.HttpPost(url, new { Manager_Id = managerId, Users_Ids = userIds });
-
-        //    if (response.Code == 1)
-        //    {
-        //        return this.Redirect("/manager/index");
-        //    }
-
-        //    return new HttpStatusCodeResult(200);
-        //}
     }
 }
