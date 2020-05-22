@@ -1,6 +1,7 @@
 ﻿namespace GoldLeadsMedia.Database.Models
 {
     using System;
+    using System.ComponentModel.DataAnnotations;
 
     using GoldLeadsMedia.Database.Models.Common;
 
@@ -12,9 +13,9 @@
             this.CreatedOn = DateTime.UtcNow;
         }
 
+        [Key]
         public string Id { get; set; }
         public string Message { get; set; }
-        public string Information { get; set; }
 
         public string LeadId { get; set; }
         public string BrokerId { get; set; }
@@ -25,5 +26,6 @@
         public DateTime CreatedOn { get; set; }
         public DateTime? UpdatedOn { get; set; }
         public DateTime? DeletedOn { get; set; }
+        public string Information { get; set; }
     }
 }

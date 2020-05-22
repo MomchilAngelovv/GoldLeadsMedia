@@ -1,13 +1,12 @@
 ﻿namespace GoldLeadsMedia.CoreApi.Controllers
 {
-    using System.Linq;
-    using System.Collections.Generic;
+    using System.Threading.Tasks;
 
     using Microsoft.AspNetCore.Mvc;
-    using GoldLeadsMedia.CoreApi.Services.Application.Common;
+
     using GoldLeadsMedia.CoreApi.Models.InputModels;
     using GoldLeadsMedia.CoreApi.Models.ServiceModels;
-    using System.Threading.Tasks;
+    using GoldLeadsMedia.CoreApi.Services.Application.Common;
 
     public class LeadsController : ApiController
     {
@@ -41,7 +40,7 @@
                 PhoneNumber = inputModel.PhoneNumber,
                 CountryId = country.Id,
 
-                ClickId = inputModel.ClickId,
+                ClickRegistrationId = inputModel.ClickRegistrationId,
             };
 
             var lead = await this.leadsService.RegisterAsync(serviceModel);

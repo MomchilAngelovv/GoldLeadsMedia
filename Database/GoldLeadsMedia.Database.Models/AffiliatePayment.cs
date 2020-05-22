@@ -1,6 +1,7 @@
 ﻿namespace GoldLeadsMedia.Database.Models
 {
     using System;
+    using System.ComponentModel.DataAnnotations;
 
     using GoldLeadsMedia.Database.Models.Common;
 
@@ -12,12 +13,16 @@
             this.CreatedOn = DateTime.UtcNow;
         }
 
+        [Key]
         public string Id { get; set; }
         public decimal Amount { get; set; }
-        public string InvoiceNumber { get; set; }
+        [Required]
+        [MaxLength(100)]
         public string Reason { get; set; }
 
+        [Required]
         public string PayerId { get; set; }
+        [Required]
         public string ReceiverId { get; set; }
 
         public virtual GoldLeadsMediaUser Payer { get; set; }

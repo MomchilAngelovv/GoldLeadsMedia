@@ -1,6 +1,7 @@
 ﻿namespace GoldLeadsMedia.Database.Models
 {
     using System;
+    using System.ComponentModel.DataAnnotations;
 
     using GoldLeadsMedia.Database.Models.Common;
 
@@ -12,21 +13,28 @@
             this.CreatedOn = DateTime.UtcNow;
         }
 
-        //Lead information
+        [Key]
         public string Id { get; set; }
+        [Required]
+        [MaxLength(300)]
         public string FirstName { get; set; }
+        [Required]
+        [MaxLength(300)]
         public string LastName { get; set; }
+        [Required]
+        [MaxLength(300)]
         public string Email { get; set; }
+        [MaxLength(100)]
         public string Password { get; set; }
+        [Required]
+        [MaxLength(100)]
         public string PhoneNumber { get; set; }
         public bool IsConfirmed { get; set; }
 
-        //Information for lead in broker's system
         public string IdInBroker { get; set; }
         public string CallStatus { get; set; }
         public DateTime? FtdBecameOn { get; set; }
 
-        //Lead will have either ClickRegistrationId or ApiRegistrationId -> depends from where lead is registered
         public string ClickRegistrationId { get; set; }
         public string ApiRegistrationId { get; set; }
         public int CountryId { get; set; }

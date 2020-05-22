@@ -4,13 +4,10 @@
 
     public class LeadsRegisterInputModel
     {
-        //Sender information UserId = the id of the sending Affilaite and offerId = the id of the offer which leads will be send
         [Required]
         public string UserId { get; set; }
         [Required]
         public string OfferId { get; set; }
-
-        //Lead data
         [Required]
         public string FirstName { get; set; }
         [Required]

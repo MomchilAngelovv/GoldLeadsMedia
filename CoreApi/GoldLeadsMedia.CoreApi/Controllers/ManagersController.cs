@@ -2,10 +2,8 @@
 using GoldLeadsMedia.CoreApi.Models.ServiceModels;
 using GoldLeadsMedia.CoreApi.Services.Application.Common;
 using Microsoft.AspNetCore.Mvc;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection.Metadata;
 using System.Threading.Tasks;
 
 namespace GoldLeadsMedia.CoreApi.Controllers
@@ -53,7 +51,7 @@ namespace GoldLeadsMedia.CoreApi.Controllers
                     lead.Email,
                     lead.PhoneNumber,
                     CountryName = lead.Country.Name,
-                    OfferName = lead.Click?.Offer?.Name
+                    OfferName = lead.ClickRegistration?.Offer?.Name
                 })
                 .ToList();
 
@@ -73,7 +71,7 @@ namespace GoldLeadsMedia.CoreApi.Controllers
                     lead.Email,
                     lead.PhoneNumber,
                     CountryName = lead.Country.Name,
-                    OfferName = lead.Click?.Offer?.Name
+                    OfferName = lead.ClickRegistration?.Offer?.Name
                 })
                 .ToList();
 

@@ -1,6 +1,7 @@
 ﻿namespace GoldLeadsMedia.Database.Models
 {
     using System;
+    using System.ComponentModel.DataAnnotations;
 
     using GoldLeadsMedia.Database.Models.Common;
 
@@ -12,11 +13,17 @@
             this.CreatedOn = DateTime.UtcNow;
         }
 
+        [Key]
         public string Id { get; set; }
+        [Required]
+        [MaxLength(100)]
         public string IpAddress { get; set; }
 
+        [Required]
         public string OfferId { get; set; }
+        [Required]
         public string LandingPageId { get; set; }
+        [Required]
         public string AffiliateId { get; set; }
 
         public virtual Offer Offer { get; set; }

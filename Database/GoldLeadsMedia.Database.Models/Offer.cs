@@ -2,7 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
-
+    using System.ComponentModel.DataAnnotations;
     using GoldLeadsMedia.Database.Models.Common;
 
     public class Offer : IEntityMetaData
@@ -13,10 +13,16 @@
             this.CreatedOn = DateTime.UtcNow;
         }
 
+        [Key]
         public string Id { get; set; }
+        [Required]
+        [MaxLength(300)]
         public string Name { get; set; }
+        [Required]
         public string Description { get; set; }
+        [Required]
         public string Number { get; set; }
+        [Required]
         public string ActionFlow { get; set; }
         public decimal PayPerClick { get; set; }
         public decimal PayOut { get; set; }

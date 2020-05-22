@@ -1,6 +1,7 @@
 ﻿namespace GoldLeadsMedia.Database.Models
 {
     using System;
+    using System.ComponentModel.DataAnnotations;
 
     using Microsoft.AspNetCore.Identity;
 
@@ -14,7 +15,9 @@
             this.CreatedOn = DateTime.UtcNow;
         }
 
+        [MaxLength(100)]
         public string Skype { get; set; }
+        [MaxLength(100)]
         public string Experience { get; set; }
         public bool IsVip { get; set; }
 
