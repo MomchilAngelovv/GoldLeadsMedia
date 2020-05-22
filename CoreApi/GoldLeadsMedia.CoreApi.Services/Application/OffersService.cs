@@ -54,12 +54,12 @@
                 CountryId = inputModel.CountryId,
                 Description = inputModel.Description,
                 ActionFlow = inputModel.ActionFlow,
-                CreatedByManagerId = inputModel.CreatedByManagerId,
                 LanguageId = inputModel.LanguageId,
                 PayTypeId = inputModel.PayTypeId,
                 TargetDeviceId = inputModel.TargetDeviceId,
                 PayPerClick = inputModel.PayPerClick,
-                PayOut = inputModel.PayOut
+                PayOut = inputModel.PayOut,
+                Information = $"[Created by: {inputModel.CreatedByManagerId}]"
             };
 
             await db.Offers.AddAsync(offer);

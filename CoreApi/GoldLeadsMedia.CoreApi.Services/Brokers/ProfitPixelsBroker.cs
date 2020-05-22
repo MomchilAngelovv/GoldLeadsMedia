@@ -9,13 +9,13 @@
     using GoldLeadsMedia.CoreApi.Services.Application.Common;
     using GoldLeadsMedia.CoreApi.Models.ServicesModels.InputModels;
 
-    public class ProfitPixelsPartner : IPartner
+    public class ProfitPixelsBroker : IBroker
     {
         private readonly ILeadsService leadsService;
         private readonly IErrorsService errorsService;
         private readonly IAsyncHttpClient httpClient;
 
-        public ProfitPixelsPartner(
+        public ProfitPixelsBroker(
             ILeadsService leadsService,
             IErrorsService errorsService,
             IAsyncHttpClient httpClient)
@@ -62,7 +62,7 @@
                 {
                     Message = response.Message,
                     Information = $"Request Id: {response.RequestId}",
-                    PartnerName = "ProfitPixels"
+                    BrokerName = "ProfitPixels"
                 };
 
                 var ftdScanError = await this.errorsService.RegisterFtdScanErrorAsync(serviceModel);
@@ -70,7 +70,7 @@
 
             return ftdCounter;
         }
-        public async Task<int> SendLeadsAsync(IEnumerable<string> leadIds, string partnerId, string partnerOfferId)
+        public async Task<int> SendLeadsAsync(IEnumerable<string> leadIds, string brokerId, string partnerOfferId)
         {
             var failedLeadsCount = 0;
             var url = "https://api.profitpixels.com/client/v5/leads";
@@ -100,14 +100,14 @@
 
                 if (response.Success)
                 {
-                    await this.leadsService.SendSuccessUpdateLeadAsync(lead, partnerId, response.ResponseData.LeadId);
+                    await this.leadsService.SendSuccessUpdateLeadAsync(lead, brokerId, response.ResponseData.LeadId);
                 }
                 else
                 {
                     var serviceModel = new ErrorsRegisterLeadErrorInputServiceModel
                     {
                         LeadId = lead.Id,
-                        PartnerId = partnerId,
+                        BrokerId = brokerId,
                         ErrorMessage = response.Message,
                     };
 

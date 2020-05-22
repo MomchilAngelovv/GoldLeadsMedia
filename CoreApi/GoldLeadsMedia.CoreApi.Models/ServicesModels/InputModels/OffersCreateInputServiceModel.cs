@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace GoldLeadsMedia.CoreApi.Models.ServiceModels
+﻿namespace GoldLeadsMedia.CoreApi.Models.ServiceModels
 {
     public class OffersCreateInputServiceModel
     {

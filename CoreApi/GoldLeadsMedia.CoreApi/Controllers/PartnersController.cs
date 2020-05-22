@@ -13,14 +13,14 @@ namespace GoldLeadsMedia.CoreApi.Controllers
 {
     public class PartnersController : ApiController
     {
-        private readonly IPartnersService partnersService;
+        private readonly IBrokersService partnersService;
         private readonly IServiceProvider serviceProvider;
 
         public PartnersController(
-            IPartnersService partnersService,
+            IBrokersService brokersService,
             IServiceProvider serviceProvider)
         {
-            this.partnersService = partnersService;
+            this.partnersService = brokersService;
             this.serviceProvider = serviceProvider;
         }
 
@@ -58,31 +58,31 @@ namespace GoldLeadsMedia.CoreApi.Controllers
             return response;
         }
 
-        [HttpPost("{partnerId}/SendLeads")]
-        public async Task<ActionResult<int>> SendLeads(string partnerId, PartnersSendLeadsInputModel inputModel)
+        [HttpPost("{brokerId}/SendLeads")]
+        public async Task<ActionResult<int>> SendLeads(string brokerId, PartnersSendLeadsInputModel inputModel)
         {
-            var partner = this.partnersService.GetBy(partnerId);
+            var broker = this.partnersService.GetBy(brokerId);
 
-            if (partner == null)
+            if (broker == null)
             {
-                //TODO LOGIC IF no partner is find
+                //TODO LOGIC IF no partner is find -> register developer error maybe
             }
 
-            var partnerType = typeof(IPartner)
+            var brokerType = typeof(IBroker)
                 .Assembly
                 .GetTypes()
-                .SingleOrDefault(type => type.IsClass && type.IsPublic && type.Name.ToLower().StartsWith(partner.Name.ToLower()) && type.Name.EndsWith("Partner"));
+                .SingleOrDefault(type => type.IsClass && type.IsPublic && type.Name.ToLower().StartsWith(broker.Name.ToLower()) && type.Name.EndsWith("Broker"));
 
-            var partnerInstance = this.serviceProvider.GetService(partnerType) as IPartner;
+            var brokerInstance = this.serviceProvider.GetService(brokerType) as IBroker;
 
-            var errorCount = await partnerInstance.SendLeadsAsync(inputModel.LeadIds, partner.Id, inputModel.PartnerOfferId);
+            var errorCount = await brokerInstance.SendLeadsAsync(inputModel.LeadIds, broker.Id, inputModel.BrokerOfferId);
             return errorCount;
         }
 
         [HttpPost("FtdScan")]
         public async Task<ActionResult<object>> FtdScan()
         {
-            var partnerTypes = typeof(IPartner)
+            var partnerTypes = typeof(IBroker)
                 .Assembly
                 .GetTypes()
                 .Where(type => type.IsClass && type.IsPublic && type.Name.EndsWith("Partner"));
@@ -93,7 +93,7 @@ namespace GoldLeadsMedia.CoreApi.Controllers
             var newFtdsCounter = 0;
             foreach (var partnerType in partnerTypes)
             {
-                var partnerInstance = this.serviceProvider.GetService(partnerType) as IPartner;
+                var partnerInstance = this.serviceProvider.GetService(partnerType) as IBroker;
                 var newFtds = await partnerInstance.FtdScanAsync(from, to);
 
                 newFtdsCounter += newFtds;

@@ -17,13 +17,13 @@
         public string Information { get; set; }
 
         public string LeadId { get; set; }
-        public string PartnerId { get; set; }
+        public string BrokerId { get; set; }
 
-        public virtual Lead Lead{ get; set; }
-        public virtual Broker Partner { get; set; }
+        public virtual Lead Lead { get; set; }
+        public virtual Broker Broker { get; set; }
 
         public DateTime CreatedOn { get; set; }
-        public DateTime? UpdatedOn { get; set ; }
+        public DateTime? UpdatedOn { get; set; }
         public DateTime? DeletedOn { get; set; }
     }
 }

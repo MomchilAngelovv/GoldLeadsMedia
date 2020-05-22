@@ -8,6 +8,6 @@
         public string Email { get; set; }
         public string PhoneNumber { get; set; }
         public int CountryId { get; set; }
-        public string ClickId { get; set; }
+        public string ClickRegistrationId { get; set; }
     }
 }

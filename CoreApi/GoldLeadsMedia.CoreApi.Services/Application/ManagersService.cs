@@ -37,12 +37,12 @@ namespace GoldLeadsMedia.CoreApi.Services.Application
         }
         public IEnumerable<Lead> GetNotConfirmedLeads()
         {
-            var notConfirmedLeads = this.db.Leads.Where(lead => lead.ConfirmedByManagerId == null).ToList();
+            var notConfirmedLeads = this.db.Leads.Where(lead => lead.IsConfirmed == false).ToList();
             return notConfirmedLeads;
         }
         public IEnumerable<Lead> GetConfirmedLeads()
         {
-            var confirmedLeads = this.db.Leads.Where(lead => lead.ConfirmedByManagerId != null).ToList();
+            var confirmedLeads = this.db.Leads.Where(lead => lead.IsConfirmed).ToList();
             return confirmedLeads;
         }
         public async Task<IEnumerable<Lead>> ConfirmLeadsAsync(ManagersConfirmLeadsInputServiceModel serviceModel)
@@ -53,7 +53,8 @@ namespace GoldLeadsMedia.CoreApi.Services.Application
             {
                 var lead = this.leadsService.GetBy(leadId);
 
-                lead.ConfirmedByManagerId = serviceModel.ManagerId;
+                lead.IsConfirmed = true;
+                lead.Information += $"Lead confirmed by (Id of manager): {serviceModel.ManagerId}";
                 lead.UpdatedOn = DateTime.UtcNow;
 
                 this.db.Leads.Update(lead);

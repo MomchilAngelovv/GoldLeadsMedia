@@ -56,20 +56,20 @@
     </h4>
     <div class="col-4">
         <label for="optional-offerId">Enter the offer Id given from partner</label>
-        <input id="partner-offer-id" class="form-control" />
+        <input id="broker-offer-id" class="form-control" />
     </div>
 </div>
 <hr />
 <div>
     <h4 class="text-center">
-        Select partner:
+        Select broker:
     </h4>
     <div class="row">
         @foreach (var partner in Model.Partners)
         {
             <div class="col-2">
                 <label>
-                    <input type="radio" name="partner-id" value="@partner.Id"> @partner.Name
+                    <input type="radio" name="broker-id" value="@partner.Id"> @partner.Name
                 </label>
             </div>
         }

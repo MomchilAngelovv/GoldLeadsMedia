@@ -4,9 +4,9 @@
     using System.Threading.Tasks;
     using System.Collections.Generic;
 
-    public interface IPartner
+    public interface IBroker
     {
-        Task<int> SendLeadsAsync(IEnumerable<string> leadIds, string partnerId, string partnerOfferId);
+        Task<int> SendLeadsAsync(IEnumerable<string> leadIds, string brokerId, string partnerOfferId);
         Task<int> FtdScanAsync(DateTime from, DateTime to);
     } 
 }

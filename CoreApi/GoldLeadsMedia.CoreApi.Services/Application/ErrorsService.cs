@@ -28,7 +28,7 @@ namespace GoldLeadsMedia.CoreApi.Services.Application
             var sendLeadError = new SendLeadError
             {
                 LeadId = serviceModel.LeadId,
-                PartnerId = serviceModel.PartnerId,
+                BrokerId = serviceModel.BrokerId,
                 Information = serviceModel.Information,
                 Message = serviceModel.ErrorMessage
             };
@@ -43,7 +43,7 @@ namespace GoldLeadsMedia.CoreApi.Services.Application
             var ftdScanError = new FtdScanError
             {
                 Message = serviceModel.Message,
-                PartnerName = serviceModel.PartnerName,
+                BrokerName = serviceModel.BrokerName,
                 Information = serviceModel.Information,
             };
 

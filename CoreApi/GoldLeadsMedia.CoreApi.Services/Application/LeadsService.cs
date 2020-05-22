@@ -35,15 +35,15 @@
         public IEnumerable<Lead> GetAllBy(string affiliateId)
         {
             var leads = db.Leads
-                .Where(lead => lead.Click.AffiliateId == affiliateId);
+                .Where(lead => lead.ClickRegistration.AffiliateId == affiliateId);
 
             return leads;
         }
-        public Lead GetBy(string id, bool idInPartner)
+        public Lead GetBy(string id, bool searchByBrokerId)
         {
-            if (idInPartner)
+            if (searchByBrokerId)
             {
-                return this.db.Leads.FirstOrDefault(lead => lead.IdInPartner == id);
+                return this.db.Leads.FirstOrDefault(lead => lead.IdInBroker == id);
             }
 
             return this.db.Leads.FirstOrDefault(lead => lead.Id == id);
@@ -55,10 +55,9 @@
                 FirstName = serviceModel.FirstName,
                 LastName = serviceModel.LastName,
                 Email = serviceModel.Email,
-                Password = serviceModel.Password,
                 CountryId = serviceModel.CountryId,
                 PhoneNumber = serviceModel.PhoneNumber,
-                ClickId = serviceModel.ClickId,
+                ClickRegistrationId = serviceModel.ClickRegistrationId,
             };
 
             await this.db.Leads.AddAsync(lead);
@@ -66,11 +65,11 @@
 
             return lead;
         }
-        public async Task<Lead> SendSuccessUpdateLeadAsync(Lead lead, string partnerId, string idInPartner)
+        public async Task<Lead> SendSuccessUpdateLeadAsync(Lead lead, string brokerId, string idInBroker)
         {
             lead.UpdatedOn = DateTime.UtcNow;
-            lead.PartnerId = partnerId;
-            lead.IdInPartner = idInPartner;
+            lead.BrokerId = brokerId;
+            lead.IdInBroker = idInBroker;
 
             this.db.Leads.Update(lead);
             await this.db.SaveChangesAsync();

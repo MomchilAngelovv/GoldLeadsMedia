@@ -10,11 +10,11 @@ using System.Threading.Tasks;
 
 namespace GoldLeadsMedia.CoreApi.Services.Application
 {
-    public class PartnersService : IPartnersService
+    public class BrokersService : IBrokersService
     {
         private readonly GoldLeadsMediaDbContext db;
 
-        public PartnersService(
+        public BrokersService(
             GoldLeadsMediaDbContext db)
         {
             this.db = db;

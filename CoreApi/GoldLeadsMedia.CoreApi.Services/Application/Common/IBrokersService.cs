@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace GoldLeadsMedia.CoreApi.Services.Application.Common
 {
-    public interface IPartnersService
+    public interface IBrokersService
     {
         Broker GetBy(string id);
         IEnumerable<Broker> GetAll();
