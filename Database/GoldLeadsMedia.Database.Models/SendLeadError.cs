@@ -20,7 +20,7 @@
         public string PartnerId { get; set; }
 
         public virtual Lead Lead{ get; set; }
-        public virtual Partner Partner { get; set; }
+        public virtual Broker Partner { get; set; }
 
         public DateTime CreatedOn { get; set; }
         public DateTime? UpdatedOn { get; set ; }

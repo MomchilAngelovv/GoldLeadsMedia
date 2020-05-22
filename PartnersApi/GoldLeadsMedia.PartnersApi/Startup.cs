@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using GoldLeadsMedia.Database;
-using GoldLeadsMedia.PartnersApi.HttpHelper;
 using GoldLeadsMedia.PartnersApi.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -38,7 +37,6 @@ namespace GoldLeadsMedia.PartnersApi
             });
 
             services.AddHttpClient();
-            services.AddTransient<IAsyncHttpClient, AsyncHttpClient>();
 
             services.AddTransient<ILeadsService, LeadsService>();
             services.AddTransient<ICountriesService, CountriesService>();

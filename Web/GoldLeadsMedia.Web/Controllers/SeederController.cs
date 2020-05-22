@@ -71,13 +71,10 @@
                 Name = "English",
             };
 
-           
-
             var verticalNames = new List<string> { "Crypto", "Forex", "Casino" };
             var accessNames = new List<string> { "Regular", "Private", "Vip" };
-            var paymentTypeNames = new List<string> { "Per lead", "Per ftd" };
+            var paymentTypeNames = new List<string> { "CPL", "CPA", "CPC" };
             var targetDeviceNames = new List<string> { "Computer", "Mobile", "Computer and mobile" };
-            var landingPageUrls = new List<string> { "http://glm-cryptonews.com/bitcoinrevolution", "http://glm-cryptonews.com/tesler", "http://glm-cryptonews.com/bitcoinprofitnow", "http://glm-cryptonews.com/bitcoinbillionaire" };
             var roleNames = new List<string> { "Affiliate", "Manager", "Administrator" };
             var offerGroupNames = new List<string> { "Best offers", "New offers", "Vip offers" };
 
@@ -85,7 +82,6 @@
             var accesses = new List<Access>();
             var paymentTypes = new List<PayType>();
             var targetDevices = new List<TargetDevice>();
-            var landingPages = new List<LandingPage>();
             var offerGroups = new List<OfferGroup>();
 
             foreach (var name in verticalNames)
@@ -125,16 +121,6 @@
             }
 
             var cryptoNewsCounter = 1;
-
-            foreach (var url in landingPageUrls)
-            {
-                var langingPage = new LandingPage
-                {
-                    Name = $"Crypto News {cryptoNewsCounter++}",
-                    Url = url,
-                };
-                landingPages.Add(langingPage);
-            }
 
             foreach (var name in roleNames)
             {
@@ -176,7 +162,6 @@
             await this.db.OfferGroups.AddRangeAsync(offerGroups);
             await this.db.PaymentTypes.AddRangeAsync(paymentTypes);
             await this.db.TargetDevices.AddRangeAsync(targetDevices);
-            await this.db.LandingPages.AddRangeAsync(landingPages);
 
             await this.db.SaveChangesAsync();
 
@@ -192,7 +177,6 @@
             stringBuilder.AppendLine($"[Offer groups:{db.OfferGroups.Count()}]");
             stringBuilder.AppendLine($"[Payment types:{db.PaymentTypes.Count()}]");
             stringBuilder.AppendLine($"[Target devices:{db.TargetDevices.Count()}]");
-            stringBuilder.AppendLine($"[Landing pages:{db.LandingPages.Count()}]");
 
             return this.Content(stringBuilder.ToString());
         }

@@ -32,7 +32,8 @@
             var apiRegistration = new ApiRegistration
             {
                 AffiliateId = serviceModel.AffiliateId,
-                OfferId = serviceModel.OfferId
+                OfferId = serviceModel.OfferId,
+                IpAddress = serviceModel.IpAddress
             };
 
             await this.db.ApiRegistrations.AddAsync(apiRegistration);

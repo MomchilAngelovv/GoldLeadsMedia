@@ -1,12 +1,11 @@
-﻿using GoldLeadsMedia.Database.Models;
-using GoldLeadsMedia.PartnersApi.Models.ServiceModels;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace GoldLeadsMedia.PartnersApi.Services
+﻿namespace GoldLeadsMedia.PartnersApi.Services
 {
+    using System.Threading.Tasks;
+    using System.Collections.Generic;
+
+    using GoldLeadsMedia.Database.Models;
+    using GoldLeadsMedia.PartnersApi.Models.ServiceModels;
+
     public interface ILeadsService
     {
         Task<Lead> RegisterAsync(LeadsRegisterInputServiceModel serviceModel);

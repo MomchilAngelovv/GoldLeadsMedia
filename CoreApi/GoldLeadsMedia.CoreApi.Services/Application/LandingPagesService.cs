@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace GoldLeadsMedia.CoreApi.Services.Application
 {
@@ -17,6 +18,20 @@ namespace GoldLeadsMedia.CoreApi.Services.Application
             GoldLeadsMediaDbContext db)
         {
             this.db = db;
+        }
+
+        public async Task<LandingPage> CreateAsync(string name, string url)
+        {
+            var landingPage = new LandingPage
+            {
+                Name = name,
+                Url = url
+            };
+
+            await this.db.LandingPages.AddAsync(landingPage);
+            await this.db.SaveChangesAsync();
+
+            return landingPage;
         }
 
         public IEnumerable<LandingPage> GetAll()

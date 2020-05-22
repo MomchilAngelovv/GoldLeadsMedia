@@ -48,6 +48,10 @@
         {
             return this.View();
         }
+        public IActionResult RegisterLandingPage()
+        {
+            return this.View();
+        }
 
         [HttpPost]
         public async Task<IActionResult> CreateOffer(AdministratorsCreateOfferInputModel inputModel)
@@ -120,11 +124,23 @@
                 Email = inputModel.Email,
                 ManagerId = loggedUser.Id
             };
-
            
             await this.userManager.CreateAsync(affiliate, inputModel.Password);
             await this.userManager.AddToRoleAsync(affiliate, "Affiliate");
             return this.Redirect("/Managers/Affiliates");
+        }
+        [HttpPost]
+        public async Task<IActionResult> RegisterLandingPage(AdministratorsRegisterLandingPageInputModel inputModel)
+        {
+            var requestBody = new
+            {
+                inputModel.Name,
+                inputModel.Url
+            };
+
+            var landingPageName = await this.httpClient.PostAsync<string>("Api/LandingPages", requestBody);
+
+            return this.Redirect("Offers/Dashboard");
         }
     }
 }

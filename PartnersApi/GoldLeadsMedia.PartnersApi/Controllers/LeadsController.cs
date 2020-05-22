@@ -41,6 +41,8 @@
                 return this.BadRequest("Invalid country name! Make sure to provide correct country name!");
             }
 
+            var ipAddress = this.HttpContext.Connection.RemoteIpAddress.ToString();
+
             var serviceModel = new LeadsRegisterInputServiceModel
             {
                 AffiliateId = inputModel.UserId,
@@ -50,7 +52,8 @@
                 LastName = inputModel.LastName,
                 Email = inputModel.Email,
                 PhoneNumber = inputModel.PhoneNumber,
-                CountryId = country.Id
+                CountryId = country.Id,
+                IpAddress = ipAddress
             };
 
             var lead = await this.leadsService.RegisterAsync(serviceModel);

@@ -15,7 +15,7 @@
 
         public DbSet<Access> Accesses { get; set; }
         public DbSet<ApiRegistration> ApiRegistrations { get; set; }
-        public DbSet<Click> Clicks { get; set; }
+        public DbSet<ClickRegistration> ClickRegistrations { get; set; }
         public DbSet<Country> Countries { get; set; }
         public DbSet<DeveloperError> DeveloperErrors { get; set; }
         public DbSet<FtdScanError> FtdScanErrors { get; set; }
@@ -27,7 +27,7 @@
         public DbSet<OfferOfferGroup> OffersOfferGroups { get; set; }
         public DbSet<OfferGroup> OfferGroups { get; set; }
         public DbSet<OfferLandingPage> OffersLandingPages { get; set; }
-        public DbSet<Partner> Partners { get; set; }
+        public DbSet<Broker> Brokers { get; set; }
         public DbSet<PayType> PaymentTypes { get; set; }
         public DbSet<TargetDevice> TargetDevices { get; set; }
         public DbSet<Vertical> Verticals { get; set; }

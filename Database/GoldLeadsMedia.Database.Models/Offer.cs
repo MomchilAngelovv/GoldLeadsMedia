@@ -27,7 +27,6 @@
         public int VerticalId { get; set; } 
         public int LanguageId { get; set; }
         public int TargetDeviceId { get; set; }
-        public string CreatedByManagerId { get; set; }
 
         public virtual PayType PayType { get; set; }
         public virtual Country Country { get; set; }
@@ -42,5 +41,6 @@
         public DateTime CreatedOn { get; set; }
         public DateTime? UpdatedOn { get; set; }
         public DateTime? DeletedOn { get; set; }
+        public string Information { get; set; }
     }
 }

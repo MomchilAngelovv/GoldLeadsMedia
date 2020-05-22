@@ -1,4 +1,5 @@
-﻿using GoldLeadsMedia.CoreApi.Services.Application.Common;
+﻿using GoldLeadsMedia.CoreApi.Models.CoreApiModels;
+using GoldLeadsMedia.CoreApi.Services.Application.Common;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -29,6 +30,12 @@ namespace GoldLeadsMedia.CoreApi.Controllers
                 .ToList();
 
             return landingPages;
+        }
+
+        public async Task<ActionResult<string>> Register(LandingPagesRegisterInputModel inputModel)
+        {
+            var landingPage = await this.landingPagesService.CreateAsync(inputModel.Name, inputModel.Url);
+            return landingPage.Name;
         }
     }
 }

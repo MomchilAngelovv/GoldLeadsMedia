@@ -1,7 +1,6 @@
 ﻿using GoldLeadsMedia.Database.Models;
-using System;
 using System.Collections.Generic;
-using System.Text;
+using System.Threading.Tasks;
 
 namespace GoldLeadsMedia.CoreApi.Services.Application.Common
 {
@@ -9,5 +8,6 @@ namespace GoldLeadsMedia.CoreApi.Services.Application.Common
     {
         IEnumerable<LandingPage> GetAll();
         LandingPage GetBy(string id);
+        Task<LandingPage> CreateAsync(string name, string url);
     }
 }

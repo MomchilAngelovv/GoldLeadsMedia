@@ -20,15 +20,15 @@ namespace GoldLeadsMedia.CoreApi.Services.Application
 
         public IEnumerable<Lead> GetLeadsBy(string affiliateId)
         {
-            var leads = db.Leads.Where(lead => lead.Click.AffiliateId == affiliateId);
+            var leads = db.Leads.Where(lead => lead.ClickRegistration.AffiliateId == affiliateId);
             return leads;
         }
 
         public AffiliatesGetPaymentsByOutputServiceModel GetPaymentsBy(string affiliateId)
         {
             var availableMoney = this.db.Leads
-                .Where(lead => lead.FtdBecameOn != null && lead.Click.Affiliate.Id == affiliateId)
-                .Sum(lead => lead.Click.Offer.PayOut);
+                .Where(lead => lead.FtdBecameOn != null && lead.ClickRegistration.Affiliate.Id == affiliateId)
+                .Sum(lead => lead.ClickRegistration.Offer.PayOut);
 
             var result = new AffiliatesGetPaymentsByOutputServiceModel
             {

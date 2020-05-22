@@ -7,8 +7,8 @@ namespace GoldLeadsMedia.CoreApi.Services.Application.Common
 {
     public interface IPartnersService
     {
-        Partner GetBy(string id);
-        IEnumerable<Partner> GetAll();
-        Task<Partner> RegisterAsync(PartnersRegisterInputServiceModel serviceModel);
+        Broker GetBy(string id);
+        IEnumerable<Broker> GetAll();
+        Task<Broker> RegisterAsync(PartnersRegisterInputServiceModel serviceModel);
     }
 }

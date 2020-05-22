@@ -20,26 +20,26 @@ namespace GoldLeadsMedia.CoreApi.Services.Application
             this.db = db;
         }
 
-        public IEnumerable<Partner> GetAll()
+        public IEnumerable<Broker> GetAll()
         {
-            var partners = this.db.Partners.ToList();
+            var partners = this.db.Brokers.ToList();
             return partners;
         }
 
-        public Partner GetBy(string id)
+        public Broker GetBy(string id)
         {
-            var partner = this.db.Partners.FirstOrDefault(partner => partner.Id == id);
+            var partner = this.db.Brokers.FirstOrDefault(partner => partner.Id == id);
             return partner;
         }
 
-        public async Task<Partner> RegisterAsync(PartnersRegisterInputServiceModel serviceModel)
+        public async Task<Broker> RegisterAsync(PartnersRegisterInputServiceModel serviceModel)
         {
-            var partner = new Partner
+            var partner = new Broker
             {
                 Name = serviceModel.Name
             };
 
-            await this.db.Partners.AddAsync(partner);
+            await this.db.Brokers.AddAsync(partner);
             await this.db.SaveChangesAsync();
 
             return partner;

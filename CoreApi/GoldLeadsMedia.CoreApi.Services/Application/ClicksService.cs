@@ -19,9 +19,9 @@
             this.db = db;
         }
 
-        public async Task<Click> RegisterAsync(ClicksRegisterInputServiceModel serviceModel)
+        public async Task<ClickRegistration> RegisterAsync(ClicksRegisterInputServiceModel serviceModel)
         {
-            var click = new Click
+            var clickRegistration = new ClickRegistration
             {
                 OfferId = serviceModel.OfferId,
                 LandingPageId = serviceModel.LandingPageId,
@@ -29,10 +29,10 @@
                 IpAddress = serviceModel.IpAddress
             };
 
-            await db.Clicks.AddAsync(click);
+            await db.ClickRegistrations.AddAsync(clickRegistration);
             await db.SaveChangesAsync();
 
-            return click;
+            return clickRegistration;
         }
     }
 }
