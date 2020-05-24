@@ -24,9 +24,7 @@
 
         [Required]
         public string AffiliateId { get; set; }
-        [Required]
         public string OfferId { get; set; }
-        [Required]
         public string LeadId { get; set; }
 
         public virtual GoldLeadsMediaUser Affiliate { get; set; }

@@ -16,8 +16,9 @@
         [Key]
         public string Id { get; set; }
         [Required]
-        [MaxLength(100)]
+        [MaxLength(400)]
         public string Message { get; set; }
+
         [Required]
         public string LeadId { get; set; }
         [Required]

@@ -2,14 +2,13 @@
 {
     using System;
     using System.Linq;
+    using System.Threading.Tasks;
     using System.Collections.Generic;
 
     using GoldLeadsMedia.Database;
     using GoldLeadsMedia.Database.Models;
     using GoldLeadsMedia.CoreApi.Services.Application.Common;
-    using System.Threading.Tasks;
     using GoldLeadsMedia.CoreApi.Models.ServiceModels;
-    using GoldLeadsMedia.CoreApi.Models.ServicesModels.InputModels;
 
     public class LeadsService : ILeadsService
     {
@@ -35,7 +34,8 @@
         public IEnumerable<Lead> GetAllBy(string affiliateId)
         {
             var leads = db.Leads
-                .Where(lead => lead.ClickRegistration.AffiliateId == affiliateId);
+                .Where(lead => lead.ClickRegistration.AffiliateId == affiliateId)
+                .ToList();
 
             return leads;
         }

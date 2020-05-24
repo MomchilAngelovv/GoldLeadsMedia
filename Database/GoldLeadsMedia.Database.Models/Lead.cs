@@ -17,13 +17,13 @@
         [Key]
         public string Id { get; set; }
         [Required]
-        [MaxLength(300)]
+        [MaxLength(100)]
         public string FirstName { get; set; }
         [Required]
-        [MaxLength(300)]
+        [MaxLength(100)]
         public string LastName { get; set; }
         [Required]
-        [MaxLength(300)]
+        [MaxLength(100)]
         public string Email { get; set; }
         [MaxLength(100)]
         public string Password { get; set; }
@@ -31,10 +31,14 @@
         [MaxLength(100)]
         public string PhoneNumber { get; set; }
         public bool IsConfirmed { get; set; }
+        public bool HasAffiliatePayments { get; set; }
 
+        [MaxLength(450)]
         public string IdInBroker { get; set; }
+        [MaxLength(100)]
         public string CallStatus { get; set; }
         public DateTime? FtdBecameOn { get; set; }
+        public decimal? FtdAmmount { get; set; }
 
         public string ClickRegistrationId { get; set; }
         public string ApiRegistrationId { get; set; }
@@ -46,8 +50,8 @@
         public virtual Country Country { get; set; }
         public virtual Broker Broker { get; set; }
 
-        public virtual IEnumerable<AffiliatePayment> AffiliatePayments { get; set; }
-        public virtual IEnumerable<SendLeadError> SendLeadErrors { get; set; }
+        public virtual ICollection<AffiliatePayment> AffiliatePayments { get; set; }
+        public virtual ICollection<SendLeadError> SendLeadErrors { get; set; }
 
         public DateTime CreatedOn { get ;set; }
         public DateTime? UpdatedOn { get; set; }

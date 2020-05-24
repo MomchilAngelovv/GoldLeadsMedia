@@ -19,7 +19,7 @@
         [MaxLength(100)]
         public string Name { get; set; }
 
-        public virtual IEnumerable<Offer> Offers { get; set; }
+        public virtual ICollection<Offer> Offers { get; set; }
 
         public DateTime CreatedOn { get ; set; }
         public DateTime? UpdatedOn { get; set; }

@@ -46,7 +46,7 @@
                     offer.PayPerClick,
                     Language = offer.Language.Name,
                     PayType = offer.PayType.Name,
-                    offer.PayOut,
+                    offer.PayPerAction,
                     offer.ActionFlow,
                     Vertical = offer.Vertical.Name,
                     Access = offer.Access.Name
@@ -101,7 +101,7 @@
                 Language = offer.Language.Name,
                 PayType = offer.PayType.Name,
                 offer.PayPerClick,
-                offer.PayOut,
+                offer.PayPerAction,
                 offer.Description,
                 LandingPages = offer.OffersLandingPages
                     .Select(olp => new 

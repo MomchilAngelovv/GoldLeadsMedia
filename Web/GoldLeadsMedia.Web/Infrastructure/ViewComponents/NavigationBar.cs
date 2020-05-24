@@ -3,11 +3,11 @@
     using System.Threading.Tasks;
 
     using Microsoft.AspNetCore.Mvc;
+    using Microsoft.AspNetCore.Identity;
 
+    using GoldLeadsMedia.Database.Models;
     using GoldLeadsMedia.Web.Models.Shared;
     using GoldLeadsMedia.Web.Infrastructure.HttpHelper;
-    using Microsoft.AspNetCore.Identity;
-    using GoldLeadsMedia.Database.Models;
     using GoldLeadsMedia.Web.Models.CoreApiResponses.ConventionTest;
 
     public class NavigationBar : ViewComponent
@@ -26,13 +26,14 @@
         public async Task<IViewComponentResult> InvokeAsync()
         {
             var loggedUsed = await this.userManager.GetUserAsync(this.HttpContext.User);
-            var affiliatePayments = await this.httpClient.GetAsync<GetAffiliatesIdPaymentsResponse>($"Api/Affiliates/{loggedUsed.Id}/Payments");
+            var affiliatePayments = await this.httpClient.GetAsync<GetAffiliatesIdPaymentsStatusResponse>($"Api/Affiliates/{loggedUsed.Id}/Payments");
 
             var viewModel = new NavigationBarViewModel
             {
-                Available = affiliatePayments.Available,
-                Paid = affiliatePayments.Paid,
-                IsLoggedUserManagerOrAdministrator = true // Hard coded need to check if user is manager or admin role
+                TotalEarned = affiliatePayments.TotalEarned,
+                TotalPaid = affiliatePayments.TotalPaid,
+                IsManager = await this.userManager.IsInRoleAsync(loggedUsed, "Manager"),
+                IsAdministrator = await this.userManager.IsInRoleAsync(loggedUsed, "Administrator")
             };
 
             return this.View(viewModel);

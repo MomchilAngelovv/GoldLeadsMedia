@@ -20,11 +20,11 @@
         [MaxLength(100)]
         public string Name { get; set; }
         [Required]
-        [MaxLength(300)]
+        [MaxLength(400)]
         public string Url { get; set; }
 
         public virtual ICollection<OfferLandingPage> OffersLandingPages { get; set; }
-        public virtual IEnumerable<ClickRegistration> ClickRegistrations { get; set; }
+        public virtual ICollection<ClickRegistration> ClickRegistrations { get; set; }
 
         public DateTime CreatedOn { get ; set ; }
         public DateTime? UpdatedOn { get; set; }

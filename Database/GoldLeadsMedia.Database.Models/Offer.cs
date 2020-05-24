@@ -3,6 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
+
     using GoldLeadsMedia.Database.Models.Common;
 
     public class Offer : IEntityMetaData
@@ -16,16 +17,20 @@
         [Key]
         public string Id { get; set; }
         [Required]
-        [MaxLength(300)]
+        [MaxLength(100)]
         public string Name { get; set; }
         [Required]
+        [MaxLength(400)]
         public string Description { get; set; }
         [Required]
+        [MaxLength(100)]
         public string Number { get; set; }
         [Required]
+        [MaxLength(400)]
         public string ActionFlow { get; set; }
-        public decimal PayPerClick { get; set; }
-        public decimal PayOut { get; set; }
+        public decimal? PayPerClick { get; set; }
+        public decimal? PayPerAction { get; set; }
+        public decimal? PayPerLead { get; set; }
 
         public int PayTypeId { get; set; }
         public int CountryId { get; set; }
@@ -43,11 +48,9 @@
 
         public virtual ICollection<OfferLandingPage> OffersLandingPages { get; set; }
         public virtual ICollection<OfferOfferGroup> OffersGroups { get; set; }
-
-        public virtual IEnumerable<AffiliatePayment> AffiliatePayments { get; set; }
-        public virtual IEnumerable<ApiRegistration> ApiRegistrations { get; set; }
-        public virtual IEnumerable<ClickRegistration> ClickRegistrations { get; set; }
-
+        public virtual ICollection<AffiliatePayment> AffiliatePayments { get; set; }
+        public virtual ICollection<ApiRegistration> ApiRegistrations { get; set; }
+        public virtual ICollection<ClickRegistration> ClickRegistrations { get; set; }
 
         public DateTime CreatedOn { get; set; }
         public DateTime? UpdatedOn { get; set; }

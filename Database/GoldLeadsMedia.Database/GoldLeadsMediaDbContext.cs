@@ -41,8 +41,10 @@
             builder.Entity<OfferOfferGroup>().HasKey(e => new { e.OfferId, e.OfferGroupId });
 
             builder.Entity<Offer>().Property(p => p.PayPerClick).HasColumnType("decimal(18,4)");
-            builder.Entity<Offer>().Property(p => p.PayOut).HasColumnType("decimal(18,4)");
+            builder.Entity<Offer>().Property(p => p.PayPerAction).HasColumnType("decimal(18,4)");
             builder.Entity<AffiliatePayment>().Property(p => p.Amount).HasColumnType("decimal(18,4)");
+            builder.Entity<Lead>().Property(p => p.FtdAmmount).HasColumnType("decimal(18,4)");
+            builder.Entity<Offer>().Property(p => p.PayPerLead).HasColumnType("decimal(18,4)");
 
             base.OnModelCreating(builder);
         }

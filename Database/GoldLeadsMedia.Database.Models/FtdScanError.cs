@@ -16,7 +16,7 @@
         [Key]
         public string Id { get; set; }
         [Required]
-        [MaxLength(300)]
+        [MaxLength(400)]
         public string Message { get; set; }
         [Required]
         public string BrokerId { get; set; }

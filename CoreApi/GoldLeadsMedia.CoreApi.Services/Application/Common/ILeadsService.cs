@@ -1,11 +1,11 @@
 ﻿namespace GoldLeadsMedia.CoreApi.Services.Application.Common
 {
     using System;
-    using System.Collections.Generic;
     using System.Threading.Tasks;
-    using GoldLeadsMedia.CoreApi.Models.ServiceModels;
-    using GoldLeadsMedia.CoreApi.Models.ServicesModels.InputModels;
+    using System.Collections.Generic;
+
     using GoldLeadsMedia.Database.Models;
+    using GoldLeadsMedia.CoreApi.Models.ServiceModels;
 
     public interface ILeadsService
     {

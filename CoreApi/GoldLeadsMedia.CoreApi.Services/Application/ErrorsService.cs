@@ -43,7 +43,7 @@ namespace GoldLeadsMedia.CoreApi.Services.Application
             var ftdScanError = new FtdScanError
             {
                 Message = serviceModel.Message,
-                BrokerName = serviceModel.BrokerName,
+                BrokerId = serviceModel.BrokerId,
                 Information = serviceModel.Information,
             };
 

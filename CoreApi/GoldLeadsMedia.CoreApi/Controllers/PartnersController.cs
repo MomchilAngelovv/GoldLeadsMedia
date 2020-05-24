@@ -13,20 +13,20 @@ namespace GoldLeadsMedia.CoreApi.Controllers
 {
     public class PartnersController : ApiController
     {
-        private readonly IBrokersService partnersService;
+        private readonly IBrokersService brokersService;
         private readonly IServiceProvider serviceProvider;
 
         public PartnersController(
             IBrokersService brokersService,
             IServiceProvider serviceProvider)
         {
-            this.partnersService = brokersService;
+            this.brokersService = brokersService;
             this.serviceProvider = serviceProvider;
         }
 
         public ActionResult<IEnumerable<object>> GetAll()
         {
-            var partners = this.partnersService
+            var partners = this.brokersService
                 .GetAll();
 
             var response = partners
@@ -48,7 +48,7 @@ namespace GoldLeadsMedia.CoreApi.Controllers
                 Name = inputModel.Name
             };
 
-            var partner = await this.partnersService.RegisterAsync(serviceModel);
+            var partner = await this.brokersService.RegisterAsync(serviceModel);
 
             var response = new
             {
@@ -61,7 +61,7 @@ namespace GoldLeadsMedia.CoreApi.Controllers
         [HttpPost("{brokerId}/SendLeads")]
         public async Task<ActionResult<int>> SendLeads(string brokerId, PartnersSendLeadsInputModel inputModel)
         {
-            var broker = this.partnersService.GetBy(brokerId);
+            var broker = this.brokersService.GetBy(brokerId);
 
             if (broker == null)
             {
@@ -82,27 +82,28 @@ namespace GoldLeadsMedia.CoreApi.Controllers
         [HttpPost("FtdScan")]
         public async Task<ActionResult<object>> FtdScan()
         {
-            var partnerTypes = typeof(IBroker)
+            var brokerTypes = typeof(IBroker)
                 .Assembly
                 .GetTypes()
                 .Where(type => type.IsClass && type.IsPublic && type.Name.EndsWith("Broker"));
 
+            //TODO: Think about moving settings in database table or anything else (now it is hardcored to scan for last 2 months)
             var from = DateTime.UtcNow.AddDays(-60);
             var to = DateTime.UtcNow.AddDays(1);
 
-            var newFtdsCounter = 0;
-            foreach (var partnerType in partnerTypes)
+            var ftdCounter = 0;
+            foreach (var brokerType in brokerTypes)
             {
-                var partnerInstance = this.serviceProvider.GetService(partnerType) as IBroker;
+                var partnerInstance = this.serviceProvider.GetService(brokerType) as IBroker;
                 var newFtds = await partnerInstance.FtdScanAsync(from, to);
 
-                newFtdsCounter += newFtds;
+                ftdCounter += newFtds;
             }
 
             var response = new
             {
-                AllPartners = partnerTypes.Count(),
-                NewFtds = newFtdsCounter
+                ScannedBrokers = brokerTypes.Count(),
+                Ftds = ftdCounter
             };
 
             return response;

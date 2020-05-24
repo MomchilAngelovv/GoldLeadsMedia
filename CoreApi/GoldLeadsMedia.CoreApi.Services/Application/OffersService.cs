@@ -58,7 +58,7 @@
                 PayTypeId = inputModel.PayTypeId,
                 TargetDeviceId = inputModel.TargetDeviceId,
                 PayPerClick = inputModel.PayPerClick,
-                PayOut = inputModel.PayOut,
+                PayPerAction = inputModel.PayOut,
                 Information = $"[Created by: {inputModel.CreatedByManagerId}]"
             };
 

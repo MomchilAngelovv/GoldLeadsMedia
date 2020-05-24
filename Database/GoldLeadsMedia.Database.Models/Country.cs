@@ -23,7 +23,8 @@
         [MaxLength(100)]
         public string PhonePrefix { get; set; }
 
-        public virtual IEnumerable<Offer> Offers { get; set; }
+        public virtual ICollection<Offer> Offers { get; set; }
+        public virtual ICollection<Lead> Leads { get; set; }
 
         public DateTime CreatedOn { get; set ; }
         public DateTime? UpdatedOn { get; set; }

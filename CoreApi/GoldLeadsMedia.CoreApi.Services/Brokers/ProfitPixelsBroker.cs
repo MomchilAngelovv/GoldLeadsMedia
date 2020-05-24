@@ -15,6 +15,9 @@
         private readonly IErrorsService errorsService;
         private readonly IAsyncHttpClient httpClient;
 
+        private readonly string brokerId = "123";
+
+
         public ProfitPixelsBroker(
             ILeadsService leadsService,
             IErrorsService errorsService,
@@ -62,7 +65,7 @@
                 {
                     Message = response.Message,
                     Information = $"Request Id: {response.RequestId}",
-                    BrokerName = "ProfitPixels"
+                    BrokerId = this.brokerId
                 };
 
                 var ftdScanError = await this.errorsService.RegisterFtdScanErrorAsync(serviceModel);

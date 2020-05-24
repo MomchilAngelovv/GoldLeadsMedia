@@ -2,8 +2,9 @@
 {
     public class NavigationBarViewModel
     {
-        public decimal Available { get; set; }
-        public decimal Paid { get; set; }
-        public bool IsLoggedUserManagerOrAdministrator { get; set; }
+        public decimal TotalEarned { get; set; }
+        public decimal TotalPaid { get; set; }
+        public bool IsManager { get; set; }
+        public bool IsAdministrator { get; set; }
     }
 }

@@ -4,6 +4,6 @@
     {
         public string Message { get; set; }
         public string Information { get; set; }
-        public string BrokerName { get; set; }
+        public string BrokerId { get; set; }
     }
 }
