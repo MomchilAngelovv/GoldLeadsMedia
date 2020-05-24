@@ -261,13 +261,16 @@ namespace GoldLeadsMedia.Database.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Message")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(400)")
+                        .HasMaxLength(400);
 
                     b.Property<string>("Method")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
 
                     b.Property<string>("Path")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
 
                     b.Property<string>("StackTrace")
                         .HasColumnType("nvarchar(max)");
@@ -305,8 +308,8 @@ namespace GoldLeadsMedia.Database.Migrations
 
                     b.Property<string>("Message")
                         .IsRequired()
-                        .HasColumnType("nvarchar(300)")
-                        .HasMaxLength(300);
+                        .HasColumnType("nvarchar(400)")
+                        .HasMaxLength(400);
 
                     b.Property<DateTime?>("UpdatedOn")
                         .HasColumnType("datetime2");
@@ -474,8 +477,8 @@ namespace GoldLeadsMedia.Database.Migrations
 
                     b.Property<string>("Url")
                         .IsRequired()
-                        .HasColumnType("nvarchar(300)")
-                        .HasMaxLength(300);
+                        .HasColumnType("nvarchar(400)")
+                        .HasMaxLength(400);
 
                     b.HasKey("Id");
 
@@ -523,7 +526,8 @@ namespace GoldLeadsMedia.Database.Migrations
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("CallStatus")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
 
                     b.Property<string>("ClickRegistrationId")
                         .HasColumnType("nvarchar(450)");
@@ -539,13 +543,13 @@ namespace GoldLeadsMedia.Database.Migrations
 
                     b.Property<string>("Email")
                         .IsRequired()
-                        .HasColumnType("nvarchar(300)")
-                        .HasMaxLength(300);
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
 
                     b.Property<string>("FirstName")
                         .IsRequired()
-                        .HasColumnType("nvarchar(300)")
-                        .HasMaxLength(300);
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
 
                     b.Property<decimal?>("FtdAmmount")
                         .HasColumnType("decimal(18,4)");
@@ -553,11 +557,12 @@ namespace GoldLeadsMedia.Database.Migrations
                     b.Property<DateTime?>("FtdBecameOn")
                         .HasColumnType("datetime2");
 
-                    b.Property<bool>("HasPayments")
+                    b.Property<bool>("HasAffiliatePayments")
                         .HasColumnType("bit");
 
                     b.Property<string>("IdInBroker")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(450)")
+                        .HasMaxLength(450);
 
                     b.Property<string>("Information")
                         .HasColumnType("nvarchar(max)");
@@ -567,8 +572,8 @@ namespace GoldLeadsMedia.Database.Migrations
 
                     b.Property<string>("LastName")
                         .IsRequired()
-                        .HasColumnType("nvarchar(300)")
-                        .HasMaxLength(300);
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
 
                     b.Property<string>("Password")
                         .HasColumnType("nvarchar(100)")
@@ -605,8 +610,8 @@ namespace GoldLeadsMedia.Database.Migrations
 
                     b.Property<string>("ActionFlow")
                         .IsRequired()
-                        .HasColumnType("nvarchar(300)")
-                        .HasMaxLength(300);
+                        .HasColumnType("nvarchar(400)")
+                        .HasMaxLength(400);
 
                     b.Property<int>("CountryId")
                         .HasColumnType("int");
@@ -619,8 +624,8 @@ namespace GoldLeadsMedia.Database.Migrations
 
                     b.Property<string>("Description")
                         .IsRequired()
-                        .HasColumnType("nvarchar(300)")
-                        .HasMaxLength(300);
+                        .HasColumnType("nvarchar(400)")
+                        .HasMaxLength(400);
 
                     b.Property<string>("Information")
                         .HasColumnType("nvarchar(max)");
@@ -630,21 +635,21 @@ namespace GoldLeadsMedia.Database.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("nvarchar(300)")
-                        .HasMaxLength(300);
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
 
                     b.Property<string>("Number")
                         .IsRequired()
                         .HasColumnType("nvarchar(100)")
                         .HasMaxLength(100);
 
-                    b.Property<decimal>("PayPerAction")
+                    b.Property<decimal?>("PayPerAction")
                         .HasColumnType("decimal(18,4)");
 
-                    b.Property<decimal>("PayPerClick")
+                    b.Property<decimal?>("PayPerClick")
                         .HasColumnType("decimal(18,4)");
 
-                    b.Property<decimal>("PayPerLead")
+                    b.Property<decimal?>("PayPerLead")
                         .HasColumnType("decimal(18,4)");
 
                     b.Property<int>("PayTypeId")
@@ -788,8 +793,8 @@ namespace GoldLeadsMedia.Database.Migrations
 
                     b.Property<string>("Message")
                         .IsRequired()
-                        .HasColumnType("nvarchar(100)")
-                        .HasMaxLength(100);
+                        .HasColumnType("nvarchar(400)")
+                        .HasMaxLength(400);
 
                     b.Property<DateTime?>("UpdatedOn")
                         .HasColumnType("datetime2");

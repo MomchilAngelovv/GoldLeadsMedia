@@ -3,14 +3,13 @@
     using System.Threading.Tasks;
 
     using Microsoft.AspNetCore.Mvc;
+    using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.Identity;
 
     using GoldLeadsMedia.Database.Models;
     using GoldLeadsMedia.Web.Infrastructure.HttpHelper;
     using GoldLeadsMedia.Web.Models.InputModels;
     using GoldLeadsMedia.Web.Models.CoreApiResponses.ConventionTest;
-    using Microsoft.AspNetCore.Hosting;
-    using GoldLeadsMedia.Database;
 
     public class AdministratorsController : Controller
     {

@@ -13,11 +13,11 @@
         <div class="money-box-wrapper pl-3 pr-3">
             <div class="money-box available">
                 <span>Available:</span>
-                @Model.Available
+                @Model.TotalEarned
             </div>
             <div class="money-box paid">
                 <span>Paid</span>
-                @Model.Paid
+                @Model.TotalPaid
             </div>
         </div>
         <div class="sidebar-menu">
@@ -37,7 +37,7 @@
                         <i class="mdi mdi-brightness-percent"></i><p>Report</p>
                     </a>
                 </li>
-                @if (Model.IsLoggedUserManagerOrAdministrator)
+                @if (Model.IsManager)
                 {
                     <li>
                         <a asp-controller="Managers" asp-action="Affiliates" data-toggle="tooltip" title="Affiliates">
@@ -54,6 +54,10 @@
                             <i class="mdi mdi-account-plus"></i><p>Confirmed Leads</p>
                         </a>
                     </li>
+
+                }
+                @if (Model.IsAdministrator)
+                {
                     <li>
                         <a asp-controller="Administrators" asp-action="Information" data-toggle="tooltip" title="Log out">
                             <i class="mdi mdi-clipboard-text"></i><p>Administration</p>

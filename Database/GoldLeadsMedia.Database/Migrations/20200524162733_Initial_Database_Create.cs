@@ -122,7 +122,7 @@ namespace GoldLeadsMedia.Database.Migrations
                 {
                     Id = table.Column<string>(nullable: false),
                     Name = table.Column<string>(maxLength: 100, nullable: false),
-                    Url = table.Column<string>(maxLength: 300, nullable: false),
+                    Url = table.Column<string>(maxLength: 400, nullable: false),
                     CreatedOn = table.Column<DateTime>(nullable: false),
                     UpdatedOn = table.Column<DateTime>(nullable: true),
                     DeletedOn = table.Column<DateTime>(nullable: true),
@@ -329,9 +329,9 @@ namespace GoldLeadsMedia.Database.Migrations
                 columns: table => new
                 {
                     Id = table.Column<string>(nullable: false),
-                    Method = table.Column<string>(nullable: true),
-                    Path = table.Column<string>(nullable: true),
-                    Message = table.Column<string>(nullable: true),
+                    Method = table.Column<string>(maxLength: 100, nullable: true),
+                    Path = table.Column<string>(maxLength: 100, nullable: true),
+                    Message = table.Column<string>(maxLength: 400, nullable: true),
                     StackTrace = table.Column<string>(nullable: true),
                     UserId = table.Column<string>(nullable: true),
                     CreatedOn = table.Column<DateTime>(nullable: false),
@@ -355,7 +355,7 @@ namespace GoldLeadsMedia.Database.Migrations
                 columns: table => new
                 {
                     Id = table.Column<string>(nullable: false),
-                    Message = table.Column<string>(maxLength: 300, nullable: false),
+                    Message = table.Column<string>(maxLength: 400, nullable: false),
                     BrokerId = table.Column<string>(nullable: false),
                     CreatedOn = table.Column<DateTime>(nullable: false),
                     UpdatedOn = table.Column<DateTime>(nullable: true),
@@ -378,13 +378,13 @@ namespace GoldLeadsMedia.Database.Migrations
                 columns: table => new
                 {
                     Id = table.Column<string>(nullable: false),
-                    Name = table.Column<string>(maxLength: 300, nullable: false),
-                    Description = table.Column<string>(maxLength: 300, nullable: false),
+                    Name = table.Column<string>(maxLength: 100, nullable: false),
+                    Description = table.Column<string>(maxLength: 400, nullable: false),
                     Number = table.Column<string>(maxLength: 100, nullable: false),
-                    ActionFlow = table.Column<string>(maxLength: 300, nullable: false),
-                    PayPerClick = table.Column<decimal>(type: "decimal(18,4)", nullable: false),
-                    PayPerAction = table.Column<decimal>(type: "decimal(18,4)", nullable: false),
-                    PayPerLead = table.Column<decimal>(type: "decimal(18,4)", nullable: false),
+                    ActionFlow = table.Column<string>(maxLength: 400, nullable: false),
+                    PayPerClick = table.Column<decimal>(type: "decimal(18,4)", nullable: true),
+                    PayPerAction = table.Column<decimal>(type: "decimal(18,4)", nullable: true),
+                    PayPerLead = table.Column<decimal>(type: "decimal(18,4)", nullable: true),
                     PayTypeId = table.Column<int>(nullable: false),
                     CountryId = table.Column<int>(nullable: false),
                     AccessId = table.Column<int>(nullable: false),
@@ -557,15 +557,15 @@ namespace GoldLeadsMedia.Database.Migrations
                 columns: table => new
                 {
                     Id = table.Column<string>(nullable: false),
-                    FirstName = table.Column<string>(maxLength: 300, nullable: false),
-                    LastName = table.Column<string>(maxLength: 300, nullable: false),
-                    Email = table.Column<string>(maxLength: 300, nullable: false),
+                    FirstName = table.Column<string>(maxLength: 100, nullable: false),
+                    LastName = table.Column<string>(maxLength: 100, nullable: false),
+                    Email = table.Column<string>(maxLength: 100, nullable: false),
                     Password = table.Column<string>(maxLength: 100, nullable: true),
                     PhoneNumber = table.Column<string>(maxLength: 100, nullable: false),
                     IsConfirmed = table.Column<bool>(nullable: false),
-                    HasPayments = table.Column<bool>(nullable: false),
-                    IdInBroker = table.Column<string>(nullable: true),
-                    CallStatus = table.Column<string>(nullable: true),
+                    HasAffiliatePayments = table.Column<bool>(nullable: false),
+                    IdInBroker = table.Column<string>(maxLength: 450, nullable: true),
+                    CallStatus = table.Column<string>(maxLength: 100, nullable: true),
                     FtdBecameOn = table.Column<DateTime>(nullable: true),
                     FtdAmmount = table.Column<decimal>(type: "decimal(18,4)", nullable: true),
                     ClickRegistrationId = table.Column<string>(nullable: true),
@@ -650,7 +650,7 @@ namespace GoldLeadsMedia.Database.Migrations
                 columns: table => new
                 {
                     Id = table.Column<string>(nullable: false),
-                    Message = table.Column<string>(maxLength: 100, nullable: false),
+                    Message = table.Column<string>(maxLength: 400, nullable: false),
                     LeadId = table.Column<string>(nullable: false),
                     BrokerId = table.Column<string>(nullable: false),
                     CreatedOn = table.Column<DateTime>(nullable: false),

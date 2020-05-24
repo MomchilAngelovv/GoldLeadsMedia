@@ -40,12 +40,12 @@ namespace GoldLeadsMedia.CoreApi.Controllers
         [HttpGet("{id}/Payments")]
         public ActionResult<object> Payments(string id)
         {
-            var payments = this.affiliatesService.GetPaymentsBy(id);
+            var payments = this.affiliatesService.GetPaymentsStatusBy(id);
 
             var result = new
             {
-                payments.Available,
-                payments.Paid
+                payments.TotalEarned,
+                payments.TotalPaid
             };
 
             return result;

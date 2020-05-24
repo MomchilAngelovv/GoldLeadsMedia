@@ -10,8 +10,8 @@ namespace GoldLeadsMedia.Web
 
     using GoldLeadsMedia.Database;
     using GoldLeadsMedia.Database.Models;
-    using GoldLeadsMedia.Web.Infrastructure.HttpHelper;
     using GoldLeadsMedia.Web.Infrastructure.Filters;
+    using GoldLeadsMedia.Web.Infrastructure.HttpHelper;
 
     public class Startup
     {
