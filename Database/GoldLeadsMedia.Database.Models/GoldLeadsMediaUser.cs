@@ -6,6 +6,8 @@
     using Microsoft.AspNetCore.Identity;
 
     using GoldLeadsMedia.Database.Models.Common;
+    using System.Collections;
+    using System.Collections.Generic;
 
     public class GoldLeadsMediaUser : IdentityUser<string>, IEntityMetaData
     {
@@ -24,6 +26,12 @@
         public string ManagerId { get; set; }
 
         public virtual GoldLeadsMediaUser Manager { get; set; }
+
+
+        public virtual IEnumerable<AffiliatePayment> AffiliatePayments { get; set; }
+        public virtual IEnumerable<ApiRegistration> ApiRegistrations { get; set; }
+        public virtual IEnumerable<ClickRegistration> ClickRegistrations { get; set; }
+        public virtual IEnumerable<DeveloperError> DeveloperErrors { get; set; }
 
         public DateTime CreatedOn { get; set; }
         public DateTime? UpdatedOn { get; set; }

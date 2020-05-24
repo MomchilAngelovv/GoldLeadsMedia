@@ -44,6 +44,11 @@
         public virtual ICollection<OfferLandingPage> OffersLandingPages { get; set; }
         public virtual ICollection<OfferOfferGroup> OffersGroups { get; set; }
 
+        public virtual IEnumerable<AffiliatePayment> AffiliatePayments { get; set; }
+        public virtual IEnumerable<ApiRegistration> ApiRegistrations { get; set; }
+        public virtual IEnumerable<ClickRegistration> ClickRegistrations { get; set; }
+
+
         public DateTime CreatedOn { get; set; }
         public DateTime? UpdatedOn { get; set; }
         public DateTime? DeletedOn { get; set; }

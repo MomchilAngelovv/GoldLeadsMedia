@@ -15,9 +15,12 @@
 
         [Key]
         public string Id { get; set; }
+        [Required]
+        [MaxLength(100)]
         public string Message { get; set; }
-
+        [Required]
         public string LeadId { get; set; }
+        [Required]
         public string BrokerId { get; set; }
 
         public virtual Lead Lead { get; set; }

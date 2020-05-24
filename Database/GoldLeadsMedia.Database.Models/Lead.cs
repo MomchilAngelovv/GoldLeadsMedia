@@ -1,6 +1,7 @@
 ﻿namespace GoldLeadsMedia.Database.Models
 {
     using System;
+    using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
 
     using GoldLeadsMedia.Database.Models.Common;
@@ -44,6 +45,9 @@
         public virtual ApiRegistration ApiRegistration { get; set; }
         public virtual Country Country { get; set; }
         public virtual Broker Broker { get; set; }
+
+        public virtual IEnumerable<AffiliatePayment> AffiliatePayments { get; set; }
+        public virtual IEnumerable<SendLeadError> SendLeadErrors { get; set; }
 
         public DateTime CreatedOn { get ;set; }
         public DateTime? UpdatedOn { get; set; }

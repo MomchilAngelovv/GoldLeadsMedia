@@ -19,14 +19,19 @@
         [Required]
         [MaxLength(100)]
         public string Reason { get; set; }
+        [MaxLength(100)]
+        public string InvoiceNumber { get; set; }
 
         [Required]
-        public string PayerId { get; set; }
+        public string AffiliateId { get; set; }
         [Required]
-        public string ReceiverId { get; set; }
+        public string OfferId { get; set; }
+        [Required]
+        public string LeadId { get; set; }
 
-        public virtual GoldLeadsMediaUser Payer { get; set; }
-        public virtual GoldLeadsMediaUser Receiver { get; set; }
+        public virtual GoldLeadsMediaUser Affiliate { get; set; }
+        public virtual Offer Offer { get; set; }
+        public virtual Lead Lead { get; set; }
 
         public DateTime CreatedOn { get; set; }
         public DateTime? UpdatedOn { get; set; }

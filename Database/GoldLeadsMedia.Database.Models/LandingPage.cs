@@ -24,6 +24,7 @@
         public string Url { get; set; }
 
         public virtual ICollection<OfferLandingPage> OffersLandingPages { get; set; }
+        public virtual IEnumerable<ClickRegistration> ClickRegistrations { get; set; }
 
         public DateTime CreatedOn { get ; set ; }
         public DateTime? UpdatedOn { get; set; }

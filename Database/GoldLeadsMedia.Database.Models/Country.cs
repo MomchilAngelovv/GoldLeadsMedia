@@ -1,6 +1,7 @@
 ﻿namespace GoldLeadsMedia.Database.Models
 {
     using System;
+    using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
 
     using GoldLeadsMedia.Database.Models.Common;
@@ -21,6 +22,8 @@
         public string IsoCode { get; set; }
         [MaxLength(100)]
         public string PhonePrefix { get; set; }
+
+        public virtual IEnumerable<Offer> Offers { get; set; }
 
         public DateTime CreatedOn { get; set ; }
         public DateTime? UpdatedOn { get; set; }

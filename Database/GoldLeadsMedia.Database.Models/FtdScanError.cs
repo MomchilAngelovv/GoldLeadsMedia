@@ -15,8 +15,13 @@
         
         [Key]
         public string Id { get; set; }
+        [Required]
+        [MaxLength(300)]
         public string Message { get; set; }
-        public string BrokerName { get; set; }
+        [Required]
+        public string BrokerId { get; set; }
+
+        public virtual Broker Broker { get; set; }
 
         public DateTime CreatedOn { get; set ; }
         public DateTime? UpdatedOn { get; set; }

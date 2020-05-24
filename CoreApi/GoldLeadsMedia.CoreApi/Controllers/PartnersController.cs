@@ -85,7 +85,7 @@ namespace GoldLeadsMedia.CoreApi.Controllers
             var partnerTypes = typeof(IBroker)
                 .Assembly
                 .GetTypes()
-                .Where(type => type.IsClass && type.IsPublic && type.Name.EndsWith("Partner"));
+                .Where(type => type.IsClass && type.IsPublic && type.Name.EndsWith("Broker"));
 
             var from = DateTime.UtcNow.AddDays(-60);
             var to = DateTime.UtcNow.AddDays(1);
