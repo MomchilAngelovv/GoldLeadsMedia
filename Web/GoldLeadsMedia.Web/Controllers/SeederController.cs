@@ -1,18 +1,18 @@
 ﻿namespace GoldLeadsMedia.Web.Controllers
 {
-    using System;
     using System.Linq;
     using System.Text;
     using System.Threading.Tasks;
     using System.Collections.Generic;
 
-    using GoldLeadsMedia.Database;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Identity;
-    using GoldLeadsMedia.Database.Models;
-    using GoldLeadsMedia.Web.Infrastructure.HttpHelper;
-    using GoldLeadsMedia.Web.Models.Seeder;
     using Microsoft.AspNetCore.Authorization;
+
+    using GoldLeadsMedia.Database;
+    using GoldLeadsMedia.Database.Models;
+    using GoldLeadsMedia.Web.Models.Seeder;
+    using GoldLeadsMedia.Web.Infrastructure.HttpHelper;
 
     public class SeederController : Controller
     {
@@ -31,12 +31,6 @@
             this.userManager = userManager;
             this.roleManager = roleManager;
             this.httpClient = httpClient;
-        }
-
-        [Authorize]
-        public IActionResult CheckLoginUrl()
-        {
-            return this.Ok("Hello!");
         }
 
         public async Task<IActionResult> SeedData()
@@ -66,11 +60,6 @@
                 Email = "Gosho@abv.bg",
             };
 
-            var language = new Language
-            {
-                Name = "English",
-            };
-
             var verticalNames = new List<string> { "Crypto", "Forex", "Casino" };
             var accessNames = new List<string> { "Regular", "Private", "Vip" };
             var paymentTypeNames = new List<string> { "CPL", "CPA", "CPC" };
@@ -90,6 +79,7 @@
                 {
                     Name = name
                 };
+
                 varticals.Add(vertical);
             }
 
@@ -99,6 +89,7 @@
                 {
                     Name = name
                 };
+
                 accesses.Add(access);
             }
 
@@ -108,6 +99,7 @@
                 {
                     Name = name
                 };
+
                 paymentTypes.Add(paymentType);
             }
 
@@ -117,10 +109,9 @@
                 {
                     Name = name
                 };
+
                 targetDevices.Add(targetDevice);
             }
-
-            var cryptoNewsCounter = 1;
 
             foreach (var name in roleNames)
             {
@@ -143,6 +134,7 @@
             }
 
             await this.SeedCountries();
+            await this.SeedLanguages();
 
             await this.userManager.CreateAsync(user1, "123456");
             await this.userManager.CreateAsync(user2, "123456");
@@ -158,7 +150,6 @@
 
             await this.db.Verticals.AddRangeAsync(varticals);
             await this.db.Accesses.AddRangeAsync(accesses);
-            await this.db.Languages.AddAsync(language);
             await this.db.OfferGroups.AddRangeAsync(offerGroups);
             await this.db.PaymentTypes.AddRangeAsync(paymentTypes);
             await this.db.TargetDevices.AddRangeAsync(targetDevices);
@@ -206,6 +197,145 @@
 
             await this.db.Countries.AddRangeAsync(countries);
             await this.db.SaveChangesAsync();
+        }
+
+        private async Task SeedLanguages()
+        {
+            var languages = new List<Language>();
+
+            AddLang("aa", "Afar", languages);
+            AddLang("af", "Afrikaans", languages);
+            AddLang("ak", "Akan", languages);
+            AddLang("sq", "Albanian", languages);
+            AddLang("am", "Amharic", languages);
+            AddLang("ar", "Arabic", languages);
+            AddLang("an", "Aragonese", languages);
+            AddLang("hy", "Armenian", languages);
+            AddLang("as", "Assamese", languages);
+            AddLang("av", "Avaric", languages);
+            AddLang("ae", "Avestan", languages);
+            AddLang("ay", "Aymara", languages);
+            AddLang("az", "Azerbaijani", languages);
+            AddLang("bm", "Bambara", languages);
+            AddLang("ba", "Bashkir", languages);
+            AddLang("eu", "Basque", languages);
+            AddLang("be", "Belarusian", languages);
+            AddLang("bn", "Bengali", languages);
+            AddLang("bh", "Bihari", languages);
+            AddLang("bi", "Bislama", languages);
+            AddLang("bs", "Bosnian", languages);
+            AddLang("bg", "Bulgarian", languages);
+            AddLang("zh", "Chinese", languages);
+            AddLang("cv", "Chuvash", languages);
+            AddLang("kw", "Cornish", languages);
+            AddLang("co", "Corsican", languages);
+            AddLang("cr", "Cree", languages);
+            AddLang("hr", "Croatian", languages);
+            AddLang("cs", "Czech", languages);
+            AddLang("da", "Danish", languages);
+            AddLang("nl", "Dutch", languages);
+            AddLang("en", "English", languages);
+            AddLang("et", "Estonian", languages);
+            AddLang("ee", "Ewe", languages);
+            AddLang("fo", "Faroese", languages);
+            AddLang("fj", "Fijian", languages);
+            AddLang("fi", "Finnish", languages);
+            AddLang("fr", "French", languages);
+            AddLang("gl", "Galician", languages);
+            AddLang("ka", "Georgian", languages);
+            AddLang("de", "German", languages);
+            AddLang("el", "Greek", languages);
+            AddLang("gn", "Guaraní", languages);
+            AddLang("gu", "Gujarati", languages);
+            AddLang("ht", "Haitian", languages);
+            AddLang("ha", "Hausa", languages);
+            AddLang("he", "Hebrew", languages);
+            AddLang("hz", "Herero", languages);
+            AddLang("hi", "Hindi", languages);
+            AddLang("hu", "Hungarian", languages);
+            AddLang("id", "Indonesian", languages);
+            AddLang("ga", "Irish", languages);
+            AddLang("is", "Icelandic", languages);
+            AddLang("it", "Italian", languages);
+            AddLang("ja", "Japanese", languages);
+            AddLang("kr", "Kanuri", languages);
+            AddLang("kk", "Kazakh", languages);
+            AddLang("km", "Khmer", languages);
+            AddLang("ki", "Kikuyu", languages);
+            AddLang("rw", "Kinyarwanda", languages);
+            AddLang("ky", "Kirghiz", languages);
+            AddLang("kg", "Kongo", languages);
+            AddLang("ko", "Korean", languages);
+            AddLang("lb", "Luxembourgish", languages);
+            AddLang("lg", "Luganda", languages);
+            AddLang("li", "Limburgish", languages);
+            AddLang("ln", "Lingala", languages);
+            AddLang("lo", "Lao", languages);
+            AddLang("lt", "Lithuanian", languages);
+            AddLang("lu", "Luba-Katanga", languages);
+            AddLang("lv", "Latvian", languages);
+            AddLang("gv", "Manx", languages);
+            AddLang("mk", "Macedonian", languages);
+            AddLang("mg", "Malagasy", languages);
+            AddLang("ms", "Malay", languages);
+            AddLang("ml", "Malayalam", languages);
+            AddLang("mt", "Maltese", languages);
+            AddLang("mi", "Māori", languages);
+            AddLang("mr", "Marathi", languages);
+            AddLang("mh", "Marshallese", languages);
+            AddLang("mn", "Mongolian", languages);
+            AddLang("na", "Nauru", languages);
+            AddLang("ng", "Ndonga", languages);
+            AddLang("no", "Norwegian", languages);
+            AddLang("ii", "Nuosu", languages);
+            AddLang("oc", "Occitan", languages);
+            AddLang("os", "Ossetian, Ossetic", languages);
+            AddLang("pa", "Panjabi, Punjabi", languages);
+            AddLang("pl", "Polish", languages);
+            AddLang("pt", "Portuguese", languages);
+            AddLang("qu", "Quechua", languages);
+            AddLang("rm", "Romansh", languages);
+            AddLang("rn", "Kirundi", languages);
+            AddLang("ro", "Romanian", languages);
+            AddLang("ru", "Russian", languages);
+            AddLang("sa", "Sanskrit", languages);
+            AddLang("sc", "Sardinian", languages);
+            AddLang("sd", "Sindhi", languages);
+            AddLang("sm", "Samoan", languages);
+            AddLang("sg", "Sango", languages);
+            AddLang("sr", "Serbian", languages);
+            AddLang("sk", "Slovak", languages);
+            AddLang("sl", "Slovene", languages);
+            AddLang("so", "Somali", languages);
+            AddLang("es", "Spanish", languages);
+            AddLang("su", "Sundanese", languages);
+            AddLang("sw", "Swahili", languages);
+            AddLang("ss", "Swati", languages);
+            AddLang("sv", "Swedish", languages);
+            AddLang("th", "Thai", languages);
+            AddLang("ti", "Tigrinya", languages);
+            AddLang("tl", "Tagalog", languages);
+            AddLang("tn", "Tswana", languages);
+            AddLang("to", "Tonga", languages);
+            AddLang("tr", "Turkish", languages);
+            AddLang("uk", "Ukrainian", languages);
+            AddLang("ve", "Venda", languages);
+            AddLang("vi", "Vietnamese", languages);
+            AddLang("cy", "Welsh", languages);
+
+            await this.db.Languages.AddRangeAsync(languages);
+            await this.db.SaveChangesAsync();
+        }
+
+        private void AddLang(string code, string name, List<Language> languages)
+        {
+            var language = new Language
+            {
+                Name = name,
+                Code = code.ToUpper()
+            };
+
+            languages.Add(language);
         }
     }
 }
