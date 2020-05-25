@@ -137,9 +137,9 @@
                 inputModel.Url
             };
 
-            var landingPageName = await this.httpClient.PostAsync<string>("Api/LandingPages", requestBody);
+            var landingPage = await this.httpClient.PostAsync<PostApiLandingPages>("Api/LandingPages", requestBody);
 
-            return this.Redirect("Offers/Dashboard");
+            return this.Redirect($"/Offers/Dashboard");
         }
     }
 }

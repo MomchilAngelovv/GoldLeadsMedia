@@ -1,13 +1,14 @@
-﻿using GoldLeadsMedia.CoreApi.Models.CoreApiModels;
-using GoldLeadsMedia.CoreApi.Services.Application.Common;
-using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace GoldLeadsMedia.CoreApi.Controllers
+﻿namespace GoldLeadsMedia.CoreApi.Controllers
 {
+    using System.Linq;
+    using System.Threading.Tasks;
+    using System.Collections.Generic;
+
+    using Microsoft.AspNetCore.Mvc;
+
+    using GoldLeadsMedia.CoreApi.Models.CoreApiModels;
+    using GoldLeadsMedia.CoreApi.Services.Application.Common;
+
     public class LandingPagesController : ApiController
     {
         private readonly ILandingPagesService landingPagesService;
@@ -32,10 +33,17 @@ namespace GoldLeadsMedia.CoreApi.Controllers
             return landingPages;
         }
 
-        public async Task<ActionResult<string>> Register(LandingPagesRegisterInputModel inputModel)
+        [HttpPost]
+        public async Task<ActionResult<object>> Register(LandingPagesRegisterInputModel inputModel)
         {
             var landingPage = await this.landingPagesService.CreateAsync(inputModel.Name, inputModel.Url);
-            return landingPage.Name;
+
+            var response = new
+            {
+                landingPage.Name
+            };
+
+            return response;
         }
     }
 }
