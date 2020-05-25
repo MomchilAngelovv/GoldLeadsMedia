@@ -1,15 +1,14 @@
-﻿using GoldLeadsMedia.Database;
-using GoldLeadsMedia.Database.Models;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Filters;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace GoldLeadsMedia.CoreApi.Infrastructure.Filters
+﻿namespace GoldLeadsMedia.CoreApi.Infrastructure.Filters
 {
+    using System.Threading.Tasks;
+
+    using Microsoft.AspNetCore.Mvc;
+    using Microsoft.AspNetCore.Identity;
+    using Microsoft.AspNetCore.Mvc.Filters;
+
+    using GoldLeadsMedia.Database;
+    using GoldLeadsMedia.Database.Models;
+
     public class RegisterDeveleporErrorExceptionFilter : IAsyncExceptionFilter
     {
         private readonly GoldLeadsMediaDbContext db;

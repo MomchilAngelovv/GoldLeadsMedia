@@ -261,8 +261,7 @@ namespace GoldLeadsMedia.Database.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Message")
-                        .HasColumnType("nvarchar(400)")
-                        .HasMaxLength(400);
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Method")
                         .HasColumnType("nvarchar(100)")

@@ -44,7 +44,7 @@ namespace GoldLeadsMedia.CoreApi.Services.AsyncHttpClient
                     var propertyValue = property.GetValue(queryParameters);
                     if (propertyValue != null)
                     {
-                        //TODO IF property is string somehow it still remains in url as empty string
+                        //TODO IF property is string somehow it still remains in url as empty string -> the resulting url with empty string property in query parameter is like : '.../testendpoint?name=' (it adds name to url WHILE the value is null. In my opinion it is bug)
                         var popertyName = property.Name;
                         urlBuilder.Append($"{popertyName}={propertyValue}&");
                     }

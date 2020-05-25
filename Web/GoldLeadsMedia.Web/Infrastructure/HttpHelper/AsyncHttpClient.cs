@@ -4,10 +4,11 @@
     using System.Net.Http;
     using System.Text.Json;
     using System.Threading.Tasks;
+    using System.Collections.Generic;
 
     using Microsoft.Extensions.Configuration;
-    using System;
-    using System.Collections.Generic;
+
+    using GoldLeadsMedia.Web.Infrastructure.Exceptions;
 
     public class AsyncHttpClient : IAsyncHttpClient
     {
@@ -24,6 +25,20 @@
             
         public async Task<T> PostAsync<T>(string url, object body, Dictionary<string,string> headers, string mimeType = "application/json")
         {
+            var urlBuilder = new StringBuilder();
+
+            if (url.Contains("http") == false)
+            {
+                urlBuilder.Append($"{this.configuration["CoreApiUrl"]}/{url}");
+            }
+            else
+            {
+                urlBuilder.Append(url);
+            }
+
+            var completeUrl = urlBuilder.ToString();
+
+
             var bodyAsString = JsonSerializer.Serialize(body);
             var requestBody = new StringContent(bodyAsString, Encoding.UTF8, mimeType);
 
@@ -34,10 +49,15 @@
                     this.httpClient.DefaultRequestHeaders.Add(header.Key, header.Value);
                 }
             }
-            var completeUrl = $"{this.configuration["CoreApiUrl"]}/{url}";
 
             var response = await this.httpClient.PostAsync(completeUrl, requestBody);
+
             var responseAsString = await response.Content.ReadAsStringAsync();
+
+            if (response.IsSuccessStatusCode == false)
+            {
+                throw new CoreApiException(responseAsString);
+            }
 
             var mappedResponse = this.MapResponse<T>(responseAsString);
             return mappedResponse;

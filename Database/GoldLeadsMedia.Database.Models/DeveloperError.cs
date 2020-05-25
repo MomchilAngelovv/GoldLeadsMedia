@@ -19,7 +19,6 @@
         public string Method { get; set; }
         [MaxLength(100)]
         public string Path { get; set; }
-        [MaxLength(400)]
         public string Message { get; set; }
         public string StackTrace { get; set; }
 
