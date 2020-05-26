@@ -1,19 +1,21 @@
-﻿using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Hosting;
-using System;
-using System.Net.Http;
-using System.Threading;
-using System.Threading.Tasks;
-
-namespace FtdScanWorker.Service
+﻿namespace FtdScanWorker.Service
 {
+    using System;
+    using System.Net.Http;
+    using System.Threading;
+    using System.Threading.Tasks;
+
+    using Microsoft.Extensions.Hosting;
+    using Microsoft.Extensions.Configuration;
+
     public class FtdScanService : IHostedService, IDisposable
     {
         private Timer timer;
 
         private readonly IConfiguration configuration;
 
-        public FtdScanService(IConfiguration configuration)
+        public FtdScanService(
+            IConfiguration configuration)
         {
             this.configuration = configuration;
         }

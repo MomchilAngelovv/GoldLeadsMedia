@@ -324,7 +324,6 @@
             AddLang("cy", "Welsh", languages);
 
             await this.db.Languages.AddRangeAsync(languages);
-            await this.db.SaveChangesAsync();
         }
 
         private void AddLang(string code, string name, List<Language> languages)

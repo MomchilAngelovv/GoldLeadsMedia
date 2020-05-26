@@ -1,12 +1,14 @@
 ﻿namespace GoldLeadsMedia.Web.Controllers
 {
+    using System.Threading.Tasks;
+
+    using Microsoft.AspNetCore.Mvc;
+    using Microsoft.AspNetCore.Identity;
+
     using GoldLeadsMedia.Database.Models;
+    using GoldLeadsMedia.Web.Models.InputModels;
     using GoldLeadsMedia.Web.Infrastructure.HttpHelper;
     using GoldLeadsMedia.Web.Models.CoreApiResponses.ConventionTest;
-    using GoldLeadsMedia.Web.Models.InputModels;
-    using Microsoft.AspNetCore.Identity;
-    using Microsoft.AspNetCore.Mvc;
-    using System.Threading.Tasks;
 
     public class ClicksController : Controller
     {
@@ -33,9 +35,7 @@
             };
 
             var response = await this.httpClient.PostAsync<PostApiClicksReponse>("Api/Clicks", requestBody);
-            return this.Redirect($"http://glm-cryptonews.com/stagingrevolution?clickId={response.Id}");
-            //return this.Redirect($"{response.LandingPageUrl}?clickId={response.Id}");
-           // return this.Redirect($"/Offers/Dashboard?clickId={response.Id}");
+            return this.Redirect($"{response.LandingPageUrl}?clickId={response.Id}");
         }
     }
 }
