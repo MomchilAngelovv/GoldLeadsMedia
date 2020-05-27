@@ -17,6 +17,6 @@
         [Required]
         public string CountryName { get; set; }
         [Required]
-        public string ClickRegistrationId { get; set; }
+        public string ClickId { get; set; }
     }
 }

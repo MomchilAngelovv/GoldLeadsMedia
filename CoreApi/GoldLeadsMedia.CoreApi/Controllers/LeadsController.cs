@@ -40,7 +40,7 @@
                 PhoneNumber = inputModel.PhoneNumber,
                 CountryId = country.Id,
 
-                ClickRegistrationId = inputModel.ClickRegistrationId,
+                ClickRegistrationId = inputModel.ClickId,
             };
 
             var lead = await this.leadsService.RegisterAsync(serviceModel);

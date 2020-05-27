@@ -67,7 +67,8 @@
             var webUrl = this.configuration["WebUrl"];
             viewModel.RedirectUrl = $"{webUrl}/Clicks/Register?offerId={viewModel.Id}";
 
-            viewModel.IsVip = loggedUser.IsVip;
+            //TODO: Fix vip offers to show only for vip affiliats
+            //viewModel.IsVip = loggedUser.IsVip;
             
             return this.View(viewModel);
         }
