@@ -43,7 +43,7 @@
 
             var serviceModel = new LeadsRegisterInputServiceModel
             {
-                AffiliateId = inputModel.UserId,
+                AffiliateId = inputModel.AffiliateId,
                 OfferId = inputModel.OfferId,
 
                 FirstName = inputModel.FirstName,
@@ -60,6 +60,17 @@
             var response = new
             {
                 lead.Id,
+                lead.FirstName,
+                lead.LastName,
+                lead.Password,
+                lead.Country.PhonePrefix,
+                lead.PhoneNumber,
+                lead.Email,
+                CountryName = lead.Country.Name,
+                lead.FtdBecameOn,
+                lead.CallStatus,
+                lead.CreatedOn,
+                inputModel.AffiliateId,
             };
 
             return response;
@@ -68,6 +79,7 @@
         [HttpGet("{affiliateId}")]
         public ActionResult<object> LeadsByAffiliateId(string affiliateId)
         {
+            //TODO: PAGINATION SOME DAY !!!
             var leads = this.leadsService
                 .GetAllBy(affiliateId)
                 .Select(lead => new 
@@ -76,6 +88,8 @@
                     lead.FirstName,
                     lead.LastName,
                     lead.Password,
+                    lead.Country.PhonePrefix,
+                    lead.PhoneNumber,
                     lead.Email,
                     CountryName = lead.Country.Name,
                     lead.FtdBecameOn,
