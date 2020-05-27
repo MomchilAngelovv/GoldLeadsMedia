@@ -7,6 +7,7 @@
     using GoldLeadsMedia.PartnersApi.Services;
     using GoldLeadsMedia.PartnersApi.Models.InputModels;
     using GoldLeadsMedia.PartnersApi.Models.ServiceModels;
+    using System.Linq;
 
     public class LeadsController : ApiController
     {
@@ -64,10 +65,24 @@
             return response;
         }
 
-        [HttpGet("{userId}")]
-        public ActionResult<object> LeadsByAffiliateId(string userId)
+        [HttpGet("{affiliateId}")]
+        public ActionResult<object> LeadsByAffiliateId(string affiliateId)
         {
-            var leads = this.leadsService.GetAllBy(userId);
+            var leads = this.leadsService
+                .GetAllBy(affiliateId)
+                .Select(lead => new 
+                {
+                    lead.Id,
+                    lead.FirstName,
+                    lead.LastName,
+                    lead.Password,
+                    lead.Email,
+                    CountryName = lead.Country.Name,
+                    lead.FtdBecameOn,
+                    lead.CallStatus,
+                    lead.CreatedOn,
+                    affiliateId,
+                });
 
             var response = new
             {

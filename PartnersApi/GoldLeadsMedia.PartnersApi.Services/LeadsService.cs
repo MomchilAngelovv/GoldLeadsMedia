@@ -21,7 +21,7 @@
         public IEnumerable<Lead> GetAllBy(string affiliateId)
         {
             var leads = this.db.Leads
-                .Where(lead => lead.ApiRegistration.AffiliateId == affiliateId)
+                .Where(lead => lead.ApiRegistrationId != null && lead.ApiRegistration.AffiliateId == affiliateId)
                 .ToList();
 
             return leads;

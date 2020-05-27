@@ -14,6 +14,7 @@
         [Required]
         [MaxLength(100)]
         public string LastName { get; set; }
+        [Required]
         [MaxLength(100)]
         public string Password { get; set; }
         [Required]
