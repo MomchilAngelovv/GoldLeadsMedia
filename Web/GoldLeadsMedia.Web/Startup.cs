@@ -27,7 +27,7 @@ namespace GoldLeadsMedia.Web
             services.AddDbContext<GoldLeadsMediaDbContext>(options =>
             {
                 options.UseSqlServer(configuration.GetConnectionString("DefaultConnection"));
-                //options.UseSqlServer("Server=VPSQ8F3A\\SQLEXPRESS;Database=GoldLeadsMediaDb;User Id=sa;Password=g58AH4!34;MultipleActiveResultSets=true;");
+                //options.UseSqlServer("Server=VPSQ8F3A;Database=GoldLeadsMediaDb;User Id=sa;Password=1234567890aA;MultipleActiveResultSets=true;");
             });
 
             services.AddIdentity<GoldLeadsMediaUser, GoldLeadsMediaRole>(options => 

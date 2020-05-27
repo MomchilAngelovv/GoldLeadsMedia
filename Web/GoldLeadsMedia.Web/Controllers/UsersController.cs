@@ -29,6 +29,7 @@
         [HttpGet]
         public IActionResult Login()
         {
+            this.ViewData["Env"] = this.configuration["ASPNETCORE_ENVIRONMENT"];
             return this.View();
         }
         [HttpGet]

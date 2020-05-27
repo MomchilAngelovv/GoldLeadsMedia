@@ -47,6 +47,7 @@
 
                 FirstName = inputModel.FirstName,
                 LastName = inputModel.LastName,
+                Password = inputModel.Password,
                 Email = inputModel.Email,
                 PhoneNumber = inputModel.PhoneNumber,
                 CountryId = country.Id,
