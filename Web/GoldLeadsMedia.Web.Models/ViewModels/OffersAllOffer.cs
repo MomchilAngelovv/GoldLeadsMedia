@@ -6,8 +6,9 @@
         public string Number { get; set; }
         public string Name { get; set; }
         public string ActionFlow { get; set; }
-        public decimal PayOut { get; set; }
-        public decimal PayPerClick { get; set; }
+        public decimal? PayPerAction { get; set; }
+        public decimal? PayPerClick { get; set; }
+        public decimal? PayPerLead { get; set; }
         public string Country { get; set; }
         public string Language { get; set; }
         public string Vertical { get; set; }

@@ -54,6 +54,7 @@
             {
                 FirstName = serviceModel.FirstName,
                 LastName = serviceModel.LastName,
+                Password = serviceModel.Password,
                 Email = serviceModel.Email,
                 CountryId = serviceModel.CountryId,
                 PhoneNumber = serviceModel.PhoneNumber,

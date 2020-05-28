@@ -1,5 +1,6 @@
 ﻿namespace GoldLeadsMedia.PartnersApi.Controllers
 {
+    using System.Linq;
     using System.Threading.Tasks;
 
     using Microsoft.AspNetCore.Mvc;
@@ -7,7 +8,6 @@
     using GoldLeadsMedia.PartnersApi.Services;
     using GoldLeadsMedia.PartnersApi.Models.InputModels;
     using GoldLeadsMedia.PartnersApi.Models.ServiceModels;
-    using System.Linq;
 
     public class LeadsController : ApiController
     {

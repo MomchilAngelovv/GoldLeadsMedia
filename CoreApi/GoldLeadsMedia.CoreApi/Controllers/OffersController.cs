@@ -43,10 +43,11 @@
                     offer.Name,
                     Country = offer.Country.Name,
                     TargetDevice = offer.TargetDevice.Name,
+                    offer.PayPerAction,
                     offer.PayPerClick,
+                    offer.PayPerLead,
                     Language = offer.Language.Name,
                     PayType = offer.PayType.Name,
-                    offer.PayPerAction,
                     offer.ActionFlow,
                     Vertical = offer.Vertical.Name,
                     Access = offer.Access.Name
@@ -100,8 +101,9 @@
                 offer.Number,
                 Language = offer.Language.Name,
                 PayType = offer.PayType.Name,
-                offer.PayPerClick,
                 offer.PayPerAction,
+                offer.PayPerClick,
+                offer.PayPerLead,
                 offer.Description,
                 LandingPages = offer.OffersLandingPages
                     .Select(olp => new 

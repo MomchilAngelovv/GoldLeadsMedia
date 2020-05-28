@@ -9,9 +9,10 @@
         public string Access { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
-        public string ImageUrl => $"/images/offers/{Id}.jpg";
-        public decimal PayOut { get; set; }
-        public decimal PayPerClick { get; set; }
+        public string ImageUrl => $"/images/offers/{this.Id}.jpg";
+        public decimal? PayPerAction { get; set; }
+        public decimal? PayPerClick { get; set; }
+        public decimal? PayPerLead { get; set; }
         public string PayType { get; set; }
         public string Language { get; set; }
         public string Country { get; set; }
