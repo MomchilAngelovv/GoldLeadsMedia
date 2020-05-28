@@ -1,0 +1,53 @@
+﻿@model GoldLeadsMedia.Web.Models.ViewModels.ReportsSummaryViewModel
+
+<div class="col-12">
+    <div class="row">
+        @*<div class="col-12 col-sm-6">
+            <h3 class="block-title">
+                Select period
+            </h3>
+        </div>
+        <div class="col-12 col-sm-6">
+            <form action="/Report/Index" method="get" class="reports">
+                <div class="form-group">
+                    <input type="text" name="Date" id="date-range" value="@Model.Date" placeholder="Search" class="form-control">
+                </div>
+                <button type="submit" class="btn btn-secondary">Clear filters</button>
+                <button type="submit" class="btn btn-primary">Apply filters</button>
+            </form>
+        </div>*@
+    </div>
+    <div class="row">
+        <table class="table table-sm">
+            <tr class="row-header">
+                <th>Number</th>
+                <th>Name</th>
+                <th>Clicks count</th>
+                <th>LeadsCount</th>
+                <th>FtdsCount</th>
+            </tr>
+            <tbody>
+                @foreach (var offerReport in Model.OfferReports)
+                {
+                    <tr class="table-row">
+                        <td>
+                            @offerReport.Number
+                        </td>
+                        <td>
+                            @offerReport.Name
+                        </td>
+                        <td>
+                            @offerReport.ClicksCount
+                        </td>
+                        <td>
+                            @offerReport.LeadsCount
+                        </td>
+                        <td>
+                            @offerReport.FtdsCount
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

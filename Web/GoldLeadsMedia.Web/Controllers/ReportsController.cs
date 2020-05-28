@@ -4,6 +4,9 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using GoldLeadsMedia.Database.Models;
 using GoldLeadsMedia.Web.Infrastructure.HttpHelper;
+using GoldLeadsMedia.Web.Models.ViewModels;
+using System.Threading.Tasks;
+using System.Collections.Generic;
 
 namespace GoldLeadsMedia.Web.Controllers
 {
@@ -23,9 +26,19 @@ namespace GoldLeadsMedia.Web.Controllers
             this.userManager = userManager;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Summary()
         {
-            return this.View();
+            var loggedUser = await this.userManager.GetUserAsync(this.User);
+
+            var offerReports = await this.httpClient.GetAsync<List<ReportsSummaryOfferReport>>($"Api/Affiliates/{loggedUser.Id}/OfferReports");
+
+            var viewModel = new ReportsSummaryViewModel
+            {
+                UserId = loggedUser.Id,
+                OfferReports = offerReports
+            };
+
+            return this.View(viewModel);
         }
 
         //public async Task<IActionResult> GetUserReport(string userId, string date)

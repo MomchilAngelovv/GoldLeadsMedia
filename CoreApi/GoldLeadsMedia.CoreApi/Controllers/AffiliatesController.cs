@@ -1,6 +1,8 @@
 ﻿using GoldLeadsMedia.CoreApi.Services.Application.Common;
 using Microsoft.AspNetCore.Mvc;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace GoldLeadsMedia.CoreApi.Controllers
 {
@@ -36,7 +38,6 @@ namespace GoldLeadsMedia.CoreApi.Controllers
 
             return response;
         }
-
         [HttpGet("{id}/Payments")]
         public ActionResult<object> Payments(string id)
         {
@@ -49,6 +50,24 @@ namespace GoldLeadsMedia.CoreApi.Controllers
             };
 
             return result;
+        }
+
+        [HttpGet("{affiliateId}/OfferReports")]
+        public ActionResult<IEnumerable<object>> OfferReports(string affiliateId)
+        {
+            var affiliateOfferReports = this.affiliatesService
+                .GetOffersBy(affiliateId)
+                .Select(offer => new
+                {
+                    offer.Number,
+                    offer.Name,
+                    ClicksCount = offer.ClickRegistrations.Count(),
+                    LeadsCount = 0, //HARD CODED,
+                    FtdsCount = 0
+                })
+                .ToList();
+
+            return affiliateOfferReports;
         }
     }
 }

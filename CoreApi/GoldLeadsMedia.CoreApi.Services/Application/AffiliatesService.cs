@@ -29,6 +29,15 @@
             return leads;
         }
 
+        public IEnumerable<Offer> GetOffersBy(string affiliateId)
+        {
+            var offers = this.db.Offers
+                .Where(offer => offer.ApiRegistrations.Any(apiRegistration => apiRegistration.AffiliateId == affiliateId) || offer.ClickRegistrations.Any(clickRegistration => clickRegistration.AffiliateId == affiliateId))
+                .ToList();
+
+            return offers;
+        }
+
         public AffiliatesGetPaymentsStatusByOutputServiceModel GetPaymentsStatusBy(string affiliateId)
         {
             //TODO: This will get money ONLY FOR PPA -> NEED TO INCLUDE EVERY POSSIBLE AFFILATE PAY (PPL/PPC)
