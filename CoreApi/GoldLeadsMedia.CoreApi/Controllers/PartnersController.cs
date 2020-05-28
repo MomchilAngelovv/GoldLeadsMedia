@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 
 namespace GoldLeadsMedia.CoreApi.Controllers
 {
+    //TODO: RENAME this controller to BROKERS CONTROLLER and fix url in web
     public class PartnersController : ApiController
     {
         private readonly IBrokersService brokersService;

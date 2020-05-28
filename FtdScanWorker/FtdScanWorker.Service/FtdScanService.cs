@@ -45,7 +45,7 @@
             var response = httpCleint.PostAsync($"{coreApiUrl}/Api/Partners/FtdScan", null).GetAwaiter().GetResult();
             var responseAsString = response.Content.ReadAsStringAsync().GetAwaiter().GetResult();
 
-            Console.WriteLine($"[Ftd Scan: {DateTime.UtcNow}] --- [Scan result: {responseAsString}]");
+            Console.WriteLine($"[Ftd Scan time: {DateTime.UtcNow}] --- [Scan result: {responseAsString}]");
         }
     }
 }
