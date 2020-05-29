@@ -30,7 +30,7 @@ namespace GoldLeadsMedia.CoreApi.Controllers
                 affiliate.UserName,
                 affiliate.Email,
                 IsBlocked = true, //TODO this is hardcoded need to implement some logic
-                IsVip = true,//TODO this is hardcoded need to implement some logic
+                affiliate.IsVip,
                 affiliate.Experience,
                 Available = 1000,
                 Paid = 5000
@@ -63,7 +63,7 @@ namespace GoldLeadsMedia.CoreApi.Controllers
                     offer.Name,
                     ClicksCount = offer.ClickRegistrations.Count(),
                     LeadsCount = 0, //HARD CODED,
-                    FtdsCount = 0
+                    FtdsCount = 0 // HARD CODED
                 })
                 .ToList();
 

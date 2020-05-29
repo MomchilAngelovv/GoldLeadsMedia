@@ -4,11 +4,10 @@
 
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Identity;
+    using Microsoft.Extensions.Configuration;
 
     using GoldLeadsMedia.Database.Models;
     using GoldLeadsMedia.Web.Models.InputModels;
-    using Microsoft.Extensions.Configuration;
-    using System;
 
     public class UsersController : Controller
     {
