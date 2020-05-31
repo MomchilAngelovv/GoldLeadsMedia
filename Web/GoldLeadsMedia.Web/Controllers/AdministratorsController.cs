@@ -60,6 +60,11 @@
                 return this.View(inputModel);
             }
 
+            if (inputModel.Image.FileName.EndsWith("jpg") == false)
+            {
+                return this.BadRequest("Invalid image file!");
+            }
+
             var loggedUser = await this.userManager.GetUserAsync(this.User);
 
            
@@ -82,7 +87,7 @@
             };
 
             var response = await this.httpClient.PostAsync<Offer>("Api/Offers", requestBody);
-
+           
             using var streamDestination = System.IO.File.Create($"{this.hostEnvironment.WebRootPath}/images/offers/{response.Id}.jpg");
             await inputModel.Image.CopyToAsync(streamDestination);
 
