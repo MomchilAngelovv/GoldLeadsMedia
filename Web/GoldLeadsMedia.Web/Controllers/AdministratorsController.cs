@@ -60,7 +60,7 @@
                 return this.View(inputModel);
             }
 
-            if (inputModel.Image.FileName.EndsWith("jpg") == false)
+            if (inputModel.Image?.FileName.EndsWith("jpg") == false)
             {
                 return this.BadRequest("Invalid image file!");
             }
