@@ -51,10 +51,10 @@ namespace GoldLeadsMedia.CoreApi.Controllers
                     lead.Email,
                     lead.PhoneNumber,
                     CountryName = lead.Country.Name,
-                    OfferName = lead.ClickRegistration?.Offer?.Name
+                    OfferName = lead.ApiRegistrationId == null ? lead.ClickRegistration.Offer.Name : lead.ApiRegistration.Offer.Name
                 })
                 .ToList();
-
+                        
             return response;
         }
         [HttpGet("ConfirmedLeads")]

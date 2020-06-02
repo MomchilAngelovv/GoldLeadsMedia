@@ -51,7 +51,6 @@ namespace GoldLeadsMedia.CoreApi.Controllers
 
             return result;
         }
-
         [HttpGet("{affiliateId}/OfferReports")]
         public ActionResult<IEnumerable<object>> OfferReports(string affiliateId)
         {
