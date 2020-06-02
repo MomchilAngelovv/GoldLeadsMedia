@@ -58,6 +58,7 @@ namespace GoldLeadsMedia.CoreApi.Controllers
                 .GetOffersBy(affiliateId)
                 .Select(offer => new
                 {
+                    offer.Id,
                     offer.Number,
                     offer.Name,
                     ClicksCount = offer.ClickRegistrations.Count(),

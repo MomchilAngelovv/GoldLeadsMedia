@@ -1,53 +1,65 @@
 ﻿@model GoldLeadsMedia.Web.Models.ViewModels.ReportsSummaryViewModel
 
+<h3 class="display-3 text-center">Report summary</h3>
+<hr />
 <div class="col-12">
     <div class="row">
         @*<div class="col-12 col-sm-6">
-            <h3 class="block-title">
-                Select period
-            </h3>
-        </div>
-        <div class="col-12 col-sm-6">
-            <form action="/Report/Index" method="get" class="reports">
-                <div class="form-group">
-                    <input type="text" name="Date" id="date-range" value="@Model.Date" placeholder="Search" class="form-control">
-                </div>
-                <button type="submit" class="btn btn-secondary">Clear filters</button>
-                <button type="submit" class="btn btn-primary">Apply filters</button>
-            </form>
-        </div>*@
+                <h3 class="block-title">
+                    Select period
+                </h3>
+            </div>
+            <div class="col-12 col-sm-6">
+                <form action="/Report/Index" method="get" class="reports">
+                    <div class="form-group">
+                        <input type="text" name="Date" id="date-range" value="@Model.Date" placeholder="Search" class="form-control">
+                    </div>
+                    <button type="submit" class="btn btn-secondary">Clear filters</button>
+                    <button type="submit" class="btn btn-primary">Apply filters</button>
+                </form>
+            </div>*@
     </div>
     <div class="row">
         <table class="table table-sm">
             <tr class="row-header">
-                <th>Number</th>
-                <th>Name</th>
-                <th>Clicks count</th>
-                <th>LeadsCount</th>
-                <th>FtdsCount</th>
+                <th>Affiliate</th>
+                <th>Total Clicks</th>
+                <th>Total Leads</th>
+                <th>Total Ftds</th>
             </tr>
             <tbody>
-                @foreach (var offerReport in Model.OfferReports)
-                {
-                    <tr class="table-row">
-                        <td>
-                            @offerReport.Number
-                        </td>
-                        <td>
-                            @offerReport.Name
-                        </td>
-                        <td>
-                            @offerReport.ClicksCount
-                        </td>
-                        <td>
-                            @offerReport.LeadsCount
-                        </td>
-                        <td>
-                            @offerReport.FtdsCount
-                        </td>
-                    </tr>
-                }
+
+                <tr class="table-row">
+                    <td>
+                        @Model.AffiliateName
+                    </td>
+                    <td>
+                        @Model.TotalClicks
+                    </td>
+                    <td>
+                        @Model.TotalLeads
+                    </td>
+                    <td>
+                        @Model.TotalFtds
+                    </td>
+                </tr>
+
             </tbody>
         </table>
+
+        @foreach (var offerReport in Model.OfferReports)
+        {
+            <div class="card" style="width: 18rem;">
+                <img src="@offerReport.ImageUrl" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h3 class="card-title">@offerReport.Name</h3>
+                    <h5 class="card-title">Offer number: @offerReport.Number</h5>
+                    <p class="card-text">Clicks: @offerReport.ClicksCount</p>
+                    <p class="card-text">Leads: @offerReport.LeadsCount</p>
+                    <p class="card-text">Leads: @offerReport.FtdsCount</p>
+                    <a asp-controller="Offers" asp-action="Details" asp-route-id="@offerReport.Id" class="btn btn-primary col-12 text-center">More details</a>
+                </div>
+            </div>
+        }
     </div>
 </div>

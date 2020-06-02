@@ -7,6 +7,7 @@ using GoldLeadsMedia.Web.Infrastructure.HttpHelper;
 using GoldLeadsMedia.Web.Models.ViewModels;
 using System.Threading.Tasks;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace GoldLeadsMedia.Web.Controllers
 {
@@ -34,11 +35,19 @@ namespace GoldLeadsMedia.Web.Controllers
 
             var viewModel = new ReportsSummaryViewModel
             {
-                UserId = loggedUser.Id,
-                OfferReports = offerReports
+                AffiliateName = loggedUser.UserName,
+                OfferReports = offerReports,
+                TotalClicks = offerReports.Sum(offerReport => offerReport.ClicksCount),
+                TotalLeads = offerReports.Sum(offerReport => offerReport.LeadsCount),
+                TotalFtds = offerReports.Sum(offerReport => offerReport.FtdsCount),
             };
 
             return this.View(viewModel);
+        }
+
+        public IActionResult Affiliates(string id)
+        {
+            return this.View();
         }
 
         //public async Task<IActionResult> GetUserReport(string userId, string date)
