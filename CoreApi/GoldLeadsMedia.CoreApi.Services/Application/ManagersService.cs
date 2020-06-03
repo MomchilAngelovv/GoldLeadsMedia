@@ -54,7 +54,7 @@ namespace GoldLeadsMedia.CoreApi.Services.Application
                 var lead = this.leadsService.GetBy(leadId);
 
                 lead.IsConfirmed = true;
-                lead.Information += $"Lead confirmed by (Id of manager): {serviceModel.ManagerId}";
+                lead.Information += $"[Confirmed by: {serviceModel.ManagerId}]";
                 lead.UpdatedOn = DateTime.UtcNow;
 
                 this.db.Leads.Update(lead);
@@ -69,6 +69,12 @@ namespace GoldLeadsMedia.CoreApi.Services.Application
         {
             var affiliate = this.userManager.Users.FirstOrDefault(user => user.Id == id);
             return affiliate;
+        }
+
+        public async Task<IEnumerable<GoldLeadsMediaUser>> GetAll()
+        {
+            var affiliates = await this.userManager.GetUsersInRoleAsync("Affiliate");
+            return affiliates;
         }
     }
 }

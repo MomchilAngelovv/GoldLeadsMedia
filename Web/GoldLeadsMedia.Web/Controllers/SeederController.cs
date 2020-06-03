@@ -7,7 +7,6 @@
 
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Identity;
-    using Microsoft.AspNetCore.Authorization;
 
     using GoldLeadsMedia.Database;
     using GoldLeadsMedia.Database.Models;
@@ -42,22 +41,8 @@
 
             var user1 = new GoldLeadsMediaUser
             {
-                UserName = "Monkata",
-                Email = "Monkata@abv.bg",
-                IsVip = true
-            };
-
-            var user2 = new GoldLeadsMediaUser
-            {
-                UserName = "Pesho",
-                Email = "Pesho@abv.bg",
-                ManagerId = user1.Id
-            };
-
-            var user3 = new GoldLeadsMediaUser
-            {
-                UserName = "Gosho",
-                Email = "Gosho@abv.bg",
+                UserName = "Lora",
+                Email = "contact@goldleadsmedia.com",
             };
 
             var verticalNames = new List<string> { "Crypto", "Forex", "Casino" };
@@ -148,17 +133,10 @@
             await this.SeedCountries();
             await this.SeedLanguages();
 
-            await this.userManager.CreateAsync(user1, "123456");
-            await this.userManager.CreateAsync(user2, "123456");
-            await this.userManager.CreateAsync(user3, "123456");
+            await this.userManager.CreateAsync(user1, "1234567890aA");
 
             await this.userManager.AddToRoleAsync(user1, "Administrator");
             await this.userManager.AddToRoleAsync(user1, "Manager");
-            await this.userManager.AddToRoleAsync(user1, "Affiliate");
-
-            await this.userManager.AddToRoleAsync(user2, "Affiliate");
-            await this.userManager.AddToRoleAsync(user3, "Affiliate");
-
 
             await this.db.Verticals.AddRangeAsync(varticals);
             await this.db.Accesses.AddRangeAsync(accesses);

@@ -7,6 +7,7 @@ namespace GoldLeadsMedia.CoreApi.Services.Application.Common
 {
     public interface IManagersService
     {
+        Task<IEnumerable<GoldLeadsMediaUser>> GetAll();
         Task<IEnumerable<GoldLeadsMediaUser>> GetAffiliatesByAsync(string managerId);
         IEnumerable<Lead> GetNotConfirmedLeads();
         IEnumerable<Lead> GetConfirmedLeads();
