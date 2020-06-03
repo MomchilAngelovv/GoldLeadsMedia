@@ -51,7 +51,7 @@
                 Name = inputModel.Name,
                 VerticalId = inputModel.VerticalId,
                 AccessId = inputModel.AccessId,
-                CountryId = inputModel.CountryId,
+                TierCountryId = inputModel.TierCountryId,
                 Description = inputModel.Description,
                 ActionFlow = inputModel.ActionFlow,
                 LanguageId = inputModel.LanguageId,
@@ -74,11 +74,6 @@
             if (filterServiceModel.NumberOrName != null)
             {
                 offers = offers.Where(offer => offer.Number.Contains(filterServiceModel.NumberOrName) | offer.Name.Contains(filterServiceModel.NumberOrName));
-            }
-
-            if (filterServiceModel.CountryId != null)
-            {
-                offers = offers.Where(offer => offer.CountryId == filterServiceModel.CountryId);
             }
 
             if (filterServiceModel.VerticalId != null)

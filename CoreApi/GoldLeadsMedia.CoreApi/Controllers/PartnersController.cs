@@ -76,7 +76,7 @@ namespace GoldLeadsMedia.CoreApi.Controllers
 
             var brokerInstance = this.serviceProvider.GetService(brokerType) as IBroker;
 
-            var errorCount = await brokerInstance.SendLeadsAsync(inputModel.LeadIds, broker.Id, inputModel.BrokerOfferId);
+            var errorCount = await brokerInstance.SendLeadsAsync(inputModel.LeadIds, inputModel.BrokerOfferId);
             return errorCount;
         }
 

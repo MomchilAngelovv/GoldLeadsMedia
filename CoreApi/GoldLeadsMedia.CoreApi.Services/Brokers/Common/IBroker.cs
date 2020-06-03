@@ -6,7 +6,7 @@
 
     public interface IBroker
     {
-        Task<int> SendLeadsAsync(IEnumerable<string> leadIds, string brokerId, string partnerOfferId);
+        Task<int> SendLeadsAsync(IEnumerable<string> leadIds, string partnerOfferId);
         Task<int> FtdScanAsync(DateTime from, DateTime to);
     } 
 }

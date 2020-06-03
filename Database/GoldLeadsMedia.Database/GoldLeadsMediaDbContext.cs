@@ -31,6 +31,7 @@
         public DbSet<PayType> PaymentTypes { get; set; }
         public DbSet<SendLeadError> SendLeadErrors { get; set; }
         public DbSet<TargetDevice> TargetDevices { get; set; }
+        public DbSet<TierCountry> TierCountries { get; set; }
         public DbSet<Vertical> Verticals { get; set; }
 
         //TODO MAKE configure classes for EVERY Entityt

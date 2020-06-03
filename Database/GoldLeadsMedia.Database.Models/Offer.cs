@@ -33,14 +33,14 @@
         public decimal? PayPerLead { get; set; }
 
         public int PayTypeId { get; set; }
-        public int CountryId { get; set; }
+        public int TierCountryId { get; set; }
         public int AccessId { get; set; }
         public int VerticalId { get; set; } 
         public int LanguageId { get; set; }
         public int TargetDeviceId { get; set; }
 
         public virtual PayType PayType { get; set; }
-        public virtual Country Country { get; set; }
+        public virtual TierCountry TierCountries { get; set; }
         public virtual Access Access { get; set; }
         public virtual Vertical Vertical { get; set; }
         public virtual Language Language { get; set; }

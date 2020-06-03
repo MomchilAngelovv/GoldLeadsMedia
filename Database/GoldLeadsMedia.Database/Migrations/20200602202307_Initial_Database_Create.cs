@@ -203,6 +203,23 @@ namespace GoldLeadsMedia.Database.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "TierCountries",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(nullable: true),
+                    CreatedOn = table.Column<DateTime>(nullable: false),
+                    UpdatedOn = table.Column<DateTime>(nullable: true),
+                    DeletedOn = table.Column<DateTime>(nullable: true),
+                    Information = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_TierCountries", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Verticals",
                 columns: table => new
                 {
@@ -387,7 +404,7 @@ namespace GoldLeadsMedia.Database.Migrations
                     PayPerAction = table.Column<decimal>(type: "decimal(18,4)", nullable: true),
                     PayPerLead = table.Column<decimal>(type: "decimal(18,4)", nullable: true),
                     PayTypeId = table.Column<int>(nullable: false),
-                    CountryId = table.Column<int>(nullable: false),
+                    TierCountryId = table.Column<int>(nullable: false),
                     AccessId = table.Column<int>(nullable: false),
                     VerticalId = table.Column<int>(nullable: false),
                     LanguageId = table.Column<int>(nullable: false),
@@ -395,7 +412,8 @@ namespace GoldLeadsMedia.Database.Migrations
                     CreatedOn = table.Column<DateTime>(nullable: false),
                     UpdatedOn = table.Column<DateTime>(nullable: true),
                     DeletedOn = table.Column<DateTime>(nullable: true),
-                    Information = table.Column<string>(nullable: true)
+                    Information = table.Column<string>(nullable: true),
+                    CountryId = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -411,7 +429,7 @@ namespace GoldLeadsMedia.Database.Migrations
                         column: x => x.CountryId,
                         principalTable: "Countries",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_Offers_Languages_LanguageId",
                         column: x => x.LanguageId,
@@ -428,6 +446,12 @@ namespace GoldLeadsMedia.Database.Migrations
                         name: "FK_Offers_TargetDevices_TargetDeviceId",
                         column: x => x.TargetDeviceId,
                         principalTable: "TargetDevices",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Offers_TierCountries_TierCountryId",
+                        column: x => x.TierCountryId,
+                        principalTable: "TierCountries",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
@@ -816,6 +840,11 @@ namespace GoldLeadsMedia.Database.Migrations
                 column: "TargetDeviceId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Offers_TierCountryId",
+                table: "Offers",
+                column: "TierCountryId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Offers_VerticalId",
                 table: "Offers",
                 column: "VerticalId");
@@ -917,6 +946,9 @@ namespace GoldLeadsMedia.Database.Migrations
 
             migrationBuilder.DropTable(
                 name: "TargetDevices");
+
+            migrationBuilder.DropTable(
+                name: "TierCountries");
 
             migrationBuilder.DropTable(
                 name: "Verticals");

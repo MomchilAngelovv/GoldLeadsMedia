@@ -66,12 +66,14 @@
             var targetDeviceNames = new List<string> { "Computer", "Mobile", "Computer and mobile" };
             var roleNames = new List<string> { "Affiliate", "Manager", "Administrator" };
             var offerGroupNames = new List<string> { "Best offers", "New offers", "Vip offers" };
+            var tierCountryNames = new List<string> { "Tier 1", "Tier 2", "Tier 3" };
 
             var varticals = new List<Vertical>();
             var accesses = new List<Access>();
             var paymentTypes = new List<PayType>();
             var targetDevices = new List<TargetDevice>();
             var offerGroups = new List<OfferGroup>();
+            var tierCountries = new List<TierCountry>();
 
             foreach (var name in verticalNames)
             {
@@ -133,6 +135,16 @@
                 offerGroups.Add(offerGroup);
             }
 
+            foreach (var name in tierCountryNames)
+            {
+                var tierCountry = new TierCountry
+                {
+                    Name = name,
+                };
+
+                tierCountries.Add(tierCountry);
+            }
+
             await this.SeedCountries();
             await this.SeedLanguages();
 
@@ -153,6 +165,7 @@
             await this.db.OfferGroups.AddRangeAsync(offerGroups);
             await this.db.PaymentTypes.AddRangeAsync(paymentTypes);
             await this.db.TargetDevices.AddRangeAsync(targetDevices);
+            await this.db.TierCountries.AddRangeAsync(tierCountries);
 
             await this.db.SaveChangesAsync();
 
@@ -168,6 +181,7 @@
             stringBuilder.AppendLine($"[Offer groups:{db.OfferGroups.Count()}]");
             stringBuilder.AppendLine($"[Payment types:{db.PaymentTypes.Count()}]");
             stringBuilder.AppendLine($"[Target devices:{db.TargetDevices.Count()}]");
+            stringBuilder.AppendLine($"[Tier countries:{db.TierCountries.Count()}]");
 
             return this.Content(stringBuilder.ToString());
         }

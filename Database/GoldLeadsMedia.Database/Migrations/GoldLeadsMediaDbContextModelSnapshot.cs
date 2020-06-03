@@ -617,7 +617,7 @@ namespace GoldLeadsMedia.Database.Migrations
                         .HasColumnType("nvarchar(400)")
                         .HasMaxLength(400);
 
-                    b.Property<int>("CountryId")
+                    b.Property<int?>("CountryId")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("CreatedOn")
@@ -662,6 +662,9 @@ namespace GoldLeadsMedia.Database.Migrations
                     b.Property<int>("TargetDeviceId")
                         .HasColumnType("int");
 
+                    b.Property<int>("TierCountryId")
+                        .HasColumnType("int");
+
                     b.Property<DateTime?>("UpdatedOn")
                         .HasColumnType("datetime2");
 
@@ -679,6 +682,8 @@ namespace GoldLeadsMedia.Database.Migrations
                     b.HasIndex("PayTypeId");
 
                     b.HasIndex("TargetDeviceId");
+
+                    b.HasIndex("TierCountryId");
 
                     b.HasIndex("VerticalId");
 
@@ -839,6 +844,33 @@ namespace GoldLeadsMedia.Database.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("TargetDevices");
+                });
+
+            modelBuilder.Entity("GoldLeadsMedia.Database.Models.TierCountry", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("CreatedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DeletedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Information")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("UpdatedOn")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("TierCountries");
                 });
 
             modelBuilder.Entity("GoldLeadsMedia.Database.Models.Vertical", b =>
@@ -1079,11 +1111,9 @@ namespace GoldLeadsMedia.Database.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("GoldLeadsMedia.Database.Models.Country", "Country")
+                    b.HasOne("GoldLeadsMedia.Database.Models.Country", null)
                         .WithMany("Offers")
-                        .HasForeignKey("CountryId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("CountryId");
 
                     b.HasOne("GoldLeadsMedia.Database.Models.Language", "Language")
                         .WithMany("Offers")
@@ -1100,6 +1130,12 @@ namespace GoldLeadsMedia.Database.Migrations
                     b.HasOne("GoldLeadsMedia.Database.Models.TargetDevice", "TargetDevice")
                         .WithMany("Offers")
                         .HasForeignKey("TargetDeviceId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("GoldLeadsMedia.Database.Models.TierCountry", "TierCountries")
+                        .WithMany()
+                        .HasForeignKey("TierCountryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

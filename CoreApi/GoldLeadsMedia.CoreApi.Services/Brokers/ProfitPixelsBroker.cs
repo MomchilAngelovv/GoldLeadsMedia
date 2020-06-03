@@ -17,7 +17,6 @@
 
         private readonly string brokerId = "123";
 
-
         public ProfitPixelsBroker(
             ILeadsService leadsService,
             IErrorsService errorsService,
@@ -73,7 +72,7 @@
 
             return ftdCounter;
         }
-        public async Task<int> SendLeadsAsync(IEnumerable<string> leadIds, string brokerId, string partnerOfferId)
+        public async Task<int> SendLeadsAsync(IEnumerable<string> leadIds, string partnerOfferId)
         {
             var failedLeadsCount = 0;
             var url = "https://api.profitpixels.com/client/v5/leads";
@@ -103,14 +102,14 @@
 
                 if (response.Success)
                 {
-                    await this.leadsService.SendSuccessUpdateLeadAsync(lead, brokerId, response.ResponseData.LeadId);
+                    await this.leadsService.SendSuccessUpdateLeadAsync(lead, this.brokerId, response.ResponseData.LeadId);
                 }
                 else
                 {
                     var serviceModel = new ErrorsRegisterLeadErrorInputServiceModel
                     {
                         LeadId = lead.Id,
-                        BrokerId = brokerId,
+                        BrokerId = this.brokerId,
                         ErrorMessage = response.Message,
                     };
 

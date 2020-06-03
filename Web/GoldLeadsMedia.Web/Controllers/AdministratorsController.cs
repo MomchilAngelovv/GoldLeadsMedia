@@ -67,13 +67,12 @@
 
             var loggedUser = await this.userManager.GetUserAsync(this.User);
 
-           
             var requestBody = new
             {
                 inputModel.Number,
                 inputModel.Name,
                 inputModel.Description,
-                inputModel.CountryId,
+                inputModel.TierCountryId,
                 inputModel.VerticalId,
                 inputModel.PayTypeId,
                 inputModel.TargetDeviceId,
@@ -88,8 +87,8 @@
 
             var response = await this.httpClient.PostAsync<Offer>("Api/Offers", requestBody);
            
-            using var streamDestination = System.IO.File.Create($"{this.hostEnvironment.WebRootPath}/images/offers/{response.Id}.jpg");
-            await inputModel.Image.CopyToAsync(streamDestination);
+            //using var streamDestination = System.IO.File.Create($"{this.hostEnvironment.WebRootPath}/images/offers/{response.Id}.jpg");
+            //await inputModel.Image.CopyToAsync(streamDestination);
 
             return this.Redirect($"~/Offers/Details/{response.Id}");
         }
