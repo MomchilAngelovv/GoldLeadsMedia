@@ -28,7 +28,11 @@
             this.userManager = userManager;
         }
 
-
+        [HttpGet]
+        public IActionResult Information()
+        {
+            return this.View();
+        }
         [HttpGet]
         public async Task<IActionResult> Affiliates()
         {
@@ -74,6 +78,7 @@
         public async Task<IActionResult> ConfirmLeads([FromBody]ManagersConfirmLeadsInputModel inputModel)
         {
             var loggedUser = await this.userManager.GetUserAsync(this.User);
+
             var requestBody = new
             {
                 ManagerId = loggedUser.Id,

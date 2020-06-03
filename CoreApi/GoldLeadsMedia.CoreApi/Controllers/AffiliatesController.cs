@@ -38,7 +38,7 @@ namespace GoldLeadsMedia.CoreApi.Controllers
 
             return response;
         }
-        [HttpGet("{id}/Payments")]
+        [HttpGet("{id}/PaymentsStatus")]
         public ActionResult<object> Payments(string id)
         {
             var payments = this.affiliatesService.GetPaymentsStatusBy(id);

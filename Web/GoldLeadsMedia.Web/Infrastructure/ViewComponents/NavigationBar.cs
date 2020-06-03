@@ -26,7 +26,7 @@
         public async Task<IViewComponentResult> InvokeAsync()
         {
             var loggedUsed = await this.userManager.GetUserAsync(this.HttpContext.User);
-            var affiliatePayments = await this.httpClient.GetAsync<GetAffiliatesIdPaymentsStatusResponse>($"Api/Affiliates/{loggedUsed.Id}/Payments");
+            var affiliatePayments = await this.httpClient.GetAsync<GetAffiliatesIdPaymentsStatusResponse>($"Api/Affiliates/{loggedUsed.Id}/PaymentsStatus");
 
             var viewModel = new NavigationBarViewModel
             {

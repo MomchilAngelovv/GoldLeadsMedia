@@ -40,21 +40,10 @@
                 @if (Model.IsManager)
                 {
                     <li>
-                        <a asp-controller="Managers" asp-action="Affiliates" data-toggle="tooltip" title="Affiliates">
-                            <i class="mdi mdi-clipboard-check-multiple"></i><p>Affiliates</p>
+                        <a asp-controller="Managers" asp-action="Information" data-toggle="tooltip" title="Managers">
+                            <i class="mdi mdi-clipboard-check-multiple"></i><p>Managers</p>
                         </a>
                     </li>
-                    <li>
-                        <a asp-controller="Managers" asp-action="NotConfirmedLeads" data-toggle="tooltip" title="Leads">
-                            <i class="mdi mdi-account-group"></i><p>Leads</p>
-                        </a>
-                    </li>
-                    <li>
-                        <a asp-controller="Managers" asp-action="ConfirmedLeads" data-toggle="tooltip" title="Confirmed Leads">
-                            <i class="mdi mdi-account-plus"></i><p>Confirmed Leads</p>
-                        </a>
-                    </li>
-
                 }
                 @if (Model.IsAdministrator)
                 {

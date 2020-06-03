@@ -22,6 +22,7 @@
         public async Task<IActionResult> Details(string id)
         {
             var affiliate = await this.httpClient.GetAsync<AffiliatesDetailsAffiliate>($"Api/Affiliates/{id}");
+
             var viewModel = new AffiliatesDetailsViewModel
             {
                 Affiliate = affiliate,
