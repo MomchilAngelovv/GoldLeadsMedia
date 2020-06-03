@@ -1,17 +1,17 @@
-﻿using GoldLeadsMedia.CoreApi.Models.ServiceModels;
-using GoldLeadsMedia.CoreApi.Services.Application.Common;
-using GoldLeadsMedia.Database;
-using GoldLeadsMedia.Database.Models;
-using Microsoft.AspNetCore.Identity;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace GoldLeadsMedia.CoreApi.Services.Application
+﻿namespace GoldLeadsMedia.CoreApi.Services.Application
 {
+    using System;
+    using System.Linq;
+    using System.Threading.Tasks;
+    using System.Collections.Generic;
+
+    using Microsoft.AspNetCore.Identity;
+
+    using GoldLeadsMedia.Database;
+    using GoldLeadsMedia.Database.Models;
+    using GoldLeadsMedia.CoreApi.Models.ServiceModels;
+    using GoldLeadsMedia.CoreApi.Services.Application.Common;
+
     public class ManagersService : IManagersService
     {
         private readonly GoldLeadsMediaDbContext db;
