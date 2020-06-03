@@ -21,7 +21,8 @@ namespace GoldLeadsMedia.Web.Infrastructure.ViewComponents
 
         public async Task<IViewComponentResult> InvokeAsync()
         {
-            var languages = await this.httpClient.GetAsync<List<LanguageApiResponse>>("api/languages");
+            var languages = await this.httpClient.GetAsync<List<GetApiLanguagesLanguage>>("Api/Languages");
+
             var languagesSelectOptions = languages
                 .Select(language => new SelectListItem
                 {

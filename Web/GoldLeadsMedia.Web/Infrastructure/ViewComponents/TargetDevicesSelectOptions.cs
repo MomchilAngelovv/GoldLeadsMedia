@@ -6,8 +6,9 @@
 
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Mvc.Rendering;
-    using GoldLeadsMedia.Web.Infrastructure.HttpHelper;
+
     using GoldLeadsMedia.Web.Models.CoreApiResponses;
+    using GoldLeadsMedia.Web.Infrastructure.HttpHelper;
 
     public class TargetDevicesSelectOptions : ViewComponent
     {
@@ -21,7 +22,8 @@
 
         public async Task<IViewComponentResult> InvokeAsync()
         {
-            var devices = await this.httpClient.GetAsync<List<DeviceApiResponse>>("api/targetdevices");
+            var devices = await this.httpClient.GetAsync<List<GetApiTargetDevicesTargetDevice>>("Api/TargetDevices");
+
             var devicesSelectOptions = devices
                 .Select(device => new SelectListItem
                 {

@@ -20,7 +20,7 @@ namespace GoldLeadsMedia.Web.Infrastructure.ViewComponents
         }
         public async Task<IViewComponentResult> InvokeAsync()
         {
-            var accesses = await this.httpClient.GetAsync<List<AccessApiResponse>>("Api/Accesses");
+            var accesses = await this.httpClient.GetAsync<List<GetApiAccessesAccess>>("Api/Accesses");
 
             var accessesSelectOptions = accesses
                 .Select(access => new SelectListItem

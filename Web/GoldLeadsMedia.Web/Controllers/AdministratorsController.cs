@@ -9,7 +9,7 @@
     using GoldLeadsMedia.Database.Models;
     using GoldLeadsMedia.Web.Infrastructure.HttpHelper;
     using GoldLeadsMedia.Web.Models.InputModels;
-    using GoldLeadsMedia.Web.Models.CoreApiResponses.ConventionTest;
+    using GoldLeadsMedia.Web.Models.CoreApiResponses;
 
     public class AdministratorsController : Controller
     {

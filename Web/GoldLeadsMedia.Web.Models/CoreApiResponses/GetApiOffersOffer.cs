@@ -1,6 +1,6 @@
 ﻿namespace GoldLeadsMedia.Web.Models.CoreApiResponses
 {
-    public class OfferApiResponse
+    public class GetApiOffersOffer
     {
         public string Id { get; set; }
         public string Number { get; set; }

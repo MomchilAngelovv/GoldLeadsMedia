@@ -1,4 +1,4 @@
-﻿namespace GoldLeadsMedia.Web.Models.CoreApiResponses.ConventionTest
+﻿namespace GoldLeadsMedia.Web.Models.CoreApiResponses
 {
     public class GetApiTierCountriesCountry
     {

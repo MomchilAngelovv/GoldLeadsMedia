@@ -1,5 +1,5 @@
 ﻿using GoldLeadsMedia.Web.Infrastructure.HttpHelper;
-using GoldLeadsMedia.Web.Models.CoreApiResponses.ConventionTest;
+using GoldLeadsMedia.Web.Models.CoreApiResponses;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System;

@@ -1,14 +1,15 @@
-﻿using GoldLeadsMedia.Web.Infrastructure.HttpHelper;
-using GoldLeadsMedia.Web.Models.CoreApiResponses;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace GoldLeadsMedia.Web.Infrastructure.ViewComponents
+﻿namespace GoldLeadsMedia.Web.Infrastructure.ViewComponents
 {
+    using System.Linq;
+    using System.Threading.Tasks;
+    using System.Collections.Generic;
+
+    using Microsoft.AspNetCore.Mvc;
+    using Microsoft.AspNetCore.Mvc.Rendering;
+
+    using GoldLeadsMedia.Web.Models.CoreApiResponses;
+    using GoldLeadsMedia.Web.Infrastructure.HttpHelper;
+
     public class PayTypesSelectOptions : ViewComponent
     {
         private readonly IAsyncHttpClient httpClient;
@@ -21,7 +22,7 @@ namespace GoldLeadsMedia.Web.Infrastructure.ViewComponents
 
         public async Task<IViewComponentResult> InvokeAsync()
         {
-            var paymentTypes = await this.httpClient.GetAsync<List<PaymentTypeApiResponse>>("Api/PayTypes");
+            var paymentTypes = await this.httpClient.GetAsync<List<GetApiPayTypesPayType>>("Api/PayTypes");
 
             var paymentTypesSelectOptions = paymentTypes
                 .Select(paymentType => new SelectListItem

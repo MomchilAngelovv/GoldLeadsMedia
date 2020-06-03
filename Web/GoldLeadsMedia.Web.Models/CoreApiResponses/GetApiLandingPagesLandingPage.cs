@@ -1,8 +1,8 @@
 ﻿namespace GoldLeadsMedia.Web.Models.CoreApiResponses
 {
-    public class VerticalApiResponse
+    public class GetApiLandingPagesLandingPage
     {
-        public int Id { get; set; }
+        public string Id { get; set; }
         public string Name { get; set; }
     }
 }

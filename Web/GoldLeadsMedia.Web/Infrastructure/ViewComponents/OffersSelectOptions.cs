@@ -21,7 +21,7 @@
 
         public async Task<IViewComponentResult> InvokeAsync()
         {
-            var offers = await this.httpClient.GetAsync<List<OfferApiResponse>>("api/offers");
+            var offers = await this.httpClient.GetAsync<List<GetApiOffersOffer>>("Api/Offers");
 
             var offersSelectOptions = offers
                 .Select(offer => new SelectListItem

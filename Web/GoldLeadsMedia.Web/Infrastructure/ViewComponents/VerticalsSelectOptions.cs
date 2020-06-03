@@ -1,14 +1,15 @@
-﻿using GoldLeadsMedia.Web.Infrastructure.HttpHelper;
-using GoldLeadsMedia.Web.Models.CoreApiResponses;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace GoldLeadsMedia.Web.Infrastructure.ViewComponents
+﻿namespace GoldLeadsMedia.Web.Infrastructure.ViewComponents
 {
+    using System.Linq;
+    using System.Collections.Generic;
+    using System.Threading.Tasks;
+
+    using GoldLeadsMedia.Web.Models.CoreApiResponses;
+    using GoldLeadsMedia.Web.Infrastructure.HttpHelper;
+
+    using Microsoft.AspNetCore.Mvc;
+    using Microsoft.AspNetCore.Mvc.Rendering;
+
     public class VerticalsSelectOptions : ViewComponent
     {
         private readonly IAsyncHttpClient httpClient;
@@ -21,7 +22,8 @@ namespace GoldLeadsMedia.Web.Infrastructure.ViewComponents
 
         public async Task<IViewComponentResult> InvokeAsync()
         {
-            var verticals = await this.httpClient.GetAsync<List<VerticalApiResponse>>("api/verticals");
+            var verticals = await this.httpClient.GetAsync<List<GetApiVerticalsVertical>>("Api/Verticals");
+
             var verticalsSelectOptions = verticals
                 .Select(vertical => new SelectListItem
                 {
