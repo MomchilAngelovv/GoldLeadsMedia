@@ -15,7 +15,7 @@
         public decimal? PayPerLead { get; set; }
         public string PayType { get; set; }
         public string Language { get; set; }
-        public string Country { get; set; }
+        public string TierCountry { get; set; }
         public string Vertical { get; set; }
         public string Device { get; set; }
         public string RedirectUrl { get; set; }

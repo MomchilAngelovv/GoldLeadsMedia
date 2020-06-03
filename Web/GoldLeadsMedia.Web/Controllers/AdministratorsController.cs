@@ -7,9 +7,9 @@
     using Microsoft.AspNetCore.Identity;
 
     using GoldLeadsMedia.Database.Models;
-    using GoldLeadsMedia.Web.Infrastructure.HttpHelper;
     using GoldLeadsMedia.Web.Models.InputModels;
     using GoldLeadsMedia.Web.Models.CoreApiResponses;
+    using GoldLeadsMedia.Web.Infrastructure.HttpHelper;
 
     public class AdministratorsController : Controller
     {
@@ -78,10 +78,10 @@
                 inputModel.TargetDeviceId,
                 inputModel.AccessId,
                 inputModel.ActionFlow,
-                inputModel.PayOut,
-                inputModel.DailyCap,
-                inputModel.LanguageId,
+                inputModel.PayPerAction,
+                inputModel.PayPerLead,
                 inputModel.PayPerClick,
+                inputModel.LanguageId,
                 CreatedByManagerId = loggedUser.Id
             };
 

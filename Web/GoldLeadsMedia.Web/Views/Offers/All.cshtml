@@ -48,9 +48,9 @@
             <th>Number</th>
             <th>Name</th>
             <th>Pay per action</th>
-            <th>Pay per click</th>
             <th>Pay per lead</th>
-            <th>Country</th>
+            <th>Pay per click</th>
+            <th>Tier Country</th>
             <th>Language</th>
             <th>Vertical</th>
             <th>Flow</th>
@@ -67,16 +67,16 @@
                         @offer.Name
                     </td>
                     <td>
-                        $ @offer.PayPerAction
+                        @offer.PayPerAction
                     </td>
                     <td>
-                        $ @offer.PayPerClick
+                        @offer.PayPerLead
                     </td>
                     <td>
-                        $ @offer.PayPerLead
+                        @offer.PayPerClick
                     </td>
                     <td>
-                        @offer.Country
+                        @offer.TierCountry
                     </td>
                     <td>
                         @offer.Language

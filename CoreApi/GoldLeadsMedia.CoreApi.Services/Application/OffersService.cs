@@ -57,8 +57,9 @@
                 LanguageId = inputModel.LanguageId,
                 PayTypeId = inputModel.PayTypeId,
                 TargetDeviceId = inputModel.TargetDeviceId,
+                PayPerAction = inputModel.PayPerAction,
+                PayPerLead = inputModel.PayPerLead,
                 PayPerClick = inputModel.PayPerClick,
-                PayPerAction = inputModel.PayOut,
                 Information = $"[Created by: {inputModel.CreatedByManagerId}]"
             };
 

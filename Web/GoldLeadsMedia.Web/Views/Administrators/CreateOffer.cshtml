@@ -41,21 +41,18 @@
             </div>
         </div>
         <div class="form-group row mx-auto">
-            <div class="col-4">
-                <input asp-for="@Model.PayOut" placeholder="Payout:" class="form-control" />
+            <div class="col-3">
+                <input asp-for="@Model.PayPerAction" placeholder="Pay Per Action" class="form-control" />
             </div>
-            <div class="col-4">
-                <input asp-for="@Model.DailyCap" placeholder="Daily cap:" class="form-control" />
+            <div class="col-3">
+                <input asp-for="@Model.PayPerLead" placeholder="Pay Per Lead" class="form-control" />
+            </div>
+            <div class="col-2">
+                <input asp-for="@Model.PayPerClick" placeholder="Pay Per Click" class="form-control" />
             </div>
             <div class="col-4">
                 <vc:languages-select-options></vc:languages-select-options>
             </div>
-        </div>
-        <div class="form-group row mx-auto">
-            <div class="col-4">
-                <input asp-for="@Model.PayPerClick" placeholder="Earning per click:" class="form-control" />
-            </div>
-            
         </div>
         <hr />
         <div class="form-group row mx-auto">

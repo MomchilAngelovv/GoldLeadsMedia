@@ -13,9 +13,9 @@
         public int TargetDeviceId { get; set; }
         public int AccessId { get; set; }
         public string ActionFlow { get; set; }
-        public decimal PayOut { get; set; }
-        public decimal DailyCap { get; set; }
-        public decimal PayPerClick { get; set; }
+        public decimal? PayPerAction { get; set; }
+        public decimal? PayPerLead { get; set; }
+        public decimal? PayPerClick { get; set; }
         public int LanguageId { get; set; }
         public IFormFile Image { get; set; }
     }
