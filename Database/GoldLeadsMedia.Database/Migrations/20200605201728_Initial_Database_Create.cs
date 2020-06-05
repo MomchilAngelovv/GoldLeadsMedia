@@ -1,8 +1,9 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore.Migrations;
-
-namespace GoldLeadsMedia.Database.Migrations
+﻿namespace GoldLeadsMedia.Database.Migrations
 {
+    using System;
+
+    using Microsoft.EntityFrameworkCore.Migrations;
+
     public partial class Initial_Database_Create : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -400,9 +401,9 @@ namespace GoldLeadsMedia.Database.Migrations
                     Description = table.Column<string>(maxLength: 400, nullable: false),
                     Number = table.Column<string>(maxLength: 100, nullable: false),
                     ActionFlow = table.Column<string>(maxLength: 400, nullable: false),
-                    PayPerClick = table.Column<decimal>(type: "decimal(18,4)", nullable: true),
                     PayPerAction = table.Column<decimal>(type: "decimal(18,4)", nullable: true),
                     PayPerLead = table.Column<decimal>(type: "decimal(18,4)", nullable: true),
+                    PayPerClick = table.Column<decimal>(type: "decimal(18,4)", nullable: true),
                     PayTypeId = table.Column<int>(nullable: false),
                     TierCountryId = table.Column<int>(nullable: false),
                     AccessId = table.Column<int>(nullable: false),
@@ -468,7 +469,7 @@ namespace GoldLeadsMedia.Database.Migrations
                 {
                     Id = table.Column<string>(nullable: false),
                     IpAddress = table.Column<string>(maxLength: 100, nullable: false),
-                    OfferId = table.Column<string>(nullable: false),
+                    OfferId = table.Column<string>(nullable: true),
                     AffiliateId = table.Column<string>(nullable: false),
                     CreatedOn = table.Column<DateTime>(nullable: false),
                     UpdatedOn = table.Column<DateTime>(nullable: true),
@@ -489,7 +490,7 @@ namespace GoldLeadsMedia.Database.Migrations
                         column: x => x.OfferId,
                         principalTable: "Offers",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -585,8 +586,8 @@ namespace GoldLeadsMedia.Database.Migrations
                     FirstName = table.Column<string>(maxLength: 100, nullable: false),
                     LastName = table.Column<string>(maxLength: 100, nullable: false),
                     Email = table.Column<string>(maxLength: 100, nullable: false),
-                    Password = table.Column<string>(maxLength: 100, nullable: true),
-                    PhoneNumber = table.Column<string>(maxLength: 100, nullable: false),
+                    Password = table.Column<string>(maxLength: 100, nullable: false),
+                    PhoneNumber = table.Column<string>(nullable: true),
                     IsConfirmed = table.Column<bool>(nullable: false),
                     HasAffiliatePayments = table.Column<bool>(nullable: false),
                     IdInBroker = table.Column<string>(maxLength: 450, nullable: true),

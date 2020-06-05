@@ -122,7 +122,6 @@ namespace GoldLeadsMedia.Database.Migrations
                         .HasMaxLength(100);
 
                     b.Property<string>("OfferId")
-                        .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<DateTime?>("UpdatedOn")
@@ -580,13 +579,12 @@ namespace GoldLeadsMedia.Database.Migrations
                         .HasMaxLength(100);
 
                     b.Property<string>("Password")
+                        .IsRequired()
                         .HasColumnType("nvarchar(100)")
                         .HasMaxLength(100);
 
                     b.Property<string>("PhoneNumber")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(100)")
-                        .HasMaxLength(100);
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime?>("UpdatedOn")
                         .HasColumnType("datetime2");
@@ -1035,9 +1033,7 @@ namespace GoldLeadsMedia.Database.Migrations
 
                     b.HasOne("GoldLeadsMedia.Database.Models.Offer", "Offer")
                         .WithMany("ApiRegistrations")
-                        .HasForeignKey("OfferId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("OfferId");
                 });
 
             modelBuilder.Entity("GoldLeadsMedia.Database.Models.ClickRegistration", b =>

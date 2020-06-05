@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GoldLeadsMedia.Database.Migrations
 {
     [DbContext(typeof(GoldLeadsMediaDbContext))]
-    [Migration("20200605193737_Initial_Database_Create")]
+    [Migration("20200605201728_Initial_Database_Create")]
     partial class Initial_Database_Create
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -124,7 +124,6 @@ namespace GoldLeadsMedia.Database.Migrations
                         .HasMaxLength(100);
 
                     b.Property<string>("OfferId")
-                        .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<DateTime?>("UpdatedOn")
@@ -582,13 +581,12 @@ namespace GoldLeadsMedia.Database.Migrations
                         .HasMaxLength(100);
 
                     b.Property<string>("Password")
+                        .IsRequired()
                         .HasColumnType("nvarchar(100)")
                         .HasMaxLength(100);
 
                     b.Property<string>("PhoneNumber")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(100)")
-                        .HasMaxLength(100);
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime?>("UpdatedOn")
                         .HasColumnType("datetime2");
@@ -1037,9 +1035,7 @@ namespace GoldLeadsMedia.Database.Migrations
 
                     b.HasOne("GoldLeadsMedia.Database.Models.Offer", "Offer")
                         .WithMany("ApiRegistrations")
-                        .HasForeignKey("OfferId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("OfferId");
                 });
 
             modelBuilder.Entity("GoldLeadsMedia.Database.Models.ClickRegistration", b =>
