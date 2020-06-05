@@ -9,4 +9,8 @@
     <ProjectReference Include="..\GoldLeadsMedia.PartnersApi.Models\GoldLeadsMedia.PartnersApi.Models.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="AsyncHttpClient\" />
+  </ItemGroup>
+
 </Project>

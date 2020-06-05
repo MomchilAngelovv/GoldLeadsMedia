@@ -1,21 +1,17 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using GoldLeadsMedia.Database;
-using GoldLeadsMedia.PartnersApi.Services;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
-
 namespace GoldLeadsMedia.PartnersApi
 {
+    using Microsoft.AspNetCore.Builder;
+    using Microsoft.Extensions.Hosting;
+    using Microsoft.AspNetCore.Hosting;
+    using Microsoft.EntityFrameworkCore;
+    using Microsoft.Extensions.Configuration;
+    using Microsoft.Extensions.DependencyInjection;
+
+    using GoldLeadsMedia.Database;
+    using GoldLeadsMedia.PartnersApi.Services;
+    using GoldLeadsMedia.PartnersApi.Services.Application.Common;
+    using GoldLeadsMedia.PartnersApi.Services.Application;
+
     public class Startup
     {
         private readonly IConfiguration configuration;

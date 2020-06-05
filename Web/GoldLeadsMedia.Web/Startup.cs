@@ -1,12 +1,12 @@
 namespace GoldLeadsMedia.Web
 {
     using Microsoft.AspNetCore.Builder;
-    using Microsoft.AspNetCore.Identity;
+    using Microsoft.Extensions.Hosting;
     using Microsoft.AspNetCore.Hosting;
+    using Microsoft.AspNetCore.Identity;
     using Microsoft.EntityFrameworkCore;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
-    using Microsoft.Extensions.Hosting;
 
     using GoldLeadsMedia.Database;
     using GoldLeadsMedia.Database.Models;
@@ -58,7 +58,8 @@ namespace GoldLeadsMedia.Web
                 options.Filters.Add<RegisterDeveleporErrorExceptionFilter>();
             });
 
-            services.AddRazorPages();
+            //services.AddRazorPages();
+
             services.AddHttpClient();
             services.AddTransient<IAsyncHttpClient, AsyncHttpClient>();
         }
@@ -72,7 +73,6 @@ namespace GoldLeadsMedia.Web
             }
             else
             {
-                //TODO Check why some errors are added to db and some are not
                 app.UseExceptionHandler("/Home/Error");
                 app.UseHsts();
             }
@@ -90,7 +90,6 @@ namespace GoldLeadsMedia.Web
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Users}/{action=Login}/{id?}");
-                endpoints.MapRazorPages();
             });
         }
     }

@@ -8,6 +8,7 @@
     using GoldLeadsMedia.PartnersApi.Services;
     using GoldLeadsMedia.PartnersApi.Models.InputModels;
     using GoldLeadsMedia.PartnersApi.Models.ServiceModels;
+    using GoldLeadsMedia.PartnersApi.Services.Application.Common;
 
     public class LeadsController : ApiController
     {

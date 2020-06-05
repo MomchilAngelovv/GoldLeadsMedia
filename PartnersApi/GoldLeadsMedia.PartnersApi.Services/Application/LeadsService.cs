@@ -1,4 +1,4 @@
-﻿namespace GoldLeadsMedia.PartnersApi.Services
+﻿namespace GoldLeadsMedia.PartnersApi.Services.Application.Common
 {
     using System.Linq;
     using System.Threading.Tasks;
