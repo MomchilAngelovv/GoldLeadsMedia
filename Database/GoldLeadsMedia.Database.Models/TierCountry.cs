@@ -1,11 +1,9 @@
-﻿using GoldLeadsMedia.Database.Models.Common;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Text;
-
-namespace GoldLeadsMedia.Database.Models
+﻿namespace GoldLeadsMedia.Database.Models
 {
+    using System;
+
+    using GoldLeadsMedia.Database.Models.Common;
+
     public class TierCountry : IEntityMetaData
     {
         public TierCountry()
@@ -13,10 +11,7 @@ namespace GoldLeadsMedia.Database.Models
             this.CreatedOn = DateTime.UtcNow;
         }
 
-        [Key]
         public int Id { get; set; }
-        [Required]
-        [MaxLength(100)]
         public string Name { get; set; }
 
         public DateTime CreatedOn { get; set; }

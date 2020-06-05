@@ -1,7 +1,6 @@
 ﻿namespace GoldLeadsMedia.Database.Models
 {
     using System;
-    using System.ComponentModel.DataAnnotations;
 
     using GoldLeadsMedia.Database.Models.Common;
 
@@ -13,15 +12,10 @@
             this.CreatedOn = DateTime.UtcNow;
         }
 
-        [Key]
         public string Id { get; set; }
-        [Required]
-        [MaxLength(400)]
         public string Message { get; set; }
 
-        [Required]
         public string LeadId { get; set; }
-        [Required]
         public string BrokerId { get; set; }
 
         public virtual Lead Lead { get; set; }

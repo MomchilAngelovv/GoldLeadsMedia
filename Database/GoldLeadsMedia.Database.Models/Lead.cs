@@ -2,7 +2,6 @@
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
 
     using GoldLeadsMedia.Database.Models.Common;
 
@@ -14,28 +13,15 @@
             this.CreatedOn = DateTime.UtcNow;
         }
 
-        [Key]
         public string Id { get; set; }
-        [Required]
-        [MaxLength(100)]
         public string FirstName { get; set; }
-        [Required]
-        [MaxLength(100)]
         public string LastName { get; set; }
-        [Required]
-        [MaxLength(100)]
         public string Email { get; set; }
-        [MaxLength(100)]
         public string Password { get; set; }
-        [Required]
-        [MaxLength(100)]
         public string PhoneNumber { get; set; }
         public bool IsConfirmed { get; set; }
         public bool HasAffiliatePayments { get; set; }
-
-        [MaxLength(450)]
         public string IdInBroker { get; set; }
-        [MaxLength(100)]
         public string CallStatus { get; set; }
         public DateTime? FtdBecameOn { get; set; }
         public decimal? FtdAmmount { get; set; }

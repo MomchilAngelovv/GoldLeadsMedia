@@ -2,7 +2,6 @@
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
 
     using GoldLeadsMedia.Database.Models.Common;
 
@@ -14,23 +13,14 @@
             this.CreatedOn = DateTime.UtcNow;
         }
 
-        [Key]
         public string Id { get; set; }
-        [Required]
-        [MaxLength(100)]
         public string Name { get; set; }
-        [Required]
-        [MaxLength(400)]
         public string Description { get; set; }
-        [Required]
-        [MaxLength(100)]
         public string Number { get; set; }
-        [Required]
-        [MaxLength(400)]
         public string ActionFlow { get; set; }
-        public decimal? PayPerClick { get; set; }
         public decimal? PayPerAction { get; set; }
         public decimal? PayPerLead { get; set; }
+        public decimal? PayPerClick { get; set; }
 
         public int PayTypeId { get; set; }
         public int TierCountryId { get; set; }

@@ -36,9 +36,10 @@
         public DbSet<Vertical> Verticals { get; set; }
 
         //TODO MAKE configure classes for EVERY Entityt
-        protected override void OnModelCreating(ModelBuilder builder)
+        protected override void OnModelCreating(ModelBuilder builder) 
         {
             builder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+            base.OnModelCreating(builder);
         }
     }
 }
