@@ -2,13 +2,10 @@
 {
     using System.ComponentModel.DataAnnotations;
 
-    public class AdministratorsRegisterLandingPageInputModel
+    public class AdministratorsRegisterBrokerInputModel
     {
         [Required]
         [MaxLength(100)]
         public string Name { get; set; }
-        [Required]
-        [MaxLength(400)]
-        public string Url { get; set; }
     }
 }

@@ -93,7 +93,7 @@
             return this.Redirect($"~/Offers/Details/{response.Id}");
         }
         [HttpPost]
-        public async Task<IActionResult> RegisterPartner(AdministratorsRegisterPartnerInputModel inputModel)
+        public async Task<IActionResult> RegisterBroker(AdministratorsRegisterBrokerInputModel inputModel)
         {
             var requestBody = new
             {
