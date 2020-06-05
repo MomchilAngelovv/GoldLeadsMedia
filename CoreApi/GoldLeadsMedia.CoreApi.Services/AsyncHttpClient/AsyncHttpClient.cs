@@ -1,13 +1,13 @@
-﻿using Microsoft.Extensions.Configuration;
-using System;
-using System.Collections.Generic;
-using System.Net.Http;
-using System.Text;
-using System.Text.Json;
-using System.Threading.Tasks;
-
-namespace GoldLeadsMedia.CoreApi.Services.AsyncHttpClient
+﻿namespace GoldLeadsMedia.CoreApi.Services.AsyncHttpClient
 {
+    using System.Text;
+    using System.Net.Http;
+    using System.Text.Json;
+    using System.Threading.Tasks;
+    using System.Collections.Generic;
+
+    using Microsoft.Extensions.Configuration;
+
     public class AsyncHttpClient : IAsyncHttpClient
     {
         private readonly IConfiguration configuration;

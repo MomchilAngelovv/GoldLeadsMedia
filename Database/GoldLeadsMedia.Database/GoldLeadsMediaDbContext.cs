@@ -1,10 +1,11 @@
 ﻿namespace GoldLeadsMedia.Database
 {
+    using System.Reflection;
+
     using Microsoft.EntityFrameworkCore;
     using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
     using GoldLeadsMedia.Database.Models;
-    using System.Reflection;
 
     public class GoldLeadsMediaDbContext : IdentityDbContext<GoldLeadsMediaUser, GoldLeadsMediaRole, string>
     {
@@ -35,7 +36,6 @@
         public DbSet<TierCountry> TierCountries { get; set; }
         public DbSet<Vertical> Verticals { get; set; }
 
-        //TODO MAKE configure classes for EVERY Entityt
         protected override void OnModelCreating(ModelBuilder builder) 
         {
             builder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());

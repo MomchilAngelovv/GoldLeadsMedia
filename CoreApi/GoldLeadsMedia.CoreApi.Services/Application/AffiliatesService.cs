@@ -3,8 +3,6 @@
     using System.Linq;
     using System.Collections.Generic;
 
-    using Microsoft.AspNetCore.Identity;
-
     using GoldLeadsMedia.Database;
     using GoldLeadsMedia.Database.Models;
     using GoldLeadsMedia.CoreApi.Services.Application.Common;
@@ -52,12 +50,12 @@
             var totalEarned = this.db.Leads
                 .Where(lead => lead.FtdBecameOn != null && (lead.ClickRegistration.Affiliate.Id == affiliate.Id || lead.ApiRegistration.AffiliateId == affiliate.Id))
                 .Sum(lead => 
-                    lead.ClickRegistration.Offer.PayPerAction.GetValueOrDefault() + 
-                    lead.ClickRegistration.Offer.PayPerClick.GetValueOrDefault() +
-                    lead.ClickRegistration.Offer.PayPerLead.GetValueOrDefault() +
-                    lead.ApiRegistration.Offer.PayPerAction.GetValueOrDefault() +
-                    lead.ApiRegistration.Offer.PayPerClick.GetValueOrDefault() +
-                    lead.ApiRegistration.Offer.PayPerLead.GetValueOrDefault());
+                     lead.ClickRegistration.Offer.PayPerAction.GetValueOrDefault() + 
+                     lead.ClickRegistration.Offer.PayPerClick.GetValueOrDefault() +
+                     lead.ClickRegistration.Offer.PayPerLead.GetValueOrDefault() +
+                     lead.ApiRegistration.Offer.PayPerAction.GetValueOrDefault() +
+                     lead.ApiRegistration.Offer.PayPerClick.GetValueOrDefault() +
+                     lead.ApiRegistration.Offer.PayPerLead.GetValueOrDefault());
 
             var totalPaid = affiliate.AffiliatePayments
                 .Sum(affilatePayment => affilatePayment.Amount);
