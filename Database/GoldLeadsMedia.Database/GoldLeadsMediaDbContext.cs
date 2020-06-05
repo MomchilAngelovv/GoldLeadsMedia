@@ -4,6 +4,7 @@
     using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
     using GoldLeadsMedia.Database.Models;
+    using System.Reflection;
 
     public class GoldLeadsMediaDbContext : IdentityDbContext<GoldLeadsMediaUser, GoldLeadsMediaRole, string>
     {
@@ -37,17 +38,7 @@
         //TODO MAKE configure classes for EVERY Entityt
         protected override void OnModelCreating(ModelBuilder builder)
         {
-            builder.Entity<OfferLandingPage>().HasKey(e => new { e.OfferId, e.LandingPageId });
-
-            builder.Entity<OfferOfferGroup>().HasKey(e => new { e.OfferId, e.OfferGroupId });
-
-            builder.Entity<Offer>().Property(p => p.PayPerClick).HasColumnType("decimal(18,4)");
-            builder.Entity<Offer>().Property(p => p.PayPerAction).HasColumnType("decimal(18,4)");
-            builder.Entity<AffiliatePayment>().Property(p => p.Amount).HasColumnType("decimal(18,4)");
-            builder.Entity<Lead>().Property(p => p.FtdAmmount).HasColumnType("decimal(18,4)");
-            builder.Entity<Offer>().Property(p => p.PayPerLead).HasColumnType("decimal(18,4)");
-
-            base.OnModelCreating(builder);
+            builder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
         }
     }
 }
