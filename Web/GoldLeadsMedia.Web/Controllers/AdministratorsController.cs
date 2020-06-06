@@ -95,7 +95,7 @@
                 inputModel.Name
             };
 
-            await this.httpClient.PostAsync<PostApiPartnersResponse>("Api/Partners", requestBody);
+            await this.httpClient.PostAsync<PostApiPartnersResponse>("Api/Brokers", requestBody);
             return this.Redirect("/Offers/Dashboard");
         }
         [HttpPost]

@@ -62,7 +62,7 @@
         public async Task<IActionResult> ConfirmedLeads()
         {
             var confirmedLeads = await this.httpClient.GetAsync<List<ManagersConfirmedLeadsLead>>("Api/Managers/ConfirmedLeads");
-            var partners = await this.httpClient.GetAsync<List<ManagersConfirmedLeadsPartner>>("Api/Partners");
+            var partners = await this.httpClient.GetAsync<List<ManagersConfirmedLeadsPartner>>("Api/Brokers");
 
             var viewModel = new ManagersConfirmedLeadsViewModel
             {
