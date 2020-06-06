@@ -35,7 +35,7 @@
         {
             return this.View();
         }
-        public IActionResult RegisterPartner()
+        public IActionResult RegisterBroker()
         {
             return this.View();
         }
@@ -58,11 +58,6 @@
             if (this.ModelState.IsValid == false)
             {
                 return this.View(inputModel);
-            }
-
-            if (inputModel.Image?.FileName.EndsWith("jpg") == false)
-            {
-                return this.BadRequest("Invalid image file!");
             }
 
             var loggedUser = await this.userManager.GetUserAsync(this.User);
