@@ -4,8 +4,9 @@
     using System.Threading.Tasks;
 
     using Microsoft.AspNetCore.Mvc;
+    using Microsoft.AspNetCore.Identity;
 
-    using GoldLeadsMedia.PartnersApi.Services;
+    using GoldLeadsMedia.Database.Models;
     using GoldLeadsMedia.PartnersApi.Models.InputModels;
     using GoldLeadsMedia.PartnersApi.Models.ServiceModels;
     using GoldLeadsMedia.PartnersApi.Services.Application.Common;
@@ -14,13 +15,19 @@
     {
         private readonly ILeadsService leadsService;
         private readonly ICountriesService countriesService;
+        private readonly IOffersService offersService;
+        private readonly UserManager<GoldLeadsMediaUser> userManager;
 
         public LeadsController(
             ILeadsService leadsService,
-            ICountriesService countriesService)
+            ICountriesService countriesService,
+            IOffersService offersService,
+            UserManager<GoldLeadsMediaUser> userManager)
         {
             this.leadsService = leadsService;
             this.countriesService = countriesService;
+            this.offersService = offersService;
+            this.userManager = userManager;
         }
 
         [HttpGet("Welcome")]
@@ -30,14 +37,26 @@
             return greetingMessage;
         }
 
+        //TODO MAKE GLOBAL CONSTANTS FOR ERROR MESSAGES AND OTHER STUFF
         [HttpPost]
         public async Task<ActionResult<object>> Register(LeadsRegisterInputModel inputModel)
         {
             var country = this.countriesService.GetBy(inputModel.CountryName);
-
             if (country == null)
             {
                 return this.BadRequest("Invalid country name! Make sure to provide correct country name!");
+            }
+
+            var affiliate = await this.userManager.FindByIdAsync(inputModel.AffiliateId);
+            if (affiliate == null)
+            {
+                return this.BadRequest("Invalid affiliateId!");
+            }
+
+            var offerExists = this.offersService.ExistsCheckBy(inputModel.OfferId);
+            if (offerExists == false)
+            {
+                return this.BadRequest("Invalid offerId!");
             }
 
             var ipAddress = this.HttpContext.Connection.RemoteIpAddress.ToString();

@@ -2,9 +2,9 @@
 {
     using GoldLeadsMedia.Database.Models;
 
-    public interface ICountriesService
+    public interface IOffersService
     {
-        Country GetBy(string name);
-        bool ExistsCheckBy(string name);
+        Offer GetBy(string offerId);
+        bool ExistsCheckBy(string offerId);
     }
 }

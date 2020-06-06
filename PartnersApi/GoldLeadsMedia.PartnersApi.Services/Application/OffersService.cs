@@ -6,21 +6,21 @@
     using GoldLeadsMedia.Database.Models;
     using GoldLeadsMedia.PartnersApi.Services.Application.Common;
 
-    public class CountriesService : ICountriesService
+    public class OffersService : IOffersService
     {
         private readonly GoldLeadsMediaDbContext db;
 
-        public CountriesService(
+        public OffersService(
             GoldLeadsMediaDbContext db)
         {
             this.db = db;
         }
 
-        public bool ExistsCheckBy(string name)
+        public bool ExistsCheckBy(string offerId)
         {
-            var country = db.Countries.FirstOrDefault(country => country.Name == name);
+            var offer = this.db.Offers.SingleOrDefault(offer => offer.Id == offerId);
 
-            if (country == null)
+            if (offer == null)
             {
                 return false;
             }
@@ -28,10 +28,10 @@
             return true;
         }
 
-        public Country GetBy(string name)
+        public Offer GetBy(string offerId)
         {
-            var country = db.Countries.FirstOrDefault(country => country.Name == name);
-            return country;
+            var offer = this.db.Offers.SingleOrDefault(offer => offer.Id == offerId);
+            return offer;
         }
     }
 }
