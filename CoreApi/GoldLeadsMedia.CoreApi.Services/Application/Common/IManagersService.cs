@@ -1,13 +1,14 @@
-﻿using GoldLeadsMedia.CoreApi.Models.ServiceModels;
-using GoldLeadsMedia.Database.Models;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-
-namespace GoldLeadsMedia.CoreApi.Services.Application.Common
+﻿namespace GoldLeadsMedia.CoreApi.Services.Application.Common
 {
+    using System.Threading.Tasks;
+    using System.Collections.Generic;
+
+    using GoldLeadsMedia.Database.Models;
+    using GoldLeadsMedia.CoreApi.Models.ServiceModels;
+
     public interface IManagersService
     {
-        Task<IEnumerable<GoldLeadsMediaUser>> GetAll();
+        Task<IEnumerable<GoldLeadsMediaUser>> GetAllAffiliates();
         Task<IEnumerable<GoldLeadsMediaUser>> GetAffiliatesByAsync(string managerId);
         IEnumerable<Lead> GetNotConfirmedLeads();
         IEnumerable<Lead> GetConfirmedLeads();

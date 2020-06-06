@@ -4,6 +4,7 @@
     using System.Collections.Generic;
 
     using Microsoft.AspNetCore.Mvc;
+
     using GoldLeadsMedia.CoreApi.Services.Application.Common;
 
     public class OfferGroupsController : ApiController

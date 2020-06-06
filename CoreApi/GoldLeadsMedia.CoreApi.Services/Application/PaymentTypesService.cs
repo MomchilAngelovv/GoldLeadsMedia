@@ -1,13 +1,12 @@
-﻿using GoldLeadsMedia.CoreApi.Services.Application.Common;
-using GoldLeadsMedia.Database;
-using GoldLeadsMedia.Database.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace GoldLeadsMedia.CoreApi.Services.Application
+﻿namespace GoldLeadsMedia.CoreApi.Services.Application
 {
+    using System.Linq;
+    using System.Collections.Generic;
+
+    using GoldLeadsMedia.Database;
+    using GoldLeadsMedia.Database.Models;
+    using GoldLeadsMedia.CoreApi.Services.Application.Common;
+
     public class PaymentTypesService : IPaymentTypesService
     {
         private readonly GoldLeadsMediaDbContext db;
@@ -20,8 +19,8 @@ namespace GoldLeadsMedia.CoreApi.Services.Application
 
         public IEnumerable<PayType> GetAll()
         {
-            var paymentTypes = db.PaymentTypes.ToList();
-            return paymentTypes;
+            return this.db.PaymentTypes
+                .ToList();
         }
     }
 }

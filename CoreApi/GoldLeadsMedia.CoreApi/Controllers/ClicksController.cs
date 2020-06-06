@@ -4,26 +4,20 @@
 
     using Microsoft.AspNetCore.Mvc;
 
-    using GoldLeadsMedia.Database.Models;
     using GoldLeadsMedia.CoreApi.Models.InputModels;
-    using GoldLeadsMedia.CoreApi.Services.Application.Common;
     using GoldLeadsMedia.CoreApi.Models.ServiceModels;
-    using GoldLeadsMedia.Database;
-    using Microsoft.AspNetCore.Builder;
+    using GoldLeadsMedia.CoreApi.Services.Application.Common;
 
     public class ClicksController : ApiController
     {
         private readonly IClicksService clicksService;
-        private readonly GoldLeadsMediaDbContext db;
         private readonly ILandingPagesService landingPagesService;
 
         public ClicksController(
             IClicksService clicksService, 
-            GoldLeadsMediaDbContext db,
             ILandingPagesService landingPagesService)
         {
             this.clicksService = clicksService;
-            this.db = db;
             this.landingPagesService = landingPagesService;
         }
 

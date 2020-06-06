@@ -4,6 +4,7 @@
 
     using Microsoft.AspNetCore.Mvc;
 
+    using GoldLeadsMedia.CoreApi.Common;
     using GoldLeadsMedia.CoreApi.Models.InputModels;
     using GoldLeadsMedia.CoreApi.Models.ServiceModels;
     using GoldLeadsMedia.CoreApi.Services.Application.Common;
@@ -28,7 +29,7 @@
 
             if (country == null)
             {
-                return this.BadRequest("Invalid country name! Make sure to provide correct country name!");
+                return this.BadRequest(ErrorConstants.InvalidCountryName);
             }
 
             var serviceModel = new LeadsRegisterInputServiceModel

@@ -20,20 +20,16 @@
 
         public IEnumerable<Lead> GetLeadsBy(string affiliateId)
         {
-            var leads = db.Leads
+            return this.db.Leads
                 .Where(lead => lead.ClickRegistration.AffiliateId == affiliateId)
                 .ToList();
-
-            return leads;
         }
 
         public IEnumerable<Offer> GetOffersBy(string affiliateId)
         {
-            var offers = this.db.Offers
+            return this.db.Offers
                 .Where(offer => offer.ApiRegistrations.Any(apiRegistration => apiRegistration.AffiliateId == affiliateId) || offer.ClickRegistrations.Any(clickRegistration => clickRegistration.AffiliateId == affiliateId))
                 .ToList();
-
-            return offers;
         }
 
         public AffiliatesGetPaymentsStatusByOutputServiceModel GetPaymentsStatusBy(string affiliateId)

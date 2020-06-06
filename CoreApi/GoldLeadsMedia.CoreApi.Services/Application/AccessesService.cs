@@ -18,8 +18,8 @@
 
         public IEnumerable<Access> GetAll()
         {
-            var accesses = db.Accesses.ToList();
-            return accesses;
+            return this.db.Accesses
+                .ToList();
         }
     }
 }

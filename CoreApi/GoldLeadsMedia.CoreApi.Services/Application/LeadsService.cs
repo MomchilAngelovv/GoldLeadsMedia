@@ -7,8 +7,8 @@
 
     using GoldLeadsMedia.Database;
     using GoldLeadsMedia.Database.Models;
-    using GoldLeadsMedia.CoreApi.Services.Application.Common;
     using GoldLeadsMedia.CoreApi.Models.ServiceModels;
+    using GoldLeadsMedia.CoreApi.Services.Application.Common;
 
     public class LeadsService : ILeadsService
     {
@@ -33,20 +33,20 @@
 
         public IEnumerable<Lead> GetAllBy(string affiliateId)
         {
-            var leads = db.Leads
+            return this.db.Leads
                 .Where(lead => lead.ClickRegistration.AffiliateId == affiliateId)
                 .ToList();
-
-            return leads;
         }
         public Lead GetBy(string id, bool searchByBrokerId)
         {
             if (searchByBrokerId)
             {
-                return this.db.Leads.FirstOrDefault(lead => lead.IdInBroker == id);
+                return this.db.Leads
+                    .FirstOrDefault(lead => lead.IdInBroker == id);
             }
 
-            return this.db.Leads.FirstOrDefault(lead => lead.Id == id);
+            return this.db.Leads
+                .FirstOrDefault(lead => lead.Id == id);
         }
         public async Task<Lead> RegisterAsync(LeadsRegisterInputServiceModel serviceModel)
         {

@@ -1,10 +1,9 @@
-﻿using GoldLeadsMedia.Database.Models;
-using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace GoldLeadsMedia.CoreApi.Services.Application.Common
+﻿namespace GoldLeadsMedia.CoreApi.Services.Application.Common
 {
+    using System.Collections.Generic;
+
+    using GoldLeadsMedia.Database.Models;
+    
     public interface ITierCountriesService
     {
         IEnumerable<TierCountry> GetAll();

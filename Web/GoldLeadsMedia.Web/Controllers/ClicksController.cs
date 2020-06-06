@@ -25,13 +25,11 @@
 
         public async Task<IActionResult> Register(ClicksRegisterInputModel inputModel)
         {
-            var loggedUser = await this.userManager.GetUserAsync(this.User);
-
             var requestBody = new
             {
                 inputModel.OfferId,
                 inputModel.LandingPageId,
-                AffiliateId = loggedUser.Id
+                inputModel.AffiliateId
             };
 
             var response = await this.httpClient.PostAsync<PostApiClicksReponse>("Api/Clicks", requestBody);

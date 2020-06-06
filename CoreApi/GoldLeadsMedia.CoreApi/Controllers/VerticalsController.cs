@@ -4,11 +4,11 @@
     using System.Collections.Generic;
 
     using Microsoft.AspNetCore.Mvc;
+
     using GoldLeadsMedia.CoreApi.Services.Application.Common;
 
     public class VerticalsController : ApiController
     {
-        //TODO Fix all namespaces and usings
         private readonly IVerticalsService verticalsService;
 
         public VerticalsController(

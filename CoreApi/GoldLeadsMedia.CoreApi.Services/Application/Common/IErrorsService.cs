@@ -1,10 +1,10 @@
-﻿using GoldLeadsMedia.CoreApi.Models.ServiceModels;
-using GoldLeadsMedia.CoreApi.Models.ServicesModels.InputModels;
-using GoldLeadsMedia.Database.Models;
-using System.Threading.Tasks;
-
-namespace GoldLeadsMedia.CoreApi.Services.Application.Common
+﻿namespace GoldLeadsMedia.CoreApi.Services.Application.Common
 {
+    using System.Threading.Tasks;
+
+    using GoldLeadsMedia.Database.Models;
+    using GoldLeadsMedia.CoreApi.Models.ServicesModels.InputModels;
+
     public interface IErrorsService
     {
         Task<SendLeadError> RegisterLeadErrorAsync(ErrorsRegisterLeadErrorInputServiceModel serviceModel);

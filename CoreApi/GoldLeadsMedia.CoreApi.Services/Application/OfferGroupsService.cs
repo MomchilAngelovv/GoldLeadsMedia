@@ -19,8 +19,8 @@
 
         public IEnumerable<OfferGroup> GetAll()
         {
-            var offerGroups = db.OfferGroups.ToList();
-            return offerGroups;
+            return this.db.OfferGroups
+                .ToList();
         }
     }
 }

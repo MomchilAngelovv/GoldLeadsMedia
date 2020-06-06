@@ -8,5 +8,7 @@
         public string OfferId { get; set; }
         [Required]
         public string LandingPageId { get; set; }
+        [Required]
+        public string AffiliateId { get; set; }
     }
 }

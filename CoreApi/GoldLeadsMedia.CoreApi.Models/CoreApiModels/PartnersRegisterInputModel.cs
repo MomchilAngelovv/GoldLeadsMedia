@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace GoldLeadsMedia.CoreApi.Models.InputModels
+﻿namespace GoldLeadsMedia.CoreApi.Models.InputModels
 {
     public class PartnersRegisterInputModel
     {

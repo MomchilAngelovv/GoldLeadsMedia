@@ -8,8 +8,8 @@
 
     using GoldLeadsMedia.Database.Models;
     using GoldLeadsMedia.CoreApi.Models.InputModels;
-    using GoldLeadsMedia.CoreApi.Services.Application.Common;
     using GoldLeadsMedia.CoreApi.Models.ServiceModels;
+    using GoldLeadsMedia.CoreApi.Services.Application.Common;
 
     public class OffersController : ApiController
     {

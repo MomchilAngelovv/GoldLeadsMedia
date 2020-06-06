@@ -19,8 +19,8 @@
 
         public IEnumerable<Language> GetAll()
         {
-            var languages = db.Languages.ToList();
-            return languages;
+            return this.db.Languages
+                .ToList();
         }
     }
 }

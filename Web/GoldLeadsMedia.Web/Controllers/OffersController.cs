@@ -65,7 +65,7 @@
             var viewModel = await this.httpClient.GetAsync<OffersDetailsViewModel>($"Api/Offers/{id}");
 
             var webUrl = this.configuration["WebUrl"];
-            viewModel.RedirectUrl = $"{webUrl}/Clicks/Register?offerId={viewModel.Id}";
+            viewModel.RedirectUrl = $"{webUrl}/Clicks/Register?offerId={viewModel.Id}&affiliateId={loggedUser.Id}";
 
             //TODO: Fix vip offers to show only for vip affiliats
             //viewModel.IsVip = loggedUser.IsVip;

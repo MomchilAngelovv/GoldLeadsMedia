@@ -1,12 +1,12 @@
-﻿using GoldLeadsMedia.CoreApi.Services.Application.Common;
-using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace GoldLeadsMedia.CoreApi.Controllers
+﻿namespace GoldLeadsMedia.CoreApi.Controllers
 {
+    using System.Linq;
+    using System.Collections.Generic;
+
+    using Microsoft.AspNetCore.Mvc;
+
+    using GoldLeadsMedia.CoreApi.Services.Application.Common;
+
     public class TierCountriesController : ApiController
     {
         private readonly ITierCountriesService tierCountriesService;

@@ -19,7 +19,7 @@
         private readonly ILeadsService leadsService;
 
         public ManagersService(
-            GoldLeadsMediaDbContext db, 
+            GoldLeadsMediaDbContext db,
             UserManager<GoldLeadsMediaUser> userManager,
             ILeadsService leadsService)
         {
@@ -30,20 +30,21 @@
 
         public async Task<IEnumerable<GoldLeadsMediaUser>> GetAffiliatesByAsync(string managerId)
         {
-            var affiliates = await this.userManager.GetUsersInRoleAsync("Affiliate");
-            var managerAffiliates = affiliates.Where(user => user.ManagerId == managerId);
-
-            return managerAffiliates;
+            return (await this.userManager
+                .GetUsersInRoleAsync("Affiliate"))
+                .Where(user => user.ManagerId == managerId);
         }
         public IEnumerable<Lead> GetNotConfirmedLeads()
         {
-            var notConfirmedLeads = this.db.Leads.Where(lead => lead.IsConfirmed == false).ToList();
-            return notConfirmedLeads;
+            return this.db.Leads
+                .Where(lead => lead.IsConfirmed == false)
+                .ToList();
         }
         public IEnumerable<Lead> GetConfirmedLeads()
         {
-            var confirmedLeads = this.db.Leads.Where(lead => lead.IsConfirmed).ToList();
-            return confirmedLeads;
+            return this.db.Leads
+                .Where(lead => lead.IsConfirmed)
+                .ToList();
         }
         public async Task<IEnumerable<Lead>> ConfirmLeadsAsync(ManagersConfirmLeadsInputServiceModel serviceModel)
         {
@@ -67,14 +68,14 @@
         }
         public GoldLeadsMediaUser GetAffiliateDetailsBy(string id)
         {
-            var affiliate = this.userManager.Users.FirstOrDefault(user => user.Id == id);
-            return affiliate;
+            return this.userManager.Users
+                .FirstOrDefault(user => user.Id == id);
         }
 
-        public async Task<IEnumerable<GoldLeadsMediaUser>> GetAll()
+        public async Task<IEnumerable<GoldLeadsMediaUser>> GetAllAffiliates()
         {
-            var affiliates = await this.userManager.GetUsersInRoleAsync("Affiliate");
-            return affiliates;
+            return await this.userManager
+                .GetUsersInRoleAsync("Affiliate");
         }
     }
 }

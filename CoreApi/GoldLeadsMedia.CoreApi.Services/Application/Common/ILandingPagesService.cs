@@ -1,9 +1,10 @@
-﻿using GoldLeadsMedia.Database.Models;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-
-namespace GoldLeadsMedia.CoreApi.Services.Application.Common
+﻿namespace GoldLeadsMedia.CoreApi.Services.Application.Common
 {
+    using System.Threading.Tasks;
+    using System.Collections.Generic;
+
+    using GoldLeadsMedia.Database.Models;
+
     public interface ILandingPagesService
     {
         IEnumerable<LandingPage> GetAll();

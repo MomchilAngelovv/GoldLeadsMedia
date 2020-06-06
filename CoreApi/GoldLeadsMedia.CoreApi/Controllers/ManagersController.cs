@@ -1,13 +1,15 @@
-﻿using GoldLeadsMedia.CoreApi.Models.InputModels;
-using GoldLeadsMedia.CoreApi.Models.ServiceModels;
-using GoldLeadsMedia.CoreApi.Services.Application.Common;
-using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace GoldLeadsMedia.CoreApi.Controllers
+﻿namespace GoldLeadsMedia.CoreApi.Controllers
 {
+    using System.Linq;
+    using System.Threading.Tasks;
+    using System.Collections.Generic;
+
+    using Microsoft.AspNetCore.Mvc;
+
+    using GoldLeadsMedia.CoreApi.Models.InputModels;
+    using GoldLeadsMedia.CoreApi.Models.ServiceModels;
+    using GoldLeadsMedia.CoreApi.Services.Application.Common;
+
     public class ManagersController : ApiController
     {
         private readonly IManagersService managersService;

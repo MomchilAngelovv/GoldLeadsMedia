@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace GoldLeadsMedia.CoreApi.Services.AsyncHttpClient
+﻿namespace GoldLeadsMedia.CoreApi.Services.AsyncHttpClient
 {
+    using System.Threading.Tasks;
+    using System.Collections.Generic;
+
     public interface IAsyncHttpClient
     {
         Task<T> PostAsync<T>(string url, object body, Dictionary<string, string> headers = null, string mimeType = "application/json");

@@ -1,15 +1,13 @@
-﻿using GoldLeadsMedia.CoreApi.Services.Application.Common;
-using GoldLeadsMedia.Database;
-using GoldLeadsMedia.Database.Models;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace GoldLeadsMedia.CoreApi.Services.Application
+﻿namespace GoldLeadsMedia.CoreApi.Services.Application
 {
+    using System.Linq;
+    using System.Threading.Tasks;
+    using System.Collections.Generic;
+
+    using GoldLeadsMedia.Database;
+    using GoldLeadsMedia.Database.Models;
+    using GoldLeadsMedia.CoreApi.Services.Application.Common;
+
     public class LandingPagesService : ILandingPagesService
     {
         private readonly GoldLeadsMediaDbContext db;
@@ -36,14 +34,14 @@ namespace GoldLeadsMedia.CoreApi.Services.Application
 
         public IEnumerable<LandingPage> GetAll()
         {
-            var landingPages = this.db.LandingPages.ToList();
-            return landingPages;
+            return this.db.LandingPages
+                .ToList();
         }
 
         public LandingPage GetBy(string id)
         {
-            var landingPage = this.db.LandingPages.FirstOrDefault(landingPage => landingPage.Id == id);
-            return landingPage;
+            return this.db.LandingPages
+                .FirstOrDefault(landingPage => landingPage.Id == id);
         }
     }
 }

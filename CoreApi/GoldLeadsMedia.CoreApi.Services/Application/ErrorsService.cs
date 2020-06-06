@@ -1,14 +1,13 @@
-﻿using GoldLeadsMedia.CoreApi.Models.ServicesModels.InputModels;
-using GoldLeadsMedia.CoreApi.Services.Application.Common;
-using GoldLeadsMedia.Database;
-using GoldLeadsMedia.Database.Models;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace GoldLeadsMedia.CoreApi.Services.Application
+﻿namespace GoldLeadsMedia.CoreApi.Services.Application
 {
+    using System;
+    using System.Threading.Tasks;
+
+    using GoldLeadsMedia.Database;
+    using GoldLeadsMedia.Database.Models;
+    using GoldLeadsMedia.CoreApi.Services.Application.Common;
+    using GoldLeadsMedia.CoreApi.Models.ServicesModels.InputModels;
+
     public class ErrorsService : IErrorsService
     {
         private readonly GoldLeadsMediaDbContext db;

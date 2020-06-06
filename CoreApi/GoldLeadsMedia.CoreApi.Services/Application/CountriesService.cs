@@ -1,13 +1,12 @@
-﻿using GoldLeadsMedia.CoreApi.Services.Application.Common;
-using GoldLeadsMedia.Database;
-using GoldLeadsMedia.Database.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace GoldLeadsMedia.CoreApi.Services.Application
+﻿namespace GoldLeadsMedia.CoreApi.Services.Application
 {
+    using System.Linq;
+    using System.Collections.Generic;
+
+    using GoldLeadsMedia.Database;
+    using GoldLeadsMedia.Database.Models;
+    using GoldLeadsMedia.CoreApi.Services.Application.Common;
+
     public class CountriesService : ICountriesService
     {
         private readonly GoldLeadsMediaDbContext db; 
@@ -20,14 +19,14 @@ namespace GoldLeadsMedia.CoreApi.Services.Application
 
         public IEnumerable<Country> GetAll()
         {
-            var countries = db.Countries.ToList();
-            return countries;
+            return this.db.Countries
+                .ToList();
         }
 
         public Country GetBy(string name)
         {
-            var country = this.db.Countries.FirstOrDefault(country => country.Name == name);
-            return country;
+            return this.db.Countries
+                .FirstOrDefault(country => country.Name == name);
         }
     }
 }

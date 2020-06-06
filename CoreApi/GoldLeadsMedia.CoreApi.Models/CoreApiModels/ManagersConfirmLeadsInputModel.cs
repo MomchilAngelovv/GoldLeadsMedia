@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace GoldLeadsMedia.CoreApi.Models.InputModels
+﻿namespace GoldLeadsMedia.CoreApi.Models.InputModels
 {
+    using System.Collections.Generic;
+
     public class ManagersConfirmLeadsInputModel
     {
         public string ManagerId { get; set; }

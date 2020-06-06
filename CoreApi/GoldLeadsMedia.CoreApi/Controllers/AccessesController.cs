@@ -1,11 +1,12 @@
-﻿using System.Linq;
-using System.Collections.Generic;
-
-using Microsoft.AspNetCore.Mvc;
-using GoldLeadsMedia.CoreApi.Services.Application.Common;
-
-namespace GoldLeadsMedia.CoreApi.Controllers
+﻿namespace GoldLeadsMedia.CoreApi.Controllers
 {
+    using System.Linq;
+    using System.Collections.Generic;
+
+    using Microsoft.AspNetCore.Mvc;
+
+    using GoldLeadsMedia.CoreApi.Services.Application.Common;
+
     public class AccessesController : ApiController
     {
         private readonly IAccessesService accessesService;

@@ -1,14 +1,12 @@
 ﻿namespace GoldLeadsMedia.CoreApi.Services.Application
 {
-    using System;
+    using System.Threading.Tasks;
 
     using GoldLeadsMedia.Database;
     using GoldLeadsMedia.Database.Models;
-    using System.Threading.Tasks;
-    using GoldLeadsMedia.CoreApi.Models.InputModels;
-    using GoldLeadsMedia.CoreApi.Services.Application.Common;
     using GoldLeadsMedia.CoreApi.Models.ServiceModels;
-
+    using GoldLeadsMedia.CoreApi.Services.Application.Common;
+    
     public class ClicksService : IClicksService
     {
         private readonly GoldLeadsMediaDbContext db;

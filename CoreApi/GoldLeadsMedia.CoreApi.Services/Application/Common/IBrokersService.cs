@@ -1,14 +1,15 @@
-﻿using GoldLeadsMedia.CoreApi.Models.ServiceModels;
-using GoldLeadsMedia.Database.Models;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-
-namespace GoldLeadsMedia.CoreApi.Services.Application.Common
+﻿namespace GoldLeadsMedia.CoreApi.Services.Application.Common
 {
+    using System.Threading.Tasks;
+    using System.Collections.Generic;
+
+    using GoldLeadsMedia.Database.Models;
+    using GoldLeadsMedia.CoreApi.Models.ServiceModels;
+
     public interface IBrokersService
     {
         Broker GetBy(string id);
         IEnumerable<Broker> GetAll();
-        Task<Broker> RegisterAsync(PartnersRegisterInputServiceModel serviceModel);
+        Task<Broker> RegisterAsync(BrokersRegisterInputServiceModel serviceModel);
     }
 }

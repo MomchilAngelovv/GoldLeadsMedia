@@ -1,11 +1,12 @@
-﻿using GoldLeadsMedia.CoreApi.Services.Application.Common;
-using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-
-namespace GoldLeadsMedia.CoreApi.Controllers
+﻿namespace GoldLeadsMedia.CoreApi.Controllers
 {
+    using System.Linq;
+    using System.Collections.Generic;
+
+    using Microsoft.AspNetCore.Mvc;
+
+    using GoldLeadsMedia.CoreApi.Services.Application.Common;
+
     public class AffiliatesController : ApiController
     {
         private readonly IManagersService managersService;
@@ -29,7 +30,7 @@ namespace GoldLeadsMedia.CoreApi.Controllers
                 affiliate.Id,
                 affiliate.UserName,
                 affiliate.Email,
-                IsBlocked = true, //TODO this is hardcoded need to implement some logic
+                affiliate.DeletedOn.HasValue,
                 affiliate.IsVip,
                 affiliate.Experience,
                 Available = 1000,

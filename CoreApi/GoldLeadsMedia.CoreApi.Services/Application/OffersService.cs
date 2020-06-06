@@ -6,9 +6,8 @@
 
     using GoldLeadsMedia.Database;
     using GoldLeadsMedia.Database.Models;
-    using GoldLeadsMedia.CoreApi.Models.InputModels;
-    using GoldLeadsMedia.CoreApi.Services.Application.Common;
     using GoldLeadsMedia.CoreApi.Models.ServiceModels;
+    using GoldLeadsMedia.CoreApi.Services.Application.Common;
 
     public class OffersService : IOffersService
     {
@@ -106,10 +105,8 @@
         }
         public Offer GetBy(string id)
         {
-            var offer = db.Offers
+            return db.Offers
                 .FirstOrDefault(x => x.Id == id);
-
-            return offer;
         }
     }
 }

@@ -1,23 +1,24 @@
-﻿using GoldLeadsMedia.CoreApi.Models.CoreApiModels;
-using GoldLeadsMedia.CoreApi.Models.InputModels;
-using GoldLeadsMedia.CoreApi.Models.ServiceModels;
-using GoldLeadsMedia.CoreApi.Services.Application.Common;
-using GoldLeadsMedia.CoreApi.Services.Partners.Common;
-using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace GoldLeadsMedia.CoreApi.Controllers
+﻿namespace GoldLeadsMedia.CoreApi.Controllers
 {
-    //TODO: RENAME this controller to BROKERS CONTROLLER and fix url in web
-    public class PartnersController : ApiController
+    using System;
+    using System.Linq;
+    using System.Threading.Tasks;
+    using System.Collections.Generic;
+
+    using Microsoft.AspNetCore.Mvc;
+
+    using GoldLeadsMedia.CoreApi.Models.InputModels;
+    using GoldLeadsMedia.CoreApi.Models.CoreApiModels;
+    using GoldLeadsMedia.CoreApi.Models.ServiceModels;
+    using GoldLeadsMedia.CoreApi.Services.Partners.Common;
+    using GoldLeadsMedia.CoreApi.Services.Application.Common;
+
+    public class BrokersController : ApiController
     {
         private readonly IBrokersService brokersService;
         private readonly IServiceProvider serviceProvider;
 
-        public PartnersController(
+        public BrokersController(
             IBrokersService brokersService,
             IServiceProvider serviceProvider)
         {
@@ -44,7 +45,7 @@ namespace GoldLeadsMedia.CoreApi.Controllers
         [HttpPost]
         public async Task<ActionResult<object>> Register(PartnersRegisterInputModel inputModel)
         {
-            var serviceModel = new PartnersRegisterInputServiceModel
+            var serviceModel = new BrokersRegisterInputServiceModel
             {
                 Name = inputModel.Name
             };

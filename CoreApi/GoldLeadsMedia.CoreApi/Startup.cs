@@ -2,21 +2,19 @@ namespace GoldLeadsMedia.CoreApi
 {
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
+    using Microsoft.Extensions.Hosting;
+    using Microsoft.AspNetCore.Identity;
     using Microsoft.EntityFrameworkCore;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
-    using Microsoft.Extensions.Hosting;
 
     using GoldLeadsMedia.Database;
-    using GoldLeadsMedia.CoreApi.Services.Application;
-    using GoldLeadsMedia.CoreApi.Services.Application.Common;
     using GoldLeadsMedia.Database.Models;
-    using Microsoft.AspNetCore.Identity;
     using GoldLeadsMedia.CoreApi.Services.Partners;
-    using GoldLeadsMedia.CoreApi.Services.Partners.Common;
-    using System.Linq;
-    using GoldLeadsMedia.CoreApi.Services.AsyncHttpClient;
+    using GoldLeadsMedia.CoreApi.Services.Application;
     using GoldLeadsMedia.CoreApi.Infrastructure.Filters;
+    using GoldLeadsMedia.CoreApi.Services.AsyncHttpClient;
+    using GoldLeadsMedia.CoreApi.Services.Application.Common;
 
     public class Startup
     {
@@ -81,7 +79,7 @@ namespace GoldLeadsMedia.CoreApi
             services.AddTransient<IErrorsService, ErrorsService>();
             services.AddTransient<ITierCountriesService, TierCountriesService>();
 
-            //Partners
+            //Brokers
             services.AddTransient<ProfitPixelsBroker>();
         }
 
