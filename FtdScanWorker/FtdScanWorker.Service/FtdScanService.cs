@@ -22,7 +22,12 @@
 
         public Task StartAsync(CancellationToken cancellationToken)
         {
-            this.timer = new Timer(Scan, null, TimeSpan.FromSeconds(10), TimeSpan.FromSeconds(60));
+            var dueTime = TimeSpan.FromMinutes(5);
+            var timeInterval = TimeSpan.FromMinutes(30);
+
+            this.timer = new Timer(Scan, null, dueTime, timeInterval);
+
+            Console.WriteLine($"Scan will start after {dueTime} [hh/mm/ss] and will scan every {timeInterval} [hh/mm/ss]");
             return Task.CompletedTask;
         }
 
