@@ -27,6 +27,7 @@
         public virtual ICollection<ApiRegistration> ApiRegistrations { get; set; }
         public virtual ICollection<ClickRegistration> ClickRegistrations { get; set; }
         public virtual ICollection<DeveloperError> DeveloperErrors { get; set; }
+        public virtual ICollection<TrackerSettings> TrackerSettings { get; set; }
 
         public DateTime CreatedOn { get; set; }
         public DateTime? UpdatedOn { get; set; }

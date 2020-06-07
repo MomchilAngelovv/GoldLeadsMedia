@@ -22,7 +22,7 @@ $('#send-leads-btn').click(function () {
     let brokerOfferId = $('#broker-offer-id').val();   
 
     $.post({
-        url: `https://localhost:44322/api/partners/${brokerId}/SendLeads`,
+        url: `https://localhost:44322/Api/Brokers/${brokerId}/SendLeads`,
         contentType: "application/json; charset=utf-8",
         dataType: 'json',
         data: JSON.stringify({ brokerId, leadIds, brokerOfferId }),

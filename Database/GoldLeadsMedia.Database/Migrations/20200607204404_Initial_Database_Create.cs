@@ -1,9 +1,8 @@
-﻿namespace GoldLeadsMedia.Database.Migrations
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
+
+namespace GoldLeadsMedia.Database.Migrations
 {
-    using System;
-
-    using Microsoft.EntityFrameworkCore.Migrations;
-
     public partial class Initial_Database_Create : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -364,6 +363,30 @@
                     table.ForeignKey(
                         name: "FK_DeveloperErrors_AspNetUsers_UserId",
                         column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "TrackerSettings",
+                columns: table => new
+                {
+                    Id = table.Column<string>(nullable: false),
+                    LeadPostbackUrl = table.Column<string>(maxLength: 450, nullable: true),
+                    FtdPostbackUrl = table.Column<string>(maxLength: 450, nullable: true),
+                    AffiliateId = table.Column<string>(nullable: true),
+                    CreatedOn = table.Column<DateTime>(nullable: false),
+                    UpdatedOn = table.Column<DateTime>(nullable: true),
+                    DeletedOn = table.Column<DateTime>(nullable: true),
+                    Information = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_TrackerSettings", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_TrackerSettings_AspNetUsers_AffiliateId",
+                        column: x => x.AffiliateId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
@@ -869,6 +892,11 @@
                 name: "IX_SendLeadErrors_LeadId",
                 table: "SendLeadErrors",
                 column: "LeadId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_TrackerSettings_AffiliateId",
+                table: "TrackerSettings",
+                column: "AffiliateId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -905,6 +933,9 @@
 
             migrationBuilder.DropTable(
                 name: "SendLeadErrors");
+
+            migrationBuilder.DropTable(
+                name: "TrackerSettings");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");

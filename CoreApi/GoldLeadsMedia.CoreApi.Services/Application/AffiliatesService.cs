@@ -34,7 +34,7 @@
 
         public AffiliatesGetPaymentsStatusByOutputServiceModel GetPaymentsStatusBy(string affiliateId)
         {
-            //TODO: This will get money ONLY FOR PPA -> NEED TO INCLUDE EVERY POSSIBLE AFFILATE PAY (PPL/PPC)
+            //TODO: This will get money ONLY FOR PPA -> NEED TO INCLUDE EVERY POSSIBLE AFFILATE PAY (PPL/PPC) BUT FOR NOW WE WORK ONLY CPA
             var affiliate = this.db.Users
                 .SingleOrDefault(user => user.Id == affiliateId);
 

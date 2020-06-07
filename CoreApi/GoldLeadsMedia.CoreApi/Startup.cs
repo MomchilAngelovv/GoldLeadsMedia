@@ -10,11 +10,11 @@ namespace GoldLeadsMedia.CoreApi
 
     using GoldLeadsMedia.Database;
     using GoldLeadsMedia.Database.Models;
-    using GoldLeadsMedia.CoreApi.Services.Partners;
     using GoldLeadsMedia.CoreApi.Services.Application;
     using GoldLeadsMedia.CoreApi.Infrastructure.Filters;
     using GoldLeadsMedia.CoreApi.Services.AsyncHttpClient;
     using GoldLeadsMedia.CoreApi.Services.Application.Common;
+    using GoldLeadsMedia.CoreApi.Services.Brokers;
 
     public class Startup
     {

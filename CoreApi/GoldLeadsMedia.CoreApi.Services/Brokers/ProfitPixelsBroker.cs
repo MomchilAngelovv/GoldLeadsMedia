@@ -1,4 +1,4 @@
-﻿namespace GoldLeadsMedia.CoreApi.Services.Partners
+﻿namespace GoldLeadsMedia.CoreApi.Services.Brokers
 {
     using System;
     using System.Threading.Tasks;
@@ -45,16 +45,16 @@
                 ["X-Auth-Key"] = "ac7e4690eebc45989d690ffce24cfd5e4923f2dd4ba540e98f637fc06743d5b3"
             };
 
-            var response = await this.httpClient.GetAsync<ProfitPixelsFtdScanResponse>($"https://api.profitpixels.com/client/v5/leads", queryParameters, headers);
+            var response = await httpClient.GetAsync<ProfitPixelsFtdScanResponse>($"https://api.profitpixels.com/client/v5/leads", queryParameters, headers);
 
             var ftdCounter = 0;
             if (response.Success)
             {
                 foreach (var ftdData in response.ResponseData)
                 {
-                    var lead = this.leadsService.GetBy(ftdData.LeadId, true);
+                    var lead = leadsService.GetBy(ftdData.LeadId, true);
 
-                    var ftd = await this.leadsService.FtdBecomeUpdateLeadAsync(lead, ftdData.FtdDateTime, ftdData.CallStatus);
+                    var ftd = await leadsService.FtdBecomeUpdateLeadAsync(lead, ftdData.FtdDateTime, ftdData.CallStatus);
                     ftdCounter++;
                 }
             }
@@ -64,10 +64,10 @@
                 {
                     Message = response.Message,
                     Information = $"Request Id: {response.RequestId}",
-                    BrokerId = this.brokerId
+                    BrokerId = brokerId
                 };
 
-                var ftdScanError = await this.errorsService.RegisterFtdScanErrorAsync(serviceModel);
+                var ftdScanError = await errorsService.RegisterFtdScanErrorAsync(serviceModel);
             }
 
             return ftdCounter;
@@ -79,7 +79,7 @@
 
             foreach (var leadId in leadIds)
             {
-                var lead = this.leadsService.GetBy(leadId);
+                var lead = leadsService.GetBy(leadId);
 
                 var requestBody = new
                 {
@@ -98,22 +98,22 @@
                     ["X-Auth-Key"] = "ac7e4690eebc45989d690ffce24cfd5e4923f2dd4ba540e98f637fc06743d5b3" //TODO AppSettings.Production
                 };
 
-                var response = await this.httpClient.PostAsync<ProfitPixelsSendLeadResponse>(url, requestBody, headers);
+                var response = await httpClient.PostAsync<ProfitPixelsSendLeadResponse>(url, requestBody, headers);
 
                 if (response.Success)
                 {
-                    await this.leadsService.SendSuccessUpdateLeadAsync(lead, this.brokerId, response.ResponseData.LeadId);
+                    await leadsService.SendSuccessUpdateLeadAsync(lead, brokerId, response.ResponseData.LeadId);
                 }
                 else
                 {
                     var serviceModel = new ErrorsRegisterLeadErrorInputServiceModel
                     {
                         LeadId = lead.Id,
-                        BrokerId = this.brokerId,
+                        BrokerId = brokerId,
                         ErrorMessage = response.Message,
                     };
 
-                    await this.errorsService.RegisterLeadErrorAsync(serviceModel);
+                    await errorsService.RegisterLeadErrorAsync(serviceModel);
                     failedLeadsCount++;
                 }
             }

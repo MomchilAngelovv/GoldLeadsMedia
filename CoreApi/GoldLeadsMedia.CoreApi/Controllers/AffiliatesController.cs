@@ -33,8 +33,8 @@
                 affiliate.DeletedOn.HasValue,
                 affiliate.IsVip,
                 affiliate.Experience,
-                Available = 1000,
-                Paid = 5000
+                Available = 1000, //TODO this is hardcoded for test
+                Paid = 5000 //TODO this is hardcoded for test
             };
 
             return response;

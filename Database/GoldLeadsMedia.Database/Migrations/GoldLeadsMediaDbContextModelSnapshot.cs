@@ -873,6 +873,41 @@ namespace GoldLeadsMedia.Database.Migrations
                     b.ToTable("TierCountries");
                 });
 
+            modelBuilder.Entity("GoldLeadsMedia.Database.Models.TrackerSettings", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("AffiliateId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<DateTime>("CreatedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DeletedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("FtdPostbackUrl")
+                        .HasColumnType("nvarchar(450)")
+                        .HasMaxLength(450);
+
+                    b.Property<string>("Information")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("LeadPostbackUrl")
+                        .HasColumnType("nvarchar(450)")
+                        .HasMaxLength(450);
+
+                    b.Property<DateTime?>("UpdatedOn")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AffiliateId");
+
+                    b.ToTable("TrackerSettings");
+                });
+
             modelBuilder.Entity("GoldLeadsMedia.Database.Models.Vertical", b =>
                 {
                     b.Property<int>("Id")
@@ -1187,6 +1222,13 @@ namespace GoldLeadsMedia.Database.Migrations
                         .HasForeignKey("LeadId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("GoldLeadsMedia.Database.Models.TrackerSettings", b =>
+                {
+                    b.HasOne("GoldLeadsMedia.Database.Models.GoldLeadsMediaUser", "Affiliate")
+                        .WithMany("TrackerSettings")
+                        .HasForeignKey("AffiliateId");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
