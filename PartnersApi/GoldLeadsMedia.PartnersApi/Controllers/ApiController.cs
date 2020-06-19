@@ -1,4 +1,4 @@
-﻿namespace GoldLeadsMedia.PartnersApi.Controllers
+﻿namespace GoldLeadsMedia.AffiliatesApi.Controllers
 {
     using Microsoft.AspNetCore.Mvc;
 

@@ -1,4 +1,4 @@
-namespace GoldLeadsMedia.PartnersApi
+namespace GoldLeadsMedia.AffiliatesApi
 {
     using Microsoft.AspNetCore.Builder;
     using Microsoft.Extensions.Hosting;
@@ -9,9 +9,9 @@ namespace GoldLeadsMedia.PartnersApi
     using Microsoft.Extensions.DependencyInjection;
 
     using GoldLeadsMedia.Database;
-    using GoldLeadsMedia.PartnersApi.Services.Application.Common;
-    using GoldLeadsMedia.PartnersApi.Services.Application;
     using GoldLeadsMedia.Database.Models;
+    using GoldLeadsMedia.AffiliatesApi.Services.Application.Common;
+    using GoldLeadsMedia.AffiliatesApi.Services.Application;
 
     public class Startup
     {
@@ -30,7 +30,7 @@ namespace GoldLeadsMedia.PartnersApi
 
             services.AddDbContext<GoldLeadsMediaDbContext>(options =>
             {
-                options.UseLazyLoadingProxies().UseSqlServer(this.configuration.GetConnectionString("DefaultConnection"));
+                options.UseLazyLoadingProxies().UseSqlServer(configuration.GetConnectionString("DefaultConnection"));
             });
 
             services.AddIdentity<GoldLeadsMediaUser, GoldLeadsMediaRole>(options =>

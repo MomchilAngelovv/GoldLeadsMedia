@@ -9,8 +9,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\GoldLeadsMedia.PartnersApi.Models\GoldLeadsMedia.PartnersApi.Models.csproj" />
-    <ProjectReference Include="..\GoldLeadsMedia.PartnersApi.Services\GoldLeadsMedia.PartnersApi.Services.csproj" />
+    <ProjectReference Include="..\GoldLeadsMedia.PartnersApi.Models\GoldLeadsMedia.AffiliatesApi.Models.csproj" />
+    <ProjectReference Include="..\GoldLeadsMedia.PartnersApi.Services\GoldLeadsMedia.AffiliatesApi.Services.csproj" />
   </ItemGroup>
 
 

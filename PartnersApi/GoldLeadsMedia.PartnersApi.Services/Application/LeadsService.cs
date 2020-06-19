@@ -1,4 +1,4 @@
-﻿namespace GoldLeadsMedia.PartnersApi.Services.Application.Common
+﻿namespace GoldLeadsMedia.AffiliatesApi.Services.Application
 {
     using System.Linq;
     using System.Threading.Tasks;
@@ -6,7 +6,8 @@
 
     using GoldLeadsMedia.Database;
     using GoldLeadsMedia.Database.Models;
-    using GoldLeadsMedia.PartnersApi.Models.ServiceModels;
+    using GoldLeadsMedia.AffiliatesApi.Models.ServiceModels;
+    using GoldLeadsMedia.AffiliatesApi.Services.Application.Common;
 
     public class LeadsService : ILeadsService
     {
@@ -20,7 +21,7 @@
 
         public IEnumerable<Lead> GetAllBy(string affiliateId)
         {
-            var leads = this.db.Leads
+            var leads = db.Leads
                 .Where(lead => lead.ApiRegistrationId != null && lead.ApiRegistration.AffiliateId == affiliateId)
                 .ToList();
 
@@ -36,7 +37,7 @@
                 IpAddress = serviceModel.IpAddress
             };
 
-            await this.db.ApiRegistrations.AddAsync(apiRegistration);
+            await db.ApiRegistrations.AddAsync(apiRegistration);
 
             var lead = new Lead
             {
@@ -49,8 +50,8 @@
                 ApiRegistrationId = apiRegistration.Id,
             };
 
-            await this.db.Leads.AddAsync(lead);
-            await this.db.SaveChangesAsync();
+            await db.Leads.AddAsync(lead);
+            await db.SaveChangesAsync();
 
             return lead;
         }

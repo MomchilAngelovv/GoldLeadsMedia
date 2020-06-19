@@ -1,4 +1,4 @@
-﻿namespace GoldLeadsMedia.PartnersApi.Models.InputModels
+﻿namespace GoldLeadsMedia.AffiliatesApi.Models.InputModels
 {
     using System.ComponentModel.DataAnnotations;
 

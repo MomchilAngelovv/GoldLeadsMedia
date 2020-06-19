@@ -74,21 +74,21 @@
         }
 
 
-        [HttpPost]
-        public async Task<IActionResult> ConfirmLeads([FromBody]ManagersConfirmLeadsInputModel inputModel)
-        {
-            var loggedUser = await this.userManager.GetUserAsync(this.User);
+        //[HttpPost]
+        //public async Task<IActionResult> ConfirmLeads([FromBody]ManagersConfirmLeadsInputModel inputModel)
+        //{
+        //    var loggedUser = await this.userManager.GetUserAsync(this.User);
 
-            var requestBody = new
-            {
-                ManagerId = loggedUser.Id,
-                inputModel.LeadIds
-            };
+        //    var requestBody = new
+        //    {
+        //        ManagerId = loggedUser.Id,
+        //        inputModel.LeadIds
+        //    };
 
-            var response = await this.httpClient.PostAsync<int>("Api/Managers/ConfirmLeads", requestBody);
+        //    var response = await this.httpClient.PostAsync<int>("Api/Managers/ConfirmLeads", requestBody);
 
-            return this.Ok(response);
-        }
+        //    return this.Ok(response);
+        //}
 
         //[HttpPost]
         //public async Task<ActionResult> MakePayment(MakePaymentInputModel input)

@@ -1,4 +1,4 @@
-﻿namespace GoldLeadsMedia.PartnersApi.Controllers
+﻿namespace GoldLeadsMedia.AffiliatesApi.Controllers
 {
     using System.Linq;
     using System.Threading.Tasks;
@@ -7,9 +7,9 @@
     using Microsoft.AspNetCore.Identity;
 
     using GoldLeadsMedia.Database.Models;
-    using GoldLeadsMedia.PartnersApi.Models.InputModels;
-    using GoldLeadsMedia.PartnersApi.Models.ServiceModels;
-    using GoldLeadsMedia.PartnersApi.Services.Application.Common;
+    using GoldLeadsMedia.AffiliatesApi.Models.InputModels;
+    using GoldLeadsMedia.AffiliatesApi.Models.ServiceModels;
+    using GoldLeadsMedia.AffiliatesApi.Services.Application.Common;
 
     public class LeadsController : ApiController
     {
@@ -41,25 +41,25 @@
         [HttpPost]
         public async Task<ActionResult<object>> Register(LeadsRegisterInputModel inputModel)
         {
-            var country = this.countriesService.GetBy(inputModel.CountryName);
+            var country = countriesService.GetBy(inputModel.CountryName);
             if (country == null)
             {
-                return this.BadRequest("Invalid country name! Make sure to provide correct country name!");
+                return BadRequest("Invalid country name! Make sure to provide correct country name!");
             }
 
-            var affiliate = await this.userManager.FindByIdAsync(inputModel.AffiliateId);
+            var affiliate = await userManager.FindByIdAsync(inputModel.AffiliateId);
             if (affiliate == null)
             {
-                return this.BadRequest("Invalid affiliateId!");
+                return BadRequest("Invalid affiliateId!");
             }
 
-            var offerExists = this.offersService.ExistsCheckBy(inputModel.OfferId);
+            var offerExists = offersService.ExistsCheckBy(inputModel.OfferId);
             if (offerExists == false)
             {
-                return this.BadRequest("Invalid offerId!");
+                return BadRequest("Invalid offerId!");
             }
 
-            var ipAddress = this.HttpContext.Connection.RemoteIpAddress.ToString();
+            var ipAddress = HttpContext.Connection.RemoteIpAddress.ToString();
 
             var serviceModel = new LeadsRegisterInputServiceModel
             {
@@ -75,7 +75,7 @@
                 IpAddress = ipAddress
             };
 
-            var lead = await this.leadsService.RegisterAsync(serviceModel);
+            var lead = await leadsService.RegisterAsync(serviceModel);
 
             var response = new
             {
@@ -100,9 +100,9 @@
         public ActionResult<object> LeadsByAffiliateId(string affiliateId)
         {
             //TODO: PAGINATION SOME DAY !!!
-            var leads = this.leadsService
+            var leads = leadsService
                 .GetAllBy(affiliateId)
-                .Select(lead => new 
+                .Select(lead => new
                 {
                     lead.Id,
                     lead.FirstName,

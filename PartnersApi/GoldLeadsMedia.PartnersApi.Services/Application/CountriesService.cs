@@ -1,10 +1,9 @@
-﻿namespace GoldLeadsMedia.PartnersApi.Services.Application
+﻿namespace GoldLeadsMedia.AffiliatesApi.Services.Application
 {
     using System.Linq;
-
+    using GoldLeadsMedia.AffiliatesApi.Services.Application.Common;
     using GoldLeadsMedia.Database;
     using GoldLeadsMedia.Database.Models;
-    using GoldLeadsMedia.PartnersApi.Services.Application.Common;
 
     public class CountriesService : ICountriesService
     {
