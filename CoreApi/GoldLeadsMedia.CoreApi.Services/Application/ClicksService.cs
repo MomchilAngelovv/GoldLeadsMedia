@@ -24,7 +24,8 @@
                 OfferId = serviceModel.OfferId,
                 LandingPageId = serviceModel.LandingPageId,
                 AffiliateId = serviceModel.AffiliateId,
-                IpAddress = serviceModel.IpAddress
+                IpAddress = serviceModel.IpAddress,
+                AffiliateTrackerClickId = serviceModel.AffiliateTrackerClickId
             };
 
             await db.ClickRegistrations.AddAsync(clickRegistration);

@@ -46,6 +46,7 @@
 
             var lead = await this.leadsService.RegisterAsync(serviceModel);
 
+            //MAKE GET REQUEST TO FINISH s2s
             return lead;
         }
     }

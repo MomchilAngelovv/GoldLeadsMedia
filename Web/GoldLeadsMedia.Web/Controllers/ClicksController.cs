@@ -29,7 +29,8 @@
             {
                 inputModel.OfferId,
                 inputModel.LandingPageId,
-                inputModel.AffiliateId
+                inputModel.AffiliateId,
+                AffiliateTrackerClickId = inputModel.ClickId
             };
 
             var response = await this.httpClient.PostAsync<PostApiClicksReponse>("Api/Clicks", requestBody);

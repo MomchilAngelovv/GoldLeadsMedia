@@ -5,9 +5,9 @@
 
     using GoldLeadsMedia.Database.Models;
 
-    public class TrackerSettingsConfiguration : IEntityTypeConfiguration<TrackerSettings>
+    public class TrackerSettingsConfiguration : IEntityTypeConfiguration<AffiliateTrackerSettings>
     {
-        public void Configure(EntityTypeBuilder<TrackerSettings> entity)
+        public void Configure(EntityTypeBuilder<AffiliateTrackerSettings> entity)
         {
             entity.HasKey(entity => entity.Id);
             entity.Property(entity => entity.LeadPostbackUrl).HasMaxLength(450);

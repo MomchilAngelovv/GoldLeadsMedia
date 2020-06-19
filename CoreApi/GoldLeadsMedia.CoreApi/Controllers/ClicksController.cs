@@ -7,18 +7,25 @@
     using GoldLeadsMedia.CoreApi.Models.InputModels;
     using GoldLeadsMedia.CoreApi.Models.ServiceModels;
     using GoldLeadsMedia.CoreApi.Services.Application.Common;
+    using GoldLeadsMedia.CoreApi.Services.AsyncHttpClient;
 
     public class ClicksController : ApiController
     {
         private readonly IClicksService clicksService;
         private readonly ILandingPagesService landingPagesService;
+        private readonly IAffiliatesService affiliatesService;
+        private readonly IAsyncHttpClient httpClient;
 
         public ClicksController(
             IClicksService clicksService, 
-            ILandingPagesService landingPagesService)
+            ILandingPagesService landingPagesService,
+            IAffiliatesService affiliatesService,
+            IAsyncHttpClient httpClient)
         {
             this.clicksService = clicksService;
             this.landingPagesService = landingPagesService;
+            this.affiliatesService = affiliatesService;
+            this.httpClient = httpClient;
         }
 
         [HttpPost]
@@ -31,15 +38,17 @@
                 OfferId = inputModel.OfferId,
                 LandingPageId = inputModel.LandingPageId,
                 AffiliateId = inputModel.AffiliateId,
+                AffiliateTrackerClickId = inputModel.AffiliateTrackerClickId,
                 IpAddress = ipAddress
             };
 
-            var click = await this.clicksService.RegisterAsync(serviceModel);
-            var landingPage = this.landingPagesService.GetBy(click.LandingPageId);
+            var clickRegistration = await this.clicksService.RegisterAsync(serviceModel);
+           
+            var landingPage = this.landingPagesService.GetBy(clickRegistration.LandingPageId);
 
             var response = new
             {
-                click.Id,
+                clickRegistration.Id,
                 LandingPageUrl = landingPage.Url
             };
 
