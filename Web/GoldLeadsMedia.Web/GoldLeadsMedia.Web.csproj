@@ -5,6 +5,13 @@
     <UserSecretsId>aspnet-GoldLeadsMedia.Web-E5AE79B6-823E-42DD-B2A8-A80C8443A13D</UserSecretsId>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Compile Remove="wwwroot\js\shared\**" />
+    <Content Remove="wwwroot\js\shared\**" />
+    <EmbeddedResource Remove="wwwroot\js\shared\**" />
+    <None Remove="wwwroot\js\shared\**" />
+  </ItemGroup>
+
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="3.1.3" />
@@ -20,11 +27,6 @@
     <ProjectReference Include="..\..\Database\GoldLeadsMedia.Database.Models\GoldLeadsMedia.Database.Models.csproj" />
     <ProjectReference Include="..\..\Database\GoldLeadsMedia.Database\GoldLeadsMedia.Database.csproj" />
     <ProjectReference Include="..\GoldLeadsMedia.Web.Models\GoldLeadsMedia.Web.Models.csproj" />
-  </ItemGroup>
-
-
-  <ItemGroup>
-    <Folder Include="wwwroot\js\shared\" />
   </ItemGroup>
 
 </Project>

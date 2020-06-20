@@ -65,10 +65,10 @@
             return result;
         }
 
-        public AffiliateTrackerSettings GetTrackerSettings(string affiliateId)
+        public TrackerConfiguration GetTrackerSettings(string affiliateId)
         {
-            return this.db.AffiliateTrackerSettings
-                .FirstOrDefault(afs => afs.AffiliateId == affiliateId);
+            return this.db.TrackerConfigurations
+                .SingleOrDefault(trackerConfiguration => trackerConfiguration.AffiliateId == affiliateId);
         }
     }
 }

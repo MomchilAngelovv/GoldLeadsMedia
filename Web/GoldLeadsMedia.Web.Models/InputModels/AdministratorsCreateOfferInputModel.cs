@@ -2,7 +2,6 @@
 {
     using System.ComponentModel.DataAnnotations;
 
-    //TODO: IMPLEMENT IMAGE UPLOAD
     public class AdministratorsCreateOfferInputModel
     {
         [Required]

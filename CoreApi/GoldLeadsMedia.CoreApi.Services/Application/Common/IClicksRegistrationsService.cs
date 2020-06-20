@@ -6,8 +6,9 @@
     using GoldLeadsMedia.CoreApi.Models.InputModels;
     using GoldLeadsMedia.CoreApi.Models.ServiceModels;
 
-    public interface IClicksService
+    public interface IClicksRegistrationsService
     {
         Task<ClickRegistration> RegisterAsync(ClicksRegisterInputServiceModel serviceModel);
+        ClickRegistration GetBy(string clickRegistrationId);
     }
 }

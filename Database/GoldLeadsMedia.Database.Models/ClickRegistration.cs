@@ -14,6 +14,11 @@
 
         public string Id { get; set; }
         public string IpAddress { get; set; }
+        public string SubAffiliate1 { get; set; }
+        public string SubAffiliate2 { get; set; }
+        public string SubAffiliate3 { get; set; }
+        public string SubAffiliate4 { get; set; }
+        public string SubAffiliate5 { get; set; }
 
         public string OfferId { get; set; }
         public string LandingPageId { get; set; }

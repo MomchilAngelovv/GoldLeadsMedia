@@ -10,6 +10,8 @@
     using GoldLeadsMedia.Web.Models.InputModels;
     using GoldLeadsMedia.Web.Models.CoreApiResponses;
     using GoldLeadsMedia.Web.Infrastructure.HttpHelper;
+    using Microsoft.EntityFrameworkCore.Metadata.Internal;
+    using System.Collections.Generic;
 
     public class AdministratorsController : Controller
     {
@@ -81,9 +83,6 @@
             };
 
             var response = await this.httpClient.PostAsync<Offer>("Api/Offers", requestBody);
-           
-            //using var streamDestination = System.IO.File.Create($"{this.hostEnvironment.WebRootPath}/images/offers/{response.Id}.jpg");
-            //await inputModel.Image.CopyToAsync(streamDestination);
 
             return this.Redirect($"~/Offers/Details/{response.Id}");
         }
@@ -101,6 +100,17 @@
         [HttpPost]
         public async Task<IActionResult> AssignLandingPagesToOffer(AdministratorsAssignLandingPagesToOffersInputModel inputModel)
         {
+            if (this.ModelState.IsValid == false)
+            {
+                this.TempData["NullOffer"] = "Please select offer!";
+                return this.Redirect("/Administrators/AssignLandingPagesToOffer");
+            }
+
+            if (inputModel.LandingPageIds == null)
+            {
+                inputModel.LandingPageIds = new List<string>();
+            }
+
             var requestBody = new
             {
                 inputModel.OfferId,

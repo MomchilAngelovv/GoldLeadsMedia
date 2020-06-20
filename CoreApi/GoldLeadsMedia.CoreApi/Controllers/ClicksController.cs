@@ -11,13 +11,13 @@
 
     public class ClicksController : ApiController
     {
-        private readonly IClicksService clicksService;
+        private readonly IClicksRegistrationsService clicksService;
         private readonly ILandingPagesService landingPagesService;
         private readonly IAffiliatesService affiliatesService;
         private readonly IAsyncHttpClient httpClient;
 
         public ClicksController(
-            IClicksService clicksService, 
+            IClicksRegistrationsService clicksService, 
             ILandingPagesService landingPagesService,
             IAffiliatesService affiliatesService,
             IAsyncHttpClient httpClient)

@@ -1,5 +1,6 @@
 namespace GoldLeadsMedia.Web
 {
+    using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.Extensions.Hosting;
     using Microsoft.AspNetCore.Hosting;
@@ -56,6 +57,7 @@ namespace GoldLeadsMedia.Web
             services.AddControllersWithViews(options => 
             {
                 options.Filters.Add<RegisterDeveleporErrorExceptionFilter>();
+                options.Filters.Add<AutoValidateAntiforgeryTokenAttribute>();
             });
 
             //services.AddRazorPages();

@@ -34,7 +34,7 @@
         public DbSet<SendLeadError> SendLeadErrors { get; set; }
         public DbSet<TargetDevice> TargetDevices { get; set; }
         public DbSet<TierCountry> TierCountries { get; set; }
-        public DbSet<AffiliateTrackerSettings> AffiliateTrackerSettings { get; set; }
+        public DbSet<TrackerConfiguration> TrackerConfigurations { get; set; }
         public DbSet<Vertical> Verticals { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder) 

@@ -6,15 +6,22 @@
     using GoldLeadsMedia.Database.Models;
     using GoldLeadsMedia.CoreApi.Models.ServiceModels;
     using GoldLeadsMedia.CoreApi.Services.Application.Common;
-    
-    public class ClicksService : IClicksService
+    using System.Linq;
+
+    public class ClicksRegistrationsService : IClicksRegistrationsService
     {
         private readonly GoldLeadsMediaDbContext db;
 
-        public ClicksService(
+        public ClicksRegistrationsService(
             GoldLeadsMediaDbContext db)
         {
             this.db = db;
+        }
+
+        public ClickRegistration GetBy(string clickRegistrationId)
+        {
+            return this.db.ClickRegistrations
+                .SingleOrDefault(clickRegistration => clickRegistration.Id == clickRegistrationId);
         }
 
         public async Task<ClickRegistration> RegisterAsync(ClicksRegisterInputServiceModel serviceModel)

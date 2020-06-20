@@ -4,9 +4,9 @@
 
     using GoldLeadsMedia.Database.Models.Common;
 
-    public class AffiliateTrackerSettings : IEntityMetaData
+    public class TrackerConfiguration : IEntityMetaData
     {
-        public AffiliateTrackerSettings()
+        public TrackerConfiguration()
         {
             this.Id = Guid.NewGuid().ToString();
             this.CreatedOn = DateTime.UtcNow;
@@ -15,12 +15,6 @@
         public string Id { get; set; }
         public string LeadPostbackUrl { get; set; }
         public string FtdPostbackUrl { get; set; }
-
-        public string SubAffiliate1 { get; set; }
-        public string SubAffiliate2 { get; set; }
-        public string SubAffiliate3 { get; set; }
-        public string SubAffiliate4 { get; set; }
-        public string SubAffiliate5 { get; set; }
 
         public string AffiliateId { get; set; }
 

@@ -14,10 +14,10 @@
                     <div class="profile-block">
                         <div class="row justify-content-between">
                             <div class="col-md-4 col-lg-5">
-                                <img class="img-fluid" src="~/photos/@(ViewData["Manager_Id"]).jpg" alt="Manager name" style="width:120px;height:90px" />
+                                <img class="img-fluid" src="~/images/managers/@(Model.ManagerId).jpg" alt="Manager name" style="width:120px;height:90px" />
                             </div>
                             <div class="col-md-8 col-lg-7">
-                                <div class="manager">Your manager: @ViewData["Manager_UserName"]</div>
+                                <div class="manager">Your manager: @Model.ManagerUserName</div>
                             </div>
                         </div>
                     </div>

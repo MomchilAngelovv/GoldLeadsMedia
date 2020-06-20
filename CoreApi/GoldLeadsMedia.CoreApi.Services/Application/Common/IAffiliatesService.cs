@@ -10,6 +10,6 @@
         IEnumerable<Lead> GetLeadsBy(string affiliateId);
         IEnumerable<Offer> GetOffersBy(string affiliateId);
         AffiliatesGetPaymentsStatusByOutputServiceModel GetPaymentsStatusBy(string affiliateId);
-        AffiliateTrackerSettings GetTrackerSettings(string affiliateId);
+        TrackerConfiguration GetTrackerSettings(string affiliateId);
     }
 }
