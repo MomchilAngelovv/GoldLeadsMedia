@@ -57,7 +57,7 @@ namespace GoldLeadsMedia.Web
             services.AddControllersWithViews(options => 
             {
                 options.Filters.Add<RegisterDeveleporErrorExceptionFilter>();
-                options.Filters.Add<AutoValidateAntiforgeryTokenAttribute>();
+                //options.Filters.Add<AutoValidateAntiforgeryTokenAttribute>();
             });
 
             //services.AddRazorPages();

@@ -1,7 +1,7 @@
 ﻿@model GoldLeadsMedia.Web.Models.InputModels.UsersLoginInputModel
 
 @{
-    Layout = "~/Views/Shared/_LoginLayout.cshtml";
+    this.Layout = "~/Views/Shared/_LoginLayout.cshtml";
 }
 
 <div class="row">
@@ -29,3 +29,8 @@
         </form>
     </div>
 </div>
+
+@section Scripts
+{
+    <partial name="_ValidationScriptsPartial" />
+}

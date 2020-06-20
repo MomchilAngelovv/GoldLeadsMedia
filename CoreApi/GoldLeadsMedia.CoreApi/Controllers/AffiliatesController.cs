@@ -6,6 +6,9 @@
     using Microsoft.AspNetCore.Mvc;
 
     using GoldLeadsMedia.CoreApi.Services.Application.Common;
+    using GoldLeadsMedia.CoreApi.Models.CoreApiModels;
+    using GoldLeadsMedia.CoreApi.Models.ServicesModels.InputModels;
+    using System.Threading.Tasks;
 
     public class AffiliatesController : ApiController
     {
@@ -69,6 +72,26 @@
                 .ToList();
 
             return affiliateOfferReports;
+        }
+        [HttpPost("{affiliateId}/TrackerConfiguration")]
+        public async Task<ActionResult<object>> CreateOrUpdateTrackerConfiguration(string affiliateId, AffiliatesCreateOrUdpateTrackerConfigurationInputModel inputModel)
+        {
+            var serviceModel = new AffiliatesCreateOrUpdateTrackerConfigurationInputServiceModel
+            {
+                AffiliateId = affiliateId,
+                LeadPostbackUrl = inputModel.LeadPostbackUrl,
+                FtdPostbackUrl = inputModel.FtdPostbackUrl
+            };
+
+            await this.affiliatesService.CreateOrUpdateTrackerConfiguration(serviceModel);
+
+            var response = new
+            {
+                inputModel.LeadPostbackUrl,
+                inputModel.FtdPostbackUrl
+            };
+
+            return response;
         }
     }
 }

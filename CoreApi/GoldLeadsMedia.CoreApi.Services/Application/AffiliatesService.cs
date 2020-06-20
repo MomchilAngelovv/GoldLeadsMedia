@@ -7,6 +7,8 @@
     using GoldLeadsMedia.Database.Models;
     using GoldLeadsMedia.CoreApi.Services.Application.Common;
     using GoldLeadsMedia.CoreApi.Models.ServicesModels.OutputModels;
+    using GoldLeadsMedia.CoreApi.Models.ServicesModels.InputModels;
+    using System.Threading.Tasks;
 
     public class AffiliatesService : IAffiliatesService
     {
@@ -16,6 +18,34 @@
             GoldLeadsMediaDbContext db)
         {
             this.db = db;
+        }
+
+        public async Task<string> CreateOrUpdateTrackerConfiguration(AffiliatesCreateOrUpdateTrackerConfigurationInputServiceModel serviceModel)
+        {
+            var trackerConfiguration = this.db.TrackerConfigurations
+                .FirstOrDefault(trackerConfiguration => trackerConfiguration.AffiliateId == serviceModel.AffiliateId);
+
+            if (trackerConfiguration == null)
+            {
+                var newTrackerConfiguration = new TrackerConfiguration
+                {
+                    AffiliateId = serviceModel.AffiliateId,
+                    LeadPostbackUrl = serviceModel.LeadPostbackUrl,
+                    FtdPostbackUrl = serviceModel.FtdPostbackUrl,
+                };
+
+                await this.db.TrackerConfigurations.AddAsync(newTrackerConfiguration);
+            }
+            else
+            {
+                trackerConfiguration.LeadPostbackUrl = serviceModel.LeadPostbackUrl;
+                trackerConfiguration.FtdPostbackUrl = serviceModel.FtdPostbackUrl;
+
+                this.db.TrackerConfigurations.Update(trackerConfiguration);
+            }
+
+            await this.db.SaveChangesAsync();
+            return "Done";
         }
 
         public IEnumerable<Lead> GetLeadsBy(string affiliateId)

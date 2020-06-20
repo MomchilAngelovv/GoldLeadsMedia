@@ -7,15 +7,22 @@
 
     using GoldLeadsMedia.Web.Models.ViewModels;
     using GoldLeadsMedia.Web.Infrastructure.HttpHelper;
+    using GoldLeadsMedia.Web.Models.InputModels;
+    using Microsoft.AspNetCore.Identity;
+    using GoldLeadsMedia.Database.Models;
+    using GoldLeadsMedia.Web.Models.CoreApiResponses;
 
     public class AffiliatesController : Controller
     {
         private readonly IAsyncHttpClient httpClient;
+        private readonly UserManager<GoldLeadsMediaUser> userManager;
 
         public AffiliatesController(
-            IAsyncHttpClient httpClient)
+            IAsyncHttpClient httpClient,
+            UserManager<GoldLeadsMediaUser> userManager)
         {
             this.httpClient = httpClient;
+            this.userManager = userManager;
         }
 
         [HttpGet]
@@ -31,6 +38,20 @@
             };
 
             return this.View(viewModel);
+        }
+        [HttpPost]
+        public async Task<IActionResult> UpdateTrackerConfiguration(AffiliatesUpdateTrackerConfigurationInputModel inputModel)
+        {
+            var loggedUser = await this.userManager.GetUserAsync(this.User);
+
+            var requestBody = new
+            {
+                inputModel.LeadPostbackUrl,
+                inputModel.FtdPostbackUrl
+            };
+
+            var response = await this.httpClient.PostAsync<PostApiAffiliatesIdTrackerConfiguration>($"Api/Affiliates/{loggedUser.Id}/TrackerConfiguration", requestBody);
+            return this.Ok(response);
         }
     }
 }
