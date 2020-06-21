@@ -40,8 +40,13 @@
                 @if (Model.IsManager)
                 {
                     <li>
-                        <a asp-controller="Managers" asp-action="Information" data-toggle="tooltip" title="Managers">
-                            <i class="mdi mdi-clipboard-check-multiple"></i><p>Managers</p>
+                        <a asp-controller="Affiliates" asp-action="All" data-toggle="tooltip" title="Affiliates">
+                            <i class="mdi mdi-clipboard-check-multiple"></i><p>Affiliates</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a asp-controller="Leads" asp-action="All" data-toggle="tooltip" title="Leads">
+                            <i class="mdi mdi-clipboard-check-multiple"></i><p>Leads</p>
                         </a>
                     </li>
                 }

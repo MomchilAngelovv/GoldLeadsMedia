@@ -9,15 +9,19 @@
     using GoldLeadsMedia.CoreApi.Models.ServicesModels.OutputModels;
     using GoldLeadsMedia.CoreApi.Models.ServicesModels.InputModels;
     using System.Threading.Tasks;
+    using Microsoft.AspNetCore.Identity;
 
     public class AffiliatesService : IAffiliatesService
     {
         private readonly GoldLeadsMediaDbContext db;
+        private readonly UserManager<GoldLeadsMediaUser> userManager;
 
         public AffiliatesService(
-            GoldLeadsMediaDbContext db)
+            GoldLeadsMediaDbContext db,
+            UserManager<GoldLeadsMediaUser> userManager)
         {
             this.db = db;
+            this.userManager = userManager;
         }
 
         public async Task<string> CreateOrUpdateTrackerConfiguration(AffiliatesCreateOrUpdateTrackerConfigurationInputServiceModel serviceModel)
@@ -46,6 +50,12 @@
 
             await this.db.SaveChangesAsync();
             return "Done";
+        }
+
+        public async Task<IEnumerable<GoldLeadsMediaUser>> GetAllAsync()
+        {
+            return await this.userManager
+                .GetUsersInRoleAsync("Affiliate");
         }
 
         public IEnumerable<Lead> GetLeadsBy(string affiliateId)

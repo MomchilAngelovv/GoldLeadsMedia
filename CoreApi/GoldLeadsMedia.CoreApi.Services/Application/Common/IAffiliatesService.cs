@@ -9,6 +9,7 @@
 
     public interface IAffiliatesService
     {
+        Task<IEnumerable<GoldLeadsMediaUser>> GetAllAsync();
         IEnumerable<Lead> GetLeadsBy(string affiliateId);
         IEnumerable<Offer> GetOffersBy(string affiliateId);
         AffiliatesGetPaymentsStatusByOutputServiceModel GetPaymentsStatusBy(string affiliateId);

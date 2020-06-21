@@ -9,6 +9,8 @@
     using GoldLeadsMedia.CoreApi.Models.ServiceModels;
     using GoldLeadsMedia.CoreApi.Services.Application.Common;
     using GoldLeadsMedia.CoreApi.Services.AsyncHttpClient;
+    using System.Collections.Generic;
+    using System.Linq;
 
     public class LeadsController : ApiController
     {
@@ -32,6 +34,24 @@
             this.clicksRegistrationsService = clicksRegistrationsService;
         }
 
+        [HttpGet]
+        public ActionResult<IEnumerable<object>> GetAll()
+        {
+            var leads = this.leadsService
+                .GetAll().Select(lead => new 
+                {
+                    lead.Id,
+                    lead.FirstName,
+                    lead.LastName,
+                    lead.Email,
+                    lead.PhoneNumber,
+                    CountryName = lead.Country.Name,
+                    OfferName = lead.ClickRegistration.Offer.Name,
+                })
+                .ToList();
+
+            return leads;
+        }
         [HttpPost]
         public async Task<ActionResult<object>> Register(LeadsRegisterInputModel inputModel)
         {

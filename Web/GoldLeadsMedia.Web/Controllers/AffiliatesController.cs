@@ -26,6 +26,18 @@
         }
 
         [HttpGet]
+        public async Task<IActionResult> All()
+        {
+            var affiliates = await this.httpClient.GetAsync<List<AffiliatesAllAffiliate>>($"Api/Affiliates");
+
+            var viewModel = new AffiliatesAllViewModel
+            {
+                Affiliates = affiliates
+            };
+
+            return this.View(viewModel);
+        }
+        [HttpGet]
         public async Task<IActionResult> Details(string id)
         {
             var affiliate = await this.httpClient.GetAsync<AffiliatesDetailsAffiliate>($"Api/Affiliates/{id}");

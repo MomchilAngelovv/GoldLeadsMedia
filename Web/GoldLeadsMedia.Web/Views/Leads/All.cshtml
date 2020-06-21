@@ -1,4 +1,4 @@
-﻿@model GoldLeadsMedia.Web.Models.ViewModels.ManagersConfirmedLeadsViewModel
+﻿@model GoldLeadsMedia.Web.Models.ViewModels.LeadsAllViewModel
 
 <h4 class="text-center">
     Select leads:
@@ -13,12 +13,11 @@
         <th>PhoneNumber</th>
         <th>Country</th>
         <th>Offer</th>
-        <th>Approved on</th>
         <th>Selected</th>
     </tr>
     <tbody class="table-tbody">
 
-        @foreach (var data in Model.ConfirmedLeads)
+        @foreach (var data in Model.Leads)
         {
             <tr class="table-row clickable-table-row">
                 <td>
@@ -38,9 +37,6 @@
                 </td>
                 <td>
                     @data.OfferName
-                </td>
-                <td>
-                    @data.ApprovedOn
                 </td>
                 <td>
                     <input type="checkbox" name="lead-id" value="@data.Id">
@@ -65,11 +61,11 @@
         Select broker:
     </h4>
     <div class="row">
-        @foreach (var partner in Model.Partners)
+        @foreach (var broker in Model.Brokers)
         {
             <div class="col-2">
                 <label>
-                    <input type="radio" name="broker-id" value="@partner.Id"> @partner.Name
+                    <input type="radio" name="broker-id" value="@broker.Id"> @broker.Name
                 </label>
             </div>
         }

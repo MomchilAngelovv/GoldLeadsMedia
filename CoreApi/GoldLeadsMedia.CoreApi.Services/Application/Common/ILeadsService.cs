@@ -9,10 +9,11 @@
 
     public interface ILeadsService
     {
+        IEnumerable<Lead> GetAll();
         Task<Lead> SendSuccessUpdateLeadAsync(Lead lead, string brokerId, string idInBroker);
         Task<Lead> FtdBecomeUpdateLeadAsync(Lead lead, DateTime ftdBecomeOn, string callStatus);
         Lead GetBy(string id, bool searchByBrokerId = false);
-        IEnumerable<Lead> GetAllBy(string userId);
+        IEnumerable<Lead> GetLeadsBy(string userId);
         Task<Lead> RegisterAsync(LeadsRegisterInputServiceModel serviceModel);
     }
 }

@@ -9,6 +9,7 @@
     using GoldLeadsMedia.CoreApi.Models.CoreApiModels;
     using GoldLeadsMedia.CoreApi.Models.ServicesModels.InputModels;
     using System.Threading.Tasks;
+    using System.Security.Cryptography.X509Certificates;
 
     public class AffiliatesController : ApiController
     {
@@ -23,6 +24,21 @@
             this.affiliatesService = affiliatesService;
         }
 
+        [HttpGet]
+        public async Task<ActionResult<IEnumerable<object>>> All()
+        {
+            var affilaites = (await this.affiliatesService
+                .GetAllAsync())
+                .Select(affiliate => new 
+                { 
+                    affiliate.Id,
+                    affiliate.UserName,
+                    affiliate.Email,
+                })
+                .ToList();
+
+            return affilaites;
+        }
         [HttpGet("{id}")]
         public ActionResult<object> Details(string id)
         {

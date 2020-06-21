@@ -31,7 +31,7 @@
             return lead;
         }
 
-        public IEnumerable<Lead> GetAllBy(string affiliateId)
+        public IEnumerable<Lead> GetLeadsBy(string affiliateId)
         {
             return this.db.Leads
                 .Where(lead => lead.ClickRegistration.AffiliateId == affiliateId)
@@ -76,6 +76,10 @@
             await this.db.SaveChangesAsync();
 
             return lead;
+        }
+        public IEnumerable<Lead> GetAll()
+        {
+            return this.db.Leads.ToList();
         }
     }
 }

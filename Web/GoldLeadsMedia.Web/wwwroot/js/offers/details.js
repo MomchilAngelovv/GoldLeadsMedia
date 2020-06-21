@@ -10,21 +10,22 @@ $('.landing-page-info').on('click', function () {
     $('#tracking-url').text(newUrl);
 });
 
-$(".openNewTab").tooltip({
-    show: null,
-    position: {
-        my: "left top",
-        at: "left bottom"
-    },
-    open: function (event, ui) {
-        ui.tooltip.animate({ top: ui.tooltip.position().top + 10 }, "fast");
-    }
-}).click(function () {
-    var link = document.getElementById("tracking-url").innerHTML;
-    window.open(link, '_blank')
-});
+//TODO: this is copying and encoding url and it is not working properly -> fix it later
+//$(".openNewTab").tooltip({
+//    show: null,
+//    position: {
+//        my: "left top",
+//        at: "left bottom"
+//    },
+//    open: function (event, ui) {
+//        ui.tooltip.animate({ top: ui.tooltip.position().top + 10 }, "fast");
+//    }
+//}).click(function () {
+//    var link = document.getElementById("tracking-url").innerHTML;
+//    window.open(link, '_blank')
+//});
 
-$('#save-tracker-urls-btn').on('click', async function (e) {
+$('#save-tracker-urls-btn').on('click', function (e) {
     e.preventDefault();
     e.stopPropagation();
 
@@ -38,11 +39,16 @@ $('#save-tracker-urls-btn').on('click', async function (e) {
         ftdPostbackUrl
     }
 
-    let response = await $.post({
+    $.ajax({
+        type: 'POST',
         url: url,
         data: data,
-        dataType: 'application/json'
+        dataType: 'json',
+        success: function (response) {
+            $('#tracker-url-save-success').show(200).delay(5000).hide(200);
+        },
+        error: function (response) {
+            $('#tracker-url-save-fail').show(200).delay(5000).hide(200);
+        }
     });
-
-    console.log(response.status);
 });
