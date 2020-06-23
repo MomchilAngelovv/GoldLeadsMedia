@@ -42,6 +42,17 @@
 
             return offersLandingPages.Count;
         }
+
+        public int CalculateFtdsPerOfferIdAndAffiliateId(string offerId, string affiliateId)
+        {
+            var affiliateLeadsIdsByApiRegistration = this.db.ApiRegistrations
+                .Where(apiRegistration => apiRegistration.OfferId == offerId && apiRegistration.AffiliateId == affiliateId)
+                .Select(apiRegistration => apiRegistration.Id)
+                .ToList();
+
+            return this.db.Leads.Where(lead => lead.FtdBecameOn.HasValue && affiliateLeadsIdsByApiRegistration.Contains(lead.ApiRegistrationId)).Count();
+        }
+
         public async Task<Offer> CreateAsync(OffersCreateInputServiceModel inputModel)
         {
             var offer = new Offer

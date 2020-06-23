@@ -13,13 +13,12 @@
         <th>PhoneNumber</th>
         <th>Country</th>
         <th>Offer</th>
-        <th>Selected</th>
+        <th>Status</th>
     </tr>
     <tbody class="table-tbody">
-
         @foreach (var data in Model.Leads)
         {
-            <tr class="table-row clickable-table-row">
+            <tr class="table-row @if (data.HasBeenSend == false) {<text>clickable-table-row</text>}">
                 <td>
                     @data.FirstName
                 </td>
@@ -38,9 +37,18 @@
                 <td>
                     @data.OfferName
                 </td>
-                <td>
-                    <input type="checkbox" name="lead-id" value="@data.Id">
-                </td>
+                @if (data.HasBeenSend)
+                {
+                    <td>
+                        Already send
+                    </td>
+                }
+                else
+                {
+                    <td>
+                        <input type="checkbox" name="lead-id" value="@data.Id">
+                    </td>
+                }
             </tr>
         }
     </tbody>

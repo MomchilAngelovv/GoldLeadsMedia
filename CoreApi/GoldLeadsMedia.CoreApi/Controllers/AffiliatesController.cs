@@ -15,13 +15,16 @@
     {
         private readonly IManagersService managersService;
         private readonly IAffiliatesService affiliatesService;
+        private readonly IOffersService offersService;
 
         public AffiliatesController(
             IManagersService managersService,
-            IAffiliatesService affiliatesService)
+            IAffiliatesService affiliatesService,
+            IOffersService offersService)
         {
             this.managersService = managersService;
             this.affiliatesService = affiliatesService;
+            this.offersService = offersService;
         }
 
         [HttpGet]
@@ -82,8 +85,8 @@
                     offer.Number,
                     offer.Name,
                     ClicksCount = offer.ClickRegistrations.Count(),
-                    LeadsCount = 0, //HARD CODED,
-                    FtdsCount = 0 // HARD CODED
+                    LeadsCount = offer.ApiRegistrations.Count(apiRegistration => apiRegistration.AffiliateId == affiliateId),
+                    FtdsCount = this.offersService.CalculateFtdsPerOfferIdAndAffiliateId(offer.Id, affiliateId)
                 })
                 .ToList();
 

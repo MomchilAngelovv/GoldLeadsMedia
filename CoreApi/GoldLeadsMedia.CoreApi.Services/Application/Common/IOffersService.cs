@@ -13,5 +13,6 @@
         Task<Offer> CreateAsync(OffersCreateInputServiceModel serviceModel);
         Offer GetBy(string id);
         Task<int> AssignLandingPagesAsync(OffersAssignLandingPagesInputServiceModel serviceModel);
+        int CalculateFtdsPerOfferIdAndAffiliateId(string offerId, string affiliateId);
     }
 }

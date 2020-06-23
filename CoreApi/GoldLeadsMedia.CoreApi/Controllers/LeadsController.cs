@@ -38,7 +38,8 @@
         public ActionResult<IEnumerable<object>> GetAll()
         {
             var leads = this.leadsService
-                .GetAll().Select(lead => new 
+                .GetAll()
+                .Select(lead => new 
                 {
                     lead.Id,
                     lead.FirstName,
@@ -47,6 +48,7 @@
                     lead.PhoneNumber,
                     CountryName = lead.Country.Name,
                     OfferName = lead.ApiRegistration.Offer.Name,
+                    HasBeenSend = lead.BrokerId != null
                 })
                 .ToList();
 
