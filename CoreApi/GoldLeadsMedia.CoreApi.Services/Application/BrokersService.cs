@@ -8,6 +8,7 @@
     using GoldLeadsMedia.Database.Models;
     using GoldLeadsMedia.CoreApi.Models.ServiceModels;
     using GoldLeadsMedia.CoreApi.Services.Application.Common;
+    using GoldLeadsMedia.CoreApi.Models.ServicesModels.OutputModels;
 
     public class BrokersService : IBrokersService
     {
@@ -42,6 +43,20 @@
             await this.db.SaveChangesAsync();
 
             return broker;
+        }
+
+        public IEnumerable<object> Summary()
+        {
+            var brokersSummary = this.db.Brokers
+                .Select(broker => new BrokersSummaryBroker
+                {
+                    Id = broker.Id,
+                    Name = broker.Name,
+                    TotalLeads = broker.Leads.Count(),
+                    TotalFtds = broker.Leads.Where(lead => lead.FtdBecameOn.HasValue == false).Count()
+                });
+
+            return brokersSummary;
         }
     }
 }

@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using GoldLeadsMedia.Web.Infrastructure.HttpHelper;
+using GoldLeadsMedia.Web.Models.ViewModels;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,9 +10,23 @@ namespace GoldLeadsMedia.Web.Controllers
 {
     public class BrokersController : Controller
     {
-        public IActionResult All()
+        private readonly IAsyncHttpClient httpClient;
+
+        public BrokersController(
+            IAsyncHttpClient httpClient)
         {
-            return this.View();
+            this.httpClient = httpClient;
+        }
+        public async Task<IActionResult> All()
+        {
+            var brokers = await this.httpClient.GetAsync<List<BrokersAllBroker>>("Api/Reports/Brokers");
+
+            var viewModel = new BrokersAllViewModel
+            {
+                Brokers = brokers
+            };
+
+            return this.View(viewModel);
         }
     }
 }

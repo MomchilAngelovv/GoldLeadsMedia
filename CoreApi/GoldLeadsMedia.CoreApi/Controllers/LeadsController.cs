@@ -46,7 +46,7 @@
                     lead.Email,
                     lead.PhoneNumber,
                     CountryName = lead.Country.Name,
-                    OfferName = lead.ClickRegistration.Offer.Name,
+                    OfferName = lead.ApiRegistration.Offer.Name,
                 })
                 .ToList();
 
