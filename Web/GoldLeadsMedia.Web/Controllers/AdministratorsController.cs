@@ -12,6 +12,7 @@
     using GoldLeadsMedia.Web.Infrastructure.HttpHelper;
     using Microsoft.EntityFrameworkCore.Metadata.Internal;
     using System.Collections.Generic;
+    using GoldLeadsMedia.Web.Models.ViewModels;
 
     public class AdministratorsController : Controller
     {
@@ -29,9 +30,14 @@
             this.hostEnvironment = hostEnvironment;
         }
 
-        public IActionResult Information()
+        public async Task<IActionResult> Information()
         {
-            return this.View();
+            var developerErrors = await this.httpClient.GetAsync<List<AdministratorsInformationDeveloperError>>("Api/Errors/Developer");
+            var viewModel = new AdministratorsInformationViewModel
+            {
+                DeveloperErrors = developerErrors
+            };
+            return this.View(viewModel);
         }
         public IActionResult CreateOffer()
         {
@@ -135,7 +141,8 @@
            
             await this.userManager.CreateAsync(affiliate, inputModel.Password);
             await this.userManager.AddToRoleAsync(affiliate, "Affiliate");
-            return this.Redirect("/Managers/Affiliates");
+
+            return this.Redirect("/Affiliates/All");
         }
         [HttpPost]
         public async Task<IActionResult> RegisterLandingPage(AdministratorsRegisterLandingPageInputModel inputModel)

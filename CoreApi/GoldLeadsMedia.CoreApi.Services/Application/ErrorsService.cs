@@ -7,6 +7,8 @@
     using GoldLeadsMedia.Database.Models;
     using GoldLeadsMedia.CoreApi.Services.Application.Common;
     using GoldLeadsMedia.CoreApi.Models.ServicesModels.InputModels;
+    using System.Collections.Generic;
+    using System.Linq;
 
     public class ErrorsService : IErrorsService
     {
@@ -50,6 +52,13 @@
             await this.db.SaveChangesAsync();
 
             return ftdScanError;
+        }
+
+        public IEnumerable<DeveloperError> GetDeveloperErrors()
+        {
+            return this.db.DeveloperErrors
+                .OrderByDescending(developerError => developerError.CreatedOn)
+                .Take(10);
         }
     }
 }

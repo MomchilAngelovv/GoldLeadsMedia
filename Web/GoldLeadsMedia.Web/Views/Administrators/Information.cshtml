@@ -1,4 +1,6 @@
-﻿<div class="btn-group" role="group" aria-label="Basic example">
+﻿@model GoldLeadsMedia.Web.Models.ViewModels.AdministratorsInformationViewModel
+
+<div class="btn-group" role="group" aria-label="Basic example">
     <a asp-controller="Administrators" asp-action="CreateOffer" class="btn btn-primary">Create offer</a>
     <a asp-controller="Administrators" asp-action="AssignLandingPagesToOffer" class="btn btn-primary">Assign landing pages to offers</a>
     <a asp-controller="Administrators" asp-action="RegisterAffiliate" class="btn btn-primary">Register affiliate</a>
@@ -7,25 +9,15 @@
 </div>
 
 <hr />
+<h2 class="text-center">Developer errors</h2>
+<hr />
 
 <div class="row">
-    <div class="col-sm-6">
-        <div class="card">
-            <div class="card-body">
-                <h5 class="card-title">Special title treatment</h5>
-                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                <a href="#" class="btn btn-primary">Go somewhere</a>
-            </div>
-        </div>
-    </div>
-    <div class="col-sm-6">
-        <div class="card">
-            <div class="card-body">
-                <h5 class="card-title">Special title treatment</h5>
-                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                <a href="#" class="btn btn-primary">Go somewhere</a>
-            </div>
-        </div>
+    <div class="list-group col-12">
+        @foreach (var devError in Model.DeveloperErrors)
+        {
+            <a href="#" class="list-group-item list-group-item-action">[@devError.CreatedOn] @devError.Message</a>
+        }
     </div>
 </div>
 
