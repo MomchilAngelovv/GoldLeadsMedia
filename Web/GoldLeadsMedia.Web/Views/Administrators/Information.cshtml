@@ -16,7 +16,7 @@
     <div class="list-group col-12">
         @foreach (var devError in Model.DeveloperErrors)
         {
-            <a href="#" class="list-group-item list-group-item-action">[@devError.CreatedOn] @devError.Message</a>
+            <a href="#" class="list-group-item list-group-item-action">[@devError.CreatedOn] @devError.Information @devError.Message</a>
         }
     </div>
 </div>

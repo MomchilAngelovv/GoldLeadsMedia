@@ -32,7 +32,8 @@ namespace GoldLeadsMedia.Web.Infrastructure.Filters
                 Path = context.HttpContext.Request.Path,
                 Message = context.Exception.Message,
                 StackTrace = context.Exception.StackTrace,
-                UserId = loggedUser?.Id
+                UserId = loggedUser?.Id,
+                Information = "[Web]"
             };
 
             await this.db.DeveloperErrors.AddAsync(developerError);

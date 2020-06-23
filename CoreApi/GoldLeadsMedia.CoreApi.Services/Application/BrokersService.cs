@@ -53,7 +53,7 @@
                     Id = broker.Id,
                     Name = broker.Name,
                     TotalLeads = broker.Leads.Count(),
-                    TotalFtds = broker.Leads.Where(lead => lead.FtdBecameOn.HasValue == false).Count()
+                    TotalFtds = broker.Leads.Where(lead => lead.FtdBecameOn.HasValue).Count()
                 });
 
             return brokersSummary;

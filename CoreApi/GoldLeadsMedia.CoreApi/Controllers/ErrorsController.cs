@@ -25,7 +25,8 @@ namespace GoldLeadsMedia.CoreApi.Controllers
                 { 
                     developerError.Id,
                     developerError.Message,
-                    developerError.CreatedOn
+                    developerError.CreatedOn,
+                    developerError.Information
                 })
                 .ToList();
 
