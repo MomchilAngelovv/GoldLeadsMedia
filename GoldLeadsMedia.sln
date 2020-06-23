@@ -23,7 +23,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GoldLeadsMedia.Database.Mod
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GoldLeadsMedia.CoreApi", "CoreApi\GoldLeadsMedia.CoreApi\GoldLeadsMedia.CoreApi.csproj", "{D8E83CC4-D931-4B78-8816-FABE2F7308D1}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GoldLeadsMedia.AffiliatesApi", "PartnersApi\GoldLeadsMedia.PartnersApi\GoldLeadsMedia.AffiliatesApi.csproj", "{8C3F73AF-1C03-4671-A75B-074755C8653A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GoldLeadsMedia.AffiliatesApi", "AffiliatesApi\GoldLeadsMedia.AffiliatesApi\GoldLeadsMedia.AffiliatesApi.csproj", "{8C3F73AF-1C03-4671-A75B-074755C8653A}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GoldLeadsMedia.CoreApi.Services", "CoreApi\GoldLeadsMedia.CoreApi.Services\GoldLeadsMedia.CoreApi.Services.csproj", "{CC907EBD-B5F8-4F7E-93C5-C245BEE072FE}"
 EndProject
@@ -31,9 +31,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GoldLeadsMedia.CoreApi.Mode
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FtdScanWorker.Service", "FtdScanWorker\FtdScanWorker.Service\FtdScanWorker.Service.csproj", "{2912292F-014B-4514-8AD0-CB6F978F5725}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GoldLeadsMedia.AffiliatesApi.Models", "PartnersApi\GoldLeadsMedia.PartnersApi.Models\GoldLeadsMedia.AffiliatesApi.Models.csproj", "{DC3932E8-E037-4203-BF44-C81131561058}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GoldLeadsMedia.AffiliatesApi.Models", "AffiliatesApi\GoldLeadsMedia.AffiliatesApi.Models\GoldLeadsMedia.AffiliatesApi.Models.csproj", "{DC3932E8-E037-4203-BF44-C81131561058}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GoldLeadsMedia.AffiliatesApi.Services", "PartnersApi\GoldLeadsMedia.PartnersApi.Services\GoldLeadsMedia.AffiliatesApi.Services.csproj", "{FC0A27E7-C7EF-4D20-A4EB-F20AB587AC01}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GoldLeadsMedia.AffiliatesApi.Services", "AffiliatesApi\GoldLeadsMedia.AffiliatesApi.Services\GoldLeadsMedia.AffiliatesApi.Services.csproj", "{FC0A27E7-C7EF-4D20-A4EB-F20AB587AC01}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

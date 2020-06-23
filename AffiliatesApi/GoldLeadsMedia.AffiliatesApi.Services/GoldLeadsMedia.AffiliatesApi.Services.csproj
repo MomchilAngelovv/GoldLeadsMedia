@@ -12,7 +12,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\Database\GoldLeadsMedia.Database\GoldLeadsMedia.Database.csproj" />
-    <ProjectReference Include="..\GoldLeadsMedia.PartnersApi.Models\GoldLeadsMedia.AffiliatesApi.Models.csproj" />
+    <ProjectReference Include="..\GoldLeadsMedia.AffiliatesApi.Models\GoldLeadsMedia.AffiliatesApi.Models.csproj" />
   </ItemGroup>
 
 </Project>
