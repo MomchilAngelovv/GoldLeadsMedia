@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GoldLeadsMedia.Database.Migrations
 {
     [DbContext(typeof(GoldLeadsMediaDbContext))]
-    [Migration("20200620064416_Initial_Database_Create")]
+    [Migration("20200624065624_Initial_Database_Create")]
     partial class Initial_Database_Create
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -123,6 +123,9 @@ namespace GoldLeadsMedia.Database.Migrations
                         .HasColumnType("nvarchar(100)")
                         .HasMaxLength(100);
 
+                    b.Property<string>("LeadId")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("OfferId")
                         .HasColumnType("nvarchar(450)");
 
@@ -194,6 +197,9 @@ namespace GoldLeadsMedia.Database.Migrations
                     b.Property<string>("LandingPageId")
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("LeadId")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("OfferId")
                         .IsRequired()
@@ -611,11 +617,15 @@ namespace GoldLeadsMedia.Database.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ApiRegistrationId");
+                    b.HasIndex("ApiRegistrationId")
+                        .IsUnique()
+                        .HasFilter("[ApiRegistrationId] IS NOT NULL");
 
                     b.HasIndex("BrokerId");
 
-                    b.HasIndex("ClickRegistrationId");
+                    b.HasIndex("ClickRegistrationId")
+                        .IsUnique()
+                        .HasFilter("[ClickRegistrationId] IS NOT NULL");
 
                     b.HasIndex("CountryId");
 
@@ -1138,16 +1148,18 @@ namespace GoldLeadsMedia.Database.Migrations
             modelBuilder.Entity("GoldLeadsMedia.Database.Models.Lead", b =>
                 {
                     b.HasOne("GoldLeadsMedia.Database.Models.ApiRegistration", "ApiRegistration")
-                        .WithMany()
-                        .HasForeignKey("ApiRegistrationId");
+                        .WithOne("Lead")
+                        .HasForeignKey("GoldLeadsMedia.Database.Models.Lead", "ApiRegistrationId")
+                        .OnDelete(DeleteBehavior.Restrict);
 
                     b.HasOne("GoldLeadsMedia.Database.Models.Broker", "Broker")
                         .WithMany("Leads")
                         .HasForeignKey("BrokerId");
 
                     b.HasOne("GoldLeadsMedia.Database.Models.ClickRegistration", "ClickRegistration")
-                        .WithMany()
-                        .HasForeignKey("ClickRegistrationId");
+                        .WithOne("Lead")
+                        .HasForeignKey("GoldLeadsMedia.Database.Models.Lead", "ClickRegistrationId")
+                        .OnDelete(DeleteBehavior.Restrict);
 
                     b.HasOne("GoldLeadsMedia.Database.Models.Country", "Country")
                         .WithMany("Leads")
@@ -1247,7 +1259,7 @@ namespace GoldLeadsMedia.Database.Migrations
             modelBuilder.Entity("GoldLeadsMedia.Database.Models.TrackerConfiguration", b =>
                 {
                     b.HasOne("GoldLeadsMedia.Database.Models.GoldLeadsMediaUser", "Affiliate")
-                        .WithMany("TrackerSettings")
+                        .WithMany("TrackerConfigurations")
                         .HasForeignKey("AffiliateId");
                 });
 

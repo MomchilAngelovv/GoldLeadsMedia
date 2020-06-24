@@ -492,6 +492,7 @@ namespace GoldLeadsMedia.Database.Migrations
                 {
                     Id = table.Column<string>(nullable: false),
                     IpAddress = table.Column<string>(maxLength: 100, nullable: false),
+                    LeadId = table.Column<string>(nullable: true),
                     OfferId = table.Column<string>(nullable: true),
                     AffiliateId = table.Column<string>(nullable: false),
                     CreatedOn = table.Column<DateTime>(nullable: false),
@@ -527,9 +528,10 @@ namespace GoldLeadsMedia.Database.Migrations
                     SubAffiliate3 = table.Column<string>(nullable: true),
                     SubAffiliate4 = table.Column<string>(nullable: true),
                     SubAffiliate5 = table.Column<string>(nullable: true),
+                    LeadId = table.Column<string>(nullable: true),
                     OfferId = table.Column<string>(nullable: false),
-                    LandingPageId = table.Column<string>(nullable: false),
                     AffiliateId = table.Column<string>(nullable: false),
+                    LandingPageId = table.Column<string>(nullable: false),
                     AffiliateTrackerClickId = table.Column<string>(nullable: true),
                     CreatedOn = table.Column<DateTime>(nullable: false),
                     UpdatedOn = table.Column<DateTime>(nullable: true),
@@ -827,7 +829,9 @@ namespace GoldLeadsMedia.Database.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_Leads_ApiRegistrationId",
                 table: "Leads",
-                column: "ApiRegistrationId");
+                column: "ApiRegistrationId",
+                unique: true,
+                filter: "[ApiRegistrationId] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Leads_BrokerId",
@@ -837,7 +841,9 @@ namespace GoldLeadsMedia.Database.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_Leads_ClickRegistrationId",
                 table: "Leads",
-                column: "ClickRegistrationId");
+                column: "ClickRegistrationId",
+                unique: true,
+                filter: "[ClickRegistrationId] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Leads_CountryId",

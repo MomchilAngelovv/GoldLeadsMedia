@@ -15,9 +15,11 @@
         public string Id { get; set; }
         public string IpAddress { get; set; }
 
+        public string LeadId { get; set; }
         public string OfferId { get; set; }
         public string AffiliateId { get; set; }
 
+        public virtual Lead Lead { get; set; }
         public virtual Offer Offer { get; set; }
         public virtual GoldLeadsMediaUser Affiliate { get; set; }
 

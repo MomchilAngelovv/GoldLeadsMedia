@@ -20,11 +20,13 @@
         public string SubAffiliate4 { get; set; }
         public string SubAffiliate5 { get; set; }
 
+        public string LeadId { get; set; }
         public string OfferId { get; set; }
-        public string LandingPageId { get; set; }
         public string AffiliateId { get; set; }
+        public string LandingPageId { get; set; }
         public string AffiliateTrackerClickId { get; set; }
 
+        public virtual Lead Lead { get; set; }
         public virtual Offer Offer { get; set; }
         public virtual LandingPage LandingPage { get; set; }
         public virtual GoldLeadsMediaUser Affiliate { get; set; }

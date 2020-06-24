@@ -9,7 +9,7 @@
 
     public class GoldLeadsMediaDbContext : IdentityDbContext<GoldLeadsMediaUser, GoldLeadsMediaRole, string>
     {
-        public GoldLeadsMediaDbContext(DbContextOptions options) 
+        public GoldLeadsMediaDbContext(DbContextOptions options)
             : base(options)
         {
 
@@ -37,8 +37,21 @@
         public DbSet<TrackerConfiguration> TrackerConfigurations { get; set; }
         public DbSet<Vertical> Verticals { get; set; }
 
-        protected override void OnModelCreating(ModelBuilder builder) 
+        protected override void OnModelCreating(ModelBuilder builder)
         {
+            //TODO: MOve this in config file
+            builder.Entity<Lead>()
+                .HasOne(a => a.ApiRegistration)
+                .WithOne(b => b.Lead)
+                .HasForeignKey<Lead>(b => b.ApiRegistrationId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            builder.Entity<Lead>()
+              .HasOne(a => a.ClickRegistration)
+              .WithOne(b => b.Lead)
+              .HasForeignKey<Lead>(b => b.ClickRegistrationId)
+              .OnDelete(DeleteBehavior.Restrict);
+
             builder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
             base.OnModelCreating(builder);
         }
