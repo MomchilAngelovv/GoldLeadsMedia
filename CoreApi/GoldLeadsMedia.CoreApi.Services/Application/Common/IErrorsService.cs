@@ -8,7 +8,7 @@
 
     public interface IErrorsService
     {
-        Task<SendLeadError> RegisterLeadErrorAsync(ErrorsRegisterLeadErrorInputServiceModel serviceModel);
+        Task<SendLeadError> RegisterSendLeadErrorAsync(ErrorsRegisterSendLeadErrorInputServiceModel serviceModel);
         Task<FtdScanError> RegisterFtdScanErrorAsync(ErrorsRegisterFtdScanErrorInputServiceModel serviceModel);
         Task<DeveloperError> RegisterDeveloperErrorAsync(ErrorsRegisterDeveloperErrorInputServiceModel serviceModel);
         IEnumerable<DeveloperError> GetDeveloperErrors();

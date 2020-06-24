@@ -24,7 +24,7 @@
         {
             throw new NotImplementedException();
         }
-        public async Task<SendLeadError> RegisterLeadErrorAsync(ErrorsRegisterLeadErrorInputServiceModel serviceModel)
+        public async Task<SendLeadError> RegisterSendLeadErrorAsync(ErrorsRegisterSendLeadErrorInputServiceModel serviceModel)
         {
             var sendLeadError = new SendLeadError
             {

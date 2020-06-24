@@ -30,7 +30,6 @@
 
             return lead;
         }
-
         public IEnumerable<Lead> GetLeadsBy(string affiliateId)
         {
             return this.db.Leads
@@ -66,7 +65,7 @@
 
             return lead;
         }
-        public async Task<Lead> SendSuccessUpdateLeadAsync(Lead lead, string brokerId, string idInBroker)
+        public async Task<Lead> SendLeadSuccessAsync(Lead lead, string brokerId, string idInBroker)
         {
             lead.UpdatedOn = DateTime.UtcNow;
             lead.BrokerId = brokerId;

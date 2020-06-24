@@ -10,7 +10,7 @@
     public interface ILeadsService
     {
         IEnumerable<Lead> GetAll();
-        Task<Lead> SendSuccessUpdateLeadAsync(Lead lead, string brokerId, string idInBroker);
+        Task<Lead> SendLeadSuccessAsync(Lead lead, string brokerId, string idInBroker);
         Task<Lead> FtdBecomeUpdateLeadAsync(Lead lead, DateTime ftdBecomeOn, string callStatus);
         Lead GetBy(string id, bool searchByBrokerId = false);
         IEnumerable<Lead> GetLeadsBy(string userId);

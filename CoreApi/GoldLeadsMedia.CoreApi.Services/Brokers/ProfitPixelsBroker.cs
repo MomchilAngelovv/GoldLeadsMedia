@@ -45,12 +45,12 @@
                 ["X-Auth-Key"] = "ac7e4690eebc45989d690ffce24cfd5e4923f2dd4ba540e98f637fc06743d5b3"
             };
 
-            var response = await httpClient.GetAsync<ProfitPixelsFtdScanResponse>($"https://api.profitpixels.com/client/v5/leads", queryParameters, headers);
+            var ftdScanResponse = await httpClient.GetAsync<ProfitPixelsFtdScanResponse>($"https://api.profitpixels.com/client/v5/leads", queryParameters, headers);
 
             var ftdCounter = 0;
-            if (response.Success)
+            if (ftdScanResponse.Success)
             {
-                foreach (var ftdData in response.ResponseData)
+                foreach (var ftdData in ftdScanResponse.ResponseData)
                 {
                     var lead = leadsService.GetBy(ftdData.LeadId, true);
 
@@ -62,12 +62,12 @@
             {
                 var serviceModel = new ErrorsRegisterFtdScanErrorInputServiceModel
                 {
-                    Message = response.Message,
-                    Information = $"Request Id: {response.RequestId}",
+                    Message = ftdScanResponse.Message,
+                    Information = $"Request Id: {ftdScanResponse.RequestId}",
                     BrokerId = brokerId
                 };
 
-                var ftdScanError = await errorsService.RegisterFtdScanErrorAsync(serviceModel);
+                await errorsService.RegisterFtdScanErrorAsync(serviceModel);
             }
 
             return ftdCounter;
@@ -94,26 +94,26 @@
 
                 var headers = new Dictionary<string, string>
                 {
-                    ["X-Auth-ClientId"] = "cc94150f-ca09-4950-a23d-bcea325b91f5", //TODO AppSettings.Production
-                    ["X-Auth-Key"] = "ac7e4690eebc45989d690ffce24cfd5e4923f2dd4ba540e98f637fc06743d5b3" //TODO AppSettings.Production
+                    ["X-Auth-ClientId"] = "cc94150f-ca09-4950-a23d-bcea325b91f5",
+                    ["X-Auth-Key"] = "ac7e4690eebc45989d690ffce24cfd5e4923f2dd4ba540e98f637fc06743d5b3"
                 };
 
-                var response = await httpClient.PostAsync<ProfitPixelsSendLeadResponse>(url, requestBody, headers);
+                var sendLeadResponse = await httpClient.PostAsync<ProfitPixelsSendLeadResponse>(url, requestBody, headers);
 
-                if (response.Success)
+                if (sendLeadResponse.Success)
                 {
-                    await leadsService.SendSuccessUpdateLeadAsync(lead, brokerId, response.ResponseData.LeadId);
+                    await leadsService.SendLeadSuccessAsync(lead, this.brokerId, sendLeadResponse.ResponseData.LeadId);
                 }
                 else
                 {
-                    var serviceModel = new ErrorsRegisterLeadErrorInputServiceModel
+                    var serviceModel = new ErrorsRegisterSendLeadErrorInputServiceModel
                     {
                         LeadId = lead.Id,
-                        BrokerId = brokerId,
-                        ErrorMessage = response.Message,
+                        BrokerId = this.brokerId,
+                        ErrorMessage = sendLeadResponse.Message,
                     };
 
-                    await errorsService.RegisterLeadErrorAsync(serviceModel);
+                    await errorsService.RegisterSendLeadErrorAsync(serviceModel);
                     failedLeadsCount++;
                 }
             }
