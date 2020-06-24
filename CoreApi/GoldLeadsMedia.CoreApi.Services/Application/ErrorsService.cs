@@ -60,5 +60,15 @@
                 .OrderByDescending(developerError => developerError.CreatedOn)
                 .Take(10);
         }
+
+        public IEnumerable<FtdScanError> GetFtdScanErrors()
+        {
+            return this.db.FtdScanErrors.ToList();
+        }
+
+        public IEnumerable<SendLeadError> GetSendLeadsErrors()
+        {
+            return this.db.SendLeadErrors.ToList();
+        }
     }
 }

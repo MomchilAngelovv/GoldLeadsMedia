@@ -6,6 +6,7 @@
     <a asp-controller="Administrators" asp-action="RegisterAffiliate" class="btn btn-primary">Register affiliate</a>
     <a asp-controller="Administrators" asp-action="RegisterLandingPage" class="btn btn-primary">Register landing Page</a>
     <a asp-controller="Administrators" asp-action="RegisterBroker" class="btn btn-primary">Register broker</a>
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#todaysErrors">Today's errors</button>
 </div>
 
 <hr />
@@ -18,6 +19,27 @@
         {
             <a href="#" class="list-group-item list-group-item-action">[@devError.CreatedOn] @devError.Information @devError.Message</a>
         }
+    </div>
+</div>
+
+<div class="modal fade" id="todaysErrors" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Today's errors</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Developer today errors: @Model.DeveloperErrorsCount<br />
+                Send leads today errors: @Model.SendLeadsErrorsCount<br />
+                Ftd scan today errors: @Model.FtdScanErrorsCount<br />
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary col-12" data-dismiss="modal">Close</button>
+            </div>
+        </div>
     </div>
 </div>
 

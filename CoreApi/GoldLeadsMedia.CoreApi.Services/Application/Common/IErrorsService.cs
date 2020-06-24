@@ -12,5 +12,7 @@
         Task<FtdScanError> RegisterFtdScanErrorAsync(ErrorsRegisterFtdScanErrorInputServiceModel serviceModel);
         Task<DeveloperError> RegisterDeveloperErrorAsync(ErrorsRegisterDeveloperErrorInputServiceModel serviceModel);
         IEnumerable<DeveloperError> GetDeveloperErrors();
+        IEnumerable<FtdScanError> GetFtdScanErrors();
+        IEnumerable<SendLeadError> GetSendLeadsErrors();
     }
 }

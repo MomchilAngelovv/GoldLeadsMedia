@@ -19,7 +19,7 @@ namespace GoldLeadsMedia.CoreApi.Controllers
         [HttpGet("Developer")]
         public ActionResult<IEnumerable<object>> DeveloperErros()
         {
-            var developerErros = this.errorsService
+            var developerErrors = this.errorsService
                 .GetDeveloperErrors()
                 .Select(developerError => new 
                 { 
@@ -30,7 +30,28 @@ namespace GoldLeadsMedia.CoreApi.Controllers
                 })
                 .ToList();
 
-            return developerErros;
+            return developerErrors;
+        }
+        [HttpGet("FtdScan")]
+        public ActionResult<int> FtdScanErros()
+        {
+            var ftdScanErrors = this.errorsService
+                .GetFtdScanErrors()
+                .Where(ftdScanError => ftdScanError.CreatedOn.Date == DateTime.UtcNow.Date)
+                .Count();
+
+            return ftdScanErrors;
+        }
+
+        [HttpGet("SendLeads")]
+        public ActionResult<int> SendLeadsErros()
+        {
+            var sendLeadsErrors = this.errorsService
+                .GetSendLeadsErrors()
+                .Where(sendLeadsError => sendLeadsError.CreatedOn.Date == DateTime.UtcNow.Date)
+                .Count();
+
+            return sendLeadsErrors;
         }
     }
 }

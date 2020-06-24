@@ -33,10 +33,17 @@
         public async Task<IActionResult> Information()
         {
             var developerErrors = await this.httpClient.GetAsync<List<AdministratorsInformationDeveloperError>>("Api/Errors/Developer");
+            var ftdScanErrorsCount = await this.httpClient.GetAsync<int>("Api/Errors/FtdScan");
+            var sendLeadsErrorsCount = await this.httpClient.GetAsync<int>("Api/Errors/SendLeads");
+
             var viewModel = new AdministratorsInformationViewModel
             {
-                DeveloperErrors = developerErrors
+                DeveloperErrors = developerErrors,
+                DeveloperErrorsCount = developerErrors.Count,
+                FtdScanErrorsCount = ftdScanErrorsCount,
+                SendLeadsErrorsCount = sendLeadsErrorsCount
             };
+
             return this.View(viewModel);
         }
         public IActionResult CreateOffer()
