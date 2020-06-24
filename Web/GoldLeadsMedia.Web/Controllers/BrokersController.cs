@@ -17,6 +17,8 @@ namespace GoldLeadsMedia.Web.Controllers
         {
             this.httpClient = httpClient;
         }
+            
+        //TODO: FIX JS Naming nad foldering
         public async Task<IActionResult> All()
         {
             var brokers = await this.httpClient.GetAsync<List<BrokersAllBroker>>("Api/Reports/Brokers");
