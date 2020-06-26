@@ -1,8 +1,10 @@
 ﻿@model GoldLeadsMedia.Web.Models.InputModels.AdministratorsAssignLandingPagesToOffersInputModel
+
 @if (this.TempData["NullOffer"] != null)
 {
     <div class="alert alert-danger" role="alert">@this.TempData["NullOffer"]</div>
 }
+
 <div class="row">
     <div class="col-4">
         <form asp-controller="Administrators" asp-action="AssignLandingPagesToOffer" method="post">

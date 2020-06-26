@@ -15,7 +15,7 @@
         private readonly IErrorsService errorsService;
         private readonly IAsyncHttpClient httpClient;
 
-        private readonly string brokerId = "123";
+        private readonly string brokerId = "e4eb3f0f-c97e-468e-9567-91cfb237b0e2";
 
         public ProfitPixelsBroker(
             ILeadsService leadsService,
@@ -72,7 +72,7 @@
 
             return ftdCounter;
         }
-        public async Task<int> SendLeadsAsync(IEnumerable<string> leadIds, string partnerOfferId)
+        public async Task<int> SendLeadsAsync(IEnumerable<string> leadIds)
         {
             var failedLeadsCount = 0;
             var url = "https://api.profitpixels.com/client/v5/leads";
@@ -87,7 +87,7 @@
                     lead.LastName,
                     lead.Email,
                     Language = lead.Country.IsoCode, //TODO This may need some changes due to different partner requierments For now I put country code as language BUT need to think something,
-                    OfferId = partnerOfferId,
+                    OfferId = "Fill this with their offer ID",
                     lead.PhoneNumber,
                     lead.Password
                 };

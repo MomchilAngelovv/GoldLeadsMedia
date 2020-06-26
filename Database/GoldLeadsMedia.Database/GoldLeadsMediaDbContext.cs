@@ -16,7 +16,6 @@
         }
 
         public DbSet<Access> Accesses { get; set; }
-        public DbSet<AffiliatePayment> AffiliatePayments { get; set; }
         public DbSet<ApiRegistration> ApiRegistrations { get; set; }
         public DbSet<Broker> Brokers { get; set; }
         public DbSet<ClickRegistration> ClickRegistrations { get; set; }
@@ -39,19 +38,6 @@
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
-            //TODO: MOve this in config file
-            builder.Entity<Lead>()
-                .HasOne(a => a.ApiRegistration)
-                .WithOne(b => b.Lead)
-                .HasForeignKey<Lead>(b => b.ApiRegistrationId)
-                .OnDelete(DeleteBehavior.Restrict);
-
-            builder.Entity<Lead>()
-              .HasOne(a => a.ClickRegistration)
-              .WithOne(b => b.Lead)
-              .HasForeignKey<Lead>(b => b.ClickRegistrationId)
-              .OnDelete(DeleteBehavior.Restrict);
-
             builder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
             base.OnModelCreating(builder);
         }

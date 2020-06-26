@@ -51,27 +51,23 @@
             await this.db.SaveChangesAsync();
             return "Done";
         }
-
         public async Task<IEnumerable<GoldLeadsMediaUser>> GetAllAsync()
         {
             return await this.userManager
                 .GetUsersInRoleAsync("Affiliate");
         }
-
         public IEnumerable<Lead> GetLeadsBy(string affiliateId)
         {
             return this.db.Leads
                 .Where(lead => lead.ClickRegistration.AffiliateId == affiliateId)
                 .ToList();
         }
-
         public IEnumerable<Offer> GetOffersBy(string affiliateId)
         {
             return this.db.Offers
                 .Where(offer => offer.ApiRegistrations.Any(apiRegistration => apiRegistration.AffiliateId == affiliateId) || offer.ClickRegistrations.Any(clickRegistration => clickRegistration.AffiliateId == affiliateId))
                 .ToList();
         }
-
         public AffiliatesGetPaymentsStatusByOutputServiceModel GetPaymentsStatusBy(string affiliateId)
         {
             //TODO: This will get money ONLY FOR PPA -> NEED TO INCLUDE EVERY POSSIBLE AFFILATE PAY (PPL/PPC) BUT FOR NOW WE WORK ONLY CPA
@@ -93,18 +89,14 @@
                      lead.ApiRegistration.Offer.PayPerClick.GetValueOrDefault() +
                      lead.ApiRegistration.Offer.PayPerLead.GetValueOrDefault());
 
-            var totalPaid = affiliate.AffiliatePayments
-                .Sum(affilatePayment => affilatePayment.Amount);
-
             var result = new AffiliatesGetPaymentsStatusByOutputServiceModel
             {
                 TotalEarned = totalEarned,
-                TotalPaid = totalPaid
+                TotalPaid = 0
             };
 
             return result;
         }
-
         public TrackerConfiguration GetTrackerSettings(string affiliateId)
         {
             return this.db.TrackerConfigurations

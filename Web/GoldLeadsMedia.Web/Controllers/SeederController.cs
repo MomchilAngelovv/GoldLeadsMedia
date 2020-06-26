@@ -10,7 +10,6 @@
 
     using GoldLeadsMedia.Database;
     using GoldLeadsMedia.Database.Models;
-    using GoldLeadsMedia.Web.Models.Seeder;
     using GoldLeadsMedia.Web.Infrastructure.HttpHelper;
 
     public class SeederController : Controller
@@ -164,7 +163,6 @@
 
             return this.Content(stringBuilder.ToString());
         }
-
         private async Task SeedCountries()
         {
             var countrySeedModels = await this.httpClient.GetAsync<List<CountrySeedModel>>("https://restcountries.eu/rest/v2/all");
@@ -191,7 +189,6 @@
             await this.db.Countries.AddRangeAsync(countries);
             await this.db.SaveChangesAsync();
         }
-
         private async Task SeedLanguages()
         {
             var languages = new List<Language>();
@@ -318,7 +315,6 @@
 
             await this.db.Languages.AddRangeAsync(languages);
         }
-
         private void AddLanguage(string code, string name, List<Language> languages)
         {
             var language = new Language
@@ -329,5 +325,12 @@
 
             languages.Add(language);
         }
+    }
+
+    public class CountrySeedModel
+    {
+        public string Name { get; set; }
+        public string Alpha2Code { get; set; }
+        public List<string> CallingCodes { get; set; }
     }
 }

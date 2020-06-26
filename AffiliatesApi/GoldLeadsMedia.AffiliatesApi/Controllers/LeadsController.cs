@@ -10,6 +10,7 @@
     using GoldLeadsMedia.AffiliatesApi.Models.InputModels;
     using GoldLeadsMedia.AffiliatesApi.Models.ServiceModels;
     using GoldLeadsMedia.AffiliatesApi.Services.Application.Common;
+    using GoldLeadsMedia.AffiliatesApi.Common;
 
     public class LeadsController : ApiController
     {
@@ -37,26 +38,25 @@
             return greetingMessage;
         }
 
-        //TODO MAKE GLOBAL CONSTANTS FOR ERROR MESSAGES AND OTHER STUFF
         [HttpPost]
         public async Task<ActionResult<object>> Register(LeadsRegisterInputModel inputModel)
         {
             var country = countriesService.GetBy(inputModel.CountryName);
             if (country == null)
             {
-                return BadRequest("Invalid country name! Make sure to provide correct country name!");
+                return BadRequest(ErrorMessages.InvalidCountryName);
             }
 
             var affiliate = await userManager.FindByIdAsync(inputModel.AffiliateId);
             if (affiliate == null)
             {
-                return BadRequest("Invalid affiliateId!");
+                return BadRequest(ErrorMessages.AffiliateNotFound);
             }
 
             var offerExists = offersService.ExistsCheckBy(inputModel.OfferId);
             if (offerExists == false)
             {
-                return BadRequest("Invalid offerId!");
+                return BadRequest(ErrorMessages.OfferNotFound);
             }
 
             var ipAddress = HttpContext.Connection.RemoteIpAddress.ToString();
@@ -91,36 +91,6 @@
                 lead.CallStatus,
                 lead.CreatedOn,
                 inputModel.AffiliateId,
-            };
-
-            return response;
-        }
-
-        [HttpGet("{affiliateId}")]
-        public ActionResult<object> LeadsByAffiliateId(string affiliateId)
-        {
-            //TODO: PAGINATION SOME DAY !!!
-            var leads = leadsService
-                .GetAllBy(affiliateId)
-                .Select(lead => new
-                {
-                    lead.Id,
-                    lead.FirstName,
-                    lead.LastName,
-                    lead.Password,
-                    lead.Country.PhonePrefix,
-                    lead.PhoneNumber,
-                    lead.Email,
-                    CountryName = lead.Country.Name,
-                    lead.FtdBecameOn,
-                    lead.CallStatus,
-                    lead.CreatedOn,
-                    affiliateId,
-                });
-
-            var response = new
-            {
-                Leads = leads
             };
 
             return response;

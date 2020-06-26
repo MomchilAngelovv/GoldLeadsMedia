@@ -36,7 +36,6 @@
         public virtual Country Country { get; set; }
         public virtual Broker Broker { get; set; }
 
-        public virtual ICollection<AffiliatePayment> AffiliatePayments { get; set; }
         public virtual ICollection<SendLeadError> SendLeadErrors { get; set; }
 
         public DateTime CreatedOn { get ;set; }

@@ -19,18 +19,29 @@
 $('#send-leads-btn').click(function () {
     let leadIds = $('input[name="lead-id"]:checked').toArray().map(el => el.value);
     let brokerId = $('input[name="broker-id"]:checked')[0].value;
-    let brokerOfferId = $('#broker-offer-id').val();   
 
     $.post({
         url: `https://localhost:44322/Api/Brokers/${brokerId}/SendLeads`,
         contentType: "application/json; charset=utf-8",
         dataType: 'json',
-        data: JSON.stringify({ brokerId, leadIds, brokerOfferId }),
+        data: JSON.stringify({ brokerId, leadIds }),
         success: function (data) {
-            console.log("done ok");
+            console.log(data);
+            if (data.errors > 0) {
+                $('#send-leads-fail').text(`Failed leads to send: ${data.errors}! Page will refresh in 3 seconds!`).show(200).delay(5000).hide(200);
+                setTimeout(RefreshPage, 3000);
+            }
+            else {
+                $('#send-leads-success').show(200).delay(5000).hide(200);
+                setTimeout(RefreshPage, 3000);
+            }
         },
         error: function (err) {
-            console.log("error");
+            console.log(err);
         }
     });
 });
+
+function RefreshPage() {
+    window.location.href = `/Leads/All`
+}

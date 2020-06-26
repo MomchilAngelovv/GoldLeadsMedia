@@ -26,6 +26,7 @@
             this.serviceProvider = serviceProvider;
         }
 
+        [HttpGet]
         public ActionResult<IEnumerable<object>> GetAll()
         {
             var partners = this.brokersService
@@ -41,6 +42,7 @@
 
             return response;
         }
+
 
         [HttpPost]
         public async Task<ActionResult<object>> Register(PartnersRegisterInputModel inputModel)
@@ -59,9 +61,8 @@
 
             return response;
         }
-
         [HttpPost("{brokerId}/SendLeads")]
-        public async Task<ActionResult<int>> SendLeads(string brokerId, PartnersSendLeadsInputModel inputModel)
+        public async Task<ActionResult<object>> SendLeads(string brokerId, PartnersSendLeadsInputModel inputModel)
         {
             var broker = this.brokersService.GetBy(brokerId);
 
@@ -73,14 +74,19 @@
             var brokerType = typeof(IBroker)
                 .Assembly
                 .GetTypes()
-                .SingleOrDefault(type => type.IsClass && type.IsPublic && type.Name.ToLower().StartsWith(broker.Name.ToLower()) && type.Name.EndsWith("Broker"));
+                .SingleOrDefault(type => type.IsClass && type.IsPublic && type.Name.ToLower().StartsWith(broker.Name.ToLower().Replace(" ","")) && type.Name.EndsWith("Broker"));
 
             var brokerInstance = this.serviceProvider.GetService(brokerType) as IBroker;
 
-            var errorCount = await brokerInstance.SendLeadsAsync(inputModel.LeadIds, inputModel.BrokerOfferId);
-            return errorCount;
-        }
+            var errorCount = await brokerInstance.SendLeadsAsync(inputModel.LeadIds);
 
+            var response = new
+            {
+                Errors = errorCount
+            };
+
+            return response;
+        }
         [HttpPost("FtdScan")]
         public async Task<ActionResult<object>> FtdScan()
         {

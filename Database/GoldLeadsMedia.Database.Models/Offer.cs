@@ -38,7 +38,6 @@
 
         public virtual ICollection<OfferLandingPage> OffersLandingPages { get; set; }
         public virtual ICollection<OfferOfferGroup> OffersGroups { get; set; }
-        public virtual ICollection<AffiliatePayment> AffiliatePayments { get; set; }
         public virtual ICollection<ApiRegistration> ApiRegistrations { get; set; }
         public virtual ICollection<ClickRegistration> ClickRegistrations { get; set; }
 

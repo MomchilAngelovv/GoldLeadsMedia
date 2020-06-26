@@ -23,7 +23,6 @@
 
         public virtual GoldLeadsMediaUser Manager { get; set; }
 
-        public virtual ICollection<AffiliatePayment> AffiliatePayments { get; set; }
         public virtual ICollection<ApiRegistration> ApiRegistrations { get; set; }
         public virtual ICollection<ClickRegistration> ClickRegistrations { get; set; }
         public virtual ICollection<DeveloperError> DeveloperErrors { get; set; }

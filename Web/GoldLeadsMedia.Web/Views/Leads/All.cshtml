@@ -1,5 +1,8 @@
 ﻿@model GoldLeadsMedia.Web.Models.ViewModels.LeadsAllViewModel
 
+<div id="send-leads-success" class="alert alert-success" role="alert" style="display:none">Everything send successfully! Page will refresh in 3 seconds!</div>
+<div id="send-leads-fail" class="alert alert-danger" role="alert" style="display:none"></div>
+
 <h4 class="text-center">
     Select leads:
 </h4>
@@ -16,28 +19,28 @@
         <th>Status</th>
     </tr>
     <tbody class="table-tbody">
-        @foreach (var data in Model.Leads)
+        @foreach (var lead in Model.Leads)
         {
-            <tr class="table-row @if (data.HasBeenSend == false) {<text>clickable-table-row</text>}">
+            <tr class="table-row @if (lead.HasBeenSend == false) {<text>clickable-table-row</text>}">
                 <td>
-                    @data.FirstName
+                    @lead.FirstName
                 </td>
                 <td>
-                    @data.LastName
+                    @lead.LastName
                 </td>
                 <td>
-                    @data.Email
+                    @lead.Email
                 </td>
                 <td>
-                    @data.PhoneNumber
+                    @lead.PhoneNumber
                 </td>
                 <td>
-                    @data.CountryName
+                    @lead.CountryName
                 </td>
                 <td>
-                    @data.OfferName
+                    @lead.OfferName
                 </td>
-                @if (data.HasBeenSend)
+                @if (lead.HasBeenSend)
                 {
                     <td>
                         Already send
@@ -46,23 +49,13 @@
                 else
                 {
                     <td>
-                        <input type="checkbox" name="lead-id" value="@data.Id">
+                        <input type="checkbox" name="lead-id" value="@lead.Id">
                     </td>
                 }
             </tr>
         }
     </tbody>
 </table>
-<hr />
-<div>
-    <h4 class="text-center">
-        Optional parameters:
-    </h4>
-    <div class="col-4">
-        <label for="optional-offerId">Enter the offer Id given from partner</label>
-        <input id="broker-offer-id" class="form-control" />
-    </div>
-</div>
 <hr />
 <div>
     <h4 class="text-center">
@@ -83,8 +76,9 @@
     </div>
 </div>
 
+
 @section Scripts
 {
-    <script src="~/js/managers/confirmed_leads.js"></script>
+    <script src="~/js/leads/all.js"></script>
 }
 
