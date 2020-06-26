@@ -24,14 +24,17 @@ namespace GoldLeadsMedia.Web.Controllers
             this.db = db;
         }
 
+        [HttpGet]
         public IActionResult Index()
         {
             return View();
         }
+        [HttpGet]
         public IActionResult Privacy()
         {
             return View();
         }
+        [HttpGet]
         public IActionResult Error()
         {
             return this.View();

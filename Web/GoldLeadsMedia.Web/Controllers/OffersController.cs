@@ -31,6 +31,7 @@
             this.userManager = userManager;
         }
 
+        [HttpGet]
         public async Task<IActionResult> All(OffersAllFilterViewModel filterViewModel)
         {
             var queryParameters = new
@@ -59,6 +60,7 @@
 
             return this.View(viewModel);
         }
+        [HttpGet]
         public async Task<IActionResult> Details(string id)
         {
             var loggedUser = await this.userManager.GetUserAsync(this.User);
@@ -72,6 +74,7 @@
             
             return this.View(viewModel);
         }
+        [HttpGet]
         public async Task<IActionResult> DashBoard()
         {
             var offerGroups = await this.httpClient.GetAsync<List<OffersDashboardOfferGroup>>("Api/OfferGroups");
@@ -97,36 +100,5 @@
 
             return this.View(viewModel);
         }
-
-        //public async Task<IActionResult> SaveUserOfferTrackingSettings(string offer_Id, string postbackUrl)
-        //{
-        //    var loggedUser = await this.userManager.GetUserAsync(this.User);
-        //    BaseResultModel returnRes = new BaseResultModel { Code = -1 };
-        //    string url = string.Format("{0}api/Offer/InsertUpdateUserOfferTrackingSettings?", this.configuration.GetConnectionString("CoreApiUrl"));
-
-        //    var req = new
-        //    {
-        //        Offer_Id = offer_Id,
-        //        PostbackURL = postbackUrl,
-        //        User_Id = loggedUser.Id
-        //    };
-
-        //    var response = await this.httpClient.PostAsync<BaseResultModel>(url, req);
-
-        //    if (response.Code == 1)
-        //    {
-        //        var offerRes = JsonSerializer.Deserialize<BaseResultModel>(response.Message);
-
-        //        returnRes = offerRes;
-        //    }
-        //    else
-        //    {
-        //        returnRes.Code = -1;
-        //        returnRes.Message = "Error while saving data. Please, contact Gold Leads Media.";
-
-        //    }
-        //    return Json(returnRes);
-
-        //}
     }
 }

@@ -19,6 +19,8 @@
             this.landingPagesService = landingPagesService;
         }
 
+
+        [HttpGet]
         public ActionResult<IEnumerable<object>> All()
         {
             var landingPages = this.landingPagesService
@@ -32,6 +34,7 @@
 
             return landingPages;
         }
+
 
         [HttpPost]
         public async Task<ActionResult<object>> Register(LandingPagesRegisterInputModel inputModel)

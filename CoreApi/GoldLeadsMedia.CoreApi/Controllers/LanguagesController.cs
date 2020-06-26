@@ -17,6 +17,8 @@
             this.languagesService = languagesService;
         }
 
+
+        [HttpGet]
         public ActionResult<IEnumerable<object>> GetAll()
         {
             var languages = this.languagesService

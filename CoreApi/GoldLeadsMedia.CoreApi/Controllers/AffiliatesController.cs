@@ -92,6 +92,8 @@
 
             return affiliateOfferReports;
         }
+
+
         [HttpPost("{affiliateId}/TrackerConfiguration")]
         public async Task<ActionResult<object>> CreateOrUpdateTrackerConfiguration(string affiliateId, AffiliatesCreateOrUdpateTrackerConfigurationInputModel inputModel)
         {

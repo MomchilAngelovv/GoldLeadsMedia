@@ -16,6 +16,8 @@ namespace GoldLeadsMedia.CoreApi.Controllers
         {
             this.errorsService = errorsService;
         }
+
+
         [HttpGet("Developer")]
         public ActionResult<IEnumerable<object>> DeveloperErros()
         {
@@ -42,7 +44,6 @@ namespace GoldLeadsMedia.CoreApi.Controllers
 
             return ftdScanErrors;
         }
-
         [HttpGet("SendLeads")]
         public ActionResult<int> SendLeadsErros()
         {

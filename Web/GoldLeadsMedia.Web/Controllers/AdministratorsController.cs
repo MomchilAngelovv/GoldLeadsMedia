@@ -30,6 +30,7 @@
             this.hostEnvironment = hostEnvironment;
         }
 
+        [HttpGet]
         public async Task<IActionResult> Information()
         {
             var developerErrors = await this.httpClient.GetAsync<List<AdministratorsInformationDeveloperError>>("Api/Errors/Developer");
@@ -46,22 +47,27 @@
 
             return this.View(viewModel);
         }
+        [HttpGet]
         public IActionResult CreateOffer()
         {
             return this.View();
         }
+        [HttpGet]
         public IActionResult RegisterBroker()
         {
             return this.View();
         }
+        [HttpGet]
         public IActionResult AssignLandingPagesToOffer()
         {
             return this.View();
         }
+        [HttpGet]
         public IActionResult RegisterAffiliate()
         {
             return this.View();
         }
+        [HttpGet]
         public IActionResult RegisterLandingPage()
         {
             return this.View();

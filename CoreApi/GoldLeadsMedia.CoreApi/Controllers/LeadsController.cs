@@ -34,6 +34,7 @@
             this.clicksRegistrationsService = clicksRegistrationsService;
         }
 
+
         [HttpGet]
         public ActionResult<IEnumerable<object>> GetAll()
         {
@@ -54,14 +55,21 @@
 
             return leads;
         }
+
+
         [HttpPost]
         public async Task<ActionResult<object>> Register(LeadsRegisterInputModel inputModel)
         {
-            var country = this.countriesService.GetBy(inputModel.CountryName);
-
-            if (country == null)
+            var clickRegistration = this.clicksRegistrationsService.GetBy(inputModel.ClickRegistrationId);
+            if (clickRegistration == null)
             {
                 return this.BadRequest(ErrorConstants.InvalidCountryName);
+            }
+
+            var country = this.countriesService.GetBy(inputModel.CountryName);
+            if (country == null)
+            {
+                return this.BadRequest(ErrorConstants.ClickNotFound);
             }
 
             var serviceModel = new LeadsRegisterInputServiceModel
@@ -76,10 +84,10 @@
                 ClickRegistrationId = inputModel.ClickRegistrationId,
             };
 
+            //Register lead in our database
             var lead = await this.leadsService.RegisterAsync(serviceModel);
 
-            //We get the clickRegistration and trackerConfiguration in order to make Get request at the lead postback url to register the lead into affiliate tracker
-            var clickRegistration = this.clicksRegistrationsService.GetBy(inputModel.ClickRegistrationId);
+            //Register lead in affiliate tracker
             var trackerConfiguration = this.affiliatesService.GetTrackerSettings(clickRegistration.AffiliateId);
 
             if (trackerConfiguration != null && string.IsNullOrWhiteSpace(trackerConfiguration.LeadPostbackUrl) == false)
