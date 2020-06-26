@@ -2,9 +2,9 @@
 {
     using System;
 
-    public class CoreApiException : Exception
+    public class HttpFailRequestException : Exception
     {
-        public CoreApiException(string message) 
+        public HttpFailRequestException(string message) 
             : base(message)
         {
 

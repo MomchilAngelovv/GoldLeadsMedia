@@ -56,6 +56,11 @@
             var response = await this.httpClient.GetAsync(completeUrl);
             var responseAsString = await response.Content.ReadAsStringAsync();
 
+            if (response.IsSuccessStatusCode == false)
+            {
+                throw new HttpFailRequestException(responseAsString);
+            }
+
             var mappedResponse = this.MapResponse<T>(responseAsString);
             return mappedResponse;
         }
@@ -75,7 +80,7 @@
             var bodyAsString = JsonSerializer.Serialize(body);
             var requestBody = new StringContent(bodyAsString, Encoding.UTF8, mimeType);
 
-            if (headers != null)
+            if (headers != null && headers.Count > 0)
             {
                 foreach (var header in headers)
                 {
@@ -88,9 +93,15 @@
             var response = await this.httpClient.PostAsync(completeUrl, requestBody);
             var responseAsString = await response.Content.ReadAsStringAsync();
 
+            if (response.IsSuccessStatusCode == false)
+            {
+                throw new HttpFailRequestException(responseAsString);
+            }
+
             var mappedResponse = this.MapResponse<T>(responseAsString);
             return mappedResponse;
         }
+
         private T MapResponse<T>(string responseAsString)
         {
             var options = new JsonSerializerOptions

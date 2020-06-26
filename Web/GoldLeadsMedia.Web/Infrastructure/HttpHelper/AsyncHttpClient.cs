@@ -22,46 +22,6 @@
             this.configuration = configuration;
             this.httpClient = clientFactory.CreateClient();
         }
-            
-        public async Task<T> PostAsync<T>(string url, object body, Dictionary<string,string> headers, string mimeType = "application/json")
-        {
-            var urlBuilder = new StringBuilder();
-
-            if (url.Contains("http") == false)
-            {
-                urlBuilder.Append($"{this.configuration["CoreApiUrl"]}/{url}");
-            }
-            else
-            {
-                urlBuilder.Append(url);
-            }
-
-            var completeUrl = urlBuilder.ToString();
-
-
-            var bodyAsString = JsonSerializer.Serialize(body);
-            var requestBody = new StringContent(bodyAsString, Encoding.UTF8, mimeType);
-
-            if (headers != null)
-            {
-                foreach (var header in headers)
-                {
-                    this.httpClient.DefaultRequestHeaders.Add(header.Key, header.Value);
-                }
-            }
-
-            var response = await this.httpClient.PostAsync(completeUrl, requestBody);
-
-            var responseAsString = await response.Content.ReadAsStringAsync();
-
-            if (response.IsSuccessStatusCode == false)
-            {
-                throw new CoreApiException(responseAsString);
-            }
-
-            var mappedResponse = this.MapResponse<T>(responseAsString);
-            return mappedResponse;
-        }
 
         public async Task<T> GetAsync<T>(string url, object queryParameters = null)
         {
@@ -93,10 +53,52 @@
                 }
             }
 
-            var completeUrl = urlBuilder.ToString().TrimEnd('&','?');
+            var completeUrl = urlBuilder.ToString().TrimEnd('&', '?');
 
             var response = await this.httpClient.GetAsync(completeUrl);
             var responseAsString = await response.Content.ReadAsStringAsync();
+
+            if (response.IsSuccessStatusCode == false)
+            {
+                throw new HttpFailRequestException(responseAsString);
+            }
+
+            var mappedResponse = this.MapResponse<T>(responseAsString);
+            return mappedResponse;
+        }
+        public async Task<T> PostAsync<T>(string url, object body, Dictionary<string, string> headers, string mimeType = "application/json")
+        {
+            var urlBuilder = new StringBuilder();
+
+            if (url.Contains("http") == false)
+            {
+                urlBuilder.Append($"{this.configuration["CoreApiUrl"]}/{url}");
+            }
+            else
+            {
+                urlBuilder.Append(url);
+            }
+
+            var completeUrl = urlBuilder.ToString();
+
+            var bodyAsString = JsonSerializer.Serialize(body);
+            var requestBody = new StringContent(bodyAsString, Encoding.UTF8, mimeType);
+
+            if (headers != null && headers.Count > 0)
+            {
+                foreach (var header in headers)
+                {
+                    this.httpClient.DefaultRequestHeaders.Add(header.Key, header.Value);
+                }
+            }
+
+            var response = await this.httpClient.PostAsync(completeUrl, requestBody);
+            var responseAsString = await response.Content.ReadAsStringAsync();
+
+            if (response.IsSuccessStatusCode == false)
+            {
+                throw new HttpFailRequestException(responseAsString);
+            }
 
             var mappedResponse = this.MapResponse<T>(responseAsString);
             return mappedResponse;

@@ -63,13 +63,13 @@
             var clickRegistration = this.clicksRegistrationsService.GetBy(inputModel.ClickRegistrationId);
             if (clickRegistration == null)
             {
-                return this.BadRequest(ErrorConstants.ClickNotFound);
+                return this.BadRequest(ErrorConstants.ClickRegistrationNotFound);
             }
 
             var country = this.countriesService.GetBy(inputModel.CountryName);
             if (country == null)
             {
-                return this.BadRequest(ErrorConstants.InvalidCountryName);
+                return this.BadRequest(ErrorConstants.CountryNotFound);
             }
 
             var serviceModel = new LeadsRegisterInputServiceModel

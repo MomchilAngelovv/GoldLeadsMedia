@@ -52,6 +52,7 @@
             return this.View(viewModel);
         }
 
+
         [HttpPost]
         public async Task<IActionResult> UpdateTrackerConfiguration(AffiliatesUpdateTrackerConfigurationInputModel inputModel)
         {
