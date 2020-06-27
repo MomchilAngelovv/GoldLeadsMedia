@@ -54,7 +54,7 @@
                 {
                     var lead = leadsService.GetBy(ftdData.LeadId, true);
 
-                    var ftd = await leadsService.FtdBecomeUpdateLeadAsync(lead, ftdData.FtdDateTime, ftdData.CallStatus);
+                    var ftd = await leadsService.FtdSuccessAsync(lead, ftdData.FtdDateTime, ftdData.CallStatus);
                     ftdCounter++;
                 }
             }
@@ -64,7 +64,7 @@
                 {
                     Message = ftdScanResponse.Message,
                     Information = $"Request Id: {ftdScanResponse.RequestId}",
-                    BrokerId = brokerId
+                    BrokerId = this.brokerId
                 };
 
                 await errorsService.RegisterFtdScanErrorAsync(serviceModel);

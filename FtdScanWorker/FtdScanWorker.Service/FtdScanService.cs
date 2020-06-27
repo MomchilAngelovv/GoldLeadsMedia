@@ -22,12 +22,12 @@
 
         public Task StartAsync(CancellationToken cancellationToken)
         {
-            var dueTime = TimeSpan.FromMinutes(5);
+            var timeBeforeStart = TimeSpan.FromMinutes(5);
             var timeInterval = TimeSpan.FromMinutes(30);
 
-            this.timer = new Timer(Scan, null, dueTime, timeInterval);
+            this.timer = new Timer(Scan, null, timeBeforeStart, timeInterval);
 
-            Console.WriteLine($"Scan will start after {dueTime} [hh/mm/ss] and will scan every {timeInterval} [hh/mm/ss]");
+            Console.WriteLine($"Scan will start after {timeBeforeStart} [hh/mm/ss] and will scan every {timeInterval} [hh/mm/ss]");
             return Task.CompletedTask;
         }
 
@@ -47,7 +47,7 @@
             var httpCleint = new HttpClient();
 
             var coreApiUrl = this.configuration["CoreApiUrl"];
-            var response = httpCleint.PostAsync($"{coreApiUrl}/Api/Partners/FtdScan", null).GetAwaiter().GetResult();
+            var response = httpCleint.PostAsync($"{coreApiUrl}/Api/Brokers/FtdScan", null).GetAwaiter().GetResult();
             var responseAsString = response.Content.ReadAsStringAsync().GetAwaiter().GetResult();
 
             Console.WriteLine($"[Ftd Scan time: {DateTime.UtcNow}] --- [Scan result: {responseAsString}]");

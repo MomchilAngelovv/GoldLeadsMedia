@@ -17,11 +17,18 @@
         }
         public async Task<IViewComponentResult> InvokeAsync()
         {
+            var loggedUser = await this.userManager.GetUserAsync(this.UserClaimsPrincipal);
+
             var viewModel = new HeaderViewModel
             {
                 ManagerId = "1697bfe2-8327-4804-ac1c-b884fef9c279",
                 ManagerUserName = "Lora"
             };
+            
+            if (loggedUser.ManagerId != null)
+            {
+                viewModel.ManagerId = loggedUser.ManagerId;
+            }
 
             return this.View(viewModel);
         }

@@ -20,7 +20,7 @@
             this.db = db;
         }
 
-        public async Task<Lead> FtdBecomeUpdateLeadAsync(Lead lead, DateTime ftdBecomeOn, string callStatus)
+        public async Task<Lead> FtdSuccessAsync(Lead lead, DateTime ftdBecomeOn, string callStatus)
         {
             lead.FtdBecameOn = ftdBecomeOn;
             lead.CallStatus = callStatus;

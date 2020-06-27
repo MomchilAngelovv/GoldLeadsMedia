@@ -36,10 +36,14 @@
 
             if (queryParameters != null)
             {
-                urlBuilder.Append($"?");
-                var filterProperties = queryParameters.GetType().GetProperties();
+                if (url.EndsWith("?") == false)
+                {
+                    urlBuilder.Append($"?");
+                }
 
-                foreach (var property in filterProperties)
+                var queryProperties = queryParameters.GetType().GetProperties();
+
+                foreach (var property in queryProperties)
                 {
                     var propertyValue = property.GetValue(queryParameters);
                     if (propertyValue != null)

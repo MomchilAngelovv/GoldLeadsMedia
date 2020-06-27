@@ -11,6 +11,8 @@
     using GoldLeadsMedia.CoreApi.Services.AsyncHttpClient;
     using System.Collections.Generic;
     using System.Linq;
+    using Castle.DynamicProxy.Generators.Emitters;
+    using System;
 
     public class LeadsController : ApiController
     {
@@ -48,7 +50,7 @@
                     lead.Email,
                     lead.PhoneNumber,
                     CountryName = lead.Country.Name,
-                    OfferName = lead.ApiRegistration.Offer.Name,
+                    OfferName = lead.ApiRegistrationId == null ? lead.ClickRegistration.Offer.Name : lead.ApiRegistration.Offer.Name,
                     HasBeenSend = lead.BrokerId != null
                 })
                 .ToList();
@@ -97,6 +99,29 @@
             }
 
             return lead;
+        }
+        [HttpPost("{leadId}/Deposit")]
+        public async Task<ActionResult<object>> Deposit(string leadId)
+        {
+            var lead = this.leadsService.GetBy(leadId);
+
+            if (lead == null)
+            {
+                //TODO: Think logic if cannnot find the lead
+            }
+
+            await this.leadsService.SendLeadSuccessAsync(lead, "6ad9f23a-83ed-4532-ad8d-52f27485f2e5", "TestIdInBroker");
+            var depositedLead = await this.leadsService.FtdSuccessAsync(lead,DateTime.UtcNow,"Deposit");
+
+            var response = new
+            {
+                depositedLead.Id,
+                depositedLead.FtdBecameOn,
+                depositedLead.CreatedOn,
+                depositedLead.CallStatus,
+            };
+
+            return response;
         }
     }
 }
