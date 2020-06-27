@@ -4,7 +4,7 @@
 <div id="send-leads-fail" class="alert alert-danger" role="alert" style="display:none"></div>
 
 <h4 class="text-center">
-    Select leads:
+    All leads:
 </h4>
 <hr />
 
@@ -40,9 +40,15 @@
                 <td>
                     @lead.OfferName
                 </td>
-                @if (lead.HasBeenSend)
+                @if (lead.HasBecomeFtd)
                 {
-                    <td>
+                    <td class="text-success">
+                        Ftd
+                    </td>
+                }
+                else if (lead.HasBeenSend)
+                {
+                    <td bclass="text-warning">
                         Already send
                     </td>
                 }

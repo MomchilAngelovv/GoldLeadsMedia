@@ -81,6 +81,7 @@ namespace GoldLeadsMedia.CoreApi
 
             //Brokers
             services.AddTransient<ProfitPixelsBroker>();
+            services.AddTransient<TestBroker>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

@@ -51,7 +51,8 @@
                     lead.PhoneNumber,
                     CountryName = lead.Country.Name,
                     OfferName = lead.ApiRegistrationId == null ? lead.ClickRegistration.Offer.Name : lead.ApiRegistration.Offer.Name,
-                    HasBeenSend = lead.BrokerId != null
+                    HasBeenSend = lead.BrokerId != null,
+                    HasBecomeFtd = lead.FtdBecameOn != null
                 })
                 .ToList();
 

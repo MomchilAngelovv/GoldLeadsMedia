@@ -10,5 +10,6 @@
         public string CountryName { get; set; }
         public string OfferName { get; set; }
         public bool HasBeenSend { get; set; }
+        public bool HasBecomeFtd { get; set; }
     }
 }
