@@ -42,7 +42,7 @@
         public async Task<IActionResult> Details(string id)
         {
             var affiliate = await this.httpClient.GetAsync<AffiliatesDetailsAffiliate>($"Affiliates/{id}");
-            var offerReports = await this.httpClient.GetAsync<List<AffiliatesDetailsReportSummaryOfferReport>>($"Api/Affiliates/{id}/OfferReports");
+            var offerReports = await this.httpClient.GetAsync<List<AffiliatesDetailsReportSummaryOfferReport>>($"Affiliates/{id}/OfferReports");
 
             var reportSummary = new AffiliatesDetailsReportSummary
             {

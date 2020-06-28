@@ -33,7 +33,7 @@
         [HttpGet]
         public async Task<IActionResult> Information()
         {
-            var developerErrors = await this.httpClient.GetAsync<List<AdministratorsInformationDeveloperError>>("Api/Errors/Developer");
+            var developerErrors = await this.httpClient.GetAsync<List<AdministratorsInformationDeveloperError>>("Errors/Developer");
             var ftdScanErrorsCount = await this.httpClient.GetAsync<int>("Errors/FtdScan");
             var sendLeadsErrorsCount = await this.httpClient.GetAsync<int>("Errors/SendLeads");
 
@@ -73,6 +73,7 @@
             return this.View();
         }
 
+
         [HttpPost]
         public async Task<IActionResult> CreateOffer(AdministratorsCreateOfferInputModel inputModel)
         {
@@ -88,7 +89,7 @@
                 inputModel.Number,
                 inputModel.Name,
                 inputModel.Description,
-                inputModel.TierCountryId,
+                inputModel.CountryTierId,
                 inputModel.VerticalId,
                 inputModel.PayTypeId,
                 inputModel.TargetDeviceId,

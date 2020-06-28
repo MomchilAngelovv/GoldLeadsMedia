@@ -13,7 +13,7 @@
         [Required]
         [MaxLength(400)]
         public string Description { get; set; }
-        public int TierCountryId { get; set; }
+        public int CountryTierId { get; set; }
         public int VerticalId { get; set; }
         public int PayTypeId { get; set; }
         public int TargetDeviceId { get; set; }

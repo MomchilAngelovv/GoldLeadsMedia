@@ -9,11 +9,11 @@ using System.Threading.Tasks;
 
 namespace GoldLeadsMedia.Web.Infrastructure.ViewComponents
 {
-    public class TierCountriesSelectOptions : ViewComponent
+    public class CountryTiersSelectOptions : ViewComponent
     {
         private readonly IAsyncHttpClient httpClient;
 
-        public TierCountriesSelectOptions(
+        public CountryTiersSelectOptions(
             IAsyncHttpClient httpClient)
         {
             this.httpClient = httpClient;
@@ -21,7 +21,7 @@ namespace GoldLeadsMedia.Web.Infrastructure.ViewComponents
 
         public async Task<IViewComponentResult> InvokeAsync()
         {
-            var tierCountries = await this.httpClient.GetAsync<List<GetApiTierCountriesCountry>>("TierCountries");
+            var tierCountries = await this.httpClient.GetAsync<List<GetApiTierCountriesCountry>>("CountryTiers");
             var tierCountriesSelectOptions = tierCountries
                 .Select(tierCountry => new SelectListItem
                 {

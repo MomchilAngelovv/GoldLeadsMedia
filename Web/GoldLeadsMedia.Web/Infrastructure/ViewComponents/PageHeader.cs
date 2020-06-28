@@ -19,9 +19,9 @@
         {
             var loggedUser = await this.userManager.GetUserAsync(this.UserClaimsPrincipal);
 
-            var viewModel = new HeaderViewModel
+            var viewModel = new PageHeaderViewModel
             {
-                ManagerId = "1697bfe2-8327-4804-ac1c-b884fef9c279",
+                ManagerId = "81238bec-3d49-47c2-8423-84f1dff6d738",
                 ManagerUserName = "Lora"
             };
             

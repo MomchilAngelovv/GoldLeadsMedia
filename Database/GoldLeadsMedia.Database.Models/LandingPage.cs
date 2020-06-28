@@ -17,6 +17,9 @@
         public string Name { get; set; }
         public string Url { get; set; }
 
+        public int LanguageId { get; set; }
+
+        public virtual Language Language { get; set; }
         public virtual ICollection<OfferLandingPage> OffersLandingPages { get; set; }
         public virtual ICollection<ClickRegistration> ClickRegistrations { get; set; }
 

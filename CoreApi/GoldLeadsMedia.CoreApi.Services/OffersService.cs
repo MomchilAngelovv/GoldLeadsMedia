@@ -61,7 +61,7 @@
                 Name = inputModel.Name,
                 VerticalId = inputModel.VerticalId,
                 AccessId = inputModel.AccessId,
-                TierCountryId = inputModel.TierCountryId,
+                CountryTierId = inputModel.CountryTierId,
                 Description = inputModel.Description,
                 ActionFlow = inputModel.ActionFlow,
                 LanguageId = inputModel.LanguageId,

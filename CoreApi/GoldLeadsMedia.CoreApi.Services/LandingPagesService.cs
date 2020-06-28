@@ -23,7 +23,8 @@
             var landingPage = new LandingPage
             {
                 Name = name,
-                Url = url
+                Url = url,
+                LanguageId = 1
             };
 
             await db.LandingPages.AddAsync(landingPage);

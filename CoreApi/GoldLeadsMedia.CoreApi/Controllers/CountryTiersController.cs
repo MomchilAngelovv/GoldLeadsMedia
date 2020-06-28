@@ -6,11 +6,11 @@
     using Microsoft.AspNetCore.Mvc;
     using GoldLeadsMedia.CoreApi.Services.Common;
 
-    public class TierCountriesController : ApiController
+    public class CountryTiersController : ApiController
     {
         private readonly ICountryTiersService tierCountriesService;
 
-        public TierCountriesController(
+        public CountryTiersController(
             ICountryTiersService tierCountriesService)
         {
             this.tierCountriesService = tierCountriesService;
