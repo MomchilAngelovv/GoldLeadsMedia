@@ -54,6 +54,7 @@
                 affiliate.Email,
                 affiliate.DeletedOn.HasValue,
                 affiliate.IsVip,
+                affiliate.Skype,
                 affiliate.Experience,
                 Available = 1000, //TODO this is hardcoded for test
                 Paid = 5000 //TODO this is hardcoded for test

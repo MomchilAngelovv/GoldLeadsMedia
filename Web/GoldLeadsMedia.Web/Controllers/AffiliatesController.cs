@@ -11,6 +11,7 @@
     using Microsoft.AspNetCore.Identity;
     using GoldLeadsMedia.Database.Models;
     using GoldLeadsMedia.Web.Models.CoreApiResponses;
+    using System.Linq;
 
     public class AffiliatesController : Controller
     {
@@ -41,12 +42,21 @@
         public async Task<IActionResult> Details(string id)
         {
             var affiliate = await this.httpClient.GetAsync<AffiliatesDetailsAffiliate>($"Api/Affiliates/{id}");
+            var offerReports = await this.httpClient.GetAsync<List<AffiliatesDetailsReportSummaryOfferReport>>($"Api/Affiliates/{id}/OfferReports");
+
+            var reportSummary = new AffiliatesDetailsReportSummary
+            {
+                AffiliateName = affiliate.UserName,
+                OfferReports = offerReports,
+                TotalClicks = offerReports.Sum(offerReport => offerReport.ClicksCount),
+                TotalLeads = offerReports.Sum(offerReport => offerReport.LeadsCount),
+                TotalFtds = offerReports.Sum(offerReport => offerReport.FtdsCount),
+            };
 
             var viewModel = new AffiliatesDetailsViewModel
             {
                 Affiliate = affiliate,
-                LeadsAndClickReport = new ManagersAffiliateDetailsLeadsAndClickReport { Offers = new List<ManagersAffiliateDetailsOffer>() },
-                PaymentsReport = new ManagersAffiliateDetailsPaymentsReport { Payments = new List<ManagersAffiliateDetailsPayment>() }
+                ReportSummary = reportSummary
             };
 
             return this.View(viewModel);

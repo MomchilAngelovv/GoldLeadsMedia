@@ -10,7 +10,6 @@
         public int? PayTypeId { get; set; }
         public int? DeviceId { get; set; }
         public int? AccessId { get; set; }
-
         public IEnumerable<OffersAllOffer> Offers { get; set; }
     }
 }

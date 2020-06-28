@@ -1,10 +1,9 @@
 ﻿@model GoldLeadsMedia.Web.Models.ViewModels.AffiliatesDetailsViewModel
-
 @*<div class="row">
-    <div class="col-8 offset-2">
-        <img class="img-fluid" src="~/photos/notFound.png" alt="{{ALT_TEXT}}" />
-    </div>
-</div>*@
+        <div class="col-8 offset-2">
+            <img class="img-fluid" src="~/photos/notFound.png" alt="{{ALT_TEXT}}" />
+        </div>
+    </div>*@
 
 <div class="lead-wrap">
     <div class="lead">
@@ -72,175 +71,68 @@
         </div>
     </div>
 </div>
-<hr />
-<h3 class="yellow-tittle">
-    Leads And Click Report
-</h3>
-<div class="row">
-    <div class="col-6">
-        <h3 class="block-title">
-            Select Period
-        </h3>
-    </div>
-    <div class="col-6">
-        <form class="reports" method="get">
-            <div class="form-group">
-                <div id='datetimepicker_box_right'>
-                    <input type="text" name="Date" placeholder="Search" class="form-control date-range date-range-report">
-                    <span class="input-group-addon">
-                        <span class="far fa-calendar-alt"></span>
-                    </span>
-                </div>
+
+<div class="col-12">
+    <div class="row">
+        @*<div class="col-12 col-sm-6">
+                <h3 class="block-title">
+                    Select period
+                </h3>
             </div>
-            <input hidden name="a_Id" value="@Model.Affiliate.Id" />
-            @*<button type="submit" class="btn btn-secondary date-range-report">Clear Filters</button>*@
-            <button type="submit" class="btn btn-primary userReport">Get report</button>
-        </form>
-    </div>
-</div>
-<div>TO BE IMPLEMENTED</div>
-@*<div class="row offer-content-report">
-    <table class="table">
-        <tr class="row-header">
-            <th>Offer</th>
-            <th>EPC</th>
-            <th>CTR</th>
-            <th>CR</th>
-            <th>Leads</th>
-            <th>FTD</th>
-            <th>Clicks</th>
-            <th>Commissions</th>
-        </tr>
-        <tbody>
-            @foreach (var offer in Model.LeadsAndClickReport.Offers)
-            {
-                <tr class="table-row">
-                    <td>
-                        @offer.Name
-                    </td>
-                    <td>
-                        @Math.Round(offer.Epc, 2)
-                    </td>
-                    <td>
-                        @Math.Round(offer.Ctr, 2)
-                    </td>
-                    <td>
-                        @Math.Round(offer.Cr, 2)
-                    </td>
-                    <td>
-                        @offer.LeadsCount
-                    </td>
-                    <td>
-                        @offer.FtdsCount
-                    </td>
-                    <td>
-                        @offer.Clicks
-                    </td>
-                    <td>
-                        @Math.Round(offer.Commission, 2)
-                    </td>
-                </tr>
-            }
-        </tbody>
-    </table>
-</div>*@
-<!-- End foreach -->
-
-<!--<hr />
-
-<div class="row">
-    <div class="col-12">
-        <h3 class="yellow-tittle">
-            Payments
-        </h3>
-    </div>
-</div>
-
-<!-- Foreach this box for creating more tables -->
-<!--<div class="row">
-    <div class="col-6">
-        <h3 class="block-title">
-            Select Period
-        </h3>
-    </div>
-    <div class="col-6">
-        <form action="/manager/affiliatedetails?a_Id=@Model.Affiliate.Id" class="reports" method="get">
-            <div class="form-group">
-                <div id='datetimepicker_box_right'>
-                    <input type="text" name="Date" placeholder="Search" class="form-control date-range date-range-payments">
-                    <span class="input-group-addon">
-                        <span class="far fa-calendar-alt"></span>
-                    </span>
-                </div>
-            </div>-->
-            @*<button type="submit" class="btn btn-secondary">Clear Filters</button>*@
-            <!--<button type="submit" class="btn btn-primary userPaymentsReport">Get report</button>
-        </form> 
-    </div>
-</div>
-
-<div>TO BE IMPLEMENTED</div>-->
-@*<div class="row offer-content-payments">
-    <table class="table">
-        <tr class="row-header">
-            <th>Offer_Id</th>
-            <th>Offer_Name</th>
-            <th>PaymentType</th>
-            <th>Price</th>
-            <th>PayedOn</th>
-            <th>PayedBy</th>
-        </tr>
-        <tbody>
-            @foreach (var payment in Model.PaymentsReport.Payments.OrderByDescending(e => e.PayedOn))
-            {
-                <tr class="table-row">
-                    <td>
-                        @payment.Id
-                    </td>
-                    <td>
-                        @payment.OfferName
-                    </td>
-                    <td>
-                        @payment.Type
-                    </td>
-                    <td>
-                        @Math.Round(payment.Amount, 2) $
-                    </td>
-                    <td>
-                        @payment.PayedOn.ToString("dd.MM.yyyy")
-                    </td>
-                    <td>
-                        @payment.PayedByUserName
-                    </td>
-                </tr>
-            }
-        </tbody>
-    </table>
-</div>*@-->
-<!-- End foreach -->
-
-<!--<hr />
-<div class="row">
-    <div class="col-6">
-        <h3 class="yellow-tittle">
-            Make Payment
-        </h3>
-    </div>
-    <div class="col-6">
-        <form class="reports">
-            <div class="row">
-                <div class="col-8">
+            <div class="col-12 col-sm-6">
+                <form action="/Report/Index" method="get" class="reports">
                     <div class="form-group">
-                        <input type="text" class="form-control" id="inputAmount" placeholder="Amount">
+                        <input type="text" name="Date" id="date-range" value="@Model.Date" placeholder="Search" class="form-control">
                     </div>
-                </div>
-                <div class="col-4">
-                    <button id="makePayment" type="submit" class="btn btn-primary" data-user="@Model.Affiliate.Id">Make payment</button>
+                    <button type="submit" class="btn btn-secondary">Clear filters</button>
+                    <button type="submit" class="btn btn-primary">Apply filters</button>
+                </form>
+            </div>*@
+    </div>
+    <div class="row">
+        <table class="table table-sm">
+            <tr class="row-header">
+                <th>Affiliate</th>
+                <th>Total Clicks</th>
+                <th>Total Leads</th>
+                <th>Total Ftds</th>
+            </tr>
+            <tbody>
+
+                <tr class="table-row">
+                    <td>
+                        @Model.ReportSummary.AffiliateName
+                    </td>
+                    <td>
+                        @Model.ReportSummary.TotalClicks
+                    </td>
+                    <td>
+                        @Model.ReportSummary.TotalLeads
+                    </td>
+                    <td>
+                        @Model.ReportSummary.TotalFtds
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+
+        @foreach (var offerReport in Model.ReportSummary.OfferReports)
+        {
+            <div class="card" style="width: 18rem;">
+                <img src="@offerReport.ImageUrl" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h3 class="card-title">@offerReport.Name</h3>
+                    <h5 class="card-title">Offer number: @offerReport.Number</h5>
+                    <p class="card-text">Clicks: @offerReport.ClicksCount</p>
+                    <p class="card-text">Leads: @offerReport.LeadsCount</p>
+                    <p class="card-text">Ftds: @offerReport.FtdsCount</p>
+                    <a asp-controller="Offers" asp-action="Details" asp-route-id="@offerReport.Id" class="btn btn-primary col-12 text-center">More details</a>
                 </div>
             </div>
-        </form>
+        }
     </div>
-</div>-->
+</div>
 
 @section Scripts
 {
