@@ -21,7 +21,7 @@ namespace GoldLeadsMedia.Web.Infrastructure.ViewComponents
 
         public async Task<IViewComponentResult> InvokeAsync()
         {
-            var countries = await this.httpClient.GetAsync<List<GetApiCountriesCountry>>("Api/Countries");
+            var countries = await this.httpClient.GetAsync<List<GetApiCountriesCountry>>("Countries");
 
             var countriesSelectOptions = countries
                 .Select(country => new SelectListItem

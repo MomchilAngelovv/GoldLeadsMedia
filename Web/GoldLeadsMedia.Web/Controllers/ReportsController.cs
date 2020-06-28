@@ -32,7 +32,7 @@ namespace GoldLeadsMedia.Web.Controllers
         {
             var loggedUser = await this.userManager.GetUserAsync(this.User);
 
-            var offerReports = await this.httpClient.GetAsync<List<ReportsSummaryOfferReport>>($"Api/Affiliates/{loggedUser.Id}/OfferReports");
+            var offerReports = await this.httpClient.GetAsync<List<ReportsSummaryOfferReport>>($"Affiliates/{loggedUser.Id}/OfferReports");
 
             var viewModel = new ReportsSummaryViewModel
             {

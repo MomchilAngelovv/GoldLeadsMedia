@@ -22,7 +22,7 @@
 
         public async Task<IViewComponentResult> InvokeAsync()
         {
-            var devices = await this.httpClient.GetAsync<List<GetApiTargetDevicesTargetDevice>>("Api/TargetDevices");
+            var devices = await this.httpClient.GetAsync<List<GetApiTargetDevicesTargetDevice>>("TargetDevices");
 
             var devicesSelectOptions = devices
                 .Select(device => new SelectListItem

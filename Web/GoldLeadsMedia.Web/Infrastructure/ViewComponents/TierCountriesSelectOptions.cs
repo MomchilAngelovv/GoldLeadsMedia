@@ -21,7 +21,7 @@ namespace GoldLeadsMedia.Web.Infrastructure.ViewComponents
 
         public async Task<IViewComponentResult> InvokeAsync()
         {
-            var tierCountries = await this.httpClient.GetAsync<List<GetApiTierCountriesCountry>>("Api/TierCountries");
+            var tierCountries = await this.httpClient.GetAsync<List<GetApiTierCountriesCountry>>("TierCountries");
             var tierCountriesSelectOptions = tierCountries
                 .Select(tierCountry => new SelectListItem
                 {

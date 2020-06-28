@@ -29,7 +29,7 @@
         [HttpGet]
         public async Task<IActionResult> All()
         {
-            var affiliates = await this.httpClient.GetAsync<List<AffiliatesAllAffiliate>>($"Api/Affiliates");
+            var affiliates = await this.httpClient.GetAsync<List<AffiliatesAllAffiliate>>($"Affiliates");
 
             var viewModel = new AffiliatesAllViewModel
             {
@@ -41,7 +41,7 @@
         [HttpGet]
         public async Task<IActionResult> Details(string id)
         {
-            var affiliate = await this.httpClient.GetAsync<AffiliatesDetailsAffiliate>($"Api/Affiliates/{id}");
+            var affiliate = await this.httpClient.GetAsync<AffiliatesDetailsAffiliate>($"Affiliates/{id}");
             var offerReports = await this.httpClient.GetAsync<List<AffiliatesDetailsReportSummaryOfferReport>>($"Api/Affiliates/{id}/OfferReports");
 
             var reportSummary = new AffiliatesDetailsReportSummary
@@ -74,7 +74,7 @@
                 inputModel.FtdPostbackUrl
             };
 
-            var response = await this.httpClient.PostAsync<PostApiAffiliatesIdTrackerConfiguration>($"Api/Affiliates/{loggedUser.Id}/TrackerConfiguration", requestBody);
+            var response = await this.httpClient.PostAsync<PostApiAffiliatesIdTrackerConfiguration>($"Affiliates/{loggedUser.Id}/TrackerConfiguration", requestBody);
             return this.Ok(response);
         }
     }

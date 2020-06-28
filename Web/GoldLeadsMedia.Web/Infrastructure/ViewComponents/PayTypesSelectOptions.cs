@@ -22,7 +22,7 @@
 
         public async Task<IViewComponentResult> InvokeAsync()
         {
-            var paymentTypes = await this.httpClient.GetAsync<List<GetApiPayTypesPayType>>("Api/PayTypes");
+            var paymentTypes = await this.httpClient.GetAsync<List<GetApiPayTypesPayType>>("PayTypes");
 
             var paymentTypesSelectOptions = paymentTypes
                 .Select(paymentType => new SelectListItem

@@ -22,7 +22,7 @@
 
         public async Task<IViewComponentResult> InvokeAsync()
         {
-            var verticals = await this.httpClient.GetAsync<List<GetApiVerticalsVertical>>("Api/Verticals");
+            var verticals = await this.httpClient.GetAsync<List<GetApiVerticalsVertical>>("Verticals");
 
             var verticalsSelectOptions = verticals
                 .Select(vertical => new SelectListItem

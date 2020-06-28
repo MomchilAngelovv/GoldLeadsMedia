@@ -44,7 +44,7 @@
                 filterViewModel.AccessId
             };
 
-            var offers = await this.httpClient.GetAsync<IEnumerable<OffersAllOffer>>("Api/Offers", queryParameters);
+            var offers = await this.httpClient.GetAsync<IEnumerable<OffersAllOffer>>("Offers", queryParameters);
 
             var viewModel = new OffersAllFilterViewModel
             {
@@ -64,7 +64,7 @@
         public async Task<IActionResult> Details(string id)
         {
             var loggedUser = await this.userManager.GetUserAsync(this.User);
-            var viewModel = await this.httpClient.GetAsync<OffersDetailsViewModel>($"Api/Offers/{id}");
+            var viewModel = await this.httpClient.GetAsync<OffersDetailsViewModel>($"Offers/{id}");
 
             var webUrl = this.configuration["WebUrl"];
             viewModel.RedirectUrl = $"{webUrl}/Clicks/Register?offerId={viewModel.Id}&affiliateId={loggedUser.Id}";
@@ -77,7 +77,7 @@
         [HttpGet]
         public async Task<IActionResult> DashBoard()
         {
-            var offerGroups = await this.httpClient.GetAsync<List<OffersDashboardOfferGroup>>("Api/OfferGroups");
+            var offerGroups = await this.httpClient.GetAsync<List<OffersDashboardOfferGroup>>("OfferGroups");
             offerGroups.First().IsFirst = true;
 
             var queryParameters = new
@@ -85,7 +85,7 @@
                 GroupId = 1
             };
 
-            var offers = await this.httpClient.GetAsync<List<OffersDashboardOffer>>("Api/Offers", queryParameters);
+            var offers = await this.httpClient.GetAsync<List<OffersDashboardOffer>>("Offers", queryParameters);
 
             foreach (var offer in offers)
             {

@@ -20,7 +20,7 @@ namespace GoldLeadsMedia.Web.Infrastructure.ViewComponents
 
         public async Task<IViewComponentResult> InvokeAsync()
         {
-            var landingPages = await this.httpClient.GetAsync<List<GetApiLandingPagesLandingPage>>("api/landingpages");
+            var landingPages = await this.httpClient.GetAsync<List<GetApiLandingPagesLandingPage>>("LandingPages");
             return this.View(landingPages);
         }
     }

@@ -34,8 +34,8 @@
         public async Task<IActionResult> Information()
         {
             var developerErrors = await this.httpClient.GetAsync<List<AdministratorsInformationDeveloperError>>("Api/Errors/Developer");
-            var ftdScanErrorsCount = await this.httpClient.GetAsync<int>("Api/Errors/FtdScan");
-            var sendLeadsErrorsCount = await this.httpClient.GetAsync<int>("Api/Errors/SendLeads");
+            var ftdScanErrorsCount = await this.httpClient.GetAsync<int>("Errors/FtdScan");
+            var sendLeadsErrorsCount = await this.httpClient.GetAsync<int>("Errors/SendLeads");
 
             var viewModel = new AdministratorsInformationViewModel
             {
@@ -101,7 +101,7 @@
                 CreatedByManagerId = loggedUser.Id
             };
 
-            var response = await this.httpClient.PostAsync<Offer>("Api/Offers", requestBody);
+            var response = await this.httpClient.PostAsync<Offer>("Offers", requestBody);
 
             return this.Redirect($"~/Offers/Details/{response.Id}");
         }
@@ -113,7 +113,7 @@
                 inputModel.Name
             };
 
-            await this.httpClient.PostAsync<PostApiPartnersResponse>("Api/Brokers", requestBody);
+            await this.httpClient.PostAsync<PostApiPartnersResponse>("Brokers", requestBody);
             return this.Redirect("/Offers/Dashboard");
         }
         [HttpPost]
@@ -136,7 +136,7 @@
                 inputModel.LandingPageIds
             };
 
-            await this.httpClient.PostAsync<int>("Api/Offers/AssignLandingPages", requestBody);
+            await this.httpClient.PostAsync<int>("Offers/AssignLandingPages", requestBody);
 
             return this.Redirect($"/Offers/Details/{inputModel.OfferId}");
         }
@@ -166,7 +166,7 @@
                 inputModel.Url
             };
 
-            var landingPage = await this.httpClient.PostAsync<PostApiLandingPages>("Api/LandingPages", requestBody);
+            var landingPage = await this.httpClient.PostAsync<PostApiLandingPages>("LandingPages", requestBody);
 
             return this.Redirect($"/Offers/Dashboard");
         }

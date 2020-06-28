@@ -17,6 +17,7 @@
         private readonly GoldLeadsMediaDbContext db;
         private readonly UserManager<GoldLeadsMediaUser> userManager;
         private readonly RoleManager<GoldLeadsMediaRole> roleManager;
+
         private readonly IAsyncHttpClient httpClient;
 
         public SeederController(

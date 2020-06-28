@@ -33,7 +33,7 @@
                 AffiliateTrackerClickId = inputModel.ClickId
             };
 
-            var response = await this.httpClient.PostAsync<PostApiClicksReponse>("Api/Clicks", requestBody);
+            var response = await this.httpClient.PostAsync<PostApiClicksReponse>("Clicks", requestBody);
             return this.Redirect($"{response.LandingPageUrl}?clickId={response.Id}");
         }
     }

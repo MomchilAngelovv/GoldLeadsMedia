@@ -21,8 +21,8 @@ namespace GoldLeadsMedia.Web.Controllers
         [HttpGet]
         public async Task<IActionResult> All()
         {
-            var leads = await this.httpClient.GetAsync<List<LeadsAllLead>>("Api/Leads");
-            var brokers = await this.httpClient.GetAsync<List<LeadsAllBroker>>("Api/Brokers");
+            var leads = await this.httpClient.GetAsync<List<LeadsAllLead>>("Leads");
+            var brokers = await this.httpClient.GetAsync<List<LeadsAllBroker>>("Brokers");
 
             var viewModel = new LeadsAllViewModel
             {
