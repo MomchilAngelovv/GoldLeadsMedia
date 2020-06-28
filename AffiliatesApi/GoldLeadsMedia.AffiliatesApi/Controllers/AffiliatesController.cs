@@ -8,7 +8,7 @@
 
     using GoldLeadsMedia.Database.Models;
     using GoldLeadsMedia.AffiliatesApi.Common;
-    using GoldLeadsMedia.AffiliatesApi.Services.Application.Common;
+    using GoldLeadsMedia.AffiliatesApi.Services.Common;
 
     public class AffiliatesController : ApiController
     {
@@ -49,11 +49,12 @@
                     lead.CallStatus,
                     lead.CreatedOn,
                     affiliateId,
-                });
+                })
+                .ToList();
 
             var response = new
             {
-                Leads = leads
+                Leads = leads,
             };
 
             return response;

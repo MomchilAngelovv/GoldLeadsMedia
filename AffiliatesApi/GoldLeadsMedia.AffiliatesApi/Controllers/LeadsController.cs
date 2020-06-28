@@ -7,9 +7,9 @@
 
     using GoldLeadsMedia.Database.Models;
     using GoldLeadsMedia.AffiliatesApi.Common;
-    using GoldLeadsMedia.AffiliatesApi.Services.Application.Common;
-    using GoldLeadsMedia.AffiliatesApi.Models.AffiliatesApi.InputModels;
-    using GoldLeadsMedia.AffiliatesApi.Models.Services.InputModels;
+    using GoldLeadsMedia.AffiliatesApi.Services.Common;
+    using GoldLeadsMedia.AffiliatesApi.Models.AffiliatesApi.Input;
+    using GoldLeadsMedia.AffiliatesApi.Models.Services.Input;
 
     public class LeadsController : ApiController
     {

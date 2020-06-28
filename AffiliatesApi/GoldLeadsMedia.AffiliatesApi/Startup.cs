@@ -10,8 +10,8 @@ namespace GoldLeadsMedia.AffiliatesApi
 
     using GoldLeadsMedia.Database;
     using GoldLeadsMedia.Database.Models;
-    using GoldLeadsMedia.AffiliatesApi.Services.Application.Common;
-    using GoldLeadsMedia.AffiliatesApi.Services.Application;
+    using GoldLeadsMedia.AffiliatesApi.Services;
+    using GoldLeadsMedia.AffiliatesApi.Services.Common;
 
     public class Startup
     {

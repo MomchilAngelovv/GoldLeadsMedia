@@ -1,9 +1,10 @@
-﻿namespace GoldLeadsMedia.AffiliatesApi.Services.Application
+﻿namespace GoldLeadsMedia.AffiliatesApi.Services
 {
     using System.Linq;
-    using GoldLeadsMedia.AffiliatesApi.Services.Application.Common;
+
     using GoldLeadsMedia.Database;
     using GoldLeadsMedia.Database.Models;
+    using GoldLeadsMedia.AffiliatesApi.Services.Common;
 
     public class CountriesService : ICountriesService
     {
@@ -17,7 +18,8 @@
 
         public bool ExistsCheckBy(string name)
         {
-            var country = db.Countries.FirstOrDefault(country => country.Name == name);
+            var country = db.Countries
+                .SingleOrDefault(country => country.Name == name);
 
             if (country == null)
             {
@@ -26,11 +28,10 @@
 
             return true;
         }
-
         public Country GetBy(string name)
         {
-            var country = db.Countries.FirstOrDefault(country => country.Name == name);
-            return country;
+            return db.Countries
+                .FirstOrDefault(country => country.Name == name);
         }
     }
 }

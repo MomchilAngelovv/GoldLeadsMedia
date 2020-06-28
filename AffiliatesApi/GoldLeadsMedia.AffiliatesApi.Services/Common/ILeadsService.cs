@@ -1,10 +1,10 @@
-﻿namespace GoldLeadsMedia.AffiliatesApi.Services.Application.Common
+﻿namespace GoldLeadsMedia.AffiliatesApi.Services.Common
 {
     using System.Threading.Tasks;
     using System.Collections.Generic;
 
     using GoldLeadsMedia.Database.Models;
-    using GoldLeadsMedia.AffiliatesApi.Models.Services.InputModels;
+    using GoldLeadsMedia.AffiliatesApi.Models.Services.Input;
 
     public interface ILeadsService
     {

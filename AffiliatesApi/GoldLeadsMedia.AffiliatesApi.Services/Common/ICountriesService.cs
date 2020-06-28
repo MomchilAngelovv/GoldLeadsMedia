@@ -1,4 +1,4 @@
-﻿namespace GoldLeadsMedia.AffiliatesApi.Services.Application.Common
+﻿namespace GoldLeadsMedia.AffiliatesApi.Services.Common
 {
     using GoldLeadsMedia.Database.Models;
 
