@@ -1,7 +1,8 @@
-﻿namespace GoldLeadsMedia.CoreApi.Models.InputModels
+﻿namespace GoldLeadsMedia.CoreApi.Models.Services.Input
 {
-    public class ClicksRegisterInputModel
+    public class ClicksRegisterInputServiceModel
     {
+        public string IpAddress { get; set; }
         public string OfferId { get; set; }
         public string LandingPageId { get; set; }
         public string AffiliateId { get; set; }

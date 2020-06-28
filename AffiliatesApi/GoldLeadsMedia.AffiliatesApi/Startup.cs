@@ -54,9 +54,6 @@ namespace GoldLeadsMedia.AffiliatesApi
            .AddEntityFrameworkStores<GoldLeadsMediaDbContext>()
            .AddDefaultTokenProviders();
 
-            //Http client
-            services.AddHttpClient();
-
             //AffiliatesApi services
             services.AddTransient<ILeadsService, LeadsService>();
             services.AddTransient<ICountriesService, CountriesService>();

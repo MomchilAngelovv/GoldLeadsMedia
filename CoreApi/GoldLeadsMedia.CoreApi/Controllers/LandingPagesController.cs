@@ -5,9 +5,8 @@
     using System.Collections.Generic;
 
     using Microsoft.AspNetCore.Mvc;
-
-    using GoldLeadsMedia.CoreApi.Models.CoreApiModels;
     using GoldLeadsMedia.CoreApi.Services.Application.Common;
+    using GoldLeadsMedia.CoreApi.Models.CoreApi.Input;
 
     public class LandingPagesController : ApiController
     {
@@ -18,7 +17,6 @@
         {
             this.landingPagesService = landingPagesService;
         }
-
 
         [HttpGet]
         public ActionResult<IEnumerable<object>> All()

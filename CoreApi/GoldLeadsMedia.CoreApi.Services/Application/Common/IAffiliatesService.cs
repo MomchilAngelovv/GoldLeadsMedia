@@ -4,8 +4,8 @@
 
     using GoldLeadsMedia.Database.Models;
     using GoldLeadsMedia.CoreApi.Models.ServicesModels.OutputModels;
-    using GoldLeadsMedia.CoreApi.Models.ServicesModels.InputModels;
     using System.Threading.Tasks;
+    using GoldLeadsMedia.CoreApi.Models.Services.Input;
 
     public interface IAffiliatesService
     {

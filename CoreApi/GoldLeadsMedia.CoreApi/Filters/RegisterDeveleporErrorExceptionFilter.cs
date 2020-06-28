@@ -1,4 +1,4 @@
-﻿namespace GoldLeadsMedia.CoreApi.Infrastructure.Filters
+﻿namespace GoldLeadsMedia.CoreApi.Filters
 {
     using System.Threading.Tasks;
 
@@ -6,37 +6,39 @@
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc.Filters;
 
-    using GoldLeadsMedia.Database;
     using GoldLeadsMedia.Database.Models;
+    using GoldLeadsMedia.CoreApi.Services.Application.Common;
+    using GoldLeadsMedia.CoreApi.Models.ServicesModels.InputModels;
 
     public class RegisterDeveleporErrorExceptionFilter : IAsyncExceptionFilter
     {
-        private readonly GoldLeadsMediaDbContext db;
         private readonly UserManager<GoldLeadsMediaUser> userManager;
 
+        private readonly IErrorsService errorsService;
+
         public RegisterDeveleporErrorExceptionFilter(
-            GoldLeadsMediaDbContext db,
-            UserManager<GoldLeadsMediaUser> userManager)
+            UserManager<GoldLeadsMediaUser> userManager,
+            IErrorsService errorsService)
         {
-            this.db = db;
             this.userManager = userManager;
+            this.errorsService = errorsService;
         }
 
         public async Task OnExceptionAsync(ExceptionContext context)
         {
-            var loggedUser = await this.userManager.GetUserAsync(context.HttpContext.User);
-            var developerError = new DeveloperError
+            var loggedUser = await userManager.GetUserAsync(context.HttpContext.User);
+
+            var serviceModel = new ErrorsRegisterDeveloperErrorInputServiceModel
             {
-                Method = context.HttpContext.Request.Method,
+                Method= context.HttpContext.Request.Method,
                 Path = context.HttpContext.Request.Path,
                 Message = context.Exception.Message,
                 StackTrace = context.Exception.StackTrace,
-                UserId = loggedUser?.Id,
+                LoggedUserId = loggedUser?.Id,
                 Information = "[CoreApi]"
             };
 
-            await this.db.DeveloperErrors.AddAsync(developerError);
-            await this.db.SaveChangesAsync();
+            var developerError = await this.errorsService.RegisterDeveloperErrorAsync(serviceModel);
 
             context.Result = new JsonResult(developerError);
         }

@@ -5,7 +5,6 @@
     using Microsoft.AspNetCore.Mvc;
 
     using GoldLeadsMedia.CoreApi.Common;
-    using GoldLeadsMedia.CoreApi.Models.InputModels;
     using GoldLeadsMedia.CoreApi.Models.ServiceModels;
     using GoldLeadsMedia.CoreApi.Services.Application.Common;
     using GoldLeadsMedia.CoreApi.Services.AsyncHttpClient;
@@ -13,6 +12,7 @@
     using System.Linq;
     using Castle.DynamicProxy.Generators.Emitters;
     using System;
+    using GoldLeadsMedia.CoreApi.Models.CoreApi.Input;
 
     public class LeadsController : ApiController
     {
@@ -35,7 +35,6 @@
             this.httpClient = httpClient;
             this.clicksRegistrationsService = clicksRegistrationsService;
         }
-
 
         [HttpGet]
         public ActionResult<IEnumerable<object>> GetAll()

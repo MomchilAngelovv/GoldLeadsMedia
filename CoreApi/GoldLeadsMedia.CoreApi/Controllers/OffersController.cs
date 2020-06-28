@@ -7,9 +7,9 @@
     using Microsoft.AspNetCore.Mvc;
 
     using GoldLeadsMedia.Database.Models;
-    using GoldLeadsMedia.CoreApi.Models.InputModels;
     using GoldLeadsMedia.CoreApi.Models.ServiceModels;
     using GoldLeadsMedia.CoreApi.Services.Application.Common;
+    using GoldLeadsMedia.CoreApi.Models.CoreApi.Input;
 
     public class OffersController : ApiController
     {
@@ -21,6 +21,7 @@
             this.offersService = offersService;
         }
 
+        [HttpGet]
         public ActionResult<IEnumerable<object>> All([FromQuery]OffersAllFilterModel filterModel)
         {
             var filter = new OffersGetAllFilterInputServiceModel
@@ -56,30 +57,6 @@
 
             return offers;
         }
-        [HttpPost]
-        public async Task<ActionResult<Offer>> Create(OffersCreateInputModel inputModel)
-        {
-            var serviceModel = new OffersCreateInputServiceModel
-            {
-                Number = inputModel.Number,
-                Name = inputModel.Name,
-                Description = inputModel.Description,
-                AccessId = inputModel.AccessId,
-                PayPerAction = inputModel.PayPerAction,
-                PayPerLead = inputModel.PayPerLead,
-                PayPerClick = inputModel.PayPerClick,
-                ActionFlow = inputModel.ActionFlow,
-                TierCountryId = inputModel.TierCountryId,
-                CreatedByManagerId = inputModel.CreatedByManagerId,
-                LanguageId = inputModel.LanguageId,
-                PayTypeId = inputModel.PayTypeId,
-                TargetDeviceId = inputModel.TargetDeviceId,
-                VerticalId = inputModel.VerticalId
-            };
-
-            var createdOffer = await this.offersService.CreateAsync(serviceModel);
-            return createdOffer;
-        }
         [HttpGet("{id}")]
         public ActionResult<object> Details(string id)
         {
@@ -114,6 +91,32 @@
             };
 
             return offerResponseModel;
+        }
+
+
+        [HttpPost]
+        public async Task<ActionResult<Offer>> Create(OffersCreateInputModel inputModel)
+        {
+            var serviceModel = new OffersCreateInputServiceModel
+            {
+                Number = inputModel.Number,
+                Name = inputModel.Name,
+                Description = inputModel.Description,
+                AccessId = inputModel.AccessId,
+                PayPerAction = inputModel.PayPerAction,
+                PayPerLead = inputModel.PayPerLead,
+                PayPerClick = inputModel.PayPerClick,
+                ActionFlow = inputModel.ActionFlow,
+                TierCountryId = inputModel.TierCountryId,
+                CreatedByManagerId = inputModel.CreatedByManagerId,
+                LanguageId = inputModel.LanguageId,
+                PayTypeId = inputModel.PayTypeId,
+                TargetDeviceId = inputModel.TargetDeviceId,
+                VerticalId = inputModel.VerticalId
+            };
+
+            var createdOffer = await this.offersService.CreateAsync(serviceModel);
+            return createdOffer;
         }
         [HttpPost("AssignLandingPages")]
         public async Task<ActionResult<int>> AssignLandingPages(OffersAssignLandingPagesInputModel inputModel)

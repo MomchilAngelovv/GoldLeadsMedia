@@ -3,7 +3,7 @@
     using Microsoft.AspNetCore.Mvc;
 
     [ApiController]
-    [Route("/Api/[controller]")]
+    [Route("/[controller]")]
     public class ApiController : ControllerBase
     {
 

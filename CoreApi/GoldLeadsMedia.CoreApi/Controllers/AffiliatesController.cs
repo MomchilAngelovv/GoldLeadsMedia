@@ -6,10 +6,10 @@
     using Microsoft.AspNetCore.Mvc;
 
     using GoldLeadsMedia.CoreApi.Services.Application.Common;
-    using GoldLeadsMedia.CoreApi.Models.CoreApiModels;
-    using GoldLeadsMedia.CoreApi.Models.ServicesModels.InputModels;
     using System.Threading.Tasks;
     using System.Security.Cryptography.X509Certificates;
+    using GoldLeadsMedia.CoreApi.Models.CoreApi.Input;
+    using GoldLeadsMedia.CoreApi.Models.Services.Input;
 
     public class AffiliatesController : ApiController
     {

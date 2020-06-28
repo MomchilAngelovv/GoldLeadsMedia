@@ -4,7 +4,7 @@
 
     using GoldLeadsMedia.Database.Models;
     using GoldLeadsMedia.CoreApi.Models.InputModels;
-    using GoldLeadsMedia.CoreApi.Models.ServiceModels;
+    using GoldLeadsMedia.CoreApi.Models.Services.Input;
 
     public interface IClicksRegistrationsService
     {

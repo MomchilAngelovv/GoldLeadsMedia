@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Security.Principal;
-using System.Text;
-
-namespace GoldLeadsMedia.CoreApi.Models.ServicesModels.InputModels
+﻿namespace GoldLeadsMedia.CoreApi.Models.Services.Input
 {
     public class AffiliatesCreateOrUpdateTrackerConfigurationInputServiceModel
     {

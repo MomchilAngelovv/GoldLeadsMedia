@@ -20,9 +20,22 @@
             this.db = db;
         }
 
-        public Task<DeveloperError> RegisterDeveloperErrorAsync(ErrorsRegisterDeveloperErrorInputServiceModel serviceModel)
+        public async Task<DeveloperError> RegisterDeveloperErrorAsync(ErrorsRegisterDeveloperErrorInputServiceModel serviceModel)
         {
-            throw new NotImplementedException();
+            var developerError = new DeveloperError
+            {
+                Method = serviceModel.Method,
+                Path = serviceModel.Path,
+                Message = serviceModel.Message,
+                StackTrace = serviceModel.StackTrace,
+                UserId = serviceModel.LoggedUserId,
+                Information = serviceModel.Information
+            };
+
+            await db.DeveloperErrors.AddAsync(developerError);
+            await db.SaveChangesAsync();
+
+            return developerError;
         }
         public async Task<SendLeadError> RegisterSendLeadErrorAsync(ErrorsRegisterSendLeadErrorInputServiceModel serviceModel)
         {

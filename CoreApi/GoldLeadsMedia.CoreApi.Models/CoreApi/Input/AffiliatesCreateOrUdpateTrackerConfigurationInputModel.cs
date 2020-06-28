@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace GoldLeadsMedia.CoreApi.Models.CoreApiModels
+﻿namespace GoldLeadsMedia.CoreApi.Models.CoreApi.Input
 {
     public class AffiliatesCreateOrUdpateTrackerConfigurationInputModel
     {

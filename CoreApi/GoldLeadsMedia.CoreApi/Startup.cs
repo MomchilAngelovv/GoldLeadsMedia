@@ -10,11 +10,11 @@ namespace GoldLeadsMedia.CoreApi
 
     using GoldLeadsMedia.Database;
     using GoldLeadsMedia.Database.Models;
+    using GoldLeadsMedia.CoreApi.Filters;
+    using GoldLeadsMedia.CoreApi.Services.Brokers;
     using GoldLeadsMedia.CoreApi.Services.Application;
-    using GoldLeadsMedia.CoreApi.Infrastructure.Filters;
     using GoldLeadsMedia.CoreApi.Services.AsyncHttpClient;
     using GoldLeadsMedia.CoreApi.Services.Application.Common;
-    using GoldLeadsMedia.CoreApi.Services.Brokers;
 
     public class Startup
     {
@@ -28,16 +28,22 @@ namespace GoldLeadsMedia.CoreApi
 
         public void ConfigureServices(IServiceCollection services)
         {
+            //Controllers
             services.AddControllers(options => 
             {
                 options.Filters.Add<RegisterDeveleporErrorExceptionFilter>();
             });
 
+            //Cors
+            services.AddCors();
+
+            //Database
             services.AddDbContext<GoldLeadsMediaDbContext>(options =>
             {
                 options.UseLazyLoadingProxies().UseSqlServer(this.configuration.GetConnectionString("DefaultConnection"));
             });
 
+            //Identity
             services.AddIdentity<GoldLeadsMediaUser, GoldLeadsMediaRole>(options =>
             {
                 options.Password.RequireDigit = false;
@@ -58,10 +64,7 @@ namespace GoldLeadsMedia.CoreApi
             services.AddHttpClient();
             services.AddTransient<IAsyncHttpClient, AsyncHttpClient>();
 
-            //Cors
-            services.AddCors();
-
-            //Services
+            //CoreApi Services
             services.AddTransient<IOfferGroupsService, OfferGroupsService>();
             services.AddTransient<ILanguagesService, LanguagesService>();
             services.AddTransient<ITargetDevicesService, TargetDevicesService>();
@@ -83,7 +86,6 @@ namespace GoldLeadsMedia.CoreApi
             services.AddTransient<ProfitPixelsBroker>();
             services.AddTransient<TestBroker>();
         }
-
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())

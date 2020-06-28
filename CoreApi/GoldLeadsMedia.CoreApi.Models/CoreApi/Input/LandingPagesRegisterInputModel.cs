@@ -1,4 +1,4 @@
-﻿namespace GoldLeadsMedia.CoreApi.Models.CoreApiModels
+﻿namespace GoldLeadsMedia.CoreApi.Models.CoreApi.Input
 {
     public class LandingPagesRegisterInputModel
     {

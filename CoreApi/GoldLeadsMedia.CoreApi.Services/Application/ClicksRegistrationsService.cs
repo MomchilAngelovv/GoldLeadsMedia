@@ -4,9 +4,9 @@
 
     using GoldLeadsMedia.Database;
     using GoldLeadsMedia.Database.Models;
-    using GoldLeadsMedia.CoreApi.Models.ServiceModels;
     using GoldLeadsMedia.CoreApi.Services.Application.Common;
     using System.Linq;
+    using GoldLeadsMedia.CoreApi.Models.Services.Input;
 
     public class ClicksRegistrationsService : IClicksRegistrationsService
     {

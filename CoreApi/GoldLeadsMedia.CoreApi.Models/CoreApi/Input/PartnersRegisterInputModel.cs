@@ -1,4 +1,4 @@
-﻿namespace GoldLeadsMedia.CoreApi.Models.InputModels
+﻿namespace GoldLeadsMedia.CoreApi.Models.CoreApi.Input
 {
     public class PartnersRegisterInputModel
     {

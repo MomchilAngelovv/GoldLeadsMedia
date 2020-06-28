@@ -1,4 +1,4 @@
-﻿namespace GoldLeadsMedia.CoreApi.Models.ServiceModels
+﻿namespace GoldLeadsMedia.CoreApi.Models.Services.Input
 {
     public class BrokersRegisterInputServiceModel
     {

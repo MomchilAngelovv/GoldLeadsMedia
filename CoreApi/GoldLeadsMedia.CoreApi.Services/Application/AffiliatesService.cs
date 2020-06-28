@@ -7,9 +7,9 @@
     using GoldLeadsMedia.Database.Models;
     using GoldLeadsMedia.CoreApi.Services.Application.Common;
     using GoldLeadsMedia.CoreApi.Models.ServicesModels.OutputModels;
-    using GoldLeadsMedia.CoreApi.Models.ServicesModels.InputModels;
     using System.Threading.Tasks;
     using Microsoft.AspNetCore.Identity;
+    using GoldLeadsMedia.CoreApi.Models.Services.Input;
 
     public class AffiliatesService : IAffiliatesService
     {
