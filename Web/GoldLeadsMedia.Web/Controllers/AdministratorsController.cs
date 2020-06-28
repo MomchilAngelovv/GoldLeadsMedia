@@ -1,33 +1,28 @@
 ﻿namespace GoldLeadsMedia.Web.Controllers
 {
     using System.Threading.Tasks;
+    using System.Collections.Generic;
 
     using Microsoft.AspNetCore.Mvc;
-    using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.Identity;
 
     using GoldLeadsMedia.Database.Models;
+    using GoldLeadsMedia.Web.Models.ViewModels;
     using GoldLeadsMedia.Web.Models.InputModels;
     using GoldLeadsMedia.Web.Models.CoreApiResponses;
     using GoldLeadsMedia.Web.Infrastructure.HttpHelper;
-    using Microsoft.EntityFrameworkCore.Metadata.Internal;
-    using System.Collections.Generic;
-    using GoldLeadsMedia.Web.Models.ViewModels;
 
     public class AdministratorsController : Controller
     {
         private readonly IAsyncHttpClient httpClient;
         private readonly UserManager<GoldLeadsMediaUser> userManager;
-        private readonly IWebHostEnvironment hostEnvironment;
 
         public AdministratorsController(
-            IAsyncHttpClient httpClient,
             UserManager<GoldLeadsMediaUser> userManager, 
-            IWebHostEnvironment hostEnvironment)
+            IAsyncHttpClient httpClient)
         {
             this.httpClient = httpClient;
             this.userManager = userManager;
-            this.hostEnvironment = hostEnvironment;
         }
 
         [HttpGet]
@@ -109,6 +104,11 @@
         [HttpPost]
         public async Task<IActionResult> RegisterBroker(AdministratorsRegisterBrokerInputModel inputModel)
         {
+            if (this.ModelState.IsValid == false)
+            {
+                return this.View(inputModel);
+            }
+
             var requestBody = new
             {
                 inputModel.Name
@@ -161,6 +161,11 @@
         [HttpPost]
         public async Task<IActionResult> RegisterLandingPage(AdministratorsRegisterLandingPageInputModel inputModel)
         {
+            if (this.ModelState.IsValid == false)
+            {
+                return this.View(inputModel);
+            }
+
             var requestBody = new
             {
                 inputModel.Name,
