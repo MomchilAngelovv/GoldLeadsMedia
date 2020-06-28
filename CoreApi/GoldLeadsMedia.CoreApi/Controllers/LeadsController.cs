@@ -94,7 +94,7 @@
 
             if (trackerConfiguration != null && string.IsNullOrWhiteSpace(trackerConfiguration.LeadPostbackUrl) == false)
             {
-                var url = trackerConfiguration.LeadPostbackUrl.Replace("{glm}", clickRegistration.AffiliateTrackerClickId);
+                var url = trackerConfiguration.LeadPostbackUrl.Replace("{glm}", clickRegistration.TrackerClickId);
                 await this.httpClient.GetAsync<string>(url);
             }
 

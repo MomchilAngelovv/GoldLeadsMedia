@@ -24,7 +24,6 @@
             {
                 Name = name,
                 Url = url,
-                LanguageId = 1
             };
 
             await db.LandingPages.AddAsync(landingPage);
