@@ -4,7 +4,7 @@
     using System.Collections.Generic;
 
     using GoldLeadsMedia.Database.Models;
-    using GoldLeadsMedia.AffiliatesApi.Models.ServiceModels;
+    using GoldLeadsMedia.AffiliatesApi.Models.Services.InputModels;
 
     public interface ILeadsService
     {

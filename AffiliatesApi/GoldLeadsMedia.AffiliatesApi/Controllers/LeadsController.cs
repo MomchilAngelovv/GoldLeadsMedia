@@ -1,34 +1,34 @@
 ﻿namespace GoldLeadsMedia.AffiliatesApi.Controllers
 {
-    using System.Linq;
     using System.Threading.Tasks;
 
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Identity;
 
     using GoldLeadsMedia.Database.Models;
-    using GoldLeadsMedia.AffiliatesApi.Models.InputModels;
-    using GoldLeadsMedia.AffiliatesApi.Models.ServiceModels;
-    using GoldLeadsMedia.AffiliatesApi.Services.Application.Common;
     using GoldLeadsMedia.AffiliatesApi.Common;
+    using GoldLeadsMedia.AffiliatesApi.Services.Application.Common;
+    using GoldLeadsMedia.AffiliatesApi.Models.AffiliatesApi.InputModels;
+    using GoldLeadsMedia.AffiliatesApi.Models.Services.InputModels;
 
     public class LeadsController : ApiController
     {
+        private readonly UserManager<GoldLeadsMediaUser> userManager;
+
         private readonly ILeadsService leadsService;
         private readonly ICountriesService countriesService;
         private readonly IOffersService offersService;
-        private readonly UserManager<GoldLeadsMediaUser> userManager;
 
         public LeadsController(
+            UserManager<GoldLeadsMediaUser> userManager,
             ILeadsService leadsService,
             ICountriesService countriesService,
-            IOffersService offersService,
-            UserManager<GoldLeadsMediaUser> userManager)
+            IOffersService offersService)
         {
+            this.userManager = userManager;
             this.leadsService = leadsService;
             this.countriesService = countriesService;
             this.offersService = offersService;
-            this.userManager = userManager;
         }
 
         [HttpGet("Welcome")]
@@ -37,6 +37,7 @@
             var greetingMessage = "Welcome to partners Api!";
             return greetingMessage;
         }
+
 
         [HttpPost]
         public async Task<ActionResult<object>> Register(LeadsRegisterInputModel inputModel)
@@ -65,7 +66,6 @@
             {
                 AffiliateId = inputModel.AffiliateId,
                 OfferId = inputModel.OfferId,
-
                 FirstName = inputModel.FirstName,
                 LastName = inputModel.LastName,
                 Password = inputModel.Password,

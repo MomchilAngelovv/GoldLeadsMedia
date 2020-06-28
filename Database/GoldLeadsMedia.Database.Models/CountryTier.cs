@@ -4,9 +4,9 @@
 
     using GoldLeadsMedia.Database.Models.Common;
 
-    public class TierCountry : IEntityMetaData
+    public class CountryTier : IEntityMetaData
     {
-        public TierCountry()
+        public CountryTier()
         {
             this.CreatedOn = DateTime.UtcNow;
         }

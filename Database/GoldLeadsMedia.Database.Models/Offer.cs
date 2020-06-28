@@ -30,7 +30,7 @@
         public int TargetDeviceId { get; set; }
 
         public virtual PayType PayType { get; set; }
-        public virtual TierCountry TierCountries { get; set; }
+        public virtual CountryTier TierCountries { get; set; }
         public virtual Access Access { get; set; }
         public virtual Vertical Vertical { get; set; }
         public virtual Language Language { get; set; }

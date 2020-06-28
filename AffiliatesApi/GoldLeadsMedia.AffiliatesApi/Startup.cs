@@ -25,14 +25,19 @@ namespace GoldLeadsMedia.AffiliatesApi
 
         public void ConfigureServices(IServiceCollection services)
         {
+            //Controllers
             services.AddControllers();
+
+            //Cors
             services.AddCors();
 
+            //Database
             services.AddDbContext<GoldLeadsMediaDbContext>(options =>
             {
                 options.UseLazyLoadingProxies().UseSqlServer(configuration.GetConnectionString("DefaultConnection"));
             });
 
+            //Identity
             services.AddIdentity<GoldLeadsMediaUser, GoldLeadsMediaRole>(options =>
             {
                 options.Password.RequireDigit = false;
@@ -49,13 +54,14 @@ namespace GoldLeadsMedia.AffiliatesApi
            .AddEntityFrameworkStores<GoldLeadsMediaDbContext>()
            .AddDefaultTokenProviders();
 
+            //Http client
             services.AddHttpClient();
 
+            //AffiliatesApi services
             services.AddTransient<ILeadsService, LeadsService>();
             services.AddTransient<ICountriesService, CountriesService>();
             services.AddTransient<IOffersService, OffersService>();
         }
-
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())

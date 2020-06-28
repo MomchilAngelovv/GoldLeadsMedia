@@ -6,8 +6,8 @@
 
     using GoldLeadsMedia.Database;
     using GoldLeadsMedia.Database.Models;
-    using GoldLeadsMedia.AffiliatesApi.Models.ServiceModels;
     using GoldLeadsMedia.AffiliatesApi.Services.Application.Common;
+    using GoldLeadsMedia.AffiliatesApi.Models.Services.InputModels;
 
     public class LeadsService : ILeadsService
     {

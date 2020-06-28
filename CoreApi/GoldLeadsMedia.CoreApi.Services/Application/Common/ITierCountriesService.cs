@@ -6,6 +6,6 @@
     
     public interface ITierCountriesService
     {
-        IEnumerable<TierCountry> GetAll();
+        IEnumerable<CountryTier> GetAll();
     }
 }

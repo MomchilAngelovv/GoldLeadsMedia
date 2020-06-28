@@ -58,7 +58,7 @@
             var paymentTypes = new List<PayType>();
             var targetDevices = new List<TargetDevice>();
             var offerGroups = new List<OfferGroup>();
-            var tierCountries = new List<TierCountry>();
+            var tierCountries = new List<CountryTier>();
 
             foreach (var name in verticalNames)
             {
@@ -122,7 +122,7 @@
 
             foreach (var name in tierCountryNames)
             {
-                var tierCountry = new TierCountry
+                var tierCountry = new CountryTier
                 {
                     Name = name,
                 };
@@ -141,9 +141,9 @@
             await this.db.Verticals.AddRangeAsync(varticals);
             await this.db.Accesses.AddRangeAsync(accesses);
             await this.db.OfferGroups.AddRangeAsync(offerGroups);
-            await this.db.PaymentTypes.AddRangeAsync(paymentTypes);
+            await this.db.PayTypes.AddRangeAsync(paymentTypes);
             await this.db.TargetDevices.AddRangeAsync(targetDevices);
-            await this.db.TierCountries.AddRangeAsync(tierCountries);
+            await this.db.CountryTiers.AddRangeAsync(tierCountries);
 
             await this.db.SaveChangesAsync();
 
@@ -157,9 +157,9 @@
             stringBuilder.AppendLine($"[Languages:{db.Languages.Count()}]");
             stringBuilder.AppendLine($"[Countries:{db.Countries.Count()}]");
             stringBuilder.AppendLine($"[Offer groups:{db.OfferGroups.Count()}]");
-            stringBuilder.AppendLine($"[Payment types:{db.PaymentTypes.Count()}]");
+            stringBuilder.AppendLine($"[Payment types:{db.PayTypes.Count()}]");
             stringBuilder.AppendLine($"[Target devices:{db.TargetDevices.Count()}]");
-            stringBuilder.AppendLine($"[Tier countries:{db.TierCountries.Count()}]");
+            stringBuilder.AppendLine($"[Tier countries:{db.CountryTiers.Count()}]");
 
             return this.Content(stringBuilder.ToString());
         }

@@ -1,4 +1,4 @@
-﻿namespace GoldLeadsMedia.AffiliatesApi.Models.ServiceModels
+﻿namespace GoldLeadsMedia.AffiliatesApi.Models.Services.InputModels
 {
     public class LeadsRegisterInputServiceModel
     {

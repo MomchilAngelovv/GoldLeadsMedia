@@ -19,7 +19,7 @@
 
         public IEnumerable<PayType> GetAll()
         {
-            return this.db.PaymentTypes
+            return this.db.PayTypes
                 .ToList();
         }
     }

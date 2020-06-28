@@ -5,9 +5,9 @@
 
     using GoldLeadsMedia.Database.Models;
 
-    public class TierCountryConfiguration : IEntityTypeConfiguration<TierCountry>
+    public class TierCountryConfiguration : IEntityTypeConfiguration<CountryTier>
     {
-        public void Configure(EntityTypeBuilder<TierCountry> entity)
+        public void Configure(EntityTypeBuilder<CountryTier> entity)
         {
             entity.HasKey(entity => entity.Id);
             entity.Property(entity => entity.Name).IsRequired().HasMaxLength(100);

@@ -17,9 +17,9 @@
             this.db = db;
         }
 
-        public IEnumerable<TierCountry> GetAll()
+        public IEnumerable<CountryTier> GetAll()
         {
-            return this.db.TierCountries
+            return this.db.CountryTiers
                 .ToList();
         }
     }

@@ -1,18 +1,19 @@
-﻿using GoldLeadsMedia.AffiliatesApi.Common;
-using GoldLeadsMedia.AffiliatesApi.Services.Application.Common;
-using GoldLeadsMedia.Database.Models;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace GoldLeadsMedia.AffiliatesApi.Controllers
+﻿namespace GoldLeadsMedia.AffiliatesApi.Controllers
 {
+    using System.Linq;
+    using System.Threading.Tasks;
+
+    using Microsoft.AspNetCore.Mvc;
+    using Microsoft.AspNetCore.Identity;
+
+    using GoldLeadsMedia.Database.Models;
+    using GoldLeadsMedia.AffiliatesApi.Common;
+    using GoldLeadsMedia.AffiliatesApi.Services.Application.Common;
+
     public class AffiliatesController : ApiController
     {
         private readonly UserManager<GoldLeadsMediaUser> userManager;
+
         private readonly ILeadsService leadsService;
 
         public AffiliatesController(

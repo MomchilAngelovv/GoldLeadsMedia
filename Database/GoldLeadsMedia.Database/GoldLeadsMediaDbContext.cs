@@ -7,6 +7,7 @@
 
     using GoldLeadsMedia.Database.Models;
 
+    //TODO: ASK FOR OFFER GROUPS AND ACCESSES
     public class GoldLeadsMediaDbContext : IdentityDbContext<GoldLeadsMediaUser, GoldLeadsMediaRole, string>
     {
         public GoldLeadsMediaDbContext(DbContextOptions options)
@@ -20,6 +21,7 @@
         public DbSet<Broker> Brokers { get; set; }
         public DbSet<ClickRegistration> ClickRegistrations { get; set; }
         public DbSet<Country> Countries { get; set; }
+        public DbSet<CountryTier> CountryTiers { get; set; }
         public DbSet<DeveloperError> DeveloperErrors { get; set; }
         public DbSet<FtdScanError> FtdScanErrors { get; set; }
         public DbSet<LandingPage> LandingPages { get; set; }
@@ -29,10 +31,9 @@
         public DbSet<Offer> Offers { get; set; }
         public DbSet<OfferLandingPage> OffersLandingPages { get; set; }
         public DbSet<OfferOfferGroup> OffersOfferGroups { get; set; }
-        public DbSet<PayType> PaymentTypes { get; set; }
+        public DbSet<PayType> PayTypes { get; set; }
         public DbSet<SendLeadError> SendLeadErrors { get; set; }
         public DbSet<TargetDevice> TargetDevices { get; set; }
-        public DbSet<TierCountry> TierCountries { get; set; }
         public DbSet<TrackerConfiguration> TrackerConfigurations { get; set; }
         public DbSet<Vertical> Verticals { get; set; }
 

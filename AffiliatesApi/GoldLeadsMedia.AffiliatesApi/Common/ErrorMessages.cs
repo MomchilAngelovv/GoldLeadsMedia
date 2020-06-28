@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace GoldLeadsMedia.AffiliatesApi.Common
+﻿namespace GoldLeadsMedia.AffiliatesApi.Common
 {
     public static class ErrorMessages
     {
