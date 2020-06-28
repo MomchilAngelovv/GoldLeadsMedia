@@ -6,10 +6,9 @@
     using System.Collections.Generic;
 
     using Microsoft.AspNetCore.Mvc;
-    using GoldLeadsMedia.CoreApi.Services.Partners.Common;
-    using GoldLeadsMedia.CoreApi.Services.Application.Common;
     using GoldLeadsMedia.CoreApi.Models.CoreApi.Input;
     using GoldLeadsMedia.CoreApi.Models.Services.Input;
+    using GoldLeadsMedia.CoreApi.Services.Common;
 
     public class BrokersController : ApiController
     {

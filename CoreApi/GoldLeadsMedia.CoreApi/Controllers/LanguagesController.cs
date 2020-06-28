@@ -4,8 +4,7 @@
     using System.Collections.Generic;
 
     using Microsoft.AspNetCore.Mvc;
-
-    using GoldLeadsMedia.CoreApi.Services.Application.Common;
+    using GoldLeadsMedia.CoreApi.Services.Common;
 
     public class LanguagesController : ApiController
     {

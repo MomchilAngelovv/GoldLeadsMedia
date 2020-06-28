@@ -7,8 +7,8 @@
     using Microsoft.AspNetCore.Mvc.Filters;
 
     using GoldLeadsMedia.Database.Models;
-    using GoldLeadsMedia.CoreApi.Services.Application.Common;
-    using GoldLeadsMedia.CoreApi.Models.ServicesModels.InputModels;
+    using GoldLeadsMedia.CoreApi.Services.Common;
+    using GoldLeadsMedia.CoreApi.Models.Services.Input;
 
     public class RegisterDeveleporErrorExceptionFilter : IAsyncExceptionFilter
     {

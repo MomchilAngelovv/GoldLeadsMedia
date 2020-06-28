@@ -4,10 +4,9 @@
     using System.Threading.Tasks;
     using System.Collections.Generic;
 
-    using GoldLeadsMedia.CoreApi.Services.Partners.Common;
+    using GoldLeadsMedia.CoreApi.Services.Common;
+    using GoldLeadsMedia.CoreApi.Models.Services.Input;
     using GoldLeadsMedia.CoreApi.Services.AsyncHttpClient;
-    using GoldLeadsMedia.CoreApi.Services.Application.Common;
-    using GoldLeadsMedia.CoreApi.Models.ServicesModels.InputModels;
 
     public class ProfitPixelsBroker : IBroker
     {

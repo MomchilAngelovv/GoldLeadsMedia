@@ -1,12 +1,11 @@
-﻿using GoldLeadsMedia.CoreApi.Services.Application.Common;
-using GoldLeadsMedia.CoreApi.Services.Partners.Common;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace GoldLeadsMedia.CoreApi.Services.Brokers
+﻿namespace GoldLeadsMedia.CoreApi.Services.Brokers
 {
+    using System;
+    using System.Threading.Tasks;
+    using System.Collections.Generic;
+
+    using GoldLeadsMedia.CoreApi.Services.Common;
+
     public class TestBroker : IBroker
     {
         private readonly ILeadsService leadsService;
@@ -23,7 +22,6 @@ namespace GoldLeadsMedia.CoreApi.Services.Brokers
         {
             return 0;
         }
-
         public async Task<int> SendLeadsAsync(IEnumerable<string> leadIds)
         {
             var failedLeadsCount = 0;

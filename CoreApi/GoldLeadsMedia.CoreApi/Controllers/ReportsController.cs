@@ -1,4 +1,4 @@
-﻿using GoldLeadsMedia.CoreApi.Services.Application.Common;
+﻿using GoldLeadsMedia.CoreApi.Services.Common;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;

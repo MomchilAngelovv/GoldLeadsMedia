@@ -3,10 +3,10 @@
     using System.Threading.Tasks;
 
     using Microsoft.AspNetCore.Mvc;
-    using GoldLeadsMedia.CoreApi.Services.Application.Common;
     using GoldLeadsMedia.CoreApi.Services.AsyncHttpClient;
     using GoldLeadsMedia.CoreApi.Models.CoreApi.Input;
     using GoldLeadsMedia.CoreApi.Models.Services.Input;
+    using GoldLeadsMedia.CoreApi.Services.Common;
 
     public class ClicksController : ApiController
     {

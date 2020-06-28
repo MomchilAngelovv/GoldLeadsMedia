@@ -4,12 +4,11 @@
     using System.Collections.Generic;
 
     using Microsoft.AspNetCore.Mvc;
-
-    using GoldLeadsMedia.CoreApi.Services.Application.Common;
     using System.Threading.Tasks;
     using System.Security.Cryptography.X509Certificates;
     using GoldLeadsMedia.CoreApi.Models.CoreApi.Input;
     using GoldLeadsMedia.CoreApi.Models.Services.Input;
+    using GoldLeadsMedia.CoreApi.Services.Common;
 
     public class AffiliatesController : ApiController
     {

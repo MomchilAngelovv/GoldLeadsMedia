@@ -7,9 +7,9 @@
     using Microsoft.AspNetCore.Mvc;
 
     using GoldLeadsMedia.Database.Models;
-    using GoldLeadsMedia.CoreApi.Models.ServiceModels;
-    using GoldLeadsMedia.CoreApi.Services.Application.Common;
     using GoldLeadsMedia.CoreApi.Models.CoreApi.Input;
+    using GoldLeadsMedia.CoreApi.Services.Common;
+    using GoldLeadsMedia.CoreApi.Models.Services.Input;
 
     public class OffersController : ApiController
     {

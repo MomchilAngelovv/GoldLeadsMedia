@@ -5,8 +5,8 @@
     using System.Collections.Generic;
 
     using Microsoft.AspNetCore.Mvc;
-    using GoldLeadsMedia.CoreApi.Services.Application.Common;
     using GoldLeadsMedia.CoreApi.Models.CoreApi.Input;
+    using GoldLeadsMedia.CoreApi.Services.Common;
 
     public class LandingPagesController : ApiController
     {

@@ -1,4 +1,4 @@
-﻿namespace GoldLeadsMedia.CoreApi.Models.ServicesModels.OutputModels
+﻿namespace GoldLeadsMedia.CoreApi.Models.Services.Output
 {
     using System.Collections.Generic;
 

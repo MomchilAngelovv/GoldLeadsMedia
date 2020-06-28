@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace GoldLeadsMedia.CoreApi.Services.AsyncHttpClient
+﻿namespace GoldLeadsMedia.CoreApi.Services.AsyncHttpClient
 {
+    using System;
+
     public class HttpFailRequestException : Exception
     {
         public HttpFailRequestException(string message)

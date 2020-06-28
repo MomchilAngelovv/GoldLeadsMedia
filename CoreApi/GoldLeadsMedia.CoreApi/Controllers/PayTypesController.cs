@@ -4,15 +4,14 @@
     using System.Collections.Generic;
 
     using Microsoft.AspNetCore.Mvc;
-
-    using GoldLeadsMedia.CoreApi.Services.Application.Common;
+    using GoldLeadsMedia.CoreApi.Services.Common;
 
     public class PayTypesController : ApiController
     {
-        private readonly IPaymentTypesService paymentTypesService;
+        private readonly IPayTypesService paymentTypesService;
 
         public PayTypesController(
-            IPaymentTypesService paymentTypesService)
+            IPayTypesService paymentTypesService)
         {
             this.paymentTypesService = paymentTypesService;
         }

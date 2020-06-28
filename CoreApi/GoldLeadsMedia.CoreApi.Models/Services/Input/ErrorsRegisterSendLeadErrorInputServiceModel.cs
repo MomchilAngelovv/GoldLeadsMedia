@@ -1,4 +1,4 @@
-﻿namespace GoldLeadsMedia.CoreApi.Models.ServicesModels.InputModels
+﻿namespace GoldLeadsMedia.CoreApi.Models.Services.Input
 {
     public class ErrorsRegisterSendLeadErrorInputServiceModel
     {

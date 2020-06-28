@@ -5,14 +5,14 @@
     using Microsoft.AspNetCore.Mvc;
 
     using GoldLeadsMedia.CoreApi.Common;
-    using GoldLeadsMedia.CoreApi.Models.ServiceModels;
-    using GoldLeadsMedia.CoreApi.Services.Application.Common;
     using GoldLeadsMedia.CoreApi.Services.AsyncHttpClient;
     using System.Collections.Generic;
     using System.Linq;
     using Castle.DynamicProxy.Generators.Emitters;
     using System;
     using GoldLeadsMedia.CoreApi.Models.CoreApi.Input;
+    using GoldLeadsMedia.CoreApi.Services.Common;
+    using GoldLeadsMedia.CoreApi.Models.Services.Input;
 
     public class LeadsController : ApiController
     {

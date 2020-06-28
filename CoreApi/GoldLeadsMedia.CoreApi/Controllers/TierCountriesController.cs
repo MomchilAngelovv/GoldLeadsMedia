@@ -4,15 +4,14 @@
     using System.Collections.Generic;
 
     using Microsoft.AspNetCore.Mvc;
-
-    using GoldLeadsMedia.CoreApi.Services.Application.Common;
+    using GoldLeadsMedia.CoreApi.Services.Common;
 
     public class TierCountriesController : ApiController
     {
-        private readonly ITierCountriesService tierCountriesService;
+        private readonly ICountryTiersService tierCountriesService;
 
         public TierCountriesController(
-            ITierCountriesService tierCountriesService)
+            ICountryTiersService tierCountriesService)
         {
             this.tierCountriesService = tierCountriesService;
         }

@@ -12,9 +12,9 @@ namespace GoldLeadsMedia.CoreApi
     using GoldLeadsMedia.Database.Models;
     using GoldLeadsMedia.CoreApi.Filters;
     using GoldLeadsMedia.CoreApi.Services.Brokers;
-    using GoldLeadsMedia.CoreApi.Services.Application;
     using GoldLeadsMedia.CoreApi.Services.AsyncHttpClient;
-    using GoldLeadsMedia.CoreApi.Services.Application.Common;
+    using GoldLeadsMedia.CoreApi.Services.Common;
+    using GoldLeadsMedia.CoreApi.Services;
 
     public class Startup
     {
@@ -69,7 +69,7 @@ namespace GoldLeadsMedia.CoreApi
             services.AddTransient<ILanguagesService, LanguagesService>();
             services.AddTransient<ITargetDevicesService, TargetDevicesService>();
             services.AddTransient<IAccessesService, AccessesService>();
-            services.AddTransient<IPaymentTypesService, PaymentTypesService>();
+            services.AddTransient<IPayTypesService, PayTypesService>();
             services.AddTransient<IVerticalsService, VerticalsService>();
             services.AddTransient<ICountriesService, CountriesService>();
             services.AddTransient<IOffersService, OffersService>();
@@ -80,7 +80,7 @@ namespace GoldLeadsMedia.CoreApi
             services.AddTransient<IManagersService, ManagersService>();
             services.AddTransient<IAffiliatesService, AffiliatesService>();
             services.AddTransient<IErrorsService, ErrorsService>();
-            services.AddTransient<ITierCountriesService, TierCountriesService>();
+            services.AddTransient<ICountryTiersService, TierCountriesService>();
 
             //Brokers
             services.AddTransient<ProfitPixelsBroker>();
