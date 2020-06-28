@@ -1,19 +1,16 @@
 ﻿namespace GoldLeadsMedia.Web.Controllers
 {
-    using System.Text.Json;
+    using System.Linq;
     using System.Threading.Tasks;
     using System.Collections.Generic;
 
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Identity;
-    using Microsoft.AspNetCore.Authorization;
     using Microsoft.Extensions.Configuration;
 
-    using GoldLeadsMedia.Web.Models;
     using GoldLeadsMedia.Database.Models;
-    using GoldLeadsMedia.Web.Infrastructure.HttpHelper;
     using GoldLeadsMedia.Web.Models.ViewModels;
-    using System.Linq;
+    using GoldLeadsMedia.Web.Infrastructure.HttpHelper;
 
     public class OffersController : Controller
     {

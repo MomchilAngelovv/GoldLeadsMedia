@@ -10,7 +10,7 @@
     {
         private readonly ILeadsService leadsService;
 
-        private readonly string brokerId = "6ad9f23a-83ed-4532-ad8d-52f27485f2e5";
+        private readonly string brokerId = "d928f7b9-15ce-4f3a-aa7a-1dd7ba90ca17";
 
         public TestBroker(
             ILeadsService leadsService)

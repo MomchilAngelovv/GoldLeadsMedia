@@ -2,6 +2,8 @@
 {
     using System.Collections.Generic;
 
+    //TODO remove number from search
+    //TODO remove country id and implement country tier id
     public class OffersAllFilterViewModel
     {
         public string NumberOrName { get; set; }

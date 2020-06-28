@@ -9,7 +9,7 @@
         public string Access { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
-        public string ImageUrl => $"/images/offers/{this.Id}.jpg";
+        public string ImageUrl => $"/images/offers/{this.Vertical}.jpg";
         public decimal? PayPerAction { get; set; }
         public decimal? PayPerClick { get; set; }
         public decimal? PayPerLead { get; set; }
