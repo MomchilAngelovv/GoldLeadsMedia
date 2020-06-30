@@ -113,7 +113,6 @@
                 //TODO: Think logic if cannnot find the lead
             }
 
-            await this.leadsService.SendLeadSuccessAsync(lead, lead.BrokerId, "TestIdInBroker");
             var depositedLead = await this.leadsService.FtdSuccessAsync(lead, DateTime.UtcNow, "Deposit");
 
             var trackerConfiguration = this.affiliatesService.GetTrackerSettings(lead.ClickRegistration?.Affiliate?.Id);

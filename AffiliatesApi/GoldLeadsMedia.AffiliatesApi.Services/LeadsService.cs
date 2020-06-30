@@ -38,10 +38,8 @@
             {
                 AffiliateId = serviceModel.AffiliateId,
                 OfferId = serviceModel.OfferId,
-                IpAddress = serviceModel.IpAddress
+                IpAddress = serviceModel.IpAddress,
             };
-
-            await db.ApiRegistrations.AddAsync(apiRegistration);
 
             var lead = new Lead
             {
@@ -54,6 +52,9 @@
                 ApiRegistrationId = apiRegistration.Id,
             };
 
+            apiRegistration.LeadId = lead.Id;
+
+            await db.ApiRegistrations.AddAsync(apiRegistration);
             await db.Leads.AddAsync(lead);
             await db.SaveChangesAsync();
 

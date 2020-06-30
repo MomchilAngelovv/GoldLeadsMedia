@@ -39,17 +39,7 @@
             foreach (var leadId in leadIds)
             {
                 var lead = leadsService.GetBy(leadId);
-
                 await leadsService.SendLeadSuccessAsync(lead, this.brokerId, "IdInTestBroker");
-
-                var trackerConfiguration = this.affiliatesService.GetTrackerSettings(lead.ClickRegistration?.Affiliate?.Id);
-                var clickRegistration = this.clicksRegistrationsService.GetBy(lead.ClickRegistrationId);
-
-                if (trackerConfiguration != null && string.IsNullOrWhiteSpace(trackerConfiguration.FtdPostbackUrl) == false)
-                {
-                    var url = trackerConfiguration.FtdPostbackUrl.Replace("{glm}", clickRegistration.TrackerClickId);
-                    await this.httpClient.GetAsync<object>(url);
-                }
             }
 
             return failedLeadsCount;
