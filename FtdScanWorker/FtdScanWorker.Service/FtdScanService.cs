@@ -22,8 +22,8 @@
 
         public Task StartAsync(CancellationToken cancellationToken)
         {
-            var timeBeforeStart = TimeSpan.FromMinutes(5);
-            var timeInterval = TimeSpan.FromMinutes(30);
+            var timeBeforeStart = TimeSpan.FromMinutes(1);
+            var timeInterval = TimeSpan.FromSeconds(15);
 
             this.timer = new Timer(Scan, null, timeBeforeStart, timeInterval);
 
@@ -46,7 +46,7 @@
         {
             var httpCleint = new HttpClient();
 
-            var coreApiUrl = this.configuration["CoreApiUrl"];
+            var coreApiUrl = "https://stagingcoreapi.goldleadsmedia.com";
             var response = httpCleint.PostAsync($"{coreApiUrl}/Brokers/FtdScan", null).GetAwaiter().GetResult();
             var responseAsString = response.Content.ReadAsStringAsync().GetAwaiter().GetResult();
 

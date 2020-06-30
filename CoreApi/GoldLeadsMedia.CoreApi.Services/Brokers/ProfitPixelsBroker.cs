@@ -13,17 +13,23 @@
         private readonly ILeadsService leadsService;
         private readonly IErrorsService errorsService;
         private readonly IAsyncHttpClient httpClient;
+        private readonly IAffiliatesService affiliatesService;
+        private readonly IClicksRegistrationsService clicksRegistrationsService;
 
-        private readonly string brokerId = "d928f7b9-15ce-4f3a-aa7a-1dd7ba90ca17";
+        private readonly string brokerId = "853ee8b6-dbcf-4fd2-bc34-246a31e13b94";
 
         public ProfitPixelsBroker(
             ILeadsService leadsService,
             IErrorsService errorsService,
-            IAsyncHttpClient httpClient)
+            IAsyncHttpClient httpClient,
+            IAffiliatesService affiliatesService,
+            IClicksRegistrationsService clicksRegistrationsService)
         {
             this.leadsService = leadsService;
             this.errorsService = errorsService;
             this.httpClient = httpClient;
+            this.affiliatesService = affiliatesService;
+            this.clicksRegistrationsService = clicksRegistrationsService;
         }
 
         public async Task<int> FtdScanAsync(DateTime from, DateTime to)
@@ -54,6 +60,16 @@
                     var lead = leadsService.GetBy(ftdData.LeadId, true);
 
                     var ftd = await leadsService.FtdSuccessAsync(lead, ftdData.FtdDateTime, ftdData.CallStatus);
+
+                    var trackerConfiguration = this.affiliatesService.GetTrackerSettings(lead.ClickRegistration?.Affiliate?.Id);
+                    var clickRegistration = this.clicksRegistrationsService.GetBy(lead.ClickRegistrationId);
+
+                    if (trackerConfiguration != null && string.IsNullOrWhiteSpace(trackerConfiguration.FtdPostbackUrl) == false)
+                    {
+                        var url = trackerConfiguration.FtdPostbackUrl.Replace("{glm}", clickRegistration.TrackerClickId);
+                        await this.httpClient.GetAsync<object>(url);
+                    }
+
                     ftdCounter++;
                 }
             }
