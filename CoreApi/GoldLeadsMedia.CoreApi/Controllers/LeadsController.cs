@@ -69,6 +69,7 @@
             if (clickRegistration == null)
             {
                 return this.BadRequest(ErrorConstants.ClickRegistrationNotFound);
+                return this.BadRequest(ErrorConstants.ClickRegistrationNotFound);
             }
 
             var country = this.countriesService.GetBy(inputModel.CountryName);
