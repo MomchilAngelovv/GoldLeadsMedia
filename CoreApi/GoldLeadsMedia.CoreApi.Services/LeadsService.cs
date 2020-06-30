@@ -60,6 +60,12 @@
                 ClickRegistrationId = serviceModel.ClickRegistrationId,
             };
 
+            var clickRegistration = this.db.ClickRegistrations
+                .SingleOrDefault(clickRegistration => clickRegistration.Id == serviceModel.ClickRegistrationId);
+
+            clickRegistration.LeadId = lead.Id;
+
+            db.ClickRegistrations.Update(clickRegistration);
             await db.Leads.AddAsync(lead);
             await db.SaveChangesAsync();
 
