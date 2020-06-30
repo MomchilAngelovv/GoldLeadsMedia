@@ -9,6 +9,7 @@
     public interface IBrokersService
     {
         Broker GetBy(string id);
+        Broker GetByName(string name);
         IEnumerable<Broker> GetAll();
         Task<Broker> RegisterAsync(BrokersRegisterInputServiceModel serviceModel);
         IEnumerable<object> Summary();

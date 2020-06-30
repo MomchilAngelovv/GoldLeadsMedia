@@ -32,6 +32,12 @@
                 .FirstOrDefault(broker => broker.Id == id);
         }
 
+        public Broker GetByName(string name)
+        {
+            return this.db.Brokers
+                .FirstOrDefault(broker => broker.Name == name);
+        }
+
         public async Task<Broker> RegisterAsync(BrokersRegisterInputServiceModel serviceModel)
         {
             var broker = new Broker

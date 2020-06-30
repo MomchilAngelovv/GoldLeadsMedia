@@ -21,19 +21,22 @@
         private readonly IAffiliatesService affiliatesService;
         private readonly IAsyncHttpClient httpClient;
         private readonly IClicksRegistrationsService clicksRegistrationsService;
+        private readonly IBrokersService brokersService;
 
         public LeadsController(
             ILeadsService leadsService,
             ICountriesService countriesService,
             IAffiliatesService affiliatesService,
             IAsyncHttpClient httpClient,
-            IClicksRegistrationsService clicksRegistrationsService)
+            IClicksRegistrationsService clicksRegistrationsService,
+            IBrokersService brokersService)
         {
             this.leadsService = leadsService;
             this.countriesService = countriesService;
             this.affiliatesService = affiliatesService;
             this.httpClient = httpClient;
             this.clicksRegistrationsService = clicksRegistrationsService;
+            this.brokersService = brokersService;
         }
 
         [HttpGet]
@@ -110,7 +113,8 @@
                 //TODO: Think logic if cannnot find the lead
             }
 
-            await this.leadsService.SendLeadSuccessAsync(lead, "d928f7b9-15ce-4f3a-aa7a-1dd7ba90ca17", "TestIdInBroker");
+            var testBroker = this.brokersService.GetByName("Test");
+            await this.leadsService.SendLeadSuccessAsync(lead, testBroker.Id, "TestIdInBroker");
             var depositedLead = await this.leadsService.FtdSuccessAsync(lead,DateTime.UtcNow,"Deposit");
 
             var response = new
