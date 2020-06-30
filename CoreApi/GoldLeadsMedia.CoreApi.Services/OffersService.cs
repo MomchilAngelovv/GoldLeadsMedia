@@ -45,12 +45,18 @@
 
         public int CalculateFtdsPerOfferIdAndAffiliateId(string offerId, string affiliateId)
         {
-            var affiliateLeadsIdsByApiRegistration = db.ApiRegistrations
+            var leadsIdsByApiRegistration = db.ApiRegistrations
                 .Where(apiRegistration => apiRegistration.OfferId == offerId && apiRegistration.AffiliateId == affiliateId)
                 .Select(apiRegistration => apiRegistration.Id)
                 .ToList();
 
-            return db.Leads.Where(lead => lead.FtdBecameOn.HasValue && affiliateLeadsIdsByApiRegistration.Contains(lead.ApiRegistrationId)).Count();
+            var leadsIdsByClickRegistrations = db.ClickRegistrations
+               .Where(clickRegistration => clickRegistration.OfferId == offerId && clickRegistration.AffiliateId == affiliateId)
+               .Select(clickRegistration => clickRegistration.Id)
+               .ToList();
+
+            return db.Leads.Where(lead => lead.FtdBecameOn.HasValue && leadsIdsByApiRegistration.Contains(lead.ApiRegistrationId)).Count() 
+                 + db.Leads.Where(lead => lead.FtdBecameOn.HasValue && leadsIdsByClickRegistrations.Contains(lead.ClickRegistrationId)).Count();
         }
 
         public async Task<Offer> CreateAsync(OffersCreateInputServiceModel inputModel)

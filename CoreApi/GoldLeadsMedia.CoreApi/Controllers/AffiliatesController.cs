@@ -85,7 +85,7 @@
                     offer.Number,
                     offer.Name,
                     ClicksCount = offer.ClickRegistrations.Count(),
-                    LeadsCount = offer.ApiRegistrations.Count(apiRegistration => apiRegistration.AffiliateId == affiliateId),
+                    LeadsCount = offer.ApiRegistrations.Count(apiRegistration => apiRegistration.AffiliateId == affiliateId) + offer.ClickRegistrations.Count(clickRegistration => clickRegistration.AffiliateId == affiliateId),
                     FtdsCount = this.offersService.CalculateFtdsPerOfferIdAndAffiliateId(offer.Id, affiliateId)
                 })
                 .ToList();
