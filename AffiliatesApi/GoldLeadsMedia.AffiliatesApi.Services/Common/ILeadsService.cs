@@ -10,5 +10,6 @@
     {
         Task<Lead> RegisterAsync(LeadsRegisterInputServiceModel serviceModel);
         IEnumerable<Lead> GetAllBy(string affiliateId);
+        Lead GetByEmail(string email);
     }
 }

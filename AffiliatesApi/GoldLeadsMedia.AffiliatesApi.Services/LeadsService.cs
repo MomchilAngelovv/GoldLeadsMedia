@@ -25,6 +25,13 @@
                 .Where(lead => lead.ApiRegistrationId != null && lead.ApiRegistration.AffiliateId == affiliateId)
                 .ToList();
         }
+
+        public Lead GetByEmail(string email)
+        {
+            return this.db.Leads
+                .SingleOrDefault(lead => lead.Email == email);
+        }
+
         public async Task<Lead> RegisterAsync(LeadsRegisterInputServiceModel serviceModel)
         {
             var apiRegistration = new ApiRegistration

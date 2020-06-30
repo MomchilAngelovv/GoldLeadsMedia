@@ -90,7 +90,8 @@
             var brokerTypes = typeof(IBroker)
                 .Assembly
                 .GetTypes()
-                .Where(type => type.IsClass && type.IsPublic && type.Name.EndsWith("Broker"));
+                .Where(type => type.IsClass && type.IsPublic && type.Name.EndsWith("Broker"))
+                .ToList();
 
             //TODO: Think about moving settings in database table or anything else (now it is hardcored to scan for last 2 months)
             var from = DateTime.UtcNow.AddDays(-60);
@@ -107,7 +108,7 @@
 
             var response = new
             {
-                ScannedBrokers = brokerTypes.Count(),
+                ScannedBrokers = brokerTypes.Count,
                 Ftds = ftdCounter
             };
 

@@ -47,7 +47,7 @@
             var httpCleint = new HttpClient();
 
             var coreApiUrl = this.configuration["CoreApiUrl"];
-            var response = httpCleint.PostAsync($"{coreApiUrl}/Api/Brokers/FtdScan", null).GetAwaiter().GetResult();
+            var response = httpCleint.PostAsync($"{coreApiUrl}/Brokers/FtdScan", null).GetAwaiter().GetResult();
             var responseAsString = response.Content.ReadAsStringAsync().GetAwaiter().GetResult();
 
             Console.WriteLine($"[Ftd Scan time: {DateTime.UtcNow}] --- [Scan result: {responseAsString}]");

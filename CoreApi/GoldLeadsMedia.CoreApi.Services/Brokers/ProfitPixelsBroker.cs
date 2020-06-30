@@ -14,7 +14,7 @@
         private readonly IErrorsService errorsService;
         private readonly IAsyncHttpClient httpClient;
 
-        private readonly string brokerId = "e4eb3f0f-c97e-468e-9567-91cfb237b0e2";
+        private readonly string brokerId = "d928f7b9-15ce-4f3a-aa7a-1dd7ba90ca17";
 
         public ProfitPixelsBroker(
             ILeadsService leadsService,

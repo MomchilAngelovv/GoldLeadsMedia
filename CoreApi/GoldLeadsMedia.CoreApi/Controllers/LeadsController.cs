@@ -44,7 +44,7 @@
         {
             var leads = this.leadsService
                 .GetAll()
-                .Select(lead => new 
+                .Select(lead => new
                 {
                     lead.Id,
                     lead.FirstName,
@@ -113,9 +113,17 @@
                 //TODO: Think logic if cannnot find the lead
             }
 
-            var testBroker = this.brokersService.GetByName("Test");
-            await this.leadsService.SendLeadSuccessAsync(lead, testBroker.Id, "TestIdInBroker");
-            var depositedLead = await this.leadsService.FtdSuccessAsync(lead,DateTime.UtcNow,"Deposit");
+            await this.leadsService.SendLeadSuccessAsync(lead, lead.BrokerId, "TestIdInBroker");
+            var depositedLead = await this.leadsService.FtdSuccessAsync(lead, DateTime.UtcNow, "Deposit");
+
+            var trackerConfiguration = this.affiliatesService.GetTrackerSettings(lead.ClickRegistration?.Affiliate?.Id);
+            var clickRegistration = this.clicksRegistrationsService.GetBy(lead.ClickRegistrationId);
+
+            if (trackerConfiguration != null && string.IsNullOrWhiteSpace(trackerConfiguration.FtdPostbackUrl) == false)
+            {
+                var url = trackerConfiguration.FtdPostbackUrl.Replace("{glm}", clickRegistration.TrackerClickId);
+                await this.httpClient.GetAsync<string>(url);
+            }
 
             var response = new
             {

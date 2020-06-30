@@ -60,6 +60,12 @@
                 return BadRequest(ErrorMessages.OfferNotFound);
             }
 
+            var lead = this.leadsService.GetByEmail(inputModel.Email);
+            if (lead != null)
+            {
+                return BadRequest(ErrorMessages.LeadAlreadyExists);
+            }
+
             var ipAddress = HttpContext.Connection.RemoteIpAddress.ToString();
 
             var serviceModel = new LeadsRegisterInputServiceModel
@@ -75,7 +81,7 @@
                 IpAddress = ipAddress
             };
 
-            var lead = await leadsService.RegisterAsync(serviceModel);
+            lead = await leadsService.RegisterAsync(serviceModel);
 
             var response = new
             {
