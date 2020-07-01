@@ -19,12 +19,11 @@
         public string Email { get; set; }
         public string Password { get; set; }
         public string PhoneNumber { get; set; }
-        public bool IsConfirmed { get; set; }
-        public bool HasAffiliatePayments { get; set; }
+        public bool IsTest { get; set; }
         public string IdInBroker { get; set; }
-        public string CallStatus { get; set; }
+        public string Status { get; set; }
         public DateTime? FtdBecameOn { get; set; }
-        public decimal? FtdAmmount { get; set; }
+        public decimal? DepositAmmount { get; set; }
 
         public string ClickRegistrationId { get; set; }
         public string ApiRegistrationId { get; set; }

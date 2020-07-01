@@ -16,8 +16,8 @@
             entity.Property(entity => entity.Password).HasMaxLength(100);
             entity.Property(entity => entity.Password).IsRequired().HasMaxLength(100);
             entity.Property(entity => entity.IdInBroker).HasMaxLength(450);
-            entity.Property(entity => entity.CallStatus).HasMaxLength(100);
-            entity.Property(entity => entity.FtdAmmount).HasColumnType("decimal(18,4)");
+            entity.Property(entity => entity.Status).HasMaxLength(100);
+            entity.Property(entity => entity.DepositAmmount).HasColumnType("decimal(18,4)");
 
             //One-to-one with apiRegistration and clickRegistration -> Lead should have either apiRegistration or clickRegistration
             entity.HasOne(a => a.ApiRegistration).WithOne(b => b.Lead).HasForeignKey<Lead>(b => b.ApiRegistrationId).OnDelete(DeleteBehavior.Restrict);

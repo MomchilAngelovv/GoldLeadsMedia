@@ -69,13 +69,18 @@
             if (clickRegistration == null)
             {
                 return this.BadRequest(ErrorConstants.ClickRegistrationNotFound);
-                return this.BadRequest(ErrorConstants.ClickRegistrationNotFound);
             }
 
             var country = this.countriesService.GetBy(inputModel.CountryName);
             if (country == null)
             {
                 return this.BadRequest(ErrorConstants.CountryNotFound);
+            }
+
+            var lead = this.leadsService.GetByEmail(inputModel.Email);
+            if (lead != null)
+            {
+                return BadRequest(ErrorConstants.LeadAlreadyExists);
             }
 
             var serviceModel = new LeadsRegisterInputServiceModel
@@ -91,7 +96,7 @@
             };
 
             //Register lead in our database
-            var lead = await this.leadsService.RegisterAsync(serviceModel);
+            var newLead = await this.leadsService.RegisterAsync(serviceModel);
 
             //Register lead in affiliate tracker
             var trackerConfiguration = this.affiliatesService.GetTrackerSettings(clickRegistration.AffiliateId);
@@ -102,7 +107,7 @@
                 await this.httpClient.GetAsync<string>(url);
             }
 
-            return lead;
+            return newLead;
         }
         [HttpPost("{leadId}/Deposit")]
         public async Task<ActionResult<object>> Deposit(string leadId)
@@ -130,7 +135,7 @@
                 depositedLead.Id,
                 depositedLead.FtdBecameOn,
                 depositedLead.CreatedOn,
-                depositedLead.CallStatus,
+                depositedLead.Status,
             };
 
             return response;

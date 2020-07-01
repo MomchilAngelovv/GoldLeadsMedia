@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GoldLeadsMedia.Database.Migrations
 {
     [DbContext(typeof(GoldLeadsMediaDbContext))]
-    [Migration("20200628133451_Initial_Database_Create")]
+    [Migration("20200701091242_Initial_Database_Create")]
     partial class Initial_Database_Create
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -533,10 +533,6 @@ namespace GoldLeadsMedia.Database.Migrations
                     b.Property<string>("BrokerId")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<string>("CallStatus")
-                        .HasColumnType("nvarchar(100)")
-                        .HasMaxLength(100);
-
                     b.Property<string>("ClickRegistrationId")
                         .HasColumnType("nvarchar(450)");
 
@@ -549,6 +545,9 @@ namespace GoldLeadsMedia.Database.Migrations
                     b.Property<DateTime?>("DeletedOn")
                         .HasColumnType("datetime2");
 
+                    b.Property<decimal?>("DepositAmmount")
+                        .HasColumnType("decimal(18,4)");
+
                     b.Property<string>("Email")
                         .IsRequired()
                         .HasColumnType("nvarchar(100)")
@@ -559,14 +558,8 @@ namespace GoldLeadsMedia.Database.Migrations
                         .HasColumnType("nvarchar(100)")
                         .HasMaxLength(100);
 
-                    b.Property<decimal?>("FtdAmmount")
-                        .HasColumnType("decimal(18,4)");
-
                     b.Property<DateTime?>("FtdBecameOn")
                         .HasColumnType("datetime2");
-
-                    b.Property<bool>("HasAffiliatePayments")
-                        .HasColumnType("bit");
 
                     b.Property<string>("IdInBroker")
                         .HasColumnType("nvarchar(450)")
@@ -575,7 +568,7 @@ namespace GoldLeadsMedia.Database.Migrations
                     b.Property<string>("Information")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<bool>("IsConfirmed")
+                    b.Property<bool>("IsTest")
                         .HasColumnType("bit");
 
                     b.Property<string>("LastName")
@@ -590,6 +583,10 @@ namespace GoldLeadsMedia.Database.Migrations
 
                     b.Property<string>("PhoneNumber")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Status")
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
 
                     b.Property<DateTime?>("UpdatedOn")
                         .HasColumnType("datetime2");

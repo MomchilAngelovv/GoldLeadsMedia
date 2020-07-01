@@ -46,7 +46,7 @@
                     lead.Email,
                     CountryName = lead.Country.Name,
                     lead.FtdBecameOn,
-                    lead.CallStatus,
+                    lead.Status,
                     lead.CreatedOn,
                     affiliateId,
                 })

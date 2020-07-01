@@ -23,7 +23,7 @@
         public async Task<Lead> FtdSuccessAsync(Lead lead, DateTime ftdBecomeOn, string callStatus)
         {
             lead.FtdBecameOn = ftdBecomeOn;
-            lead.CallStatus = callStatus;
+            lead.Status = callStatus;
 
             db.Leads.Update(lead);
             await db.SaveChangesAsync();
@@ -85,6 +85,12 @@
         public IEnumerable<Lead> GetAll()
         {
             return db.Leads.ToList();
+        }
+
+        public Lead GetByEmail(string email)
+        {
+            return this.db.Leads
+                .SingleOrDefault(lead => lead.Email == email);
         }
     }
 }

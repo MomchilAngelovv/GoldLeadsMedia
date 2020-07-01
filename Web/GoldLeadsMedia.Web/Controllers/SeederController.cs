@@ -40,10 +40,15 @@
                 return this.Content("Database is not empty!");
             }
 
-            var user1 = new GoldLeadsMediaUser
+            var adminUser = new GoldLeadsMediaUser
             {
                 UserName = "Lora",
                 Email = "contact@goldleadsmedia.com",
+            };
+
+            var testBroker = new Broker
+            {
+                Name = "Test"
             };
 
             var verticalNames = new List<string> { "Crypto", "Forex", "Casino" };
@@ -134,10 +139,10 @@
             await this.SeedCountries();
             await this.SeedLanguages();
 
-            await this.userManager.CreateAsync(user1, "1234567890aA");
+            await this.userManager.CreateAsync(adminUser, "1234567890aA");
 
-            await this.userManager.AddToRoleAsync(user1, "Administrator");
-            await this.userManager.AddToRoleAsync(user1, "Manager");
+            await this.userManager.AddToRoleAsync(adminUser, "Administrator");
+            await this.userManager.AddToRoleAsync(adminUser, "Manager");
 
             await this.db.Verticals.AddRangeAsync(varticals);
             await this.db.Accesses.AddRangeAsync(accesses);
@@ -145,6 +150,7 @@
             await this.db.PayTypes.AddRangeAsync(paymentTypes);
             await this.db.TargetDevices.AddRangeAsync(targetDevices);
             await this.db.CountryTiers.AddRangeAsync(tierCountries);
+            await this.db.Brokers.AddAsync(testBroker);
 
             await this.db.SaveChangesAsync();
 
@@ -161,6 +167,7 @@
             stringBuilder.AppendLine($"[Payment types:{db.PayTypes.Count()}]");
             stringBuilder.AppendLine($"[Target devices:{db.TargetDevices.Count()}]");
             stringBuilder.AppendLine($"[Tier countries:{db.CountryTiers.Count()}]");
+            stringBuilder.AppendLine($"[Tier countries:{db.Brokers.Count()}]");
 
             return this.Content(stringBuilder.ToString());
         }

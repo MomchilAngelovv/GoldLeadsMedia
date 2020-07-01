@@ -6,6 +6,7 @@
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Identity;
 
+    using GoldLeadsMedia.Web.Common;
     using GoldLeadsMedia.Database.Models;
     using GoldLeadsMedia.Web.Models.ViewModels;
     using GoldLeadsMedia.Web.Models.InputModels;
@@ -146,15 +147,21 @@
         {
             var loggedUser = await this.userManager.GetUserAsync(this.User);
 
-            var affiliate = new GoldLeadsMediaUser
+            var affiliate = await this.userManager.FindByEmailAsync(inputModel.Email);
+            if (affiliate != null)
+            {
+                return this.BadRequest(ErrorConstants.AffiliateAlreadyExists);
+            }
+
+            var newAffiliate = new GoldLeadsMediaUser
             {
                 UserName = inputModel.UserName,
                 Email = inputModel.Email,
                 ManagerId = loggedUser.Id
             };
            
-            await this.userManager.CreateAsync(affiliate, inputModel.Password);
-            await this.userManager.AddToRoleAsync(affiliate, "Affiliate");
+            await this.userManager.CreateAsync(newAffiliate, inputModel.Password);
+            await this.userManager.AddToRoleAsync(newAffiliate, "Affiliate");
 
             return this.Redirect("/Affiliates/All");
         }

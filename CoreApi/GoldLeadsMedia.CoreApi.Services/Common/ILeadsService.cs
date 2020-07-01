@@ -15,5 +15,6 @@
         Lead GetBy(string id, bool searchByBrokerId = false);
         IEnumerable<Lead> GetLeadsBy(string userId);
         Task<Lead> RegisterAsync(LeadsRegisterInputServiceModel serviceModel);
+        Lead GetByEmail(string email);
     }
 }

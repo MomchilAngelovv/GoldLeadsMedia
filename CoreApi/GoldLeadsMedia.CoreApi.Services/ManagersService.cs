@@ -37,13 +37,13 @@
         public IEnumerable<Lead> GetNotConfirmedLeads()
         {
             return db.Leads
-                .Where(lead => lead.IsConfirmed == false)
+                .Where(lead => lead.IsTest == false)
                 .ToList();
         }
         public IEnumerable<Lead> GetConfirmedLeads()
         {
             return db.Leads
-                .Where(lead => lead.IsConfirmed)
+                .Where(lead => lead.IsTest)
                 .ToList();
         }
         public async Task<IEnumerable<Lead>> ConfirmLeadsAsync(ManagersConfirmLeadsInputServiceModel serviceModel)
@@ -54,7 +54,7 @@
             {
                 var lead = leadsService.GetBy(leadId);
 
-                lead.IsConfirmed = true;
+                lead.IsTest = true;
                 lead.Information += $"[Confirmed by: {serviceModel.ManagerId}]";
                 lead.UpdatedOn = DateTime.UtcNow;
 
