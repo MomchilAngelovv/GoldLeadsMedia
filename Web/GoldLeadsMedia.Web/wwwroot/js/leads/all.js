@@ -21,7 +21,7 @@ $('#send-leads-btn').click(function () {
     let brokerId = $('input[name="broker-id"]:checked')[0].value;
 
     $.post({
-        url: `https://stagingcoreapi.goldleadsmedia.com/Brokers/${brokerId}/SendLeads`,
+        url: `https://localhost:44322/Brokers/${brokerId}/SendLeads`,
         contentType: "application/json; charset=utf-8",
         dataType: 'json',
         data: JSON.stringify({ brokerId, leadIds }),

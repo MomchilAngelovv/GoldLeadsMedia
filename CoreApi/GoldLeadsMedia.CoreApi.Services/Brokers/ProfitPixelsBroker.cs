@@ -59,7 +59,7 @@
                 {
                     var lead = leadsService.GetBy(ftdData.LeadId, true);
 
-                    var ftd = await leadsService.FtdSuccessAsync(lead, ftdData.FtdDateTime, ftdData.CallStatus);
+                    var ftd = await leadsService.FtdSuccessAsync(lead, ftdData.FtdDateTime.GetValueOrDefault(), ftdData.CallStatus);
 
                     var trackerConfiguration = this.affiliatesService.GetTrackerSettings(lead.ClickRegistration?.Affiliate?.Id);
                     var clickRegistration = this.clicksRegistrationsService.GetBy(lead.ClickRegistrationId);
@@ -137,7 +137,7 @@
             return failedLeadsCount;
         }
 
-        private class ProfitPixelsSendLeadResponse
+        public class ProfitPixelsSendLeadResponse
         {
             public bool Success { get; set; }
             public string Message { get; set; }
@@ -145,7 +145,7 @@
             public ResponseData ResponseData { get; set; }
         }
 
-        private class ProfitPixelsFtdScanResponse
+        public class ProfitPixelsFtdScanResponse
         {
             public bool Success { get; set; }
             public string Message { get; set; }
@@ -153,14 +153,14 @@
             public List<ResponseData> ResponseData { get; set; }
         }
 
-        private class ResponseData
+        public class ResponseData
         {
             public string LeadId { get; set; }
-            public DateTime CreatedDateTime { get; set; }
+            public DateTime? CreatedDateTime { get; set; }
             public string RedirectUrl { get; set; }
             public string CallStatus { get; set; }
             public bool IsFtd { get; set; }
-            public DateTime FtdDateTime { get; set; }
+            public DateTime? FtdDateTime { get; set; }
             public bool IsTest { get; set; }
             public string OfferId { get; set; }
             public string FirstName { get; set; }
