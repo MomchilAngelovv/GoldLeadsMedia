@@ -57,6 +57,14 @@
                 }
             }
 
+            if (headers != null && headers.Count > 1)
+            {
+                foreach (var keyValuePair in headers)
+                {
+                    httpClient.DefaultRequestHeaders.Add(keyValuePair.Key, keyValuePair.Value);
+                }
+            }
+
             var completeUrl = urlBuilder.ToString().TrimEnd('&', '?');
 
             var response = await this.httpClient.GetAsync(completeUrl);

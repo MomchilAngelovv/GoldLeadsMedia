@@ -23,7 +23,7 @@
             this.httpClient = clientFactory.CreateClient();
         }
 
-        public async Task<T> GetAsync<T>(string url, object queryParameters = null)
+        public async Task<T> GetAsync<T>(string url, object queryParameters = null, Dictionary<string, string> headers = null)
         {
             var urlBuilder = new StringBuilder();
 
@@ -54,6 +54,14 @@
                         var popertyName = property.Name;
                         urlBuilder.Append($"{popertyName}={propertyValue}&");
                     }
+                }
+            }
+
+            if (headers != null && headers.Count > 1)
+            {
+                foreach (var keyValuePair in headers)
+                {
+                    httpClient.DefaultRequestHeaders.Add(keyValuePair.Key, keyValuePair.Value);
                 }
             }
 
