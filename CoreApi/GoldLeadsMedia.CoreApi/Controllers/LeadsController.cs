@@ -116,7 +116,11 @@
 
             if (lead == null)
             {
-                //TODO: Think logic if cannnot find the lead
+                return this.BadRequest(ErrorConstants.LeadNotFound);
+            }
+            if (lead.FtdBecameOn != null)
+            {
+                return this.BadRequest(ErrorConstants.LeadAlreadyDeposited);
             }
 
             var depositedLead = await this.leadsService.FtdSuccessAsync(lead, DateTime.UtcNow, "Deposit");
