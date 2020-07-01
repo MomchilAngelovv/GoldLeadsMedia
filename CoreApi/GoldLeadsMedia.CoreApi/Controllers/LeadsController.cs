@@ -125,7 +125,7 @@
 
             var depositedLead = await this.leadsService.FtdSuccessAsync(lead, DateTime.UtcNow, "Deposit");
 
-            var trackerConfiguration = this.affiliatesService.GetTrackerSettings(lead.ClickRegistration?.Affiliate?.Id);
+            var trackerConfiguration = this.affiliatesService.GetTrackerSettings(lead.ClickRegistration?.Affiliate.Id);
             var clickRegistration = this.clicksRegistrationsService.GetBy(lead.ClickRegistrationId);
 
             if (trackerConfiguration != null && string.IsNullOrWhiteSpace(trackerConfiguration.FtdPostbackUrl) == false)

@@ -9,6 +9,7 @@
     using GoldLeadsMedia.CoreApi.Models.CoreApi.Input;
     using GoldLeadsMedia.CoreApi.Models.Services.Input;
     using GoldLeadsMedia.CoreApi.Services.Common;
+    using GoldLeadsMedia.CoreApi.Common;
 
     public class BrokersController : ApiController
     {
@@ -65,13 +66,13 @@
 
             if (broker == null)
             {
-                //TODO LOGIC IF no partner is find -> register developer error maybe
+                return this.BadRequest(ErrorConstants.BrokerNotFound);
             }
 
             var brokerType = typeof(IBroker)
                 .Assembly
                 .GetTypes()
-                .SingleOrDefault(type => type.IsClass && type.IsPublic && type.Name.ToLower().StartsWith(broker.Name.ToLower().Replace(" ","")) && type.Name.EndsWith("Broker"));
+                .SingleOrDefault(type => type.IsClass && type.IsPublic && type.Name.ToLower().StartsWith(broker.Name.ToLower().Replace(" ", string.Empty)) && type.Name.EndsWith("Broker"));
 
             var brokerInstance = this.serviceProvider.GetService(brokerType) as IBroker;
 

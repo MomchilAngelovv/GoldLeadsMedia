@@ -20,10 +20,10 @@
             this.db = db;
         }
 
-        public async Task<Lead> FtdSuccessAsync(Lead lead, DateTime ftdBecomeOn, string callStatus)
+        public async Task<Lead> FtdSuccessAsync(Lead lead, DateTime ftdBecomeOn, string status)
         {
             lead.FtdBecameOn = ftdBecomeOn;
-            lead.Status = callStatus;
+            lead.Status = status;
 
             db.Leads.Update(lead);
             await db.SaveChangesAsync();
@@ -86,7 +86,6 @@
         {
             return db.Leads.ToList();
         }
-
         public Lead GetByEmail(string email)
         {
             return this.db.Leads

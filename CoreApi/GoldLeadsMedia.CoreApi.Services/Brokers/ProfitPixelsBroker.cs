@@ -16,7 +16,7 @@
         private readonly IAffiliatesService affiliatesService;
         private readonly IClicksRegistrationsService clicksRegistrationsService;
 
-        private readonly string brokerId = "853ee8b6-dbcf-4fd2-bc34-246a31e13b94";
+        private readonly string brokerId = "b0eabfa3-474f-4c29-b37b-e4cb9aa9643e";
 
         public ProfitPixelsBroker(
             ILeadsService leadsService,
@@ -101,10 +101,11 @@
                     lead.FirstName,
                     lead.LastName,
                     lead.Email,
-                    Language = lead.Country.IsoCode, //TODO This may need some changes due to different partner requierments For now I put country code as language BUT need to think something,
-                    OfferId = "Fill this with their offer ID",
+                    Language = "EN", //TODO HARD CODED BUT FOR NOW ITS OK since there is quetioons which language to put on offer or on lead country or on something else
+                    OfferId = "648d077d-dded-4ee1-b515-2d4a226262e1",
                     lead.PhoneNumber,
-                    lead.Password
+                    lead.Password,
+                    CountryCode = lead.Country.IsoCode
                 };
 
                 var headers = new Dictionary<string, string>
@@ -113,7 +114,7 @@
                     ["X-Auth-Key"] = "ac7e4690eebc45989d690ffce24cfd5e4923f2dd4ba540e98f637fc06743d5b3"
                 };
 
-                var sendLeadResponse = await httpClient.PostAsync<ProfitPixelsSendLeadResponse>(url, requestBody, headers);
+                var sendLeadResponse = await httpClient.PostAsync<ProfitPixelsSendLeadResponse>(url, requestBody, headers, "application/x-www-form-urlencoded");
 
                 if (sendLeadResponse.Success)
                 {

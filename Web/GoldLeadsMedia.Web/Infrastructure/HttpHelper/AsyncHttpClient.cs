@@ -83,11 +83,6 @@
                 urlBuilder.Append(url);
             }
 
-            var completeUrl = urlBuilder.ToString();
-
-            var bodyAsString = JsonSerializer.Serialize(body);
-            var requestBody = new StringContent(bodyAsString, Encoding.UTF8, mimeType);
-
             if (headers != null && headers.Count > 0)
             {
                 foreach (var header in headers)
@@ -96,16 +91,52 @@
                 }
             }
 
-            var response = await this.httpClient.PostAsync(completeUrl, requestBody);
-            var responseAsString = await response.Content.ReadAsStringAsync();
+            var completeUrl = urlBuilder.ToString();
 
-            if (response.IsSuccessStatusCode == false)
+            //TODO: think better logic for mime types
+            if (mimeType == "application/json")
             {
-                throw new HttpFailRequestException(responseAsString);
-            }
+                var bodyAsString = JsonSerializer.Serialize(body);
+                var requestBody = new StringContent(bodyAsString, Encoding.UTF8, mimeType);
 
-            var mappedResponse = this.MapResponse<T>(responseAsString);
-            return mappedResponse;
+                var response = await this.httpClient.PostAsync(completeUrl, requestBody);
+                var responseAsString = await response.Content.ReadAsStringAsync();
+
+                if (response.IsSuccessStatusCode == false)
+                {
+                    throw new HttpFailRequestException(responseAsString);
+                }
+
+                var mappedResponse = this.MapResponse<T>(responseAsString);
+                return mappedResponse;
+            }
+            else
+            {
+                var urlEncodedParameters = new Dictionary<string, string>();
+
+                var bodyTypeProperties = body.GetType().GetProperties();
+
+                foreach (var bodyTypeProperty in bodyTypeProperties)
+                {
+                    var key = bodyTypeProperty.Name;
+                    var value = bodyTypeProperty.GetValue(body).ToString();
+
+                    urlEncodedParameters.Add(key, value);
+                }
+
+                var requestBody = new FormUrlEncodedContent(urlEncodedParameters);
+
+                var response = await this.httpClient.PostAsync(completeUrl, requestBody);
+                var responseAsString = await response.Content.ReadAsStringAsync();
+
+                if (response.IsSuccessStatusCode == false)
+                {
+                    throw new HttpFailRequestException(responseAsString);
+                }
+
+                var mappedResponse = this.MapResponse<T>(responseAsString);
+                return mappedResponse;
+            }
         }
 
         private T MapResponse<T>(string responseAsString)
