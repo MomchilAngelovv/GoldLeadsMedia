@@ -22,7 +22,7 @@
     <tbody class="table-tbody">
         @foreach (var lead in Model.Leads)
         {
-        <tr class="table-row @if (lead.HasBeenSend == false) {<text>clickable-table-row</text>}">
+        <tr class="table-row">
             <td>
                 @lead.Affiliate
             </td>
@@ -33,7 +33,7 @@
                 @lead.LastName
             </td>
             <td>
-                @lead.Email
+                <a asp-controller="Leads" asp-action="Details" asp-route-id="@lead.Id" class="btn btn-sm btn-info">@lead.Email</a>
             </td>
             <td>
                 @lead.PhoneNumber
@@ -78,11 +78,11 @@
         {
             if (Model.CurrentPage == i)
             {
-        <li class="page-item active"><a class="page-link" asp-controller="Leads" asp-action="All" asp-route-page="@i">@i</a></li>
+                <li class="page-item active"><a class="page-link" asp-controller="Leads" asp-action="All" asp-route-page="@i">@i</a></li>
             }
             else
             {
-        <li class="page-item"><a class="page-link" asp-controller="Leads" asp-action="All" asp-route-page="@i">@i</a></li>
+                <li class="page-item"><a class="page-link" asp-controller="Leads" asp-action="All" asp-route-page="@i">@i</a></li>
             }
         }
         <li class="page-item">

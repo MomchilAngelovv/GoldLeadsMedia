@@ -30,8 +30,8 @@
 
             var viewModel = new NavigationBarViewModel
             {
-                TotalEarned = affiliatePayments.TotalEarned,
-                TotalPaid = affiliatePayments.TotalPaid,
+                TotalEarned = affiliatePayments.TotalEarned.ToString("C0"),
+                TotalPaid = affiliatePayments.TotalPaid.ToString("C0"),
                 IsManager = await this.userManager.IsInRoleAsync(loggedUsed, "Manager"),
                 IsAdministrator = await this.userManager.IsInRoleAsync(loggedUsed, "Administrator")
             };

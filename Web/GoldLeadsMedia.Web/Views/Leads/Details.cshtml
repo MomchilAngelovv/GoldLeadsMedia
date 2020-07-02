@@ -1,0 +1,78 @@
+﻿@model GoldLeadsMedia.Web.Models.ViewModels.LeadsDetailsViewModel
+<h1>@Model.Lead.Email</h1>
+<h3>@Model.Lead.IsTest</h3>
+<hr />
+<div class="row">
+    <form class="col-12">
+        <div class="form-row">
+            <div class="col-4">
+                <label asp-for="@Model.Lead.FirstName">First name</label><br />
+                <input asp-for="@Model.Lead.FirstName" disabled>
+            </div>
+            <div class="col-4">
+                <label asp-for="@Model.Lead.LastName">Last name</label><br />
+                <input asp-for="@Model.Lead.LastName" disabled>
+            </div>
+            <div class="col-4">
+                <label asp-for="@Model.Lead.Email">Email</label><br />
+                <input asp-for="@Model.Lead.Email" disabled>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="col-4">
+                <label asp-for="@Model.Lead.PhoneNumber">PhoneNumber</label><br />
+                <input asp-for="@Model.Lead.PhoneNumber" disabled>
+            </div>
+            <div class="col-4">
+                <label asp-for="@Model.Lead.IsTest">IsTest</label><br />
+                <input asp-for="@Model.Lead.IsTest" disabled>
+            </div>
+            <div class="col-4">
+                <label asp-for="@Model.Lead.IdInBroker">IdInBroker</label><br />
+                <input asp-for="@Model.Lead.IdInBroker" disabled>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="col-4">
+                <label asp-for="@Model.Lead.Status">Status</label><br />
+                <input asp-for="@Model.Lead.Status" disabled>
+            </div>
+            <div class="col-4">
+                <label asp-for="@Model.Lead.FtdBecameOn">FtdBecameOn</label><br />
+                <input asp-for="@Model.Lead.FtdBecameOn" disabled>
+            </div>
+            <div class="col-4">
+                <label asp-for="@Model.Lead.DepositAmmount">DepositAmmount</label><br />
+                <input asp-for="@Model.Lead.DepositAmmount" disabled>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="col-4">
+                <label asp-for="@Model.Lead.ClickRegistrationId">ClickRegistrationId</label><br />
+                <input asp-for="@Model.Lead.ClickRegistrationId" disabled>
+            </div>
+            <div class="col-4">
+                <label asp-for="@Model.Lead.ApiRegistrationId">ApiRegistrationId</label><br />
+                <input asp-for="@Model.Lead.ApiRegistrationId" disabled>
+            </div>
+            <div class="col-4">
+                <label asp-for="@Model.Lead.Country">Country</label><br />
+                <input asp-for="@Model.Lead.Country" disabled>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="col-4">
+                <label asp-for="@Model.Lead.Broker">Broker</label><br />
+                <input asp-for="@Model.Lead.Broker" disabled>
+            </div>
+            <div class="col-4">
+                <label asp-for="@Model.Lead.CreatedOn">CreatedOn</label><br />
+                <input asp-for="@Model.Lead.CreatedOn" disabled>
+            </div>
+            <div class="col-4">
+                <label asp-for="@Model.Lead.UpdatedOn">UpdatedOn</label><br />
+                <input asp-for="@Model.Lead.UpdatedOn" disabled>
+            </div>
+        </div>
+    </form>
+</div>

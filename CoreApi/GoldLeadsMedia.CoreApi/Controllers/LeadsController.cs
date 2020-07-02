@@ -65,6 +65,38 @@
 
             return leads;
         }
+        [HttpGet("{id}")]
+        public ActionResult<object> Details(string id)
+        {
+            var lead = this.leadsService.GetBy(id);
+
+            if (lead == null)
+            {
+                return this.BadRequest(ErrorConstants.LeadNotFound);
+            }
+
+            var response = new
+            {
+                lead.Id,
+                lead.FirstName,
+                lead.LastName,
+                lead.Email,
+                lead.PhoneNumber,
+                IsTest = lead.IsTest == true ? "Real lead" : "Test lead",
+                lead.IdInBroker,
+                lead.Status,
+                FtdBecomeOn = lead.FtdBecameOn.GetValueOrDefault().ToString(),
+                lead.DepositAmmount,
+                CreatedOn = lead.CreatedOn.ToString(),
+                lead.ClickRegistrationId,
+                lead.ApiRegistrationId,
+                Country = lead.Country.Name,
+                Broker = lead.Broker?.Name,
+                UpdatedOn = lead.UpdatedOn.GetValueOrDefault().ToString()
+            };
+
+            return response;
+        }
 
 
         [HttpPost]

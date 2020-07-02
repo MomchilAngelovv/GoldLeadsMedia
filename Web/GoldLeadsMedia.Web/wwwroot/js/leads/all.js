@@ -1,20 +1,20 @@
-﻿$('.clickable-table-row').on('click', function () {
-    let inputCheckBox = $(this).children().find('input');
+﻿//$('.clickable-table-row').on('click', function () {
+//    let inputCheckBox = $(this).children().find('input');
 
-    if (inputCheckBox.prop("checked") === true) {
-        inputCheckBox.prop("checked", false);
-    }
-    else {
-        inputCheckBox.prop('checked', true)
-    }   
+//    if (inputCheckBox.prop("checked") === true) {
+//        inputCheckBox.prop("checked", false);
+//    }
+//    else {
+//        inputCheckBox.prop('checked', true)
+//    }   
 
-    console.log($(this))
-    if ($(this).hasClass("clicked-table-row")) {
-        $(this).removeClass("clicked-table-row")
-    } else {
-        $(this).addClass("clicked-table-row")
-    }
-})
+//    console.log($(this))
+//    if ($(this).hasClass("clicked-table-row")) {
+//        $(this).removeClass("clicked-table-row")
+//    } else {
+//        $(this).addClass("clicked-table-row")
+//    }
+//})
 
 $('#send-leads-btn').click(function () {
     let leadIds = $('input[name="lead-id"]:checked').toArray().map(el => el.value);

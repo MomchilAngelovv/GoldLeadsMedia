@@ -39,5 +39,17 @@ namespace GoldLeadsMedia.Web.Controllers
 
             return this.View(viewModel);
         }
+        [HttpGet]
+        public async Task<IActionResult> Details(string id)
+        {
+            var lead = await this.httpClient.GetAsync<LeadsDetailsLead>($"Leads/{id}");
+
+            var viewModel = new LeadsDetailsViewModel
+            {
+                Lead = lead
+            };
+
+            return this.View(viewModel);
+        }
     }
 }
