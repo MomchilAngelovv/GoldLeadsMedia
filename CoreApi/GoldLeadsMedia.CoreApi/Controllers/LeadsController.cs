@@ -40,7 +40,7 @@
         }
 
         [HttpGet]
-        public ActionResult<IEnumerable<object>> GetAll()
+        public ActionResult<IEnumerable<object>> GetAll([FromQuery] int page)
         {
             var leads = this.leadsService
                 .GetAll()
@@ -56,6 +56,10 @@
                     HasBeenSend = lead.BrokerId != null,
                     HasBecomeFtd = lead.FtdBecameOn != null
                 })
+                .OrderByDescending(lead => lead.HasBecomeFtd)
+                .ThenByDescending(lead => lead.HasBeenSend)
+                .Skip((page - 1) * 25)
+                .Take(25)
                 .ToList();
 
             return leads;

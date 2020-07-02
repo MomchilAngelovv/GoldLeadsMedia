@@ -11,6 +11,7 @@
     using GoldLeadsMedia.Database.Models;
     using GoldLeadsMedia.Web.Models.ViewModels;
     using GoldLeadsMedia.Web.Infrastructure.HttpHelper;
+    using GoldLeadsMedia.Web.Models.CoreApiResponses;
 
     public class OffersController : Controller
     {
@@ -62,9 +63,12 @@
         {
             var loggedUser = await this.userManager.GetUserAsync(this.User);
             var viewModel = await this.httpClient.GetAsync<OffersDetailsViewModel>($"Offers/{id}");
+            var trackerConfiguration = await this.httpClient.GetAsync<GetApiAffiliatesIdTrackerConfiguration>($"Affiliates/{loggedUser.Id}/TrackerConfiguration");
 
             var webUrl = this.configuration["WebUrl"];
             viewModel.RedirectUrl = $"{webUrl}/Clicks/Register?offerId={viewModel.Id}&affiliateId={loggedUser.Id}";
+            viewModel.LeadPostbackUrl = trackerConfiguration.LeadPostbackUrl;
+            viewModel.FtdPostbackUrl = trackerConfiguration.FtdPostbackUrl;
 
             //TODO: Fix vip offers to show only for vip affiliats
             //viewModel.IsVip = loggedUser.IsVip;

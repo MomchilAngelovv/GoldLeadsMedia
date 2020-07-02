@@ -14,11 +14,14 @@
     public class OffersController : ApiController
     {
         private readonly IOffersService offersService;
+        private readonly IAffiliatesService affiliatesService;
 
         public OffersController(
-            IOffersService offersService)
+            IOffersService offersService,
+            IAffiliatesService affiliatesService)
         {
             this.offersService = offersService;
+            this.affiliatesService = affiliatesService;
         }
 
         [HttpGet]

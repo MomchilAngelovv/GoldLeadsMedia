@@ -19,15 +19,22 @@ namespace GoldLeadsMedia.Web.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> All()
+        public async Task<IActionResult> All(int page = 1)
         {
-            var leads = await this.httpClient.GetAsync<List<LeadsAllLead>>("Leads");
+            var queryParameters = new
+            {
+                Page = page
+            };  
+
+            var leads = await this.httpClient.GetAsync<List<LeadsAllLead>>("Leads", queryParameters);
             var brokers = await this.httpClient.GetAsync<List<LeadsAllBroker>>("Brokers");
 
             var viewModel = new LeadsAllViewModel
             {
                 Leads = leads,
-                Brokers = brokers
+                Brokers = brokers,
+                TotalPages = 25, //TODO HARDCODED FOR NOW need to calulate how many pages will there be 
+                CurrentPage = page
             };
 
             return this.View(viewModel);

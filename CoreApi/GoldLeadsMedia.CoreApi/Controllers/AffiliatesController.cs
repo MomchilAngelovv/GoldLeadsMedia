@@ -92,7 +92,19 @@
 
             return affiliateOfferReports;
         }
+        [HttpGet("{affiliateId}/TrackerConfiguration")]
+        public ActionResult<object> TrackerConfiguration(string affiliateId)
+        {
+            var trackerConfiguration = this.affiliatesService.GetTrackerSettings(affiliateId);
 
+            var response = new
+            {
+                trackerConfiguration.LeadPostbackUrl,
+                trackerConfiguration.FtdPostbackUrl
+            };
+
+            return response;
+        }
 
         [HttpPost("{affiliateId}/TrackerConfiguration")]
         public async Task<ActionResult<object>> CreateOrUpdateTrackerConfiguration(string affiliateId, AffiliatesCreateOrUdpateTrackerConfigurationInputModel inputModel)

@@ -16,7 +16,7 @@
         private readonly IAffiliatesService affiliatesService;
         private readonly IClicksRegistrationsService clicksRegistrationsService;
 
-        private readonly string brokerId = "b0eabfa3-474f-4c29-b37b-e4cb9aa9643e";
+        private readonly string brokerId = "8e18406a-a348-4216-9028-7670c0d43ca7";
 
         public ProfitPixelsBroker(
             ILeadsService leadsService,
@@ -101,7 +101,7 @@
                     lead.FirstName,
                     lead.LastName,
                     lead.Email,
-                    Language = "EN", //TODO HARD CODED BUT FOR NOW ITS OK since there is quetioons which language to put on offer or on lead country or on something else
+                    Language = "EN", //TODO HARD CODED BUT FOR NOW ITS OK since there is questioons which language to put on offer or on lead country or on something else
                     OfferId = "648d077d-dded-4ee1-b515-2d4a226262e1",
                     lead.PhoneNumber,
                     lead.Password,

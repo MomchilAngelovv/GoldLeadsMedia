@@ -19,7 +19,8 @@
         public string Vertical { get; set; }
         public string Device { get; set; }
         public string RedirectUrl { get; set; }
-        public string PostbackUrl { get; set; }
+        public string LeadPostbackUrl { get; set; }
+        public string FtdPostbackUrl { get; set; }
         public bool IsVip { get; set; }
         public IEnumerable<OffersDetailsLandingPage> LandingPages { get; set; }
     }

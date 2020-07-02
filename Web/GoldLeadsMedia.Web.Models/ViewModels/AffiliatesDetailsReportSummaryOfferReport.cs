@@ -7,7 +7,7 @@ namespace GoldLeadsMedia.Web.Models.ViewModels
     public class AffiliatesDetailsReportSummaryOfferReport
     {
         public string Id { get; set; }
-        public string ImageUrl => $"/images/offers/{this.Id}.jpg";
+        public string ImageUrl => $"/images/offers/crypto.jpg";
         public string Number { get; set; }
         public string Name { get; set; }
         public int ClicksCount { get; set; }
