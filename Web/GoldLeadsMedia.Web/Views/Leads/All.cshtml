@@ -10,6 +10,7 @@
 
 <table class="table table-sm">
     <tr class="row-header">
+        <th>Affiliate</th>
         <th>First name</th>
         <th>Last name</th>
         <th>Email</th>
@@ -21,44 +22,47 @@
     <tbody class="table-tbody">
         @foreach (var lead in Model.Leads)
         {
-            <tr class="table-row @if (lead.HasBeenSend == false) {<text>clickable-table-row</text>}">
-                <td>
-                    @lead.FirstName
-                </td>
-                <td>
-                    @lead.LastName
-                </td>
-                <td>
-                    @lead.Email
-                </td>
-                <td>
-                    @lead.PhoneNumber
-                </td>
-                <td>
-                    @lead.CountryName
-                </td>
-                <td>
-                    @lead.OfferName
-                </td>
-                @if (lead.HasBecomeFtd)
+        <tr class="table-row @if (lead.HasBeenSend == false) {<text>clickable-table-row</text>}">
+            <td>
+                @lead.Affiliate
+            </td>
+            <td>
+                @lead.FirstName
+            </td>
+            <td>
+                @lead.LastName
+            </td>
+            <td>
+                @lead.Email
+            </td>
+            <td>
+                @lead.PhoneNumber
+            </td>
+            <td>
+                @lead.CountryName
+            </td>
+            <td>
+                @lead.OfferName
+            </td>
+            @if (lead.HasBecomeFtd)
                 {
-                    <td class="text-success">
-                        Ftd
-                    </td>
+            <td class="text-success">
+                Ftd
+            </td>
                 }
                 else if (lead.HasBeenSend)
                 {
-                    <td bclass="text-warning">
-                        Already send
-                    </td>
+            <td bclass="text-warning">
+                Send
+            </td>
                 }
                 else
                 {
-                    <td>
-                        <input type="checkbox" name="lead-id" value="@lead.Id">
-                    </td>
+            <td>
+                <input type="checkbox" name="lead-id" value="@lead.Id">
+            </td>
                 }
-            </tr>
+        </tr>
         }
     </tbody>
 </table>
@@ -74,11 +78,11 @@
         {
             if (Model.CurrentPage == i)
             {
-                <li class="page-item active"><a class="page-link" asp-controller="Leads" asp-action="All" asp-route-page="@i">@i</a></li>
+        <li class="page-item active"><a class="page-link" asp-controller="Leads" asp-action="All" asp-route-page="@i">@i</a></li>
             }
             else
             {
-                <li class="page-item"><a class="page-link" asp-controller="Leads" asp-action="All" asp-route-page="@i">@i</a></li>
+        <li class="page-item"><a class="page-link" asp-controller="Leads" asp-action="All" asp-route-page="@i">@i</a></li>
             }
         }
         <li class="page-item">
@@ -97,11 +101,11 @@
     <div class="row">
         @foreach (var broker in Model.Brokers)
         {
-            <div class="col-2">
-                <label>
-                    <input type="radio" name="broker-id" value="@broker.Id"> @broker.Name
-                </label>
-            </div>
+        <div class="col-2">
+            <label>
+                <input type="radio" name="broker-id" value="@broker.Id"> @broker.Name
+            </label>
+        </div>
         }
     </div>
     <div>

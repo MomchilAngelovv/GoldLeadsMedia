@@ -47,6 +47,7 @@
                 .Select(lead => new
                 {
                     lead.Id,
+                    Affiliate = lead.ApiRegistrationId == null ? lead.ClickRegistration.Affiliate.UserName : lead.ApiRegistration.Affiliate.UserName,
                     lead.FirstName,
                     lead.LastName,
                     lead.Email,
