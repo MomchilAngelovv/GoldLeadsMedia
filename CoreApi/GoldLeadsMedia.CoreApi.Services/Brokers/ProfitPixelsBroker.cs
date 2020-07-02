@@ -59,6 +59,11 @@
                 {
                     var lead = leadsService.GetBy(ftdData.LeadId, true);
 
+                    if (lead == null)
+                    {
+                        continue;
+                    }
+
                     var ftd = await leadsService.FtdSuccessAsync(lead, ftdData.FtdDateTime.GetValueOrDefault(), ftdData.CallStatus);
 
                     var trackerConfiguration = this.affiliatesService.GetTrackerSettings(lead.ClickRegistration?.Affiliate?.Id);
@@ -67,7 +72,7 @@
                     if (trackerConfiguration != null && string.IsNullOrWhiteSpace(trackerConfiguration.FtdPostbackUrl) == false)
                     {
                         var url = trackerConfiguration.FtdPostbackUrl.Replace("{glm}", clickRegistration.TrackerClickId);
-                        await this.httpClient.GetAsync<object>(url);
+                        var responseAsString = await this.httpClient.GetAsync(url);
                     }
 
                     ftdCounter++;

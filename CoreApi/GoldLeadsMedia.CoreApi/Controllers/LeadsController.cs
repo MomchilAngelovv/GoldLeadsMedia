@@ -136,7 +136,7 @@
             if (trackerConfiguration != null && string.IsNullOrWhiteSpace(trackerConfiguration.FtdPostbackUrl) == false)
             {
                 var url = trackerConfiguration.FtdPostbackUrl.Replace("{glm}", clickRegistration.TrackerClickId);
-                await this.httpClient.GetAsync<object>(url);
+                var responseAsString = await this.httpClient.GetAsync(url);
             }
 
             var response = new

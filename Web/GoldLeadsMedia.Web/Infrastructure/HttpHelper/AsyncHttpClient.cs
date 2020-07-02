@@ -23,6 +23,55 @@
             this.httpClient = clientFactory.CreateClient();
         }
 
+        public async Task<string> GetAsync(string url, object queryParameters = null, Dictionary<string, string> headers = null)
+        {
+            var urlBuilder = new StringBuilder();
+
+            if (url.Contains("http") == false)
+            {
+                urlBuilder.Append($"{this.configuration["CoreApiUrl"]}/{url}");
+            }
+            else
+            {
+                urlBuilder.Append(url);
+            }
+
+            if (queryParameters != null)
+            {
+                if (url.EndsWith("?") == false)
+                {
+                    urlBuilder.Append($"?");
+                }
+
+                var queryProperties = queryParameters.GetType().GetProperties();
+
+                foreach (var property in queryProperties)
+                {
+                    var propertyValue = property.GetValue(queryParameters);
+                    if (propertyValue != null)
+                    {
+                        //TODO IF property is string somehow it still remains in url as empty string
+                        var popertyName = property.Name;
+                        urlBuilder.Append($"{popertyName}={propertyValue}&");
+                    }
+                }
+            }
+
+            if (headers != null && headers.Count > 1)
+            {
+                foreach (var keyValuePair in headers)
+                {
+                    httpClient.DefaultRequestHeaders.Add(keyValuePair.Key, keyValuePair.Value);
+                }
+            }
+
+            var completeUrl = urlBuilder.ToString().TrimEnd('&', '?');
+
+            var response = await this.httpClient.GetAsync(completeUrl);
+            var responseAsString = await response.Content.ReadAsStringAsync();
+
+            return responseAsString;
+        }
         public async Task<T> GetAsync<T>(string url, object queryParameters = null, Dictionary<string, string> headers = null)
         {
             var urlBuilder = new StringBuilder();
