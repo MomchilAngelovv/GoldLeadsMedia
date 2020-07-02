@@ -1,0 +1,74 @@
+﻿@model GoldLeadsMedia.Web.Models.ViewModels.BrokersDetailsViewModel
+
+<h1>Broker details:</h1>
+<hr />
+<div class="row">
+    <form class="col-12">
+        <div class="form-row">
+            <div class="col-4">
+                <label asp-for="@Model.Broker.Id">Id</label><br />
+                <input asp-for="@Model.Broker.Id" disabled>
+            </div>
+            <div class="col-4">
+                <label asp-for="@Model.Broker.Name">Name</label><br />
+                <input asp-for="@Model.Broker.Name" disabled>
+            </div>
+            <div class="col-4">
+                <label asp-for="@Model.Broker.CreatedOn">CreatedOn</label><br />
+                <input asp-for="@Model.Broker.CreatedOn" disabled>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="col-4">
+                <label asp-for="@Model.Broker.DeletedOn">DeletedOn</label><br />
+                <input asp-for="@Model.Broker.DeletedOn" disabled>
+            </div>
+            <div class="col-4">
+                <label asp-for="@Model.Broker.Information">Information</label><br />
+                <input asp-for="@Model.Broker.Information" disabled>
+            </div>
+        </div>
+    </form>
+</div>
+<h1>Leads:</h1>
+<hr />
+<table class="table table-sm">
+    <tr class="row-header">
+        <th>Id</th>
+        <th>Email</th>
+        <th>First name</th>
+        <th>Last name</th>
+        <th>Status</th>
+    </tr>
+    <tbody class="table-tbody">
+        @foreach (var lead in Model.Broker.Leads)
+        {
+            <tr class="table-row">
+                <td>
+                    @lead.Id
+                </td>
+                <td>
+                    <a asp-controller="Leads" asp-action="Details" asp-route-id="@lead.Id" class="btn btn-sm btn-info">@lead.Email</a>
+                </td>
+                <td>
+                    @lead.FirstName
+                </td>
+                <td>
+                    @lead.LastName
+                </td>
+                @if (lead.HasBecomeFtd)
+                {
+                    <td class="text-success">
+                        Ftd
+                    </td>
+                }
+                else if (lead.HasBeenSend)
+                {
+                    <td bclass="text-warning">
+                        Send
+                    </td>
+                }
+            </tr>
+        }
+    </tbody>
+</table>

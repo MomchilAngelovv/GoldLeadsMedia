@@ -19,6 +19,7 @@ namespace GoldLeadsMedia.Web.Controllers
         }
             
         //TODO: FIX JS Naming nad foldering
+        [HttpGet]
         public async Task<IActionResult> All()
         {
             var brokers = await this.httpClient.GetAsync<List<BrokersAllBroker>>("Reports/Brokers");
@@ -26,6 +27,18 @@ namespace GoldLeadsMedia.Web.Controllers
             var viewModel = new BrokersAllViewModel
             {
                 Brokers = brokers
+            };
+
+            return this.View(viewModel);
+        }
+        [HttpGet]
+        public async Task<IActionResult> Details(string id)
+        {
+            var broker = await this.httpClient.GetAsync<BrokersDetailsBroker>($"Brokers/{id}");
+
+            var viewModel = new BrokersDetailsViewModel 
+            { 
+                Broker = broker
             };
 
             return this.View(viewModel);

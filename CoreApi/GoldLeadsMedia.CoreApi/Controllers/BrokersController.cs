@@ -40,6 +40,36 @@
 
             return response;
         }
+        [HttpGet("{id}")]
+        public ActionResult<object> Details(string id)
+        {
+            var broker = this.brokersService.GetBy(id);
+            if (broker == null)
+            {
+                return this.BadRequest(ErrorConstants.BrokerNotFound);
+            }
+
+            var response = new
+            {
+                broker.Id,
+                broker.Name,
+                Leads = broker.Leads.Select(lead => new
+                {
+                    lead.Id,
+                    lead.Email,
+                    lead.FirstName,
+                    lead.LastName,
+                    lead.Status,
+                    HasBeenSend = lead.BrokerId != null,
+                    HasBecomeFtd = lead.FtdBecameOn != null
+                }),
+                CreatedOn = broker.CreatedOn.ToString(),
+                DeletedOn = broker.DeletedOn.GetValueOrDefault().ToString(),
+                broker.Information
+            };
+
+            return response;
+        }
 
 
         [HttpPost]

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace GoldLeadsMedia.Web.Models.ViewModels
+﻿namespace GoldLeadsMedia.Web.Models.ViewModels
 {
     public class BrokersAllBroker
     {

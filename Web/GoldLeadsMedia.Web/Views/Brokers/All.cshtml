@@ -18,6 +18,9 @@
                     Total leads: @broker.TotalLeads <br />
                     Total ftds : @broker.TotalFtds
                 </div>
+                <div class="card-body">
+                    <a asp-controller="Brokers" asp-action="Details" asp-route-id="@broker.Id" class="btn btn-sm btn-info">More details</a>
+                </div>
             </div>
         </div>
     }
