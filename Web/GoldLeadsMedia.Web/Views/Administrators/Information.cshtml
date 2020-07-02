@@ -4,9 +4,9 @@
     <a asp-controller="Administrators" asp-action="CreateOffer" class="btn btn-primary">Create offer</a>
     <a asp-controller="Administrators" asp-action="AssignLandingPagesToOffer" class="btn btn-primary">Assign landing pages to offers</a>
     <a asp-controller="Administrators" asp-action="RegisterAffiliate" class="btn btn-primary">Register affiliate</a>
-    <a asp-controller="Administrators" asp-action="RegisterLandingPage" class="btn btn-primary">Register landing Page</a>
-    <a asp-controller="Administrators" asp-action="RegisterBroker" class="btn btn-primary">Register broker</a>
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#todaysErrors">Today's errors</button>
+    <a asp-controller="Administrators" asp-action="RegisterLandingPage" class="btn btn-primary text-danger">Register landing Page</a>
+    <a asp-controller="Administrators" asp-action="RegisterBroker" class="btn btn-primary text-danger">Register broker</a>
+    <button type="button" class="btn btn-primary text-success" data-toggle="modal" data-target="#todaysErrors">Today's errors</button>
 </div>
 
 <hr />
@@ -15,9 +15,35 @@
 
 <div class="row">
     <div class="list-group col-12">
-        @foreach (var devError in Model.DeveloperErrors)
+        @foreach (var developerError in Model.DeveloperErrors)
         {
-            <a href="#" class="list-group-item list-group-item-action">[@devError.CreatedOn] @devError.Information @devError.Message</a>
+            <a href="#" class="list-group-item list-group-item-action">[@developerError.CreatedOn] @developerError.Information @developerError.Message</a>
+        }
+    </div>
+</div>
+
+<hr />
+<h2 class="text-center">Send leads errors</h2>
+<hr />
+
+<div class="row">
+    <div class="list-group col-12">
+        @foreach (var sendLeadError in Model.SendLeadErrors)
+        {
+            <a href="#" class="list-group-item list-group-item-action">[@sendLeadError.CreatedOn] [@sendLeadError.Broker] [@sendLeadError.Lead] [@sendLeadError.Message] [Additional information: @sendLeadError.Information]</a>
+        }
+    </div>
+</div>
+
+<hr />
+<h2 class="text-center">Send leads errors</h2>
+<hr />
+
+<div class="row">
+    <div class="list-group col-12">
+        @foreach (var ftdError in Model.FtdScanErrors)
+        {
+            <a href="#" class="list-group-item list-group-item-action">[@ftdError.CreatedOn] [@ftdError.Broker] [@ftdError.Message] [Additional information: @ftdError.Information]</a>
         }
     </div>
 </div>

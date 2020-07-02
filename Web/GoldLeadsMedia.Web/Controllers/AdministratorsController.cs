@@ -30,15 +30,17 @@
         public async Task<IActionResult> Information()
         {
             var developerErrors = await this.httpClient.GetAsync<List<AdministratorsInformationDeveloperError>>("Errors/Developer");
-            var ftdScanErrorsCount = await this.httpClient.GetAsync<int>("Errors/FtdScan");
-            var sendLeadsErrorsCount = await this.httpClient.GetAsync<int>("Errors/SendLeads");
+            var sendLeads = await this.httpClient.GetAsync<List<AdministratorsInformationSendLeadError>>("Errors/SendLead");
+            var ftdScanErrors = await this.httpClient.GetAsync<List<AdministratorsInformationFtdScanError>>("Errors/FtdScan");
 
             var viewModel = new AdministratorsInformationViewModel
             {
                 DeveloperErrors = developerErrors,
+                SendLeadErrors = sendLeads,
+                FtdScanErrors = ftdScanErrors,
                 DeveloperErrorsCount = developerErrors.Count,
-                FtdScanErrorsCount = ftdScanErrorsCount,
-                SendLeadsErrorsCount = sendLeadsErrorsCount
+                SendLeadsErrorsCount = sendLeads.Count,
+                FtdScanErrorsCount = ftdScanErrors.Count,
             };
 
             return this.View(viewModel);

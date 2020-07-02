@@ -35,22 +35,39 @@ namespace GoldLeadsMedia.CoreApi.Controllers
             return developerErrors;
         }
         [HttpGet("FtdScan")]
-        public ActionResult<int> FtdScanErros()
+        public ActionResult<IEnumerable<object>> FtdScanErros()
         {
             var ftdScanErrors = this.errorsService
                 .GetFtdScanErrors()
-                .Where(ftdScanError => ftdScanError.CreatedOn.Date == DateTime.UtcNow.Date)
-                .Count();
+                .OrderByDescending(ftdScanError => ftdScanError.CreatedOn)
+                .Select(ftdScanError => new
+                {
+                    ftdScanError.Id,
+                    ftdScanError.Message,
+                    Broker = ftdScanError.Broker.Name,
+                    CreatedOn = ftdScanError.CreatedOn.ToString(),
+                    ftdScanError.Information
+                })
+                .ToList();
 
             return ftdScanErrors;
         }
-        [HttpGet("SendLeads")]
-        public ActionResult<int> SendLeadsErros()
+        [HttpGet("SendLead")]
+        public ActionResult<IEnumerable<object>> SendLeadsErros()
         {
             var sendLeadsErrors = this.errorsService
                 .GetSendLeadsErrors()
-                .Where(sendLeadsError => sendLeadsError.CreatedOn.Date == DateTime.UtcNow.Date)
-                .Count();
+                .OrderByDescending(sendLeadError => sendLeadError.CreatedOn)
+                .Select(sendLeadError => new 
+                {
+                    sendLeadError.Id,
+                    sendLeadError.Message,
+                    Broker = sendLeadError.Broker.Name,
+                    Lead = sendLeadError.Lead.Email,
+                    CreatedOn = sendLeadError.CreatedOn.ToString(),
+                    sendLeadError.Information
+                })
+                .ToList();
 
             return sendLeadsErrors;
         }
