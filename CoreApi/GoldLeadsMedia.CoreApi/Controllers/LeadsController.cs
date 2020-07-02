@@ -82,7 +82,7 @@
                 lead.LastName,
                 lead.Email,
                 lead.PhoneNumber,
-                IsTest = lead.IsTest == true ? "Real lead" : "Test lead",
+                IsTest = lead.IsTest == true ? "Test lead" : "Real lead",
                 lead.IdInBroker,
                 lead.Status,
                 FtdBecomeOn = lead.FtdBecameOn.GetValueOrDefault().ToString(),
@@ -177,6 +177,23 @@
                 depositedLead.FtdBecameOn,
                 depositedLead.CreatedOn,
                 depositedLead.Status,
+            };
+
+            return response;
+        }
+        [HttpPost("{leadId}/SetTest")]
+        public async Task<ActionResult<object>> SetTest(string leadId)
+        {
+            var lead = this.leadsService.GetBy(leadId);
+            if (lead == null)
+            {
+                return this.BadRequest(ErrorConstants.LeadNotFound);
+            }
+
+            var leadToSetTest = await this.leadsService.SetTestAsync(leadId);
+            var response = new
+            {
+                leadToSetTest.Id
             };
 
             return response;

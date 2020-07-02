@@ -1,4 +1,5 @@
 ﻿using GoldLeadsMedia.Web.Infrastructure.HttpHelper;
+using GoldLeadsMedia.Web.Models.CoreApiResponses;
 using GoldLeadsMedia.Web.Models.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -24,7 +25,7 @@ namespace GoldLeadsMedia.Web.Controllers
             var queryParameters = new
             {
                 Page = page
-            };  
+            };
 
             var leads = await this.httpClient.GetAsync<List<LeadsAllLead>>("Leads", queryParameters);
             var brokers = await this.httpClient.GetAsync<List<LeadsAllBroker>>("Brokers");
@@ -50,6 +51,12 @@ namespace GoldLeadsMedia.Web.Controllers
             };
 
             return this.View(viewModel);
+        }
+        [HttpGet]
+        public async Task<IActionResult> SetTest(string id)
+        {
+            var response = await this.httpClient.PostAsync<PostLeadsIdSetTest>($"Leads/{id}/SetTest", null);
+            return this.RedirectToAction(nameof(Details),new { id });
         }
     }
 }

@@ -91,5 +91,17 @@
             return this.db.Leads
                 .SingleOrDefault(lead => lead.Email == email);
         }
+        public async Task<Lead> SetTestAsync(string leadId)
+        {
+            var lead = this.db.Leads
+                .SingleOrDefault(lead => lead.Id == leadId);
+
+            lead.IsTest = true;
+            lead.Information = $"[Mark as test: {DateTime.UtcNow}]";
+            this.db.Leads.Update(lead);
+            await this.db.SaveChangesAsync();
+
+            return lead;
+        }
     }
 }

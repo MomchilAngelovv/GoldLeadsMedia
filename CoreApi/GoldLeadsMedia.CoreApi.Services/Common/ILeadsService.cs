@@ -16,5 +16,6 @@
         IEnumerable<Lead> GetLeadsBy(string userId);
         Task<Lead> RegisterAsync(LeadsRegisterInputServiceModel serviceModel);
         Lead GetByEmail(string email);
+        Task<Lead> SetTestAsync(string leadId);
     }
 }
