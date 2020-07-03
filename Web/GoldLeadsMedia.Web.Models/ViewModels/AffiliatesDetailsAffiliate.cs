@@ -9,7 +9,7 @@
         public string Skype { get; set; }
         public bool IsVip { get; set; }
         public string Experience { get; set; }
-        public decimal Available { get; set; }
-        public decimal Paid { get; set; }
+        public string TotalEarned { get; set; }
+        public string TotalPaid { get; set; }
     }
 }

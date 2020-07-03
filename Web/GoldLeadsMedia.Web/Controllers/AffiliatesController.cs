@@ -43,6 +43,7 @@
         {
             var affiliate = await this.httpClient.GetAsync<AffiliatesDetailsAffiliate>($"Affiliates/{id}");
             var offerReports = await this.httpClient.GetAsync<List<AffiliatesDetailsReportSummaryOfferReport>>($"Affiliates/{id}/OfferReports");
+            var affiliatePayments = await this.httpClient.GetAsync<GetAffiliatesIdPaymentsStatusResponse>($"Affiliates/{id}/PaymentsStatus");
 
             var reportSummary = new AffiliatesDetailsReportSummary
             {
@@ -58,6 +59,9 @@
                 Affiliate = affiliate,
                 ReportSummary = reportSummary
             };
+
+            viewModel.Affiliate.TotalEarned = affiliatePayments.TotalEarned.ToString("C0");
+            viewModel.Affiliate.TotalPaid = affiliatePayments.TotalPaid.ToString("C0");
 
             return this.View(viewModel);
         }
