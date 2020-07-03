@@ -127,6 +127,7 @@
             var mappedResponse = this.MapResponse<T>(responseAsString);
             return mappedResponse;
         }
+        //TODO: Make default value or bodu null in order not to be restricted to to pass body for eazier use
         public async Task<T> PostAsync<T>(string url, object body, Dictionary<string, string> headers = null, string mimeType = "application/json")
         {
             var urlBuilder = new StringBuilder();
