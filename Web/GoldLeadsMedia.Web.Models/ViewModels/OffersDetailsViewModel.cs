@@ -10,9 +10,9 @@
         public string Name { get; set; }
         public string Description { get; set; }
         public string ImageUrl => $"/images/offers/{this.Vertical}.jpg";
-        public decimal? PayPerAction { get; set; }
-        public decimal? PayPerClick { get; set; }
-        public decimal? PayPerLead { get; set; }
+        public string PayPerAction { get; set; }
+        public string PayPerClick { get; set; }
+        public string PayPerLead { get; set; }
         public string PayType { get; set; }
         public string Language { get; set; }
         public string CountryTier { get; set; }

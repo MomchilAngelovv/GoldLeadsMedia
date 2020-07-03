@@ -70,14 +70,8 @@
         }
         public AffiliatesGetPaymentsStatusByOutputServiceModel GetPaymentsStatusBy(string affiliateId)
         {
-            //TODO: This will get money ONLY FOR PPA -> NEED TO INCLUDE EVERY POSSIBLE AFFILATE PAY (PPL/PPC) BUT FOR NOW WE WORK ONLY CPA
             var affiliate = this.db.Users
                 .SingleOrDefault(user => user.Id == affiliateId);
-
-            if (affiliate == null)
-            {
-                //TODO: Think for logic if no user is found but still not sure if its possible 
-            }
 
             var totalEarned = this.db.Leads
                 .Where(lead => lead.FtdBecameOn != null && (lead.ClickRegistration.Affiliate.Id == affiliate.Id || lead.ApiRegistration.AffiliateId == affiliate.Id))
