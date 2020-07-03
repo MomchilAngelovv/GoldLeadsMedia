@@ -59,7 +59,7 @@
                 {
                     var lead = leadsService.GetBy(ftdData.LeadId, true);
 
-                    if (lead == null)
+                    if (lead == null || lead.FtdBecameOn != null)
                     {
                         continue;
                     }
