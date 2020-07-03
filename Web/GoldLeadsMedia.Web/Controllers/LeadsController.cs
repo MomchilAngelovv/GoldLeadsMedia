@@ -56,7 +56,13 @@ namespace GoldLeadsMedia.Web.Controllers
         public async Task<IActionResult> SetTest(string id)
         {
             var response = await this.httpClient.PostAsync<PostLeadsIdSetTest>($"Leads/{id}/SetTest", null);
-            return this.RedirectToAction(nameof(Details),new { id });
+            return this.RedirectToAction(nameof(Details), new { id });
+        }
+        [HttpGet]
+        public async Task<IActionResult> Deposit(string id)
+        {
+            var response = await this.httpClient.PostAsync<PostLeadsIdDeposit>($"Leads/{id}/Deposit", null);
+            return this.RedirectToAction(nameof(Details), new { id });
         }
     }
 }

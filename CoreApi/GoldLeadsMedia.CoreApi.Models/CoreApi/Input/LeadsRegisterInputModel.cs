@@ -13,6 +13,7 @@
         [Required]
         public string Email { get; set; }
         [Required]
+        [RegularExpression(@"^\d+$", ErrorMessage = "Invalid phone number!")]
         public string PhoneNumber { get; set; }
         [Required]
         public string CountryName { get; set; }

@@ -159,6 +159,10 @@
             {
                 return this.BadRequest(ErrorConstants.LeadAlreadyDeposited);
             }
+            if (lead.BrokerId == null)
+            {
+                return this.BadRequest(ErrorConstants.CannotDepositLeadBeforeItIsSend);
+            }
 
             var depositedLead = await this.leadsService.FtdSuccessAsync(lead, DateTime.UtcNow, "Deposit");
 
@@ -174,8 +178,8 @@
             var response = new
             {
                 depositedLead.Id,
-                depositedLead.FtdBecameOn,
-                depositedLead.CreatedOn,
+                FtdBecameOn = depositedLead.FtdBecameOn.ToString(),
+                CreatedOn = depositedLead.CreatedOn.ToString(),
                 depositedLead.Status,
             };
 

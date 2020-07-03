@@ -8,5 +8,6 @@
         public const string LeadAlreadyDeposited = "Lead already deposited!";
         public const string ClickRegistrationNotFound = "Click not found!";
         public const string LeadAlreadyExists = "Lead already exists!";
+        public const string CannotDepositLeadBeforeItIsSend = "Cannot deposit lead before it is send!";
     }
 }

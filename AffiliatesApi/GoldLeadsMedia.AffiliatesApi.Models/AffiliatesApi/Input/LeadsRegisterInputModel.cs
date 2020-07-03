@@ -1,5 +1,6 @@
 ﻿namespace GoldLeadsMedia.AffiliatesApi.Models.AffiliatesApi.Input
 {
+    using Newtonsoft.Json.Serialization;
     using System.ComponentModel.DataAnnotations;
 
     public class LeadsRegisterInputModel
@@ -21,6 +22,7 @@
         [MaxLength(100)]
         public string Email { get; set; }
         [Required]
+        [RegularExpression(@"^\d+$",ErrorMessage = "Invalid phone number!")]
         [MaxLength(100)]
         public string PhoneNumber { get; set; }
         [Required]
