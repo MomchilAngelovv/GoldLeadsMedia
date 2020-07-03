@@ -22,47 +22,47 @@
     <tbody class="table-tbody">
         @foreach (var lead in Model.Leads)
         {
-        <tr class="table-row">
-            <td>
-                @lead.Affiliate
-            </td>
-            <td>
-                @lead.FirstName
-            </td>
-            <td>
-                @lead.LastName
-            </td>
-            <td>
-                <a asp-controller="Leads" asp-action="Details" asp-route-id="@lead.Id" class="btn btn-sm btn-info">@lead.Email</a>
-            </td>
-            <td>
-                @lead.PhoneNumber
-            </td>
-            <td>
-                @lead.CountryName
-            </td>
-            <td>
-                @lead.OfferName
-            </td>
-            @if (lead.HasBecomeFtd)
+            <tr class="table-row">
+                <td>
+                    @lead.Affiliate
+                </td>
+                <td>
+                    @lead.FirstName
+                </td>
+                <td>
+                    @lead.LastName
+                </td>
+                <td>
+                    <a asp-controller="Leads" asp-action="Details" asp-route-id="@lead.Id" class="btn btn-sm btn-info">@lead.Email</a>
+                </td>
+                <td>
+                    @lead.PhoneNumber
+                </td>
+                <td>
+                    @lead.CountryName
+                </td>
+                <td>
+                    @lead.OfferName
+                </td>
+                @if (lead.HasBecomeFtd)
                 {
-            <td class="text-success">
-                Ftd
-            </td>
+                    <td class="text-success">
+                        Ftd
+                    </td>
                 }
                 else if (lead.HasBeenSend)
                 {
-            <td bclass="text-warning">
-                Send
-            </td>
+                    <td bclass="text-warning">
+                        Send
+                    </td>
                 }
                 else
                 {
-            <td>
-                <input type="checkbox" name="lead-id" value="@lead.Id">
-            </td>
+                    <td>
+                        <input type="checkbox" name="lead-id" value="@lead.Id">
+                    </td>
                 }
-        </tr>
+            </tr>
         }
     </tbody>
 </table>
@@ -101,11 +101,11 @@
     <div class="row">
         @foreach (var broker in Model.Brokers)
         {
-        <div class="col-2">
-            <label>
-                <input type="radio" name="broker-id" value="@broker.Id"> @broker.Name
-            </label>
-        </div>
+            <div class="col-2">
+                <label>
+                    <input type="radio" name="broker-id" value="@broker.Id"> @broker.Name
+                </label>
+            </div>
         }
     </div>
     <div>

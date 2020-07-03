@@ -25,10 +25,11 @@
                 ManagerUserName = "Lora"
             };
             
-            if (loggedUser.ManagerId != null)
-            {
-                viewModel.ManagerId = loggedUser.ManagerId;
-            }
+            //TODO: Fix this with images
+            //if (loggedUser.ManagerId != null)
+            //{
+            //    viewModel.ManagerId = loggedUser.ManagerId;
+            //}
 
             return this.View(viewModel);
         }
