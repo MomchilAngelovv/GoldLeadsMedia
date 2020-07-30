@@ -85,7 +85,7 @@
                 IsTest = lead.IsTest == true ? "Test lead" : "Real lead",
                 lead.IdInBroker,
                 lead.Status,
-                FtdBecomeOn = lead.FtdBecameOn.GetValueOrDefault().ToString(),
+                FtdBecameOn = lead.FtdBecameOn.GetValueOrDefault().ToString(),
                 lead.DepositAmmount,
                 CreatedOn = lead.CreatedOn.ToString(),
                 lead.ClickRegistrationId,
