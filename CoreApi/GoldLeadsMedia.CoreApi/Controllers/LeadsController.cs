@@ -141,7 +141,7 @@
             if (trackerConfiguration != null && string.IsNullOrWhiteSpace(trackerConfiguration.LeadPostbackUrl) == false)
             {
                 var url = trackerConfiguration.LeadPostbackUrl.Replace("{glm}", clickRegistration.TrackerClickId);
-                await this.httpClient.GetAsync<string>(url);
+                await this.httpClient.GetAsync(url);
             }
 
             return newLead;
@@ -172,7 +172,7 @@
             if (trackerConfiguration != null && string.IsNullOrWhiteSpace(trackerConfiguration.FtdPostbackUrl) == false)
             {
                 var url = trackerConfiguration.FtdPostbackUrl.Replace("{glm}", clickRegistration.TrackerClickId);
-                var responseAsString = await this.httpClient.GetAsync(url);
+                await this.httpClient.GetAsync(url);
             }
 
             var response = new
