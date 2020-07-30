@@ -167,6 +167,7 @@
                 var mappedResponse = this.MapResponse<T>(responseAsString);
                 return mappedResponse;
             }
+            //Think better way to do www-formurlencoded mime type
             else
             {
                 var urlEncodedParameters = new Dictionary<string, string>();

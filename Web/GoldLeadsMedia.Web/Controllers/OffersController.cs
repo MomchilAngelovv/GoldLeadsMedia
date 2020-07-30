@@ -34,8 +34,8 @@
         {
             var queryParameters = new
             {
-                filterViewModel.NumberOrName,
-                filterViewModel.CountryId,
+                filterViewModel.Name,
+                filterViewModel.CountryTierId,
                 filterViewModel.VerticalId,
                 filterViewModel.PayTypeId,
                 filterViewModel.DeviceId,
@@ -46,8 +46,8 @@
 
             var viewModel = new OffersAllFilterViewModel
             {
-                NumberOrName = filterViewModel.NumberOrName,
-                CountryId = filterViewModel.CountryId,
+                Name = filterViewModel.Name,
+                CountryTierId = filterViewModel.CountryTierId,
                 VerticalId = filterViewModel.VerticalId,
                 PayTypeId = filterViewModel.PayTypeId,
                 DeviceId = filterViewModel.DeviceId,

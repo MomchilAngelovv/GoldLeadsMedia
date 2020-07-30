@@ -18,6 +18,9 @@
     <meta name="theme-color" content="#fafafa">
 </head>
 <body>
+    <div id="loading" class="justify-content-center">
+        <img id="loading-image" src="~/images/loading.gif" alt="Loading..." />
+    </div>
     <div @{if (this.User.Identity.IsAuthenticated) { <text> class="page-wrapper toggled" </text>  } }>
         @if (this.User.Identity.IsAuthenticated)
         {
@@ -55,7 +58,7 @@
         <!-- End page content -->
     </div>
     <script>
-        
+
     </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
@@ -87,5 +90,13 @@
     <!-- Start of  Zendesk Widget script -->
     @*<script id="ze-snippet" src="https://static.zdassets.com/ekr/snippet.js?key=625af283-81b9-4a61-8663-73117a24cbe3"></script>*@
     <!-- End of  Zendesk Widget script -->
+    <script>
+        $(document).ajaxStart(function () {
+            $("#loading").show();
+        });
+        $(document).ajaxStop(function () {
+            $("#loading").hide();
+        });
+    </script>
 </body>
 </html>

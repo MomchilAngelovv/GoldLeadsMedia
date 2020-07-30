@@ -29,8 +29,8 @@
         {
             var filter = new OffersGetAllFilterInputServiceModel
             {
-                NumberOrName = filterModel.NumberOrName,
-                CountryId = filterModel.CountryId,
+                Name = filterModel.Name,
+                CountryTierId = filterModel.CountryTierId,
                 VerticalId = filterModel.VerticalId,
                 PayTypeId = filterModel.PayTypeId,
                 TargetDeviceId = filterModel.TargetDeviceId,

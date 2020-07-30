@@ -88,9 +88,9 @@
         {
             var offers = db.Offers.AsQueryable();
 
-            if (filterServiceModel.NumberOrName != null)
+            if (filterServiceModel.Name != null)
             {
-                offers = offers.Where(offer => offer.Number.Contains(filterServiceModel.NumberOrName) | offer.Name.Contains(filterServiceModel.NumberOrName));
+                offers = offers.Where(offer => offer.Name.Contains(filterServiceModel.Name));
             }
 
             if (filterServiceModel.VerticalId != null)
@@ -116,6 +116,11 @@
             if (filterServiceModel.GroupId != null)
             {
                 offers = db.OffersOfferGroups.Where(oog => oog.OfferGroupId == filterServiceModel.GroupId).Select(oog => oog.Offer);
+            }
+
+            if (filterServiceModel.CountryTierId != null)
+            {
+                offers = offers.Where(offer => offer.CountryTierId == filterServiceModel.CountryTierId);
             }
 
             return offers;
