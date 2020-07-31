@@ -22,7 +22,7 @@
 
         public Task StartAsync(CancellationToken cancellationToken)
         {
-            var timeBeforeStart = TimeSpan.FromMinutes(1);
+            var timeBeforeStart = TimeSpan.FromMinutes(5);
             var timeInterval = TimeSpan.FromHours(4);
 
             this.timer = new Timer(Scan, null, timeBeforeStart, timeInterval);

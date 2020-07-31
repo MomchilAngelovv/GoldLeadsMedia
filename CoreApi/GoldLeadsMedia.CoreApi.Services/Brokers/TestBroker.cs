@@ -14,7 +14,7 @@
         private readonly IClicksRegistrationsService clicksRegistrationsService;
         private readonly IAsyncHttpClient httpClient;
 
-        private readonly string brokerId = "a322c7c3-e559-4be6-b338-8c5c33b13c34";
+        private readonly string brokerId = "a13f1c5e-a7bd-4820-b7cc-0d117d992397";
         
         public TestBroker(
             ILeadsService leadsService,
