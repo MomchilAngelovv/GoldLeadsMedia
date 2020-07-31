@@ -44,13 +44,21 @@
 
         private void Scan(object state)
         {
-            var httpCleint = new HttpClient();
+            try
+            {
+                var httpCleint = new HttpClient();
+                var coreApiUrl = "https://stagingcoreapi.goldleadsmedia.com";
 
-            var coreApiUrl = "https://stagingcoreapi.goldleadsmedia.com";
-            var response = httpCleint.PostAsync($"{coreApiUrl}/Brokers/FtdScan", null).GetAwaiter().GetResult();
-            var responseAsString = response.Content.ReadAsStringAsync().GetAwaiter().GetResult();
+                var response = httpCleint.PostAsync($"{coreApiUrl}/Brokers/FtdScan", null).GetAwaiter().GetResult();
+                var responseAsString = response.Content.ReadAsStringAsync().GetAwaiter().GetResult();
 
-            Console.WriteLine($"[Ftd Scan time: {DateTime.UtcNow}] --- [Scan result: {responseAsString}]");
+                Console.WriteLine($"[Ftd Scan time: {DateTime.UtcNow}] --- [Scan result: {responseAsString}]");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Something went wrong:");
+                Console.WriteLine($"{ex.Message}");
+            }
         }
     }
 }
