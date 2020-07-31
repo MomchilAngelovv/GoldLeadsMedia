@@ -67,8 +67,8 @@
 
             var webUrl = this.configuration["WebUrl"];
             viewModel.RedirectUrl = $"{webUrl}/Clicks/Register?offerId={viewModel.Id}&affiliateId={loggedUser.Id}";
-            viewModel.LeadPostbackUrl = trackerConfiguration.LeadPostbackUrl;
-            viewModel.FtdPostbackUrl = trackerConfiguration.FtdPostbackUrl;
+            viewModel.LeadPostbackUrl = trackerConfiguration?.LeadPostbackUrl;
+            viewModel.FtdPostbackUrl = trackerConfiguration?.FtdPostbackUrl;
 
             //TODO: Fix vip offers to show only for vip affiliats
             //viewModel.IsVip = loggedUser.IsVip;

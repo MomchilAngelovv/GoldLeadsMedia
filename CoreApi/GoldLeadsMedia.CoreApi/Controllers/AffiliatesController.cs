@@ -99,8 +99,8 @@
 
             var response = new
             {
-                trackerConfiguration.LeadPostbackUrl,
-                trackerConfiguration.FtdPostbackUrl
+                trackerConfiguration?.LeadPostbackUrl,
+                trackerConfiguration?.FtdPostbackUrl
             };
 
             return response;
