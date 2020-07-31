@@ -134,6 +134,23 @@ namespace GoldLeadsMedia.Database.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "FtdScanResults",
+                columns: table => new
+                {
+                    Id = table.Column<string>(nullable: false),
+                    ScannedBrokers = table.Column<int>(nullable: false),
+                    NewFtds = table.Column<int>(nullable: false),
+                    CreatedOn = table.Column<DateTime>(nullable: false),
+                    UpdatedOn = table.Column<DateTime>(nullable: true),
+                    DeletedOn = table.Column<DateTime>(nullable: true),
+                    Information = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_FtdScanResults", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "LandingPages",
                 columns: table => new
                 {
@@ -878,6 +895,9 @@ namespace GoldLeadsMedia.Database.Migrations
 
             migrationBuilder.DropTable(
                 name: "FtdScanErrors");
+
+            migrationBuilder.DropTable(
+                name: "FtdScanResults");
 
             migrationBuilder.DropTable(
                 name: "OffersLandingPages");

@@ -24,6 +24,7 @@
         public DbSet<CountryTier> CountryTiers { get; set; }
         public DbSet<DeveloperError> DeveloperErrors { get; set; }
         public DbSet<FtdScanError> FtdScanErrors { get; set; }
+        public DbSet<FtdScanResult> FtdScanResults { get; set; }
         public DbSet<LandingPage> LandingPages { get; set; }
         public DbSet<Language> Languages { get; set; }
         public DbSet<Lead> Leads { get; set; }

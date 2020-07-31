@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GoldLeadsMedia.Database.Migrations
 {
     [DbContext(typeof(GoldLeadsMediaDbContext))]
-    [Migration("20200701091242_Initial_Database_Create")]
+    [Migration("20200731102617_Initial_Database_Create")]
     partial class Initial_Database_Create
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -322,6 +322,34 @@ namespace GoldLeadsMedia.Database.Migrations
                     b.HasIndex("BrokerId");
 
                     b.ToTable("FtdScanErrors");
+                });
+
+            modelBuilder.Entity("GoldLeadsMedia.Database.Models.FtdScanResult", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<DateTime>("CreatedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DeletedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Information")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("NewFtds")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ScannedBrokers")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("UpdatedOn")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("FtdScanResults");
                 });
 
             modelBuilder.Entity("GoldLeadsMedia.Database.Models.GoldLeadsMediaRole", b =>

@@ -34,7 +34,6 @@
 
         public async Task<IActionResult> SeedData()
         {
-            //TODO Make migration with data seed
             if (this.db.Users.Count() != 0)
             {
                 return this.Content("Database is not empty!");

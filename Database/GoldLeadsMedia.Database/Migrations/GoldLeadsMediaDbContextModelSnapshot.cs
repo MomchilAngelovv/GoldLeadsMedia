@@ -322,6 +322,34 @@ namespace GoldLeadsMedia.Database.Migrations
                     b.ToTable("FtdScanErrors");
                 });
 
+            modelBuilder.Entity("GoldLeadsMedia.Database.Models.FtdScanResult", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<DateTime>("CreatedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DeletedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Information")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("NewFtds")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ScannedBrokers")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("UpdatedOn")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("FtdScanResults");
+                });
+
             modelBuilder.Entity("GoldLeadsMedia.Database.Models.GoldLeadsMediaRole", b =>
                 {
                     b.Property<string>("Id")
