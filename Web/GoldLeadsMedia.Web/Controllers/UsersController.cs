@@ -28,14 +28,6 @@
         [HttpGet]
         public IActionResult Login()
         {
-            var environment = this.configuration["ASPNETCORE_ENVIRONMENT"];
-
-            if (environment == null)
-            {
-                environment = "There is no env var";
-            }
-
-            this.ViewData["Env"] = environment;
             return this.View();
         }
         [HttpGet]

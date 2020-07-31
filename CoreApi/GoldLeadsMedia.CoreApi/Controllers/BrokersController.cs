@@ -64,7 +64,7 @@
                     HasBecomeFtd = lead.FtdBecameOn != null
                 }),
                 CreatedOn = broker.CreatedOn.ToString(),
-                DeletedOn = broker.DeletedOn.GetValueOrDefault().ToString(),
+                DeletedOn = broker.DeletedOn.ToString(),
                 broker.Information
             };
 
