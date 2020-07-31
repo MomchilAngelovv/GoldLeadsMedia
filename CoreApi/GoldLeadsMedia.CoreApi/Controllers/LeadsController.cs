@@ -163,6 +163,10 @@
             {
                 return this.BadRequest(ErrorConstants.CannotDepositLeadBeforeItIsSend);
             }
+            if (lead.Broker.Name != "TestBroker")
+            {
+                return this.BadRequest(ErrorConstants.CannotDepositLeadInRealBroker);
+            }
 
             var depositedLead = await this.leadsService.FtdSuccessAsync(lead, DateTime.UtcNow, "Deposit");
 
