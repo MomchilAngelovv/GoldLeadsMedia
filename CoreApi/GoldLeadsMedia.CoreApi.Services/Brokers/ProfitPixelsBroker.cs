@@ -16,7 +16,7 @@
         private readonly IAffiliatesService affiliatesService;
         private readonly IClicksRegistrationsService clicksRegistrationsService;
 
-        private readonly string brokerId = "470f7530-fc9b-4180-b27c-c06ad19d8903";
+        private readonly string brokerId = "a660b754-bf3f-490f-ab37-fb5613e648bc";
 
         public ProfitPixelsBroker(
             ILeadsService leadsService,

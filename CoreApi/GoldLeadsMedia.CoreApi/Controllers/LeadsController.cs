@@ -92,7 +92,7 @@
                 lead.ApiRegistrationId,
                 Country = lead.Country.Name,
                 Broker = lead.Broker?.Name,
-                UpdatedOn = lead.UpdatedOn.GetValueOrDefault().ToString()
+                UpdatedOn = lead.UpdatedOn.ToString()
             };
 
             return response;
@@ -163,7 +163,7 @@
             {
                 return this.BadRequest(ErrorConstants.CannotDepositLeadBeforeItIsSend);
             }
-            if (lead.Broker.Name != "TestBroker")
+            if (lead.Broker.Name != "Test")
             {
                 return this.BadRequest(ErrorConstants.CannotDepositLeadInRealBroker);
             }

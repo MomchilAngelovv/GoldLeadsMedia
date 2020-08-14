@@ -47,7 +47,7 @@
             try
             {
                 var httpCleint = new HttpClient();
-                var coreApiUrl = "https://stagingcoreapi.goldleadsmedia.com";
+                var coreApiUrl = "https://coreapi.goldleadsmedia.com";
 
                 var response = httpCleint.PostAsync($"{coreApiUrl}/Brokers/FtdScan", null).GetAwaiter().GetResult();
                 var responseAsString = response.Content.ReadAsStringAsync().GetAwaiter().GetResult();
